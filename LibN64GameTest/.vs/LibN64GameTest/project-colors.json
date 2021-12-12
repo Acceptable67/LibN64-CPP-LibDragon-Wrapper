@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "0d82bceb-d2bd-4408-94ec-1504889e8659": {
+      "ProjectGuid": "0d82bceb-d2bd-4408-94ec-1504889e8659",
+      "DisplayName": "LibN64GameTest",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
