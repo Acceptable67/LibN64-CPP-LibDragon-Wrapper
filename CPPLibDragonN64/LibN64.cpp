@@ -12,9 +12,12 @@ namespace LibN64::DFS
 		return handle;
 	}
 	
-	int Size()
+	int Size(const char* file)
 	{
-	  	return dfs_size(handle);
+		auto h = dfs_open(file);
+	  	auto s = dfs_size(h);
+	  	dfs_close(h);
+	  	return s;
 	}
 	
 	void Read(char* buf, unsigned size, unsigned offset) 
@@ -28,9 +31,9 @@ namespace LibN64::DFS
  	{
  		Open(file);
  		
- 		char * buffer = new char[Size()];
+ 		char * buffer = new char[Size(file)];
  		
- 		Read(buffer, Size());
+ 		Read(buffer, Size(file));
  		Close();
  		
  		return buffer;
@@ -48,8 +51,8 @@ namespace LibN64
     {	
 		auto sr = [&](int x, int y)  
 		{
-		this->screenWidth = x;
-		this->screenHeight = y;
+			this->screenWidth = x;
+			this->screenHeight = y;
 		};
 
 		switch (r) 
@@ -89,6 +92,8 @@ namespace LibN64
 	void LibN64::Frame::KeyDLPressed() {}
 	void LibN64::Frame::KeyDRPressed() {}
 	void LibN64::Frame::KeyZPressed()  {}
+	void LibN64::Frame::KeyJoyXPressed(){}
+	void LibN64::Frame::KeyJoyYPressed(){}
 	void LibN64::Frame::OnCreate()     {}
 
 	void LibN64::Frame::ClearScreen() 
@@ -133,7 +138,7 @@ namespace LibN64
 			this->FrameUpdate();
 
 			controller_scan();
-			controller_data keys = get_keys_down();
+			controller_data keys = get_keys_held();
 
 			if (keys.c[0].err == ERROR_NONE) {
 				if (keys.c[0].A) {
@@ -159,6 +164,12 @@ namespace LibN64
 				}
 				if (keys.c[0].start) {
 					this->KeyStartPressed();
+				}
+				if (keys.c[0].x) {
+					this->KeyJoyXPressed();
+				}
+				if(keys.c[0].y) {
+					this->KeyJoyYPressed();
 				}
 			}
 		
