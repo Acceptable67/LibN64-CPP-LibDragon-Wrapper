@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#define GUI	    1
+#define CONSOLE 2
+
 #define RED				graphics_make_color(0xFF, 0x00, 0x00, 0xFF)
 #define GREEN			graphics_make_color(0x00, 0xFF, 0x00, 0xFF)
 #define WHITE			graphics_make_color(0xFF, 0xFF, 0xFF, 0xFF)
@@ -24,7 +27,8 @@
 #define TICKS2SECONDS(ticks)		(ticks * 0.021333333 / 1000000.0)
 
 
-namespace LibN64 {
+namespace LibN64 
+{
 	namespace DFS 
 	{
 		unsigned Open(const char* file) ;
@@ -34,76 +38,79 @@ namespace LibN64 {
 		void     Close();
 	};
 
-class Frame {
-	private:
-		virtual void FrameUpdate();
-		virtual void KeyAPressed();
-		virtual void KeyBPressed();
-		virtual void KeyZPressed();
+	class Frame 
+	{
+		private:
+			virtual void FrameUpdate();
+			virtual void KeyAPressed();
+			virtual void KeyBPressed();
+			virtual void KeyZPressed();
 
-		virtual void KeyStartPressed();
+			virtual void KeyStartPressed();
 
-		virtual void KeyDUPressed();
-		virtual void KeyDDPressed();
-		virtual void KeyDLPressed();
-		virtual void KeyDRPressed();
-		
-		virtual void KeyJoyXPressed();
-		virtual void KeyJoyYPressed();
+			virtual void KeyDUPressed();
+			virtual void KeyDDPressed();
+			virtual void KeyDLPressed();
+			virtual void KeyDRPressed();
+			
+			virtual void KeyJoyXPressed();
+			virtual void KeyJoyYPressed();
 
-		unsigned screenWidth;
-		unsigned screenHeight;
+			unsigned screenWidth;
+			unsigned screenHeight;
 
-		void CheckAndSwitchRes(resolution_t r);
-	public:
-		display_context_t d;
+			void CheckAndSwitchRes(resolution_t r);
+		public:
+			display_context_t d;
 
-		const char* romTitle = "Default";
-		bool lActive;
+			const char* romTitle = "Default";
+			bool lActive;
 
-		float fFrameTime;
-		float fTotalTime;
-	public:
-		Frame(resolution_t res, bitdepth_t dep);
-		virtual void OnCreate();
-		void 	 Begin();
-		void 	 Close();
-		void 	 ClearScreen();
-		void 	 SetScreen(resolution_t res, bitdepth_t bd);
-		unsigned ScreenWidth();
-		unsigned ScreenHeight();
-		void 	 DrawText(int x, int y, const char* t,    unsigned c = WHITE);
-		void 	 DrawPixel(int x, int y, 		      	  unsigned c = WHITE);
-		void 	 DrawBox(int x, int y, int scale = 1,     unsigned c = WHITE);
-		void 	 DrawLine(int x1, int y1, int x2, int y2, unsigned c = WHITE);
-		void  	 DrawCircle(int x, int y, int scale = 1,  unsigned c = WHITE);
-		float Ticks2Seconds(float t);
+			float fFrameTime;
+			float fTotalTime;
 
-		/*The following functions refuse to compile inside the C++ file.*/
-		/*DFS does not work so here is work around. Manually find*/
-	public:
-		template<class T>
-		T* __lib64_rom2buf(long romAddr, int size) {
-			T* tmp = (T*)malloc(size + sizeof(T));
-			for (auto i = 0; i < size; i++) {
-				tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
+			int       uitype;
+		public:
+			Frame(resolution_t res, bitdepth_t dep, int ui);
+			virtual void OnCreate();
+			void 	 Begin();
+			void 	 Close();
+			void 	 ClearScreen();
+			void 	 SetScreen(resolution_t res, bitdepth_t bd);
+			unsigned ScreenWidth();
+			unsigned ScreenHeight();
+			void 	 DrawText(int x, int y, const char* t,    unsigned c = WHITE);
+			void 	 DrawPixel(int x, int y, 		      	  unsigned c = WHITE);
+			void 	 DrawBox(int x, int y, int scale = 1,     unsigned c = WHITE);
+			void 	 DrawLine(int x1, int y1, int x2, int y2, unsigned c = WHITE);
+			void  	 DrawCircle(int x, int y, int scale = 1,  unsigned c = WHITE);
+			float Ticks2Seconds(float t);
+
+			/*The following functions refuse to compile inside the C++ file.*/
+			/*DFS does not work so here is work around. Manually find*/
+		public:
+			template<class T>
+			T* __lib64_rom2buf(long romAddr, int size) {
+				T* tmp = (T*)malloc(size + sizeof(T));
+				for (auto i = 0; i < size; i++) {
+					tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
+				}
+				return tmp;
 			}
-			return tmp;
-		}
 
-		template<class T>
-		T __lib64_rom2type(long romAddr) {
-			T *ptr = (T*)(romAddr);
-			return *ptr;
-		}
+			template<class T>
+			T __lib64_rom2type(long romAddr) {
+				T *ptr = (T*)(romAddr);
+				return *ptr;
+			}
 
-		void DrawTextFormat(int x, int y, const char* format, ...) {
-		   va_list args;
-		   va_start(args, format);
-		   char buffer[85];
-		   vsprintf(buffer, format, args);
-		   graphics_draw_text(d, x, y,buffer);
-		   va_end(args);	
-		}
-	};
+			void DrawTextFormat(int x, int y, const char* format, ...) {
+			va_list args;
+			va_start(args, format);
+			char buffer[85];
+			vsprintf(buffer, format, args);
+			graphics_draw_text(d, x, y,buffer);
+			va_end(args);	
+			}
+		};
 }

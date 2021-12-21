@@ -17,11 +17,10 @@ using namespace LibN64;
 
 class Instance : public Frame {
 public:
-    Instance(resolution_t res, bitdepth_t dep) : Frame(res, dep) {}
+    Instance(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
 
     virtual void OnCreate() override 
     {
-
         romTitle = "LibN64 Test";
     }
     
@@ -61,7 +60,7 @@ private:
 };
 
 int main(void) {
-    Instance n64g(RESOLUTION_320x240, DEPTH_32_BPP);
+    Instance n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
     n64g.Begin();
    
     return 0;

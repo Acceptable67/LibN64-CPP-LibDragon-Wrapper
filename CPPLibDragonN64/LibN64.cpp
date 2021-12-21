@@ -65,20 +65,33 @@ namespace LibN64
 		}
     }
 
-    LibN64::Frame::Frame(resolution_t res=RESOLUTION_320x240, bitdepth_t dep=DEPTH_32_BPP) 
+    LibN64::Frame::Frame(resolution_t res=RESOLUTION_320x240, bitdepth_t dep=DEPTH_32_BPP, int ui = GUI) 
     {
+		uitype = ui;
 		d = 0;
-	
 		CheckAndSwitchRes(res);
 	
 		controller_init();
 		dfs_init(DFS_DEFAULT_LOCATION);
-		display_init(res, dep, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
 
-		while (!(d = display_lock()));
-	
-		graphics_fill_screen(d, 0x0);
-		graphics_set_color(0xFFFFFFFF, 0x0);
+		if(ui == GUI) 
+		{
+			display_init(res, dep, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
+
+			while (!(d = display_lock()));
+		
+			graphics_fill_screen(d, 0x0);
+			graphics_set_color(0xFFFFFFFF, 0x0);
+		}
+		else 
+		if(ui == CONSOLE) 
+		{
+			console_set_render_mode(RENDER_AUTOMATIC);
+			console_init();
+			console_render();
+		} else {
+			__assert(__FILE__,__LINE__, "Invalid UI selection (Must be either GUI or Console)");
+		}
 
 		lActive = true;
 	}
@@ -98,7 +111,10 @@ namespace LibN64
 
 	void LibN64::Frame::ClearScreen() 
 	{
-		graphics_fill_screen(d, 0x0);
+		switch(uitype) {
+			case GUI: graphics_fill_screen(d, 0x0);
+			case CONSOLE: console_clear();
+		}
 	}
 
 	void LibN64::Frame::SetScreen(resolution_t resol, bitdepth_t bd)
@@ -131,7 +147,8 @@ namespace LibN64
 
 	void LibN64::Frame::Begin() 
 	{	
-		display_show(d);
+		if(this->d) 
+			display_show(d);
 		this->OnCreate();
 		while (lActive) {
 			timer_init();
@@ -174,7 +191,9 @@ namespace LibN64
 			}
 		
 			//display_show(LibN64_Display);
-
+			if(uitype == CONSOLE) {
+				console_render();
+			}
 			fFrameTime = timer_ticks();
 			fTotalTime += fFrameTime;
 			timer_close();
