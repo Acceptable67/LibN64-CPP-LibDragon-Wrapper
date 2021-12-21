@@ -1,0 +1,10 @@
+start
+
+var startPtr = 3C
+set 0x80000400 = startPtr
+
+var tester = 2
+var help = 42
+
+set 0x80000405 = help
+debug END REACHED

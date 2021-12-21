@@ -1,0 +1,17 @@
+start
+
+var teststr = str "yeah"
+var integ = int 2
+
+add 3 to integ
+
+if integ == 8:
+    add 42 to integ
+
+set [0x80000400] = integ
+
+var result = addr 0x80000400
+
+drawtext 10, 20, integ
+drawtext 10, 40, teststr
+drawtext 10, 60, result
