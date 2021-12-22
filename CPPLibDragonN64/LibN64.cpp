@@ -140,9 +140,9 @@ namespace LibN64
 	unsigned LibN64::Frame::ScreenHeight() { return screenHeight; }
 
 
-	void LibN64::Frame::DrawBox(int x, int y, int scale, unsigned  c)
+	void LibN64::Frame::DrawBox(LibPos pos, int scale, unsigned  c)
 	{
-		graphics_draw_box(d, x, y, scale, scale, c);
+		graphics_draw_box(d, pos.x, pos.y, scale, scale, c);
 	}
 
 	void LibN64::Frame::Begin() 
@@ -204,26 +204,26 @@ namespace LibN64
 	{
 		lActive = false;
 	}
-	void LibN64::Frame::DrawCircle(int x, int y, int scale, unsigned  c) 
+	void LibN64::Frame::DrawCircle(LibPos pos, int scale, unsigned  c) 
 	{
 		for(int angles =0;angles<80*scale;angles++) {
-			graphics_draw_box(d, x + cosf(angles) * 3.1415f * scale, y + sinf(angles) * 3.1415f * scale, 1, 1, c);
+			graphics_draw_box(d, pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale, 1, 1, c);
 		}
 	}
-	void LibN64::Frame::DrawLine(int x1, int y1, int x2, int y2, unsigned c) 
+	void LibN64::Frame::DrawLine(LibPos pos1, LibPos pos2, unsigned c) 
 	{
-		graphics_draw_line(this->d, x1, y1, x2, y2, c);
+		graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, c);
 	}
 
-	void LibN64::Frame::DrawPixel(int x, int y, unsigned c) 
+	void LibN64::Frame::DrawPixel(LibPos pos, unsigned c) 
 	{
-		graphics_draw_pixel(this->d, x, y, c);
+		graphics_draw_pixel(this->d, pos.x, pos.y, c);
 	}
 
-	void LibN64::Frame::DrawText(int x, int y, const char* buf, unsigned c) 
+	void LibN64::Frame::DrawText(LibPos pos, const char* buf, unsigned c) 
 	{
 		graphics_set_color(c, 0);
-		graphics_draw_text(this->d, x, y, buf);
+		graphics_draw_text(this->d, pos.x, pos.y, buf);
 		graphics_set_color(WHITE, 0);
 	}
 

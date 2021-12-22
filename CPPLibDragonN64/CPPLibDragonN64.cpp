@@ -35,16 +35,16 @@ protected:
     virtual void FrameUpdate() override
     {	
 		auto *buf = DFS::QuickRead(file);
+
+		DrawText({5,10},buf);
 	
-		DrawText(5,10,buf);
-	
-        DrawCircle(30, 60, 6, RED);
-        DrawTextFormat(30, 90, "Total %0.2f Elapsed %0.2f", Ticks2Seconds(fTotalTime), TICKS2SECONDS(fFrameTime));
+        DrawCircle({30, 60}, 6, RED);
+        DrawTextFormat({30,90}, "Total %0.2f Elapsed %0.2f", Ticks2Seconds(fTotalTime), TICKS2SECONDS(fFrameTime));
 
     }
     
     virtual void KeyAPressed() override {
-        DrawText(10, 30, "Key A pressed.");
+        DrawText({10,30}, "Key A pressed.");
     }
 
     virtual void KeyBPressed() override {

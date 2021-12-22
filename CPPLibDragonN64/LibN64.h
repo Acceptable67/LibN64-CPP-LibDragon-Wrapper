@@ -1,4 +1,7 @@
 #pragma once
+
+#pragma GCC diagnostic ignored "-Wwrite-strings"
+
 #include <libdragon.h>
 #include <math.h>
 #include <string.h>
@@ -72,20 +75,21 @@ namespace LibN64
 
 			int       uitype;
 		public:
+			struct   LibPos        { int x, y; };
 			Frame(resolution_t res, bitdepth_t dep, int ui);
-			virtual void OnCreate();
-			void 	 Begin();
-			void 	 Close();
-			void 	 ClearScreen();
-			void 	 SetScreen(resolution_t res, bitdepth_t bd);
-			unsigned ScreenWidth();
-			unsigned ScreenHeight();
-			void 	 DrawText(int x, int y, const char* t,    unsigned c = WHITE);
-			void 	 DrawPixel(int x, int y, 		      	  unsigned c = WHITE);
-			void 	 DrawBox(int x, int y, int scale = 1,     unsigned c = WHITE);
-			void 	 DrawLine(int x1, int y1, int x2, int y2, unsigned c = WHITE);
-			void  	 DrawCircle(int x, int y, int scale = 1,  unsigned c = WHITE);
-			float Ticks2Seconds(float t);
+			virtual void OnCreate  ();
+			void 	 Begin	       ();
+			void 	 Close		   ();
+			void 	 ClearScreen   ();
+			void 	 SetScreen     (resolution_t res, bitdepth_t bd);
+			unsigned ScreenWidth   ();
+			unsigned ScreenHeight  ();
+			void 	 DrawText      (LibPos pos, const char* t,    unsigned c = WHITE);
+			void 	 DrawPixel 	   (LibPos pos, 		      	  unsigned c = WHITE);
+			void 	 DrawBox   	   (LibPos pos, int scale = 1,    unsigned c = WHITE);
+			void 	 DrawLine  	   (LibPos pos1, LibPos pos2,     unsigned c = WHITE);
+			void  	 DrawCircle    (LibPos pos, int scale = 1,    unsigned c = WHITE);
+			float    Ticks2Seconds (float t);
 
 			/*The following functions refuse to compile inside the C++ file.*/
 			/*DFS does not work so here is work around. Manually find*/
@@ -105,12 +109,12 @@ namespace LibN64
 				return *ptr;
 			}
 
-			void DrawTextFormat(int x, int y, const char* format, ...) {
+			void DrawTextFormat(LibPos pos, const char* format, ...) {
 			va_list args;
 			va_start(args, format);
 			char buffer[125];
 			vsprintf(buffer, format, args);
-			graphics_draw_text(d, x, y,buffer);
+			graphics_draw_text(d, pos.x, pos.y,buffer);
 			va_end(args);	
 			}
 		};

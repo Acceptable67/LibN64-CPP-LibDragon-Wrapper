@@ -201,7 +201,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 					char *t = (char*)(addr);
 					*t = val;
 				
-					f->DrawTextFormat(0,y,"Set drawn %08X %0d val %02X", t, val, *(char*)(addr));
+					f->DrawTextFormat({0,y},"Set drawn %08X %0d val %02X", t, val, *(char*)(addr));
 					y+=10;
 				});
 		
@@ -222,7 +222,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 					
 					if(IsNumber(message)) 
 					{
-						f->DrawTextFormat(x, y, "%02X", hex2int(message));
+						f->DrawTextFormat({x,y}, "%02X", hex2int(message));
 						debugf("[Draw] IsNumber=true %d\n", hex2int(message));
 					} 
 					else {
@@ -231,7 +231,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						{
 								message = FilterToken(sVars[reg].value, '\"');
 								debugf("[Draw] SVAR found %s = %s\n", sVars[reg].name, message);
-								f->DrawTextFormat(x, y, "%s", message);
+								f->DrawTextFormat({x,y}, "%s", message);
 								varused = true;
 								return;
 						});
@@ -240,13 +240,13 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						{
 								int imessage = iVars[reg].value;
 								debugf("[Draw] IVAR found %s = %d\n", iVars[reg].name, imessage);
-								f->DrawTextFormat(x, y, "%02X", imessage);
+								f->DrawTextFormat({x, y}, "%02X", imessage);
 								varused  = true;
 								return;
 						});
 						
 						if(varused != true) {
-							f->DrawTextFormat(x, y, "%s", message);
+							f->DrawTextFormat({x, y}, "%s", message);
 							varused = false;
 						}
 					
@@ -382,7 +382,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						strcat(message, "");
 						strcat(message, args[c+2]);
 					}
-					f->DrawText(0,0,FilterToken(message,'"'));
+					f->DrawText({0,0},FilterToken(message,'"'));
 					
 				});
 				
@@ -453,7 +453,7 @@ int LangParser::Parse(LibN64::Frame *f, auto c, auto length)
 			while(command != NULL) 
 			{
 					args[argc] = command;
-					f->DrawText(0,y,command);
+					f->DrawText({0,y},command);
 					fprintf(stderr, "%s\n", command);
 					argc++;
 					command = strtok(NULL,"\n");
