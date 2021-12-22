@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LibN64.h"
+#include "LibString.h"
+#include "LibVector.h"
+
 /*  virtual functions to override:
     KeyAPressed
     KeyBPressed
@@ -25,10 +28,11 @@ public:
     }
     
 protected:
-
+    LibString file = { "/data.txt" };
     virtual void FrameUpdate() override
     {	
-		auto *buf = DFS::QuickRead("/data.txt");
+
+		auto *buf = DFS::QuickRead(file);
 	
 		DrawText(5,10,buf);
 	

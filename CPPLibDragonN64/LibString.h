@@ -7,42 +7,13 @@ class LibString
 	public:
 		char* str = "default";
 		
-		int Length() 
-		{
-			return strlen(str);
-		}
+		int  Length();
+		void Modify(int pos, char c);
+		int  ToInt();
 		
-		void Modify(int pos, char c)
-		{
-			str[pos] = c;
-		} 
-		
-		int ToInt() 
-		{
-			return atoi(str);
-		}
-		
-		LibString operator + (char* s) {
-			LibString tmp;
-			tmp.str = str;
-			strcat(tmp.str, s);
-			return tmp;
-		}
-		
-		LibString operator = (char* s) {
-			LibString tmp;
-			tmp.str = s;
-			return tmp;
-		}
-		
-		LibString operator + (int s) {
-			LibString tmp;
-			char *tmpc = (char*)malloc(4);
-			tmp.str = str;
-			snprintf(tmpc, 4, "%d", s);
-			strcat(tmp.str, tmpc);
-			return tmp;
-		}
+		LibString operator + (char* s);
+		LibString operator = (char* s);
+		LibString operator + (int s);
 
 		template<typename T>
 		operator T() const { return str; }
