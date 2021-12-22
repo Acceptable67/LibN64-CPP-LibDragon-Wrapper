@@ -9,7 +9,7 @@ using namespace LibN64;
 /*conversion of Javid9X's Mode7 code to LibDragon*/
 class Mode7Test : public Frame {
 public:
-	Mode7Test(resolution_t res, bitdepth_t dep) : Frame(res, dep) {}
+	Mode7Test(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
 
 	float fWorldX;
 	float fWorldY;
@@ -19,6 +19,11 @@ public:
 	float fFoVHalf;
 
 	int nMapSize;
+
+	virtual void __OnLoop_FreeFunction1()
+	{
+		timer_init();
+	}
 
 	void DrawMode() 
 	{
@@ -36,7 +41,7 @@ public:
 		float fNearX2 = fWorldX + cosf(fWorldA + fFoVHalf) * fNear;
 		float fNearY2 = fWorldY + sinf(fWorldA + fFoVHalf) * fNear;
 
-		for (unsigned y = 0; y < ScreenHeight() - 80; y++)
+		for (int y = 0; y < ScreenHeight() - 80; y++)
 		{
 		
 			float fSampleDepth = (float)y / ((float)ScreenHeight() - 160);
@@ -46,7 +51,7 @@ public:
 			float fEndX = (fFarX2 - fNearX2) / (fSampleDepth)+fNearX2;
 			float fEndY = (fFarY2 - fNearY2) / (fSampleDepth)+fNearY2;
 
-			for (unsigned x = 0; x < ScreenWidth(); x++)
+			for (int x = 0; x < ScreenWidth(); x++)
 			{
 					float fSampleWidth = (float)x / (float)ScreenWidth();
 					float fSampleX = (fEndX - fStartX) * fSampleWidth + fStartX;
@@ -62,20 +67,20 @@ public:
 
 					if ((sy * 320 + sx) < (int)sizeof(bgdata)) {
 						int col = bgdata[sy * 320 + sx];
-						DrawBox(x, y + (ScreenHeight() - 160), 1, col);
+						DrawBox({x, y + (ScreenHeight() - 160)}, 1, col);
 					}
 
-					DrawBox(x, (ScreenHeight() - 160) - y, 1, CYAN);
+					DrawBox({x, (ScreenHeight() - 160) - y}, 1, CYAN);
 			}
 		}
 
 
-		DrawLine(0, ScreenHeight() - 160, ScreenWidth(), ScreenHeight() - 160, NAVY_BLUE);
+		DrawLine({0, ScreenHeight() - 160}, {ScreenWidth(), ScreenHeight() - 160}, NAVY_BLUE);
 
 
 		
-		DrawTextFormat<float, float, float>(20, 25,"[Angle] %0.2f\n[F] %0.2f\n[N] %0.2f", fWorldA, fFar, fNear);
-		DrawTextFormat<float, float, float>(20, 55,"[X] %0.2f [Y] %0.2f\n[FoV] %0.2f", fWorldX, fWorldY, fFoVHalf);
+		DrawTextFormat({20, 25},"[Angle] %0.2f\n[F] %0.2f\n[N] %0.2f", fWorldA, fFar, fNear);
+		DrawTextFormat({20, 55},"[X] %0.2f [Y] %0.2f\n[FoV] %0.2f", fWorldX, fWorldY, fFoVHalf);
 	}
 
 private:
@@ -89,7 +94,7 @@ private:
 		fNear = 0.001f;
 		fFar = 0.08f;
 		fFoVHalf = 3.14159f / 4.0f;
-		DrawText(0,0,"Tester");
+		
 		//DrawMode();
 	}
 
@@ -145,7 +150,7 @@ private:
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP);
+	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
 	n64g.Begin();
 
 	return 0;

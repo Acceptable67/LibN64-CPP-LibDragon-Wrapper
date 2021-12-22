@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"compare": "cpp",
+			"new": "cpp",
+			"type_traits": "cpp",
+			"typeinfo": "cpp",
+			"array": "cpp",
+			"cmath": "cpp",
+			"concepts": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"map": "cpp",
+			"*.tcc": "cpp",
+			"exception": "cpp",
+			"initializer_list": "cpp",
+			"limits": "cpp",
+			"cstdint": "cpp",
+			"tuple": "cpp",
+			"utility": "cpp"
+		}
+	}
+}

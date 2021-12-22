@@ -4,9 +4,10 @@
 template<class T>
 class LibVector 
 {
-	public:
+	private:
 		T *array;
 		int counter = 0;
+	public:
 		
 		LibVector(int size = 0x1000);
 

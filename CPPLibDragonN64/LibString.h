@@ -9,14 +9,14 @@ class LibString
 		
 		int  Length();
 		void Modify(int pos, char c);
-		int  ToInt();
+		int  ToInt ();
 		
 		LibString operator + (char* s);
 		LibString operator = (char* s);
 		LibString operator + (int s);
 
 		template<typename T>
-		operator T() const { return str; }
-		operator char* () { return str; }
+        operator T     () const { return str; }
+		operator char* ()       { return str; }
 		
 };

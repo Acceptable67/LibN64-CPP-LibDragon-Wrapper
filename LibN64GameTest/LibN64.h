@@ -1,9 +1,15 @@
 #pragma once
+
+#pragma GCC diagnostic ignored "-Wwrite-strings"
+
 #include <libdragon.h>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+
+#define GUI	    1
+#define CONSOLE 2
 
 #define RED				graphics_make_color(0xFF, 0x00, 0x00, 0xFF)
 #define GREEN			graphics_make_color(0x00, 0xFF, 0x00, 0xFF)
@@ -23,8 +29,10 @@
 #define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
 #define TICKS2SECONDS(ticks)		(ticks * 0.021333333 / 1000000.0)
 
+typedef char byte;
 
-namespace LibN64 {
+namespace LibN64 
+{
 	namespace DFS 
 	{
 		unsigned Open(const char* file) ;
@@ -34,76 +42,85 @@ namespace LibN64 {
 		void     Close();
 	};
 
-class Frame {
-	private:
-		virtual void FrameUpdate();
-		virtual void KeyAPressed();
-		virtual void KeyBPressed();
-		virtual void KeyZPressed();
+	class Frame 
+	{
+		private:
+			virtual void FrameUpdate();
+			virtual void KeyAPressed();
+			virtual void KeyBPressed();
+			virtual void KeyZPressed();
 
-		virtual void KeyStartPressed();
+			virtual void KeyStartPressed();
 
-		virtual void KeyDUPressed();
-		virtual void KeyDDPressed();
-		virtual void KeyDLPressed();
-		virtual void KeyDRPressed();
-		
-		virtual void KeyJoyXPressed();
-		virtual void KeyJoyYPressed();
+			virtual void KeyDUPressed();
+			virtual void KeyDDPressed();
+			virtual void KeyDLPressed();
+			virtual void KeyDRPressed();
+			
+			virtual void KeyJoyXPressed();
+			virtual void KeyJoyYPressed();
 
-		unsigned screenWidth;
-		unsigned screenHeight;
+			virtual void     __OnInit_FreeFunction1(); 
+			virtual void     __OnInit_FreeFunction2();
+			virtual void     __OnLoop_FreeFunction1();
+			virtual void     __OnLoop_FreeFunction2();
 
-		void CheckAndSwitchRes(resolution_t r);
-	public:
-		display_context_t d;
+			unsigned screenWidth;
+			unsigned screenHeight;
 
-		const char* romTitle = "Default";
-		bool lActive;
+			void CheckAndSwitchRes(resolution_t r);
+		public:
+			display_context_t d;
 
-		float fFrameTime;
-		float fTotalTime;
-	public:
-		Frame(resolution_t res, bitdepth_t dep);
-		virtual void OnCreate();
-		void 	 Begin();
-		void 	 Close();
-		void 	 ClearScreen();
-		void 	 SetScreen(resolution_t res, bitdepth_t bd);
-		unsigned ScreenWidth();
-		unsigned ScreenHeight();
-		void 	 DrawText(int x, int y, const char* t,    unsigned c = WHITE);
-		void 	 DrawPixel(int x, int y, 		      	  unsigned c = WHITE);
-		void 	 DrawBox(int x, int y, int scale = 1,     unsigned c = WHITE);
-		void 	 DrawLine(int x1, int y1, int x2, int y2, unsigned c = WHITE);
-		void  	 DrawCircle(int x, int y, int scale = 1,  unsigned c = WHITE);
-		float Ticks2Seconds(float t);
+			const char* romTitle = "Default";
+			bool lActive;
 
-		/*The following functions refuse to compile inside the C++ file.*/
-		/*DFS does not work so here is work around. Manually find*/
-	public:
-		template<class T>
-		T* __lib64_rom2buf(long romAddr, int size) {
-			T* tmp = (T*)malloc(size + sizeof(T));
-			for (auto i = 0; i < size; i++) {
-				tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
+			float fFrameTime;
+			float fTotalTime;
+
+			int       uitype;
+		public:
+			struct   LibPos        { int x, y; };
+			Frame(resolution_t res, bitdepth_t dep, int ui);
+			virtual void OnCreate  ();
+			void 	 Begin	       ();
+			void 	 Close		   ();
+			void 	 ClearScreen   ();
+			void 	 SetScreen     (resolution_t res, bitdepth_t bd);
+			unsigned ScreenWidth   ();
+			unsigned ScreenHeight  ();
+			void 	 DrawText      (LibPos pos, const char* t,    unsigned c = WHITE);
+			void 	 DrawPixel 	   (LibPos pos, 		      	  unsigned c = WHITE);
+			void 	 DrawBox   	   (LibPos pos, int scale = 1,    unsigned c = WHITE);
+			void 	 DrawLine  	   (LibPos pos1, LibPos pos2,     unsigned c = WHITE);
+			void  	 DrawCircle    (LibPos pos, int scale = 1,    unsigned c = WHITE);
+			float    Ticks2Seconds (float t);
+
+			/*The following functions refuse to compile inside the C++ file.*/
+			/*DFS does not work so here is work around. Manually find*/
+		public:
+			template<class T>
+			T* __lib64_rom2buf(long romAddr, int size) {
+				T* tmp = (T*)malloc(size + sizeof(T));
+				for (auto i = 0; i < size; i++) {
+					tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
+				}
+				return tmp;
 			}
-			return tmp;
-		}
 
-		template<class T>
-		T __lib64_rom2type(long romAddr) {
-			T *ptr = (T*)(romAddr);
-			return *ptr;
-		}
+			template<class T>
+			T __lib64_rom2type(long romAddr) {
+				T *ptr = (T*)(romAddr);
+				return *ptr;
+			}
 
-		void DrawTextFormat(int x, int y, const char* format, ...) {
-		   va_list args;
-		   va_start(args, format);
-		   char buffer[85];
-		   vsprintf(buffer, format, args);
-		   graphics_draw_text(d, x, y,buffer);
-		   va_end(args);	
-		}
-	};
+			void DrawTextFormat(LibPos pos, const char* format, ...) {
+			va_list args;
+			va_start(args, format);
+			char buffer[125];
+			vsprintf(buffer, format, args);
+			graphics_draw_text(d, pos.x, pos.y,buffer);
+			va_end(args);	
+			}
+		};
 }

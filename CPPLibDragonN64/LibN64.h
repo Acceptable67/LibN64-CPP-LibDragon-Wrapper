@@ -60,6 +60,11 @@ namespace LibN64
 			virtual void KeyJoyXPressed();
 			virtual void KeyJoyYPressed();
 
+			virtual void     __OnInit_FreeFunction1(); 
+			virtual void     __OnInit_FreeFunction2();
+			virtual void     __OnLoop_FreeFunction1();
+			virtual void     __OnLoop_FreeFunction2();
+
 			unsigned screenWidth;
 			unsigned screenHeight;
 

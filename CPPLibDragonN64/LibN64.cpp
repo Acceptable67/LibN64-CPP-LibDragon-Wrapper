@@ -23,8 +23,8 @@ namespace LibN64::DFS
 	void Read(char* buf, unsigned size, unsigned offset) 
 	{
 	    dfs_seek(handle, offset, SEEK_SET);
-	    if(size > 0) 
-		dfs_read(buf, 1, size, handle);
+	    if(size > 0)
+			dfs_read(buf, 1, size, handle);
 	}
 	
  	char* QuickRead(const char* file) 
@@ -108,6 +108,10 @@ namespace LibN64
 	void LibN64::Frame::KeyJoyXPressed(){}
 	void LibN64::Frame::KeyJoyYPressed(){}
 	void LibN64::Frame::OnCreate()     {}
+	void LibN64::Frame::__OnInit_FreeFunction1() {}
+	void LibN64::Frame::__OnInit_FreeFunction2() {}
+	void LibN64::Frame::__OnLoop_FreeFunction1() {}
+	void LibN64::Frame::__OnLoop_FreeFunction2() {}
 
 	void LibN64::Frame::ClearScreen() 
 	{
@@ -150,8 +154,16 @@ namespace LibN64
 		if(this->d) 
 			display_show(d);
 		this->OnCreate();
+
+		this->__OnInit_FreeFunction1();
+		this->__OnInit_FreeFunction2();
+
 		while (lActive) {
-			timer_init();
+
+
+			this->__OnLoop_FreeFunction1();
+
+
 			this->FrameUpdate();
 
 			controller_scan();
@@ -194,9 +206,7 @@ namespace LibN64
 			if(uitype == CONSOLE) {
 				console_render();
 			}
-			fFrameTime = timer_ticks();
-			fTotalTime += fFrameTime;
-			timer_close();
+			this->__OnLoop_FreeFunction2();
 		}
 }
 

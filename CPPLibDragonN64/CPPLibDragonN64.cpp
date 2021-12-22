@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "LibN64.h"
 #include "LibString.h"
 #include "LibVector.h"
+#include "LibMap.h"
 
 /*  virtual functions to override:
     KeyAPressed
@@ -18,19 +20,33 @@
 
 using namespace LibN64;
 
+LibMap<char*, int> testerMap;
+
 class Instance : public Frame {
 public:
     Instance(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
 
     virtual void OnCreate() override 
     {
-        
         romTitle = "LibN64 Test";
     }
     
 protected:
+ 
 
     LibString file = { "/data.txt" };
+
+    virtual void __OnLoop_FreeFunction1() override
+    {
+         timer_init();
+    }
+
+     virtual void __OnLoop_FreeFunction2() override
+     {
+         fFrameTime = timer_ticks();
+		 fTotalTime += fFrameTime;
+		 timer_close();
+     }
 
     virtual void FrameUpdate() override
     {	
@@ -39,7 +55,7 @@ protected:
 		DrawText({5,10},buf);
 	
         DrawCircle({30, 60}, 6, RED);
-        DrawTextFormat({30,90}, "Total %0.2f Elapsed %0.2f", Ticks2Seconds(fTotalTime), TICKS2SECONDS(fFrameTime));
+        DrawTextFormat({30,90}, "Total %0.2f Elapsed %0.2f t3 %0.2f", Ticks2Seconds(fTotalTime), TICKS2SECONDS(fFrameTime));
 
     }
     

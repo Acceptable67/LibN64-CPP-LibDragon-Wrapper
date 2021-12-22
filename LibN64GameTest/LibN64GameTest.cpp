@@ -45,7 +45,7 @@ using namespace LibN64;
 
 class Mode7Test : public Frame {
 public:
-	Mode7Test(resolution_t res, bitdepth_t dep) : Frame(res, dep) {}
+	Mode7Test(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
 
 	float fWorldX;
 	float fWorldY;
@@ -114,8 +114,7 @@ public:
 						// Ray has hit wall
 						bHitWall = true;
 
-
-						DrawBox(nTestX, nTestY, 4, RED);
+						//DrawBox({nTestX, nTestY}, 4, RED);
 
 						float fBlockMidX = (float)nTestX + 0.5f;
 						float fBlockMidY = (float)nTestY + 0.5f;
@@ -155,7 +154,7 @@ public:
 						// Ray has hit wall
 						bHitObj = true;
 
-						DrawBox(nTestX, nTestY, 4, ORANGE);
+						//DrawBox({nTestX, nTestY}, 4, ORANGE);
 
 
 					}
@@ -171,66 +170,61 @@ public:
 			// Update Depth Buffer
 			fDepthBuffer[x] = fDistanceToWall;
 	
-			rdp_init();
-			rdp_set_default_clipping();
 	
 			for (int y = 0; y < (int)ScreenHeight(); y++)
 			{
 				if (y <= nCeiling) {
-					graphics_draw_pixel(d, x, y, CYAN);
+					
+					DrawPixel({x,y}, CYAN);
 			
 				}
 				else if (y > nCeiling && y <= nFloor)
 				{
 					// Draw Wall
 					float fSampleY = ((float)y - (float)nCeiling) / ((float)nFloor - (float)nCeiling);
-					int col = checkerwall[int(fSampleY * 2 + fSampleX)];
+					//int col = checkerwall[int(fSampleY * 2 + fSampleX)];
 					if (fDistanceToWall >= 10 && fDistanceToWall <= 14) {
-						graphics_draw_pixel(d, x, y, col - 0x40404000);
-						//graphics_draw_pixel(d, x, y, 0x303030FF);
+					//	DrawPixel({x,y}, col - 0x40404000);
+						DrawPixel({x,y}, 0x303030FF);
 					}
 					if (fDistanceToWall >= 6 && fDistanceToWall <= 10)
 					{
-						graphics_draw_pixel(d, x, y, 0x585858FF);
+						DrawPixel({x,y}, 0x585858FF);
 					}
 					if (fDistanceToWall > 0 && fDistanceToWall < 6)
 					{
-						graphics_draw_pixel(d, x, y, 0x909090FF);
+						DrawPixel({x,y}, 0x909090FF);
 					}
 					else if (fDistanceToWall > 14) {
-						graphics_draw_pixel(d, x, y, 0X0);
+						DrawPixel({x,y}, 0X0);
 					}
 				}
 				else // Floor
 				{
 					//float b = 1.0f - (((float)y - ScreenWidth() / 2.0f) / ((float)ScreenHeight()  / 2.0f));
-					DrawBox(x, y, 1, DARK_GREEN);
+					DrawBox({x, y}, 1, DARK_GREEN);
 				}
 			
 				if (y > nObjCeiling && y <= nObjFloor) {
 					// Draw Wall
 									// Draw Wall
 					if (fDistanceToObj >= 10 && fDistanceToObj <= 14) {
-						graphics_draw_pixel(d, x, y, DEEP_DARK_RED);
+						DrawPixel({x,y}, DEEP_DARK_RED);
 					}
 					if (fDistanceToObj >= 6 && fDistanceToObj <= 10)
 					{
-						graphics_draw_pixel(d, x, y, DEEP_DARK_RED);
+						DrawPixel({x,y}, DEEP_DARK_RED);
 					}
 					if (fDistanceToObj > 0 && fDistanceToObj < 6)
 					{
-						graphics_draw_pixel(d, x, y, RED);
+						DrawPixel({x,y}, RED);
 					}
 			
 				}
 			}
 
 		}
-		for (int nx = 0; nx < nMapWidth; nx += 3)
-			for (int ny = 0; ny < nMapHeight; ny += 3)
-				DrawTextFormat<char>(nx, ny, (char*)"%c", map[ny * nMapWidth + nx]);
-		//DrawTextFormat<char>(3 + (int)fPlayerY, 3 + (int)fPlayerX, (char*)"%c", 'P');
-
+	
 		//int* fBufWidth = (int*)(0xA4100008);
 		//char buffer[20];
 		//sprintf(buffer, "0x80000400: %08X", *fBufWidth);
@@ -302,12 +296,13 @@ protected:
 			SetScreen(RESOLUTION_640x480, DEPTH_32_BPP);
 		}
 	}
+
 private:
 	int res;
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP);
+	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
 	n64g.Begin();
 
 	return 0;

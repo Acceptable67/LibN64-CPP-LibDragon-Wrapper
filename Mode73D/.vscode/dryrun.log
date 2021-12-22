@@ -1,0 +1,27 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/Mode73D'
+mkdir -p build/
+echo "    [CXX] Mode73D.cpp"
+/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing  -o build/Mode73D.o Mode73D.cpp
+mkdir -p build/
+echo "    [LD] build/Mode73D.elf"
+/usr/local/bin/mips64-elf-g++ -o build/Mode73D.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/Mode73D.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,/home/spencer/libdragon/NEW/libdragon/libN64.a -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/Mode73D.map
+/usr/local/bin/mips64-elf-size -G build/Mode73D.elf
+mkdir -p build/
+echo "    [DFS] build/Mode73D.dfs"
+/usr/local/bin/mkdfs build/Mode73D.dfs filesystem >/dev/null
+echo "    [Z64] Mode73D.z64"
+/usr/local/bin/mips64-elf-objcopy -O binary build/Mode73D.elf build/Mode73D.elf.bin
+rm -f Mode73D.z64
+DFS_FILE="build/Mode73D.dfs"; \
+if [ -z "$DFS_FILE" ]; then \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "Mode73D Test" --output Mode73D.z64 build/Mode73D.elf.bin; \
+else \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "Mode73D Test" --output Mode73D.z64 build/Mode73D.elf.bin --offset 1M "$DFS_FILE"; \
+fi
+if [ ! -z "" ]; then \
+	/usr/local/bin/ed64romconfig     Mode73D.z64; \
+fi
+/usr/local/bin/chksum64 Mode73D.z64 >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/Mode73D'
+ 
