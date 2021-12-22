@@ -1,1 +1,2 @@
-build/CPPLibDragonN64.o: CPPLibDragonN64.cpp LibN64.h
+build/CPPLibDragonN64.o: CPPLibDragonN64.cpp LibN64.h LibString.h \
+ LibVector.h

@@ -18,13 +18,28 @@ public:
 
 private:
 	LangParser p;
+	LibVector<byte> vec;
+ 
+	byte arr[4] = { 0x2a, 0x2b, 0x2c, 0x2d };
+	LibString msg[20] = 
+	{ 
+		{"test"}, 
+		{"Hello there"}
+	};
+
 protected:
 	virtual void OnCreate() override 
-	{		
+	{
+		for(auto &i : arr) 
+			vec.push_back(i); 
+		
    		debug_init(DEBUG_FEATURE_ALL);
 		LibString file = { "/data.lbs" };
 		
    		auto code = DFS::QuickRead(file);
+		vec.insert(2, 0x35);
+		debugf("%02x at line %d", vec.at(0), __LINE__);
+
 		if(code)
 			p.Parse(this, code, DFS::Size(file));
 	}
@@ -54,6 +69,9 @@ private:
 int main(void) {
 	Parser n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
 	n64g.Begin();
+
+
+
 
 	return 0;
 }

@@ -32,6 +32,8 @@ Archive member included to satisfy reference by file (symbol)
                               /usr/local/mips64-elf/lib/libdragon.a(debug.o) (attach_filesystem)
 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
                               build/CustomLangParser.o (_ZN6LibN645Frame11FrameUpdateEv)
+/home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                              build/CustomLangParser.o (_ZN9LibVectorIcEC1Ei)
 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
                               /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o) (dfs_open)
 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
@@ -601,6 +603,237 @@ Discarded input sections
  .text._ZN6LibN645Frame13Ticks2SecondsEf
                 0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
  .sdata         0x0000000000000000       0x18 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0xc /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .group         0x0000000000000000        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text          0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .data          0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .bss           0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .reginfo       0x0000000000000000       0x18 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .MIPS.abiflags
+                0x0000000000000000       0x18 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .pdr           0x0000000000000000      0x9c0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjE9push_backEj
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjE7replaceEij
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjE6insertEij
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIjE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImE9push_backEm
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImE7replaceEim
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImE6insertEim
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorImE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItE9push_backEt
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItE7replaceEit
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItE6insertEit
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorItE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhE9push_backEh
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhE7replaceEih
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhE6insertEih
+                0x0000000000000000       0x80 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIhE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhE9push_backES0_
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhE7replaceEiS0_
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhE6insertEiS0_
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPhE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbE9push_backEb
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbE7replaceEib
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbE6insertEib
+                0x0000000000000000       0xc0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIbE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringE9push_backES0_
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringE7replaceEiS0_
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringE6insertEiS0_
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorI9LibStringE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiE9push_backEi
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiE7replaceEii
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiE6insertEii
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIiE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlE9push_backEl
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlE7replaceEil
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlE6insertEil
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIlE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdE9push_backEd
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdE7replaceEid
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdE6insertEid
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIdE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsE9push_backEs
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsE7replaceEis
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsE6insertEis
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIsE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIcE7replaceEic
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcEC2Ei
+                0x0000000000000000       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcE9push_backES0_
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcE7replaceEiS0_
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcE6lengthEv
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcE6insertEiS0_
+                0x0000000000000000       0xa0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .text._ZN9LibVectorIPcE2atEi
+                0x0000000000000000       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
  .text          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .data          0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .bss           0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
@@ -1600,7 +1833,7 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragonsy
                 0x0000000080000000                __kseg0_start = 0x80000000
                 0x0000000080000400                __libdragon_text_start = (__kseg0_start + 0x400)
 
-.text           0x0000000080000400    0x32230
+.text           0x0000000080000400    0x32310
  *(.boot)
  .boot          0x0000000080000400      0x198 /usr/local/mips64-elf/lib/libdragon.a(entrypoint.o)
                 0x0000000080000400                _start
@@ -2279,972 +2512,990 @@ LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragonsy
                 0x000000008002e6c0      0x180 build/CustomLangParser.o
                 0x000000008002e6c0                _ZN10LangParser5ParseIPciEEiPN6LibN645FrameET_T0_
  .text._ZN6Parser8OnCreateEv
-                0x000000008002e840      0x140 build/CustomLangParser.o
+                0x000000008002e840      0x120 build/CustomLangParser.o
                 0x000000008002e840                _ZN6Parser8OnCreateEv
  .text._ZN6Parser11KeyBPressedEv
-                0x000000008002e980      0x180 build/CustomLangParser.o
-                0x000000008002e980                _ZN6Parser11KeyBPressedEv
+                0x000000008002e960      0x160 build/CustomLangParser.o
+                0x000000008002e960                _ZN6Parser11KeyBPressedEv
  .text.startup._GLOBAL__sub_I_sVars
-                0x000000008002eb00       0x60 build/CustomLangParser.o
+                0x000000008002eac0       0x60 build/CustomLangParser.o
  .text._ZN6LibN645Frame11FrameUpdateEv
-                0x000000008002eb60       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002eb60                _ZN6LibN645Frame14KeyJoyXPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame11KeyZPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame11KeyAPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame12KeyDDPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame15KeyStartPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame11KeyBPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame12KeyDRPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame8OnCreateEv
-                0x000000008002eb60                _ZN6LibN645Frame12KeyDUPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame14KeyJoyYPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame12KeyDLPressedEv
-                0x000000008002eb60                _ZN6LibN645Frame11FrameUpdateEv
+                0x000000008002eb20       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002eb20                _ZN6LibN645Frame14KeyJoyXPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame11KeyZPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame11KeyAPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame12KeyDDPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame15KeyStartPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame11KeyBPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame12KeyDRPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame8OnCreateEv
+                0x000000008002eb20                _ZN6LibN645Frame12KeyDUPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame14KeyJoyYPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame12KeyDLPressedEv
+                0x000000008002eb20                _ZN6LibN645Frame11FrameUpdateEv
  .text._ZN6LibN643DFS4SizeEPKc
-                0x000000008002eb80       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002eb80                _ZN6LibN643DFS4SizeEPKc
+                0x000000008002eb40       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002eb40                _ZN6LibN643DFS4SizeEPKc
  .text._ZN6LibN643DFS9QuickReadEPKc
-                0x000000008002ebc0       0xe0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002ebc0                _ZN6LibN643DFS9QuickReadEPKc
+                0x000000008002eb80       0xe0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002eb80                _ZN6LibN643DFS9QuickReadEPKc
  .text._ZN6LibN645FrameC2E12resolution_t10bitdepth_ti
-                0x000000008002eca0      0x180 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002eca0                _ZN6LibN645FrameC1E12resolution_t10bitdepth_ti
-                0x000000008002eca0                _ZN6LibN645FrameC2E12resolution_t10bitdepth_ti
+                0x000000008002ec60      0x180 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002ec60                _ZN6LibN645FrameC1E12resolution_t10bitdepth_ti
+                0x000000008002ec60                _ZN6LibN645FrameC2E12resolution_t10bitdepth_ti
  .text._ZN6LibN645Frame11ClearScreenEv
-                0x000000008002ee20       0x60 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002ee20                _ZN6LibN645Frame11ClearScreenEv
+                0x000000008002ede0       0x60 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002ede0                _ZN6LibN645Frame11ClearScreenEv
  .text._ZN6LibN645Frame9SetScreenE12resolution_t10bitdepth_t
-                0x000000008002ee80       0xc0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002ee80                _ZN6LibN645Frame9SetScreenE12resolution_t10bitdepth_t
+                0x000000008002ee40       0xc0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002ee40                _ZN6LibN645Frame9SetScreenE12resolution_t10bitdepth_t
  .text._ZN6LibN645Frame5BeginEv
-                0x000000008002ef40      0x360 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002ef40                _ZN6LibN645Frame5BeginEv
+                0x000000008002ef00      0x360 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002ef00                _ZN6LibN645Frame5BeginEv
  .text._ZN6LibN645Frame8DrawTextEiiPKcj
-                0x000000008002f2a0       0x80 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x000000008002f2a0                _ZN6LibN645Frame8DrawTextEiiPKcj
+                0x000000008002f260       0x80 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x000000008002f260                _ZN6LibN645Frame8DrawTextEiiPKcj
+ .text._ZN9LibVectorIcEC2Ei
+                0x000000008002f2e0       0x40 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                0x000000008002f2e0                _ZN9LibVectorIcEC1Ei
+                0x000000008002f2e0                _ZN9LibVectorIcEC2Ei
+ .text._ZN9LibVectorIcE9push_backEc
+                0x000000008002f320       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                0x000000008002f320                _ZN9LibVectorIcE9push_backEc
+ .text._ZN9LibVectorIcE6lengthEv
+                0x000000008002f340       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                0x000000008002f340                _ZN9LibVectorIcE6lengthEv
+ .text._ZN9LibVectorIcE6insertEic
+                0x000000008002f360       0x80 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                0x000000008002f360                _ZN9LibVectorIcE6insertEic
+ .text._ZN9LibVectorIcE2atEi
+                0x000000008002f3e0       0x20 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                0x000000008002f3e0                _ZN9LibVectorIcE2atEi
  .text.get_next_token.part.0
-                0x000000008002f320       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002f400       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.recurse_path
-                0x000000008002f3a0      0x560 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- .text.__close  0x000000008002f900       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- .text.__fstat  0x000000008002f980       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002f480      0x560 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ .text.__close  0x000000008002f9e0       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ .text.__fstat  0x000000008002fa60       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_dir_findfirst
-                0x000000008002fa20       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x000000008002fa20                dfs_dir_findfirst
+                0x000000008002fb00       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fb00                dfs_dir_findfirst
  .text.__findfirst
-                0x000000008002fae0       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fbc0       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_dir_findnext
-                0x000000008002fb60       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x000000008002fb60                dfs_dir_findnext
+                0x000000008002fc40       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fc40                dfs_dir_findnext
  .text.__findnext
-                0x000000008002fc20       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fd00       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_open
-                0x000000008002fca0      0x140 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x000000008002fca0                dfs_open
- .text.__open   0x000000008002fde0       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fd80      0x140 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002fd80                dfs_open
+ .text.__open   0x000000008002fec0       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_close
-                0x000000008002fe40       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x000000008002fe40                dfs_close
+                0x000000008002ff20       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002ff20                dfs_close
  .text.dfs_seek
-                0x000000008002fec0      0x100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x000000008002fec0                dfs_seek
- .text.__lseek  0x000000008002ffc0       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002ffa0      0x100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008002ffa0                dfs_seek
+ .text.__lseek  0x00000000800300a0       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_read
-                0x0000000080030040      0x240 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x0000000080030040                dfs_read
- .text.__read   0x0000000080030280       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080030120      0x240 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080030120                dfs_read
+ .text.__read   0x0000000080030360       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .text.dfs_size
-                0x00000000800302a0       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x00000000800302a0                dfs_size
+                0x0000000080030380       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080030380                dfs_size
  .text.dfs_init
-                0x0000000080030300      0x100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
-                0x0000000080030300                dfs_init
+                0x00000000800303e0      0x100 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x00000000800303e0                dfs_init
  .text.controller_init
-                0x0000000080030400       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
-                0x0000000080030400                controller_init
+                0x00000000800304e0       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x00000000800304e0                controller_init
  .text.controller_scan
-                0x0000000080030460       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
-                0x0000000080030460                controller_scan
+                0x0000000080030540       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x0000000080030540                controller_scan
  .text.get_keys_held
-                0x00000000800304e0       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
-                0x00000000800304e0                get_keys_held
+                0x00000000800305c0       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x00000000800305c0                get_keys_held
  .text.timer_callback_overflow
-                0x0000000080030580       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x0000000080030660       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
  .text.timer_callback
-                0x00000000800305a0      0x160 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x0000000080030680      0x160 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
  .text.timer_init
-                0x0000000080030700       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
-                0x0000000080030700                timer_init
+                0x00000000800307e0       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x00000000800307e0                timer_init
  .text.timer_close
-                0x00000000800307c0       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
-                0x00000000800307c0                timer_close
+                0x00000000800308a0       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x00000000800308a0                timer_close
  .text.timer_ticks
-                0x0000000080030880       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
-                0x0000000080030880                timer_ticks
+                0x0000000080030960       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x0000000080030960                timer_ticks
  .text.joybus_exec
-                0x0000000080030940      0x1c0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(joybus.o)
-                0x0000000080030940                joybus_exec
+                0x0000000080030a20      0x1c0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(joybus.o)
+                0x0000000080030a20                joybus_exec
  .text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
-                0x0000000080030b00       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030b00                _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
+                0x0000000080030be0       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030be0                _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv
  .text._ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
-                0x0000000080030b68       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030b68                _ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
+                0x0000000080030c48       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030c48                _ZNK10__cxxabiv117__class_type_info20__do_find_public_srcEiPKvPKS0_S2_
  .text._ZN10__cxxabiv117__class_type_infoD2Ev
-                0x0000000080030b88       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030b88                _ZN10__cxxabiv117__class_type_infoD1Ev
-                0x0000000080030b88                _ZN10__cxxabiv117__class_type_infoD2Ev
+                0x0000000080030c68       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030c68                _ZN10__cxxabiv117__class_type_infoD1Ev
+                0x0000000080030c68                _ZN10__cxxabiv117__class_type_infoD2Ev
  .text._ZN10__cxxabiv117__class_type_infoD0Ev
-                0x0000000080030b98       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030b98                _ZN10__cxxabiv117__class_type_infoD0Ev
+                0x0000000080030c78       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030c78                _ZN10__cxxabiv117__class_type_infoD0Ev
  .text._ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
-                0x0000000080030bd0       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030bd0                _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
+                0x0000000080030cb0       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030cb0                _ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PKvRNS0_15__upcast_resultE
  .text._ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
-                0x0000000080030c60       0xb0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030c60                _ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
+                0x0000000080030d40       0xb0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030d40                _ZNK10__cxxabiv117__class_type_info10__do_catchEPKSt9type_infoPPvj
  .text._ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
-                0x0000000080030d10       0xf8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080030d10                _ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
- .text._ZdlPvj  0x0000000080030e08        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
-                0x0000000080030e08                _ZdlPvj
- .text._Znaj    0x0000000080030e10        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
-                0x0000000080030e10                _Znaj
+                0x0000000080030df0       0xf8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080030df0                _ZNK10__cxxabiv117__class_type_info12__do_dyncastEiNS0_10__sub_kindEPKS0_PKvS3_S5_RNS0_16__dyncast_resultE
+ .text._ZdlPvj  0x0000000080030ee8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
+                0x0000000080030ee8                _ZdlPvj
+ .text._Znaj    0x0000000080030ef0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
+                0x0000000080030ef0                _Znaj
  .text._ZN10__cxxabiv120__si_class_type_infoD2Ev
-                0x0000000080030e18       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080030e18                _ZN10__cxxabiv120__si_class_type_infoD2Ev
-                0x0000000080030e18                _ZN10__cxxabiv120__si_class_type_infoD1Ev
+                0x0000000080030ef8       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080030ef8                _ZN10__cxxabiv120__si_class_type_infoD2Ev
+                0x0000000080030ef8                _ZN10__cxxabiv120__si_class_type_infoD1Ev
  .text._ZN10__cxxabiv120__si_class_type_infoD0Ev
-                0x0000000080030e28       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080030e28                _ZN10__cxxabiv120__si_class_type_infoD0Ev
+                0x0000000080030f08       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080030f08                _ZN10__cxxabiv120__si_class_type_infoD0Ev
  .text._ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
-                0x0000000080030e60      0x170 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080030e60                _ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
+                0x0000000080030f40      0x170 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080030f40                _ZNK10__cxxabiv120__si_class_type_info12__do_dyncastEiNS_17__class_type_info10__sub_kindEPKS1_PKvS4_S6_RNS1_16__dyncast_resultE
  .text._ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
-                0x0000000080030fd0       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080030fd0                _ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
+                0x00000000800310b0       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x00000000800310b0                _ZNK10__cxxabiv120__si_class_type_info20__do_find_public_srcEiPKvPKNS_17__class_type_infoES2_
  .text._ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
-                0x0000000080031070       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080031070                _ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
+                0x0000000080031150       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080031150                _ZNK10__cxxabiv120__si_class_type_info11__do_upcastEPKNS_17__class_type_infoEPKvRNS1_15__upcast_resultE
  .text._ZNSt9type_infoD2Ev
-                0x00000000800310f0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
-                0x00000000800310f0                _ZNSt9type_infoD1Ev
-                0x00000000800310f0                _ZNSt9type_infoD2Ev
+                0x00000000800311d0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+                0x00000000800311d0                _ZNSt9type_infoD1Ev
+                0x00000000800311d0                _ZNSt9type_infoD2Ev
  .text._ZNKSt9type_info14__is_pointer_pEv
-                0x00000000800310f8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
-                0x00000000800310f8                _ZNKSt9type_info15__is_function_pEv
-                0x00000000800310f8                _ZNKSt9type_info14__is_pointer_pEv
- .text._ZdlPv   0x0000000080031100        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
-                0x0000000080031100                _ZdlPv
- .text._Znwj    0x0000000080031108       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
-                0x0000000080031108                _Znwj
+                0x00000000800311d8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+                0x00000000800311d8                _ZNKSt9type_info15__is_function_pEv
+                0x00000000800311d8                _ZNKSt9type_info14__is_pointer_pEv
+ .text._ZdlPv   0x00000000800311e0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
+                0x00000000800311e0                _ZdlPv
+ .text._Znwj    0x00000000800311e8       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
+                0x00000000800311e8                _Znwj
  .text._ZNKSt9bad_alloc4whatEv
-                0x0000000080031188       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x0000000080031188                _ZNKSt9bad_alloc4whatEv
+                0x0000000080031268       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080031268                _ZNKSt9bad_alloc4whatEv
  .text._ZNSt9bad_allocD2Ev
-                0x0000000080031198       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x0000000080031198                _ZNSt9bad_allocD2Ev
-                0x0000000080031198                _ZNSt9bad_allocD1Ev
+                0x0000000080031278       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080031278                _ZNSt9bad_allocD2Ev
+                0x0000000080031278                _ZNSt9bad_allocD1Ev
  .text._ZNSt9bad_allocD0Ev
-                0x00000000800311a8       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x00000000800311a8                _ZNSt9bad_allocD0Ev
+                0x0000000080031288       0x38 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080031288                _ZNSt9bad_allocD0Ev
  .text._ZN12_GLOBAL__N_14pool4freeEPv.constprop.0
-                0x00000000800311e0       0xf8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x00000000800312c0       0xf8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
  .text._ZN12_GLOBAL__N_14pool8allocateEj.constprop.0
-                0x00000000800312d8       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x00000000800313b8       0xa0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
  .text.__cxa_allocate_exception
-                0x0000000080031378       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
-                0x0000000080031378                __cxa_allocate_exception
+                0x0000000080031458       0x60 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x0000000080031458                __cxa_allocate_exception
  .text.__cxa_free_exception
-                0x00000000800313d8       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
-                0x00000000800313d8                __cxa_free_exception
+                0x00000000800314b8       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x00000000800314b8                __cxa_free_exception
  .text.startup._GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv
-                0x0000000080031418       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x00000000800314f8       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
  .text._ZNSt9exceptionD2Ev
-                0x0000000080031470        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080031470                _ZNSt9exceptionD2Ev
-                0x0000000080031470                _ZNSt9exceptionD1Ev
+                0x0000000080031550        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080031550                _ZNSt9exceptionD2Ev
+                0x0000000080031550                _ZNSt9exceptionD1Ev
  .text._ZN10__cxxabiv111__terminateEPFvvE
-                0x0000000080031478       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x0000000080031478                _ZN10__cxxabiv111__terminateEPFvvE
+                0x0000000080031558       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000080031558                _ZN10__cxxabiv111__terminateEPFvvE
  .text._ZSt9terminatev
-                0x00000000800314a0       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x00000000800314a0                _ZSt9terminatev
+                0x0000000080031580       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000080031580                _ZSt9terminatev
  .text._ZN10__cxxabiv112__unexpectedEPFvvE
-                0x00000000800314b8       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x00000000800314b8                _ZN10__cxxabiv112__unexpectedEPFvvE
+                0x0000000080031598       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000080031598                _ZN10__cxxabiv112__unexpectedEPFvvE
  .text._ZSt10unexpectedv
-                0x00000000800314d0       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x00000000800314d0                _ZSt10unexpectedv
+                0x00000000800315b0       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x00000000800315b0                _ZSt10unexpectedv
  .text._ZSt13get_terminatev
-                0x00000000800314e8       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x00000000800314e8                _ZSt13get_terminatev
+                0x00000000800315c8       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x00000000800315c8                _ZSt13get_terminatev
  .text._ZSt14get_unexpectedv
-                0x00000000800314f8       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x00000000800314f8                _ZSt14get_unexpectedv
+                0x00000000800315d8       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x00000000800315d8                _ZSt14get_unexpectedv
  .text._ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception
-                0x0000000080031508       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+                0x00000000800315e8       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
  .text.__cxa_init_primary_exception
-                0x0000000080031570       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
-                0x0000000080031570                __cxa_init_primary_exception
+                0x0000000080031650       0x68 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+                0x0000000080031650                __cxa_init_primary_exception
  .text.__cxa_throw
-                0x00000000800315d8       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
-                0x00000000800315d8                __cxa_throw
+                0x00000000800316b8       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+                0x00000000800316b8                __cxa_throw
  .text.__cxa_rethrow
-                0x0000000080031630       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
-                0x0000000080031630                __cxa_rethrow
+                0x0000000080031710       0x80 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+                0x0000000080031710                __cxa_rethrow
  .text._ZSt15get_new_handlerv
-                0x00000000800316b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
-                0x00000000800316b0                _ZSt15get_new_handlerv
+                0x0000000080031790       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
+                0x0000000080031790                _ZSt15get_new_handlerv
  .text._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x00000000800316c0      0x1c8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
-                0x00000000800316c0                _ZN9__gnu_cxx27__verbose_terminate_handlerEv
+                0x00000000800317a0      0x1c8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+                0x00000000800317a0                _ZN9__gnu_cxx27__verbose_terminate_handlerEv
  .text.__cxa_begin_catch
-                0x0000000080031888       0xb0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
-                0x0000000080031888                __cxa_begin_catch
+                0x0000000080031968       0xb0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
+                0x0000000080031968                __cxa_begin_catch
  .text.__cxa_end_catch
-                0x0000000080031938       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
-                0x0000000080031938                __cxa_end_catch
+                0x0000000080031a18       0xc0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
+                0x0000000080031a18                __cxa_end_catch
  .text.__cxa_get_globals_fast
-                0x00000000800319f8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
-                0x00000000800319f8                __cxa_get_globals_fast
+                0x0000000080031ad8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
+                0x0000000080031ad8                __cxa_get_globals_fast
  .text.__cxa_get_globals
-                0x0000000080031a00        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
-                0x0000000080031a00                __cxa_get_globals
+                0x0000000080031ae0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
+                0x0000000080031ae0                __cxa_get_globals
  .text._ZL16get_adjusted_ptrPKSt9type_infoS1_PPv
-                0x0000000080031a08       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080031ae8       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .text._ZL28read_encoded_value_with_basehjPKhPj
-                0x0000000080031a98      0x198 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080031b78      0x198 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .text._ZL21base_of_encoded_valuehP15_Unwind_Context
-                0x0000000080031c30       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080031d10       0x90 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .text._ZL17parse_lsda_headerP15_Unwind_ContextPKhP16lsda_header_info
-                0x0000000080031cc0      0x118 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080031da0      0x118 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .text._ZL20check_exception_specP16lsda_header_infoPKSt9type_infoPvl
-                0x0000000080031dd8      0x148 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080031eb8      0x148 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .text.__gxx_personality_v0
-                0x0000000080031f20      0x660 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
-                0x0000000080031f20                __gxx_personality_v0
+                0x0000000080032000      0x660 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080032000                __gxx_personality_v0
  .text.__cxa_current_exception_type
-                0x0000000080032580       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
-                0x0000000080032580                __cxa_current_exception_type
+                0x0000000080032660       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
+                0x0000000080032660                __cxa_current_exception_type
  .text.__cxa_call_terminate
-                0x00000000800325c8       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
-                0x00000000800325c8                __cxa_call_terminate
+                0x00000000800326a8       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
+                0x00000000800326a8                __cxa_call_terminate
  *(.init)
- .init          0x0000000080032620        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x0000000080032620                _init
+ .init          0x0000000080032700        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x0000000080032700                _init
  *(.fini)
- .fini          0x0000000080032628        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
-                0x0000000080032628                _fini
+ .fini          0x0000000080032708        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x0000000080032708                _fini
  *(.gnu.linkonce.t.*)
-                0x0000000080032630                . = ALIGN (0x10)
-                0x0000000080032630                __text_end = .
+                0x0000000080032710                . = ALIGN (0x10)
+                0x0000000080032710                __text_end = .
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x0000000080032630     0x131c
+.eh_frame       0x0000000080032710     0x13b4
  *(.eh_frame)
- .eh_frame      0x0000000080032630        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .eh_frame      0x0000000080032630      0x1c8 build/CustomLangParser.o
-                                        0x28c (size before relaxing)
- .eh_frame      0x00000000800327f8      0x140 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+ .eh_frame      0x0000000080032710        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .eh_frame      0x0000000080032710      0x1dc build/CustomLangParser.o
+                                        0x2a0 (size before relaxing)
+ .eh_frame      0x00000000800328ec      0x140 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
                                         0x298 (size before relaxing)
- .eh_frame      0x0000000080032938      0x104 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+ .eh_frame      0x0000000080032a2c       0x84 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+                                        0xdfc (size before relaxing)
+ .eh_frame      0x0000000080032ab0      0x104 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
                                         0x118 (size before relaxing)
- .eh_frame      0x0000000080032a3c       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
+ .eh_frame      0x0000000080032bb4       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
                                          0x28 (size before relaxing)
- .eh_frame      0x0000000080032a50       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
+ .eh_frame      0x0000000080032bc8       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
                                          0x28 (size before relaxing)
- .eh_frame      0x0000000080032a64       0xe8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+ .eh_frame      0x0000000080032bdc       0xe8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
                                          0xfc (size before relaxing)
- .eh_frame      0x0000000080032b4c       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+ .eh_frame      0x0000000080032cc4       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
                                          0x80 (size before relaxing)
- .eh_frame      0x0000000080032b74       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
+ .eh_frame      0x0000000080032cec       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
                                          0x28 (size before relaxing)
- .eh_frame      0x0000000080032b88       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
+ .eh_frame      0x0000000080032d00       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
                                          0x34 (size before relaxing)
- .eh_frame      0x0000000080032ba8       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+ .eh_frame      0x0000000080032d20       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
                                          0x5c (size before relaxing)
- .eh_frame      0x0000000080032bf0       0x84 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+ .eh_frame      0x0000000080032d68       0x84 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
                                          0xec (size before relaxing)
- .eh_frame      0x0000000080032c74       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+ .eh_frame      0x0000000080032dec       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
                                         0x104 (size before relaxing)
- .eh_frame      0x0000000080032c88       0xa8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+ .eh_frame      0x0000000080032e00       0xa8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
                                          0xe4 (size before relaxing)
- .eh_frame      0x0000000080032d30       0x78 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+ .eh_frame      0x0000000080032ea8       0x78 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
                                          0x8c (size before relaxing)
- .eh_frame      0x0000000080032da8       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
+ .eh_frame      0x0000000080032f20       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
                                          0x3c (size before relaxing)
- .eh_frame      0x0000000080032dbc       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+ .eh_frame      0x0000000080032f34       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
                                          0x3c (size before relaxing)
- .eh_frame      0x0000000080032ddc       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
+ .eh_frame      0x0000000080032f54       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
                                          0xb8 (size before relaxing)
- .eh_frame      0x0000000080032e34       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
+ .eh_frame      0x0000000080032fac       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
                                          0x3c (size before relaxing)
- .eh_frame      0x0000000080032e5c      0x128 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+ .eh_frame      0x0000000080032fd4      0x128 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
                                         0x17c (size before relaxing)
- .eh_frame      0x0000000080032f84       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
+ .eh_frame      0x00000000800330fc       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
                                          0x34 (size before relaxing)
- .eh_frame      0x0000000080032fa4       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
+ .eh_frame      0x000000008003311c       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
                                          0x30 (size before relaxing)
- .eh_frame      0x0000000080032fc0      0x5e8 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
+ .eh_frame      0x0000000080033138      0x5e8 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
                                         0x5fc (size before relaxing)
- .eh_frame      0x00000000800335a8      0x3a0 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
+ .eh_frame      0x0000000080033720      0x3a0 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
                                         0x3b4 (size before relaxing)
- .eh_frame      0x0000000080033948        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+ .eh_frame      0x0000000080033ac0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .gcc_except_table
-                0x000000008003394c       0x58
+                0x0000000080033ac4       0x58
  *(.gcc_except_table*)
  .gcc_except_table._ZN10__cxxabiv111__terminateEPFvvE
-                0x000000008003394c       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000080033ac4       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
  .gcc_except_table._ZN9__gnu_cxx27__verbose_terminate_handlerEv
-                0x000000008003395c       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+                0x0000000080033ad4       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
  .gcc_except_table.__gxx_personality_v0
-                0x0000000080033988       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080033b00       0x1c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
 
 .jcr
  *(.jcr)
 
-.rodata         0x00000000800339a8     0x5058
+.rodata         0x0000000080033b20     0x5058
  *(.rdata)
  *(.rodata)
- .rodata        0x00000000800339a8       0x10 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- .rodata        0x00000000800339b8       0x50 build/CustomLangParser.o
- .rodata        0x0000000080033a08      0xf98 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
- .rodata        0x00000000800349a0      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
- .rodata        0x0000000080034b28      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
- .rodata        0x0000000080034cb0      0x288 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
-                0x0000000080034cb0                _ctype_
-                0x0000000080034db8                _ctype_b
- .rodata        0x0000000080034f38      0x128 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
-                0x0000000080034f48                __mprec_tinytens
-                0x0000000080034f70                __mprec_bigtens
-                0x0000000080034f98                __mprec_tens
- .rodata        0x0000000080035060      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
- .rodata        0x00000000800351e8      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
- .rodata        0x0000000080035370      0x310 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
- .rodata        0x0000000080035680       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
+ .rodata        0x0000000080033b20       0x10 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ .rodata        0x0000000080033b30       0x50 build/CustomLangParser.o
+ .rodata        0x0000000080033b80      0xf98 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
+ .rodata        0x0000000080034b18      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .rodata        0x0000000080034ca0      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
+ .rodata        0x0000000080034e28      0x288 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+                0x0000000080034e28                _ctype_
+                0x0000000080034f30                _ctype_b
+ .rodata        0x00000000800350b0      0x128 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                0x00000000800350c0                __mprec_tinytens
+                0x00000000800350e8                __mprec_bigtens
+                0x0000000080035110                __mprec_tens
+ .rodata        0x00000000800351d8      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+ .rodata        0x0000000080035360      0x188 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
+ .rodata        0x00000000800354e8      0x310 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
+ .rodata        0x00000000800357f8       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
  *(.rodata.*)
  .rodata.__fat_unlink.str1.8
-                0x00000000800356c0       0x20 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x0000000080035838       0x20 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .rodata.__fat_write.str1.8
-                0x00000000800356e0       0x25 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080035705        0x3 
+                0x0000000080035858       0x25 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x000000008003587d        0x3 
  .rodata.__fat_read.str1.8
-                0x0000000080035708       0x25 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003572d        0x3 
+                0x0000000080035880       0x25 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800358a5        0x3 
  .rodata.fat_disk_write_64drive.str1.8
-                0x0000000080035730       0x2e /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003575e        0x2 
+                0x00000000800358a8       0x2e /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800358d6        0x2 
  .rodata.fat_disk_read_64drive.str1.8
-                0x0000000080035760       0x2d /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003578d        0x3 
+                0x00000000800358d8       0x2d /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035905        0x3 
  .rodata.everdrive_sd_execute_command.str1.8
-                0x0000000080035790       0x11 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x00000000800357a1        0x7 
+                0x0000000080035908       0x11 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035919        0x7 
  .rodata.everdrive_sd_change_mode.str1.8
-                0x00000000800357a8       0x12 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x00000000800357ba        0x6 
+                0x0000000080035920       0x12 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035932        0x6 
  .rodata.fat_disk_write_everdrive.str1.8
-                0x00000000800357c0       0x54 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080035814        0x4 
+                0x0000000080035938       0x54 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x000000008003598c        0x4 
  .rodata.fat_disk_read_everdrive.str1.8
-                0x0000000080035818       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003582c        0x4 
+                0x0000000080035990       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800359a4        0x4 
  .rodata.fat_disk_initialize_everdrive.str1.8
-                0x0000000080035830       0x83 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x00000000800358b3        0x5 
+                0x00000000800359a8       0x83 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035a2b        0x5 
  .rodata.debug_init_sdfs.str1.8
-                0x00000000800358b8       0x24 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x00000000800358dc        0x4 
+                0x0000000080035a30       0x24 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035a54        0x4 
  .rodata.debug_assert_func_f.str1.8
-                0x00000000800358e0       0x3d /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x0000000080035a58       0x3d /usr/local/mips64-elf/lib/libdragon.a(debug.o)
                                          0x45 (size before relaxing)
- *fill*         0x000000008003591d        0x3 
+ *fill*         0x0000000080035a95        0x3 
  .rodata.fat_disk_64drive
-                0x0000000080035920       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080035934        0x4 
+                0x0000000080035a98       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035aac        0x4 
  .rodata.fat_disk_everdrive
-                0x0000000080035938       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003594c        0x4 
+                0x0000000080035ab0       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080035ac4        0x4 
  .rodata.check_fs.str1.8
-                0x0000000080035950       0x19 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- *fill*         0x0000000080035969        0x7 
+                0x0000000080035ac8       0x19 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ *fill*         0x0000000080035ae1        0x7 
  .rodata.follow_path.str1.8
-                0x0000000080035970       0x17 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- *fill*         0x0000000080035987        0x1 
- .rodata.ExCvt  0x0000000080035988       0x80 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+                0x0000000080035ae8       0x17 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ *fill*         0x0000000080035aff        0x1 
+ .rodata.ExCvt  0x0000000080035b00       0x80 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
  .rodata.LfnOfs
-                0x0000000080035a08        0xd /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- *fill*         0x0000000080035a15        0x3 
+                0x0000000080035b80        0xd /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ *fill*         0x0000000080035b8d        0x3 
  .rodata.GUID_MS_Basic
-                0x0000000080035a18       0x10 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+                0x0000000080035b90       0x10 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
  .rodata.ff_wtoupper
-                0x0000000080035a28       0x24 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
- *fill*         0x0000000080035a4c        0x4 
+                0x0000000080035ba0       0x24 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
+ *fill*         0x0000000080035bc4        0x4 
  .rodata.cvt2.0
-                0x0000000080035a50       0xbc /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
- *fill*         0x0000000080035b0c        0x4 
+                0x0000000080035bc8       0xbc /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
+ *fill*         0x0000000080035c84        0x4 
  .rodata.cvt1.1
-                0x0000000080035b10      0x1f2 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
- *fill*         0x0000000080035d02        0x6 
- .rodata.uc437  0x0000000080035d08      0x100 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
+                0x0000000080035c88      0x1f2 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
+ *fill*         0x0000000080035e7a        0x6 
+ .rodata.uc437  0x0000000080035e80      0x100 /usr/local/mips64-elf/lib/libdragon.a(ffunicode.o)
  .rodata.__font_data
-                0x0000000080035e08      0x800 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
+                0x0000000080035f80      0x800 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
  .rodata.dma_read_raw_async.str1.8
-                0x0000000080036608       0x12 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x000000008003661a        0x6 
+                0x0000000080036780       0x12 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x0000000080036792        0x6 
  .rodata.dma_read_async.str1.8
-                0x0000000080036620       0x17 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x0000000080036637        0x1 
+                0x0000000080036798       0x17 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x00000000800367af        0x1 
  .rodata.__func__.0
-                0x0000000080036638        0xa /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x0000000080036642        0x6 
+                0x00000000800367b0        0xa /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x00000000800367ba        0x6 
  .rodata.__func__.1
-                0x0000000080036648        0xf /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x0000000080036657        0x1 
+                0x00000000800367c0        0xf /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x00000000800367cf        0x1 
  .rodata.__func__.2
-                0x0000000080036658       0x14 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x000000008003666c        0x4 
+                0x00000000800367d0       0x14 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x00000000800367e4        0x4 
  .rodata.__func__.3
-                0x0000000080036670       0x13 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
- *fill*         0x0000000080036683        0x5 
+                0x00000000800367e8       0x13 /usr/local/mips64-elf/lib/libdragon.a(dma.o)
+ *fill*         0x00000000800367fb        0x5 
  .rodata.__do_global_ctors.str1.8
-                0x0000000080036688       0x99 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
- *fill*         0x0000000080036721        0x7 
+                0x0000000080036800       0x99 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
+ *fill*         0x0000000080036899        0x7 
  .rodata.__wrap___do_global_ctors.str1.8
-                0x0000000080036728       0x93 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
- *fill*         0x00000000800367bb        0x5 
+                0x00000000800368a0       0x93 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
+ *fill*         0x0000000080036933        0x5 
  .rodata.__func__.0
-                0x00000000800367c0       0x19 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
- *fill*         0x00000000800367d9        0x7 
+                0x0000000080036938       0x19 /usr/local/mips64-elf/lib/libdragon.a(do_ctors.o)
+ *fill*         0x0000000080036951        0x7 
  .rodata.enable_interrupts.str1.8
-                0x00000000800367e0       0x4c /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
- *fill*         0x000000008003682c        0x4 
+                0x0000000080036958       0x4c /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+ *fill*         0x00000000800369a4        0x4 
  .rodata.__func__.0
-                0x0000000080036830       0x12 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
- *fill*         0x0000000080036842        0x6 
+                0x00000000800369a8       0x12 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+ *fill*         0x00000000800369ba        0x6 
  .rodata.display_show.part.0.str1.8
-                0x0000000080036848       0x59 /usr/local/mips64-elf/lib/libdragon.a(display.o)
- *fill*         0x00000000800368a1        0x7 
+                0x00000000800369c0       0x59 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+ *fill*         0x0000000080036a19        0x7 
  .rodata.display_init.str1.8
-                0x00000000800368a8       0xac /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036a20       0xac /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.display_init
-                0x0000000080036954       0x30 /usr/local/mips64-elf/lib/libdragon.a(display.o)
- *fill*         0x0000000080036984        0x4 
+                0x0000000080036acc       0x30 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+ *fill*         0x0000000080036afc        0x4 
  .rodata.__func__.0
-                0x0000000080036988        0xd /usr/local/mips64-elf/lib/libdragon.a(display.o)
- *fill*         0x0000000080036995        0x3 
+                0x0000000080036b00        0xd /usr/local/mips64-elf/lib/libdragon.a(display.o)
+ *fill*         0x0000000080036b0d        0x3 
  .rodata.__func__.1
-                0x0000000080036998        0xd /usr/local/mips64-elf/lib/libdragon.a(display.o)
- *fill*         0x00000000800369a5        0x3 
+                0x0000000080036b10        0xd /usr/local/mips64-elf/lib/libdragon.a(display.o)
+ *fill*         0x0000000080036b1d        0x3 
  .rodata.reg_values
-                0x00000000800369a8       0x48 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036b20       0x48 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_640p
-                0x00000000800369f0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036b68       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_640p
-                0x0000000080036a28       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036ba0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_640p
-                0x0000000080036a60       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036bd8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_512p
-                0x0000000080036a98       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036c10       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_512p
-                0x0000000080036ad0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036c48       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_512p
-                0x0000000080036b08       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036c80       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_512
-                0x0000000080036b40       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036cb8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_512
-                0x0000000080036b78       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036cf0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_512
-                0x0000000080036bb0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036d28       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_256
-                0x0000000080036be8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036d60       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_256
-                0x0000000080036c20       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036d98       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_256
-                0x0000000080036c58       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036dd0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_640
-                0x0000000080036c90       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036e08       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_640
-                0x0000000080036cc8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036e40       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_640
-                0x0000000080036d00       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036e78       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.mpal_320
-                0x0000000080036d38       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036eb0       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.pal_320
-                0x0000000080036d70       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036ee8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.ntsc_320
-                0x0000000080036da8       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080036f20       0x38 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .rodata.exception_default_handler.str1.8
-                0x0000000080036de0      0x447 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
- *fill*         0x0000000080037227        0x1 
+                0x0000000080036f58      0x447 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
+ *fill*         0x000000008003739f        0x1 
  .rodata.str1.8
-                0x0000000080037228      0x17e /usr/local/mips64-elf/lib/libdragon.a(exception.o)
- *fill*         0x00000000800373a6        0x2 
+                0x00000000800373a0      0x17e /usr/local/mips64-elf/lib/libdragon.a(exception.o)
+ *fill*         0x000000008003751e        0x2 
  .rodata.exceptionMap.0
-                0x00000000800373a8       0x80 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
+                0x0000000080037520       0x80 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
  .rodata._ZN10LangParser13CheckLineArgsEPN6LibN645FrameEPPcii.str1.8
-                0x0000000080037428      0x450 build/CustomLangParser.o
+                0x00000000800375a0      0x450 build/CustomLangParser.o
  .rodata._ZN10LangParser8CallLineEPN6LibN645FrameEPPci.str1.8
-                0x0000000080037878       0x1b build/CustomLangParser.o
+                0x00000000800379f0       0x1b build/CustomLangParser.o
                                          0x23 (size before relaxing)
- *fill*         0x0000000080037893        0x5 
+ *fill*         0x0000000080037a0b        0x5 
  .rodata.main.str1.8
-                0x0000000080037898       0x20 build/CustomLangParser.o
+                0x0000000080037a10       0x20 build/CustomLangParser.o
  .rodata._ZN10LangParser5ParseIPciEEiPN6LibN645FrameET_T0_.str1.8
-                0x00000000800378b8       0x36 build/CustomLangParser.o
+                0x0000000080037a30       0x36 build/CustomLangParser.o
                                          0x46 (size before relaxing)
- *fill*         0x00000000800378ee        0x2 
+ *fill*         0x0000000080037a66        0x2 
  .rodata._ZN6Parser8OnCreateEv.str1.8
-                0x00000000800378f0       0x48 build/CustomLangParser.o
+                0x0000000080037a68       0x48 build/CustomLangParser.o
  .rodata._GLOBAL__sub_I_sVars.str1.8
-                0x0000000080037938       0x22 build/CustomLangParser.o
+                0x0000000080037ab0       0x22 build/CustomLangParser.o
                                          0x2a (size before relaxing)
- *fill*         0x000000008003795a        0x6 
+ *fill*         0x0000000080037ad2        0x6 
  .rodata._ZTI6Parser
-                0x0000000080037960        0xc build/CustomLangParser.o
-                0x0000000080037960                _ZTI6Parser
+                0x0000000080037ad8        0xc build/CustomLangParser.o
+                0x0000000080037ad8                _ZTI6Parser
  .rodata._ZTV6Parser
-                0x000000008003796c       0x38 build/CustomLangParser.o
-                0x000000008003796c                _ZTV6Parser
- *fill*         0x00000000800379a4        0x4 
+                0x0000000080037ae4       0x38 build/CustomLangParser.o
+                0x0000000080037ae4                _ZTV6Parser
+ *fill*         0x0000000080037b1c        0x4 
  .rodata._ZN6LibN645FrameC2E12resolution_t10bitdepth_ti.str1.8
-                0x00000000800379a8       0x4b /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
- *fill*         0x00000000800379f3        0x5 
+                0x0000000080037b20       0x4b /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+ *fill*         0x0000000080037b6b        0x5 
  .rodata._ZTSN6LibN645FrameE
-                0x00000000800379f8       0x10 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x00000000800379f8                _ZTSN6LibN645FrameE
+                0x0000000080037b70       0x10 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x0000000080037b70                _ZTSN6LibN645FrameE
  .rodata._ZTVN6LibN645FrameE
-                0x0000000080037a08       0x38 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x0000000080037a08                _ZTVN6LibN645FrameE
+                0x0000000080037b80       0x38 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x0000000080037b80                _ZTVN6LibN645FrameE
  .rodata.__open.str1.8
-                0x0000000080037a40        0x2 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- *fill*         0x0000000080037a42        0x6 
+                0x0000000080037bb8        0x2 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ *fill*         0x0000000080037bba        0x6 
  .rodata.dfs_init.str1.8
-                0x0000000080037a48       0x16 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- *fill*         0x0000000080037a5e        0x2 
+                0x0000000080037bc0       0x16 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ *fill*         0x0000000080037bd6        0x2 
  .rodata.SI_read_con_block.7
-                0x0000000080037a60       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x0000000080037bd8       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
  .rodata.timer_init.str1.8
-                0x0000000080037aa0       0x41 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
- *fill*         0x0000000080037ae1        0x7 
+                0x0000000080037c18       0x41 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+ *fill*         0x0000000080037c59        0x7 
  .rodata.new_timer.str1.8
-                0x0000000080037ae8       0x2d /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
- *fill*         0x0000000080037b15        0x3 
+                0x0000000080037c60       0x2d /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+ *fill*         0x0000000080037c8d        0x3 
  .rodata.__func__.0
-                0x0000000080037b18        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
- *fill*         0x0000000080037b24        0x4 
+                0x0000000080037c90        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+ *fill*         0x0000000080037c9c        0x4 
  .rodata.__func__.1
-                0x0000000080037b28        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
- *fill*         0x0000000080037b34        0x4 
- .rodata.__func__.6
-                0x0000000080037b38        0xb /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
- *fill*         0x0000000080037b43        0x5 
- .rodata._ZTSN10__cxxabiv117__class_type_infoE
-                0x0000000080037b48       0x22 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080037b48                _ZTSN10__cxxabiv117__class_type_infoE
- *fill*         0x0000000080037b6a        0x6 
- .rodata._ZTIN10__cxxabiv117__class_type_infoE
-                0x0000000080037b70        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080037b70                _ZTIN10__cxxabiv117__class_type_infoE
- .rodata._ZTVN10__cxxabiv117__class_type_infoE
-                0x0000000080037b7c       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
-                0x0000000080037b7c                _ZTVN10__cxxabiv117__class_type_infoE
- .rodata._ZTSN10__cxxabiv120__si_class_type_infoE
-                0x0000000080037ba8       0x25 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080037ba8                _ZTSN10__cxxabiv120__si_class_type_infoE
- *fill*         0x0000000080037bcd        0x3 
- .rodata._ZTIN10__cxxabiv120__si_class_type_infoE
-                0x0000000080037bd0        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080037bd0                _ZTIN10__cxxabiv120__si_class_type_infoE
- .rodata._ZTVN10__cxxabiv120__si_class_type_infoE
-                0x0000000080037bdc       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
-                0x0000000080037bdc                _ZTVN10__cxxabiv120__si_class_type_infoE
- .rodata._ZTSSt9type_info
-                0x0000000080037c08        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
-                0x0000000080037c08                _ZTSSt9type_info
- *fill*         0x0000000080037c15        0x3 
- .rodata._ZNKSt9bad_alloc4whatEv.str1.8
-                0x0000000080037c18        0xf /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
- *fill*         0x0000000080037c27        0x1 
- .rodata._ZTSSt9bad_alloc
-                0x0000000080037c28        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x0000000080037c28                _ZTSSt9bad_alloc
- *fill*         0x0000000080037c35        0x3 
- .rodata._ZTISt9bad_alloc
-                0x0000000080037c38        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x0000000080037c38                _ZTISt9bad_alloc
- .rodata._ZTVSt9bad_alloc
-                0x0000000080037c44       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
-                0x0000000080037c44                _ZTVSt9bad_alloc
- .rodata._ZTSSt9exception
-                0x0000000080037c58        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080037c58                _ZTSSt9exception
- *fill*         0x0000000080037c65        0x3 
- .rodata._ZTSN10__cxxabiv115__forced_unwindE
-                0x0000000080037c68       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080037c68                _ZTSN10__cxxabiv115__forced_unwindE
- .rodata._ZTSN10__cxxabiv119__foreign_exceptionE
-                0x0000000080037c88       0x24 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080037c88                _ZTSN10__cxxabiv119__foreign_exceptionE
+                0x0000000080037ca0        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
  *fill*         0x0000000080037cac        0x4 
+ .rodata.__func__.6
+                0x0000000080037cb0        0xb /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+ *fill*         0x0000000080037cbb        0x5 
+ .rodata._ZTSN10__cxxabiv117__class_type_infoE
+                0x0000000080037cc0       0x22 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080037cc0                _ZTSN10__cxxabiv117__class_type_infoE
+ *fill*         0x0000000080037ce2        0x6 
+ .rodata._ZTIN10__cxxabiv117__class_type_infoE
+                0x0000000080037ce8        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080037ce8                _ZTIN10__cxxabiv117__class_type_infoE
+ .rodata._ZTVN10__cxxabiv117__class_type_infoE
+                0x0000000080037cf4       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000080037cf4                _ZTVN10__cxxabiv117__class_type_infoE
+ .rodata._ZTSN10__cxxabiv120__si_class_type_infoE
+                0x0000000080037d20       0x25 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080037d20                _ZTSN10__cxxabiv120__si_class_type_infoE
+ *fill*         0x0000000080037d45        0x3 
+ .rodata._ZTIN10__cxxabiv120__si_class_type_infoE
+                0x0000000080037d48        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080037d48                _ZTIN10__cxxabiv120__si_class_type_infoE
+ .rodata._ZTVN10__cxxabiv120__si_class_type_infoE
+                0x0000000080037d54       0x2c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000080037d54                _ZTVN10__cxxabiv120__si_class_type_infoE
+ .rodata._ZTSSt9type_info
+                0x0000000080037d80        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+                0x0000000080037d80                _ZTSSt9type_info
+ *fill*         0x0000000080037d8d        0x3 
+ .rodata._ZNKSt9bad_alloc4whatEv.str1.8
+                0x0000000080037d90        0xf /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+ *fill*         0x0000000080037d9f        0x1 
+ .rodata._ZTSSt9bad_alloc
+                0x0000000080037da0        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080037da0                _ZTSSt9bad_alloc
+ *fill*         0x0000000080037dad        0x3 
+ .rodata._ZTISt9bad_alloc
+                0x0000000080037db0        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080037db0                _ZTISt9bad_alloc
+ .rodata._ZTVSt9bad_alloc
+                0x0000000080037dbc       0x14 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x0000000080037dbc                _ZTVSt9bad_alloc
+ .rodata._ZTSSt9exception
+                0x0000000080037dd0        0xd /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080037dd0                _ZTSSt9exception
+ *fill*         0x0000000080037ddd        0x3 
+ .rodata._ZTSN10__cxxabiv115__forced_unwindE
+                0x0000000080037de0       0x20 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080037de0                _ZTSN10__cxxabiv115__forced_unwindE
+ .rodata._ZTSN10__cxxabiv119__foreign_exceptionE
+                0x0000000080037e00       0x24 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080037e00                _ZTSN10__cxxabiv119__foreign_exceptionE
+ *fill*         0x0000000080037e24        0x4 
  .rodata._ZN9__gnu_cxx27__verbose_terminate_handlerEv.str1.8
-                0x0000000080037cb0       0x9c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
- *fill*         0x0000000080037d4c        0x4 
+                0x0000000080037e28       0x9c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+ *fill*         0x0000000080037ec4        0x4 
  .rodata.str1.8
-                0x0000000080037d50      0xb81 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
+                0x0000000080037ec8      0xb81 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
                                         0xbe1 (size before relaxing)
- *fill*         0x00000000800388d1        0x3 
+ *fill*         0x0000000080038a49        0x3 
  .rodata._ZL28read_encoded_value_with_basehjPKhPj
-                0x00000000800388d4       0x34 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000080038a4c       0x34 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .rodata.str1.8
-                0x0000000080038908       0x5a /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+                0x0000000080038a80       0x5a /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
  .rodata.str1.8
-                0x0000000080038962       0x5a /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
- *fill*         0x0000000080038962        0x6 
+                0x0000000080038ada       0x5a /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
+ *fill*         0x0000000080038ada        0x6 
  .rodata.str1.8
-                0x0000000080038968       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+                0x0000000080038ae0       0x58 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
                                          0x60 (size before relaxing)
  .rodata.str1.8
-                0x00000000800389c0        0xe /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+                0x0000000080038b38        0xe /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
                                          0x1a (size before relaxing)
- *fill*         0x00000000800389ce        0x2 
+ *fill*         0x0000000080038b46        0x2 
  .rodata.str1.8
-                0x00000000800389d0       0x29 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                0x0000000080038b48       0x29 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
                                          0x41 (size before relaxing)
  .rodata.str1.8
-                0x00000000800389f9       0x37 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+                0x0000000080038b71       0x37 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
  .rodata.str1.8
-                0x00000000800389f9       0x37 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
+                0x0000000080038b71       0x37 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
  *(.gnu.linkonce.r.*)
-                0x0000000080038a30                . = ALIGN (0x8)
- *fill*         0x00000000800389f9        0x7 
+                0x0000000080038ba8                . = ALIGN (0x8)
+ *fill*         0x0000000080038b71        0x7 
 
-.MIPS.abiflags  0x0000000080038a00       0x18
+.MIPS.abiflags  0x0000000080038b78       0x18
  .MIPS.abiflags
-                0x0000000080038a00       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
+                0x0000000080038b78       0x18 /usr/local/lib/gcc/mips64-elf/11.2.0/crti.o
 
-.rel.dyn        0x0000000080038a18       0x10
- .rel.dyn       0x0000000080038a18       0x10 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
-                0x0000000080038a28                . = ALIGN (0x4)
+.rel.dyn        0x0000000080038b90       0x10
+ .rel.dyn       0x0000000080038b90       0x10 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
+                0x0000000080038ba0                . = ALIGN (0x4)
 
-.ctors          0x0000000080038a28       0x18
-                0x0000000080038a28                __CTOR_LIST__ = .
+.ctors          0x0000000080038ba0       0x18
+                0x0000000080038ba0                __CTOR_LIST__ = .
  *(.ctors)
- .ctors         0x0000000080038a28        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
- .ctors         0x0000000080038a2c        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
- .ctors         0x0000000080038a30        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
- .ctors         0x0000000080038a34        0x4 build/CustomLangParser.o
- .ctors         0x0000000080038a38        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
- .ctors         0x0000000080038a3c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
-                0x0000000080038a40                __CTOR_END__ = .
-                0x0000000080038a40                . = ALIGN (0x8)
+ .ctors         0x0000000080038ba0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtbegin.o
+ .ctors         0x0000000080038ba4        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
+ .ctors         0x0000000080038ba8        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+ .ctors         0x0000000080038bac        0x4 build/CustomLangParser.o
+ .ctors         0x0000000080038bb0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+ .ctors         0x0000000080038bb4        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x0000000080038bb8                __CTOR_END__ = .
+                0x0000000080038bb8                . = ALIGN (0x8)
 
-.data           0x0000000080038a40      0x9f0
-                0x0000000080038a40                __data_start = .
+.data           0x0000000080038bb8      0x9f0
+                0x0000000080038bb8                __data_start = .
  *(.data)
- .data          0x0000000080038a40      0x428 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
- .data          0x0000000080038e68      0x408 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
-                0x0000000080038e68                __malloc_av_
- .data          0x0000000080039270      0x16c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
-                0x0000000080039270                __global_locale
+ .data          0x0000000080038bb8      0x428 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+ .data          0x0000000080038fe0      0x408 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x0000000080038fe0                __malloc_av_
+ .data          0x00000000800393e8      0x16c /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+                0x00000000800393e8                __global_locale
  *(.data.*)
- *fill*         0x00000000800393dc        0x4 
- .data.fat_fs   0x00000000800393e0       0x24 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080039404        0x4 
+ *fill*         0x0000000080039554        0x4 
+ .data.fat_fs   0x0000000080039558       0x24 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x000000008003957c        0x4 
  .data.dragon_fs
-                0x0000000080039408       0x24 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080039580       0x24 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  *(.gnu.linkonce.d.*)
-                0x0000000080039430                . = ALIGN (0x8)
- *fill*         0x000000008003942c        0x4 
+                0x00000000800395a8                . = ALIGN (0x8)
+ *fill*         0x00000000800395a4        0x4 
 
-.sdata          0x0000000080039430      0x100
-                0x0000000080041430                _gp = (. + 0x8000)
+.sdata          0x00000000800395a8      0x100
+                0x00000000800415a8                _gp = (. + 0x8000)
  *(.sdata)
- .sdata         0x0000000080039430        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
-                0x0000000080039430                _global_impure_ptr
-                0x0000000080039434                _impure_ptr
- .sdata         0x0000000080039438        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
-                0x0000000080039438                __malloc_sbrk_base
-                0x000000008003943c                __malloc_trim_threshold
- .sdata         0x0000000080039440        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
- .sdata         0x0000000080039448        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
- .sdata         0x0000000080039450       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
- .sdata         0x0000000080039498       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+ .sdata         0x00000000800395a8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+                0x00000000800395a8                _global_impure_ptr
+                0x00000000800395ac                _impure_ptr
+ .sdata         0x00000000800395b0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x00000000800395b0                __malloc_sbrk_base
+                0x00000000800395b4                __malloc_trim_threshold
+ .sdata         0x00000000800395b8        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+ .sdata         0x00000000800395c0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
+ .sdata         0x00000000800395c8       0x48 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+ .sdata         0x0000000080039610       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
  *(.sdata.*)
  .sdata.usb_readblock
-                0x00000000800394a8        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x00000000800394a8                usb_readblock
+                0x0000000080039620        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x0000000080039620                usb_readblock
  .sdata.console_redirect_debug
-                0x00000000800394ac        0x1 /usr/local/mips64-elf/lib/libdragon.a(console.o)
- *fill*         0x00000000800394ad        0x3 
+                0x0000000080039624        0x1 /usr/local/mips64-elf/lib/libdragon.a(console.o)
+ *fill*         0x0000000080039625        0x3 
  .sdata.f_color
-                0x00000000800394b0        0x4 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
+                0x0000000080039628        0x4 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
  .sdata.__bootcic
-                0x00000000800394b4        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
-                0x00000000800394b4                __bootcic
+                0x000000008003962c        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
+                0x000000008003962c                __bootcic
  .sdata.__interrupt_depth
-                0x00000000800394b8        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039630        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
  .sdata.now_drawing
-                0x00000000800394bc        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039634        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .sdata.show_next
-                0x00000000800394c0        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039638        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .sdata.now_showing
-                0x00000000800394c4        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x000000008003963c        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
  .sdata.__buffers
-                0x00000000800394c8        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
-                0x00000000800394c8                __buffers
+                0x0000000080039640        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039640                __buffers
  .sdata.__exception_handler
-                0x00000000800394cc        0x4 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
+                0x0000000080039644        0x4 /usr/local/mips64-elf/lib/libdragon.a(exception.o)
  .sdata.handle.2
-                0x00000000800394d0        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
- *fill*         0x00000000800394d4        0x4 
+                0x0000000080039648        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+ *fill*         0x000000008003964c        0x4 
  .sdata._ZTS6Parser
-                0x00000000800394d8        0x8 build/CustomLangParser.o
-                0x00000000800394d8                _ZTS6Parser
- .sdata.ifLine  0x00000000800394e0        0x4 build/CustomLangParser.o
-                0x00000000800394e0                ifLine
- .sdata.y       0x00000000800394e4        0x4 build/CustomLangParser.o
-                0x00000000800394e4                y
+                0x0000000080039650        0x8 build/CustomLangParser.o
+                0x0000000080039650                _ZTS6Parser
+ .sdata.ifLine  0x0000000080039658        0x4 build/CustomLangParser.o
+                0x0000000080039658                ifLine
+ .sdata.y       0x000000008003965c        0x4 build/CustomLangParser.o
+                0x000000008003965c                y
  .sdata.ArraySize
-                0x00000000800394e8        0x4 build/CustomLangParser.o
-                0x00000000800394e8                ArraySize
- *fill*         0x00000000800394ec        0x4 
+                0x0000000080039660        0x4 build/CustomLangParser.o
+                0x0000000080039660                ArraySize
+ *fill*         0x0000000080039664        0x4 
  .sdata._ZTIN6LibN645FrameE
-                0x00000000800394f0        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x00000000800394f0                _ZTIN6LibN645FrameE
+                0x0000000080039668        0x8 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x0000000080039668                _ZTIN6LibN645FrameE
  .sdata.next_handle.1
-                0x00000000800394f8        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- *fill*         0x00000000800394fc        0x4 
+                0x0000000080039670        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ *fill*         0x0000000080039674        0x4 
  .sdata._ZTISt9type_info
-                0x0000000080039500        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
-                0x0000000080039500                _ZTISt9type_info
+                0x0000000080039678        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+                0x0000000080039678                _ZTISt9type_info
  .sdata._ZTISt9exception
-                0x0000000080039508        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080039508                _ZTISt9exception
+                0x0000000080039680        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080039680                _ZTISt9exception
  .sdata._ZTIN10__cxxabiv115__forced_unwindE
-                0x0000000080039510        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080039510                _ZTIN10__cxxabiv115__forced_unwindE
+                0x0000000080039688        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080039688                _ZTIN10__cxxabiv115__forced_unwindE
  .sdata._ZTIN10__cxxabiv119__foreign_exceptionE
-                0x0000000080039518        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
-                0x0000000080039518                _ZTIN10__cxxabiv119__foreign_exceptionE
+                0x0000000080039690        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x0000000080039690                _ZTIN10__cxxabiv119__foreign_exceptionE
  .sdata.DW.ref.__gxx_personality_v0
-                0x0000000080039520        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
-                0x0000000080039520                DW.ref.__gxx_personality_v0
+                0x0000000080039698        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000080039698                DW.ref.__gxx_personality_v0
  .sdata._ZN10__cxxabiv120__unexpected_handlerE
-                0x0000000080039524        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_unex_handler.o)
-                0x0000000080039524                _ZN10__cxxabiv120__unexpected_handlerE
+                0x000000008003969c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_unex_handler.o)
+                0x000000008003969c                _ZN10__cxxabiv120__unexpected_handlerE
  .sdata.DW.ref._ZTISt9exception
-                0x0000000080039528        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
-                0x0000000080039528                DW.ref._ZTISt9exception
+                0x00000000800396a0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+                0x00000000800396a0                DW.ref._ZTISt9exception
  .sdata._ZN10__cxxabiv119__terminate_handlerE
-                0x000000008003952c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_term_handler.o)
-                0x000000008003952c                _ZN10__cxxabiv119__terminate_handlerE
+                0x00000000800396a4        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_term_handler.o)
+                0x00000000800396a4                _ZN10__cxxabiv119__terminate_handlerE
  *(.gnu.linkonce.s.*)
-                0x0000000080039530                . = ALIGN (0x8)
+                0x00000000800396a8                . = ALIGN (0x8)
 
-.lit8           0x0000000080039530        0x0
+.lit8           0x00000000800396a8        0x0
  *(.lit8)
-                0x0000000080039530                . = ALIGN (0x8)
+                0x00000000800396a8                . = ALIGN (0x8)
 
-.lit4           0x0000000080039530        0x0
+.lit4           0x00000000800396a8        0x0
  *(.lit4)
-                0x0000000080039530                . = ALIGN (0x8)
-                0x0000000080039530                __data_end = .
+                0x00000000800396a8                . = ALIGN (0x8)
+                0x00000000800396a8                __data_end = .
 
-.sbss           0x0000000080039530      0x308
-                0x0000000080039530                __bss_start = .
+.sbss           0x00000000800396b0      0x308
+                0x00000000800396b0                __bss_start = .
  *(.sbss)
- .sbss          0x0000000080039530      0x228 /usr/local/mips64-elf/lib/libdragon.a(inthandler.o)
-                0x0000000080039530                __baseRegAddr
- .sbss          0x0000000080039758        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
-                0x0000000080039758                __malloc_max_total_mem
-                0x000000008003975c                __malloc_max_sbrked_mem
-                0x0000000080039760                __malloc_top_pad
+ .sbss          0x00000000800396b0      0x228 /usr/local/mips64-elf/lib/libdragon.a(inthandler.o)
+                0x00000000800396b0                __baseRegAddr
+ .sbss          0x00000000800398d8        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x00000000800398d8                __malloc_max_total_mem
+                0x00000000800398dc                __malloc_max_sbrked_mem
+                0x00000000800398e0                __malloc_top_pad
  *(.sbss.*)
- .sbss.once.0   0x0000000080039764        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- .sbss.ok.1     0x0000000080039765        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- .sbss.once.2   0x0000000080039766        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080039767        0x1 
+ .sbss.once.0   0x00000000800398e4        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ .sbss.ok.1     0x00000000800398e5        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ .sbss.once.2   0x00000000800398e6        0x1 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800398e7        0x1 
  .sbss.sdfs_logic_drive
-                0x0000000080039768        0x3 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008003976b        0x1 
+                0x00000000800398e8        0x3 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800398eb        0x1 
  .sbss.sdlog_file
-                0x000000008003976c        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x00000000800398ec        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .sbss.enabled_features
-                0x0000000080039770        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080039774        0x4 
+                0x00000000800398f0        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x00000000800398f4        0x4 
  .sbss.everdrive_sd_address
-                0x0000000080039778        0x8 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x00000000800398f8        0x8 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .sbss.everdrive_sd_config
-                0x0000000080039780        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x0000000080039900        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .sbss.everdrive_sd_active_mode
-                0x0000000080039784        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x0000000080039904        0x4 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .sbss.usb_dataleft
-                0x0000000080039788        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x0000000080039788                usb_dataleft
+                0x0000000080039908        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x0000000080039908                usb_dataleft
  .sbss.usb_datasize
-                0x000000008003978c        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x000000008003978c                usb_datasize
+                0x000000008003990c        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x000000008003990c                usb_datasize
  .sbss.usb_datatype
-                0x0000000080039790        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x0000000080039790                usb_datatype
+                0x0000000080039910        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x0000000080039910                usb_datatype
  .sbss.usb_cart
-                0x0000000080039794        0x1 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
- *fill*         0x0000000080039795        0x3 
+                0x0000000080039914        0x1 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+ *fill*         0x0000000080039915        0x3 
  .sbss.funcPointer_read
-                0x0000000080039798        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x0000000080039798                funcPointer_read
+                0x0000000080039918        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x0000000080039918                funcPointer_read
  .sbss.funcPointer_poll
-                0x000000008003979c        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x000000008003979c                funcPointer_poll
+                0x000000008003991c        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x000000008003991c                funcPointer_poll
  .sbss.funcPointer_write
-                0x00000000800397a0        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
-                0x00000000800397a0                funcPointer_write
- .sbss.Fsid     0x00000000800397a4        0x2 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- *fill*         0x00000000800397a6        0x2 
- .sbss.FatFs    0x00000000800397a8        0x4 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- .sbss.dc.0     0x00000000800397ac        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
+                0x0000000080039920        0x4 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+                0x0000000080039920                funcPointer_write
+ .sbss.Fsid     0x0000000080039924        0x2 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ *fill*         0x0000000080039926        0x2 
+ .sbss.FatFs    0x0000000080039928        0x4 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ .sbss.dc.0     0x000000008003992c        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
  .sbss.render_now
-                0x00000000800397b0        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
+                0x0000000080039930        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
  .sbss.render_buffer
-                0x00000000800397b4        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
- .sbss.b_color  0x00000000800397b8        0x4 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
+                0x0000000080039934        0x4 /usr/local/mips64-elf/lib/libdragon.a(console.o)
+ .sbss.b_color  0x0000000080039938        0x4 /usr/local/mips64-elf/lib/libdragon.a(graphics.o)
  .sbss.__bbplayer
-                0x00000000800397bc        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
-                0x00000000800397bc                __bbplayer
+                0x000000008003993c        0x4 /usr/local/mips64-elf/lib/libdragon.a(n64sys.o)
+                0x000000008003993c                __bbplayer
  .sbss.SP_callback
-                0x00000000800397c0        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397c0                SP_callback
+                0x0000000080039940        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039940                SP_callback
  .sbss.SI_callback
-                0x00000000800397c4        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397c4                SI_callback
+                0x0000000080039944        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039944                SI_callback
  .sbss.TI_callback
-                0x00000000800397c8        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397c8                TI_callback
+                0x0000000080039948        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039948                TI_callback
  .sbss.DP_callback
-                0x00000000800397cc        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397cc                DP_callback
+                0x000000008003994c        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x000000008003994c                DP_callback
  .sbss.PI_callback
-                0x00000000800397d0        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397d0                PI_callback
+                0x0000000080039950        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039950                PI_callback
  .sbss.VI_callback
-                0x00000000800397d4        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397d4                VI_callback
+                0x0000000080039954        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039954                VI_callback
  .sbss.AI_callback
-                0x00000000800397d8        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397d8                AI_callback
+                0x0000000080039958        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x0000000080039958                AI_callback
  .sbss.interrupt_disabled_tick
-                0x00000000800397dc        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
-                0x00000000800397dc                interrupt_disabled_tick
+                0x000000008003995c        0x4 /usr/local/mips64-elf/lib/libdragon.a(interrupt.o)
+                0x000000008003995c                interrupt_disabled_tick
  .sbss.__height
-                0x00000000800397e0        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
-                0x00000000800397e0                __height
- .sbss.__width  0x00000000800397e4        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
-                0x00000000800397e4                __width
+                0x0000000080039960        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039960                __height
+ .sbss.__width  0x0000000080039964        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039964                __width
  .sbss.__bitdepth
-                0x00000000800397e8        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
-                0x00000000800397e8                __bitdepth
+                0x0000000080039968        0x4 /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x0000000080039968                __bitdepth
  .sbss.heap_top.0
-                0x00000000800397ec        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+                0x000000008003996c        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
  .sbss.heap_end.1
-                0x00000000800397f0        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+                0x0000000080039970        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
  .sbss.__assert_func_ptr
-                0x00000000800397f4        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
-                0x00000000800397f4                __assert_func_ptr
- .sbss.errno    0x00000000800397f8        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
-                0x00000000800397f8                errno
- .sbss.curArg   0x00000000800397fc        0x4 build/CustomLangParser.o
-                0x00000000800397fc                curArg
+                0x0000000080039974        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+                0x0000000080039974                __assert_func_ptr
+ .sbss.errno    0x0000000080039978        0x4 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+                0x0000000080039978                errno
+ .sbss.curArg   0x000000008003997c        0x4 build/CustomLangParser.o
+                0x000000008003997c                curArg
  .sbss.ifProceeds
-                0x0000000080039800        0x1 build/CustomLangParser.o
-                0x0000000080039800                ifProceeds
- *fill*         0x0000000080039801        0x7 
- .sbss.sVars    0x0000000080039808        0x8 build/CustomLangParser.o
-                0x0000000080039808                sVars
+                0x0000000080039980        0x1 build/CustomLangParser.o
+                0x0000000080039980                ifProceeds
+ *fill*         0x0000000080039981        0x7 
+ .sbss.sVars    0x0000000080039988        0x8 build/CustomLangParser.o
+                0x0000000080039988                sVars
  .sbss._ZN6LibN643DFS6handleE
-                0x0000000080039810        0x4 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
-                0x0000000080039810                _ZN6LibN643DFS6handleE
+                0x0000000080039990        0x4 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+                0x0000000080039990                _ZN6LibN643DFS6handleE
  .sbss.next_entry
-                0x0000000080039814        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080039994        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .sbss.directory_top
-                0x0000000080039818        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000080039998        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .sbss.base_ptr
-                0x000000008003981c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008003999c        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .sbss.ticks64_high
-                0x0000000080039820        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
-                0x0000000080039820                ticks64_high
+                0x00000000800399a0        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x00000000800399a0                ticks64_high
  .sbss.TI_timers
-                0x0000000080039824        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x00000000800399a4        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
  .sbss._ZN12_GLOBAL__N_113__new_handlerE
-                0x0000000080039828        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
+                0x00000000800399a8        0x4 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
  .sbss._ZZN9__gnu_cxx27__verbose_terminate_handlerEvE11terminating
-                0x000000008003982c        0x1 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
- *fill*         0x000000008003982d        0x3 
+                0x00000000800399ac        0x1 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+ *fill*         0x00000000800399ad        0x3 
  .sbss._ZL10eh_globals
-                0x0000000080039830        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
+                0x00000000800399b0        0x8 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
  *(.gnu.linkonce.sb.*)
  *(.scommon)
  *(.scommon.*)
-                0x0000000080039838                . = ALIGN (0x8)
+                0x00000000800399b8                . = ALIGN (0x8)
 
-.bss            0x0000000080039900    0x11fa0
+.bss            0x0000000080039a00    0x11fa0
  *(.bss)
- .bss           0x0000000080039900    0x10400 /usr/local/mips64-elf/lib/libdragon.a(inthandler.o)
- .bss           0x0000000080049d00       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
-                0x0000000080049d00                __malloc_current_mallinfo
- .bss           0x0000000080049d28       0xbd /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
- *fill*         0x0000000080049de5        0x3 
- .bss           0x0000000080049de8        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
+ .bss           0x0000000080039a00    0x10400 /usr/local/mips64-elf/lib/libdragon.a(inthandler.o)
+ .bss           0x0000000080049e00       0x28 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x0000000080049e00                __malloc_current_mallinfo
+ .bss           0x0000000080049e28       0xbd /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
+ *fill*         0x0000000080049ee5        0x3 
+ .bss           0x0000000080049ee8        0xc /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
  *(.bss*)
- *fill*         0x0000000080049df4        0x4 
- .bss.find_dir  0x0000000080049df8       0x58 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x0000000080049ef4        0x4 
+ .bss.find_dir  0x0000000080049ef8       0x58 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .bss.fat_files
-                0x0000000080049e50      0x180 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x0000000080049f50      0x180 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .bss.fat_disks
-                0x0000000080049fd0       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x0000000080049fe4        0x4 
- .bss.sd_fat    0x0000000080049fe8      0x258 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x000000008004a0d0       0x14 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x000000008004a0e4        0x4 
+ .bss.sd_fat    0x000000008004a0e8      0x258 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .bss.debug_writer
-                0x000000008004a240        0xc /usr/local/mips64-elf/lib/libdragon.a(debug.o)
- *fill*         0x000000008004a24c        0x4 
+                0x000000008004a340        0xc /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+ *fill*         0x000000008004a34c        0x4 
  .bss.sdfs_prefix
-                0x000000008004a250       0x10 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
+                0x000000008004a350       0x10 /usr/local/mips64-elf/lib/libdragon.a(debug.o)
  .bss.usb_buffer
-                0x000000008004a260      0x200 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
- .bss.LfnBuf    0x000000008004a460      0x200 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
- .bss.DirBuf    0x000000008004a660      0x260 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+                0x000000008004a360      0x200 /usr/local/mips64-elf/lib/libdragon.a(usb.o)
+ .bss.LfnBuf    0x000000008004a560      0x200 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
+ .bss.DirBuf    0x000000008004a760      0x260 /usr/local/mips64-elf/lib/libdragon.a(ff.o)
  .bss.__safe_buffer
-                0x000000008004a8c0        0xc /usr/local/mips64-elf/lib/libdragon.a(display.o)
-                0x000000008004a8c0                __safe_buffer
- *fill*         0x000000008004a8cc        0x4 
- .bss.buffer    0x000000008004a8d0        0xc /usr/local/mips64-elf/lib/libdragon.a(display.o)
- *fill*         0x000000008004a8dc        0x4 
+                0x000000008004a9c0        0xc /usr/local/mips64-elf/lib/libdragon.a(display.o)
+                0x000000008004a9c0                __safe_buffer
+ *fill*         0x000000008004a9cc        0x4 
+ .bss.buffer    0x000000008004a9d0        0xc /usr/local/mips64-elf/lib/libdragon.a(display.o)
+ *fill*         0x000000008004a9dc        0x4 
  .bss.stdio_hooks
-                0x000000008004a8e0        0xc /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
- *fill*         0x000000008004a8ec        0x4 
- .bss.handles   0x000000008004a8f0      0x4b0 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+                0x000000008004a9e0        0xc /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+ *fill*         0x000000008004a9ec        0x4 
+ .bss.handles   0x000000008004a9f0      0x4b0 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
  .bss.filesystems
-                0x000000008004ada0       0x50 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
- .bss.iVars     0x000000008004adf0       0x10 build/CustomLangParser.o
-                0x000000008004adf0                iVars
+                0x000000008004aea0       0x50 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
+ .bss.iVars     0x000000008004aef0       0x10 build/CustomLangParser.o
+                0x000000008004aef0                iVars
  .bss.directories
-                0x000000008004ae00      0x190 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x000000008004af00      0x190 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .bss.open_files
-                0x000000008004af90      0x880 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
- .bss.last      0x000000008004b810       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
- .bss.current   0x000000008004b850       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x000000008004b090      0x880 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+ .bss.last      0x000000008004b910       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+ .bss.current   0x000000008004b950       0x40 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
  .bss._ZN12_GLOBAL__N_114emergency_poolE
-                0x000000008004b890       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x000000008004b990       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
  *(.gnu.linkonce.b.*)
  *(COMMON)
-                0x000000008004b8a0                . = ALIGN (0x8)
-                0x000000008004b8a0                __bss_end = .
-                0x000000008004b8a0                . = ALIGN (0x8)
-                0x000000008004b8a0                end = .
+                0x000000008004b9a0                . = ALIGN (0x8)
+                0x000000008004b9a0                __bss_end = .
+                0x000000008004b9a0                . = ALIGN (0x8)
+                0x000000008004b9a0                end = .
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libm.a
 LOAD /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a
@@ -3306,209 +3557,211 @@ OUTPUT(build/CustomLangParser.elf elf32-bigmips)
  .gnu.attributes
                 0x0000000000000110       0x10 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
  .gnu.attributes
-                0x0000000000000120       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
+                0x0000000000000120       0x10 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
  .gnu.attributes
-                0x0000000000000130       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
+                0x0000000000000130       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .gnu.attributes
-                0x0000000000000140       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
+                0x0000000000000140       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
  .gnu.attributes
-                0x0000000000000150       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(joybus.o)
+                0x0000000000000150       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)
  .gnu.attributes
-                0x0000000000000160       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
+                0x0000000000000160       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(joybus.o)
  .gnu.attributes
-                0x0000000000000170       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
+                0x0000000000000170       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(class_type_info.o)
  .gnu.attributes
-                0x0000000000000180       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
+                0x0000000000000180       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_ops.o)
  .gnu.attributes
-                0x0000000000000190       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
+                0x0000000000000190       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_opv.o)
  .gnu.attributes
-                0x00000000000001a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
+                0x00000000000001a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(si_class_type_info.o)
  .gnu.attributes
-                0x00000000000001b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
+                0x00000000000001b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(tinfo.o)
  .gnu.attributes
-                0x00000000000001c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
+                0x00000000000001c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(del_op.o)
  .gnu.attributes
-                0x00000000000001d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
+                0x00000000000001d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_op.o)
  .gnu.attributes
-                0x00000000000001e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
+                0x00000000000001e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(bad_alloc.o)
  .gnu.attributes
-                0x00000000000001f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
+                0x00000000000001f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_alloc.o)
  .gnu.attributes
-                0x0000000000000200       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
+                0x0000000000000200       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_exception.o)
  .gnu.attributes
-                0x0000000000000210       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
+                0x0000000000000210       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_terminate.o)
  .gnu.attributes
-                0x0000000000000220       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_unex_handler.o)
+                0x0000000000000220       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_throw.o)
  .gnu.attributes
-                0x0000000000000230       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
+                0x0000000000000230       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_unex_handler.o)
  .gnu.attributes
-                0x0000000000000240       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
+                0x0000000000000240       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(new_handler.o)
  .gnu.attributes
-                0x0000000000000250       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
+                0x0000000000000250       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(vterminate.o)
  .gnu.attributes
-                0x0000000000000260       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
+                0x0000000000000260       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(cp-demangle.o)
  .gnu.attributes
-                0x0000000000000270       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
+                0x0000000000000270       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_catch.o)
  .gnu.attributes
-                0x0000000000000280       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
+                0x0000000000000280       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_globals.o)
  .gnu.attributes
-                0x0000000000000290       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_term_handler.o)
+                0x0000000000000290       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_personality.o)
  .gnu.attributes
-                0x00000000000002a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
+                0x00000000000002a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_term_handler.o)
  .gnu.attributes
-                0x00000000000002b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
+                0x00000000000002b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_type.o)
  .gnu.attributes
-                0x00000000000002c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-abort.o)
+                0x00000000000002c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libstdc++.a(eh_call.o)
  .gnu.attributes
-                0x00000000000002d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-assert.o)
+                0x00000000000002d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-abort.o)
  .gnu.attributes
-                0x00000000000002e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-atoi.o)
+                0x00000000000002e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-assert.o)
  .gnu.attributes
-                0x00000000000002f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fflush.o)
+                0x00000000000002f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-atoi.o)
  .gnu.attributes
-                0x0000000000000300       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-findfp.o)
+                0x0000000000000300       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fflush.o)
  .gnu.attributes
-                0x0000000000000310       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fopen.o)
+                0x0000000000000310       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-findfp.o)
  .gnu.attributes
-                0x0000000000000320       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fprintf.o)
+                0x0000000000000320       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fopen.o)
  .gnu.attributes
-                0x0000000000000330       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputc.o)
+                0x0000000000000330       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fprintf.o)
  .gnu.attributes
-                0x0000000000000340       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputs.o)
+                0x0000000000000340       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputc.o)
  .gnu.attributes
-                0x0000000000000350       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
+                0x0000000000000350       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputs.o)
  .gnu.attributes
-                0x0000000000000360       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fseek.o)
+                0x0000000000000360       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-freer.o)
  .gnu.attributes
-                0x0000000000000370       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fseeko.o)
+                0x0000000000000370       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fseek.o)
  .gnu.attributes
-                0x0000000000000380       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fstatr.o)
+                0x0000000000000380       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fseeko.o)
  .gnu.attributes
-                0x0000000000000390       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fvwrite.o)
+                0x0000000000000390       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fstatr.o)
  .gnu.attributes
-                0x00000000000003a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fwalk.o)
+                0x00000000000003a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fvwrite.o)
  .gnu.attributes
-                0x00000000000003b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fwrite.o)
+                0x00000000000003b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fwalk.o)
  .gnu.attributes
-                0x00000000000003c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
+                0x00000000000003c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fwrite.o)
  .gnu.attributes
-                0x00000000000003d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-makebuf.o)
+                0x00000000000003d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-impure.o)
  .gnu.attributes
-                0x00000000000003e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malign.o)
+                0x00000000000003e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-makebuf.o)
  .gnu.attributes
-                0x00000000000003f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malignr.o)
+                0x00000000000003f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malign.o)
  .gnu.attributes
-                0x0000000000000400       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
+                0x0000000000000400       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malignr.o)
  .gnu.attributes
-                0x0000000000000410       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
+                0x0000000000000410       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-malloc.o)
  .gnu.attributes
-                0x0000000000000420       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
+                0x0000000000000420       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mallocr.o)
  .gnu.attributes
-                0x0000000000000430       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcmp.o)
+                0x0000000000000430       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memchr.o)
  .gnu.attributes
-                0x0000000000000440       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
+                0x0000000000000440       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcmp.o)
  .gnu.attributes
-                0x0000000000000450       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
+                0x0000000000000450       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memcpy.o)
  .gnu.attributes
-                0x0000000000000460       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
+                0x0000000000000460       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memmove.o)
  .gnu.attributes
-                0x0000000000000470       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
+                0x0000000000000470       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-memset.o)
  .gnu.attributes
-                0x0000000000000480       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-openr.o)
+                0x0000000000000480       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mlock.o)
  .gnu.attributes
-                0x0000000000000490       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-putc.o)
+                0x0000000000000490       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-openr.o)
  .gnu.attributes
-                0x00000000000004a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
+                0x00000000000004a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-putc.o)
  .gnu.attributes
-                0x00000000000004b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
+                0x00000000000004b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-realloc.o)
  .gnu.attributes
-                0x00000000000004c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-refill.o)
+                0x00000000000004c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-reallocr.o)
  .gnu.attributes
-                0x00000000000004d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
+                0x00000000000004d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-refill.o)
  .gnu.attributes
-                0x00000000000004e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-setvbuf.o)
+                0x00000000000004e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sbrkr.o)
  .gnu.attributes
-                0x00000000000004f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-signal.o)
+                0x00000000000004f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-setvbuf.o)
  .gnu.attributes
-                0x0000000000000500       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-signalr.o)
+                0x0000000000000500       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-signal.o)
  .gnu.attributes
-                0x0000000000000510       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sprintf.o)
+                0x0000000000000510       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-signalr.o)
  .gnu.attributes
-                0x0000000000000520       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-stdio.o)
+                0x0000000000000520       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-sprintf.o)
  .gnu.attributes
-                0x0000000000000530       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcat.o)
+                0x0000000000000530       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-stdio.o)
  .gnu.attributes
-                0x0000000000000540       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
+                0x0000000000000540       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcat.o)
  .gnu.attributes
-                0x0000000000000550       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcpy.o)
+                0x0000000000000550       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcmp.o)
  .gnu.attributes
-                0x0000000000000560       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlcpy.o)
+                0x0000000000000560       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strcpy.o)
  .gnu.attributes
-                0x0000000000000570       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
+                0x0000000000000570       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlcpy.o)
  .gnu.attributes
-                0x0000000000000580       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strncmp.o)
+                0x0000000000000580       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strlen.o)
  .gnu.attributes
-                0x0000000000000590       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtok.o)
+                0x0000000000000590       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strncmp.o)
  .gnu.attributes
-                0x00000000000005a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtok_r.o)
+                0x00000000000005a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtok.o)
  .gnu.attributes
-                0x00000000000005b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtol.o)
+                0x00000000000005b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtok_r.o)
  .gnu.attributes
-                0x00000000000005c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
+                0x00000000000005c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-strtol.o)
  .gnu.attributes
-                0x00000000000005d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
+                0x00000000000005d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfprintf.o)
  .gnu.attributes
-                0x00000000000005e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsprintf.o)
+                0x00000000000005e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfprintf.o)
  .gnu.attributes
-                0x00000000000005f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wbuf.o)
+                0x00000000000005f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vsprintf.o)
  .gnu.attributes
-                0x0000000000000600       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-writer.o)
+                0x0000000000000600       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wbuf.o)
  .gnu.attributes
-                0x0000000000000610       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wsetup.o)
+                0x0000000000000610       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-writer.o)
  .gnu.attributes
-                0x0000000000000620       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-closer.o)
+                0x0000000000000620       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wsetup.o)
  .gnu.attributes
-                0x0000000000000630       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
+                0x0000000000000630       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-closer.o)
  .gnu.attributes
-                0x0000000000000640       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
+                0x0000000000000640       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-ctype_.o)
  .gnu.attributes
-                0x0000000000000650       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
+                0x0000000000000650       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-dtoa.o)
  .gnu.attributes
-                0x0000000000000660       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fclose.o)
+                0x0000000000000660       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-errno.o)
  .gnu.attributes
-                0x0000000000000670       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-flags.o)
+                0x0000000000000670       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fclose.o)
  .gnu.attributes
-                0x0000000000000680       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-isattyr.o)
+                0x0000000000000680       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-flags.o)
  .gnu.attributes
-                0x0000000000000690       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
+                0x0000000000000690       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-isattyr.o)
  .gnu.attributes
-                0x00000000000006a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
+                0x00000000000006a0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-localeconv.o)
  .gnu.attributes
-                0x00000000000006b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-lseekr.o)
+                0x00000000000006b0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-locale.o)
  .gnu.attributes
-                0x00000000000006c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
+                0x00000000000006c0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-lseekr.o)
  .gnu.attributes
-                0x00000000000006d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
+                0x00000000000006d0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mbtowc_r.o)
  .gnu.attributes
-                0x00000000000006e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-readr.o)
+                0x00000000000006e0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-mprec.o)
  .gnu.attributes
-                0x00000000000006f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
+                0x00000000000006f0       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-readr.o)
  .gnu.attributes
-                0x0000000000000700       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
+                0x0000000000000700       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-svfiprintf.o)
  .gnu.attributes
-                0x0000000000000710       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
+                0x0000000000000710       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-vfiprintf.o)
  .gnu.attributes
-                0x0000000000000720       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
+                0x0000000000000720       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wctomb_r.o)
  .gnu.attributes
-                0x0000000000000730       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputwc.o)
+                0x0000000000000730       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-callocr.o)
  .gnu.attributes
-                0x0000000000000740       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wcrtomb.o)
+                0x0000000000000740       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-fputwc.o)
  .gnu.attributes
-                0x0000000000000750       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
+                0x0000000000000750       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libc.a(lib_a-wcrtomb.o)
  .gnu.attributes
-                0x0000000000000760       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
+                0x0000000000000760       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2.o)
  .gnu.attributes
-                0x0000000000000770       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
+                0x0000000000000770       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/libgcc.a(unwind-dw2-fde.o)
+ .gnu.attributes
+                0x0000000000000780       0x10 /usr/local/lib/gcc/mips64-elf/11.2.0/crtend.o
 
 .mdebug.abiO64  0x0000000000000000        0x0
  .mdebug.abiO64
@@ -3543,6 +3796,8 @@ OUTPUT(build/CustomLangParser.elf elf32-bigmips)
                 0x0000000000000000        0x0 build/CustomLangParser.o
  .mdebug.abiO64
                 0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+ .mdebug.abiO64
+                0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
  .mdebug.abiO64
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .mdebug.abiO64
@@ -3777,6 +4032,8 @@ OUTPUT(build/CustomLangParser.elf elf32-bigmips)
  .gcc_compiled_long32
                 0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
  .gcc_compiled_long32
+                0x0000000000000000        0x0 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
+ .gcc_compiled_long32
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .gcc_compiled_long32
                 0x0000000000000000        0x0 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
@@ -3993,6 +4250,7 @@ OUTPUT(build/CustomLangParser.elf elf32-bigmips)
  .comment       0x0000000000000012       0x13 /usr/local/mips64-elf/lib/libdragonsys.a(system.o)
  .comment       0x0000000000000012       0x13 build/CustomLangParser.o
  .comment       0x0000000000000012       0x13 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibN64.o)
+ .comment       0x0000000000000012       0x13 /home/spencer/libdragon/NEW/libdragon/libN64.a(LibVector.o)
  .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(dragonfs.o)
  .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(controller.o)
  .comment       0x0000000000000012       0x13 /usr/local/lib/gcc/mips64-elf/11.2.0/../../../../mips64-elf/lib/libdragon.a(timer.o)

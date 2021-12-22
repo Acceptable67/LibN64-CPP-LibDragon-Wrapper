@@ -26,6 +26,7 @@
 #define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
 #define TICKS2SECONDS(ticks)		(ticks * 0.021333333 / 1000000.0)
 
+typedef char byte;
 
 namespace LibN64 
 {
@@ -107,7 +108,7 @@ namespace LibN64
 			void DrawTextFormat(int x, int y, const char* format, ...) {
 			va_list args;
 			va_start(args, format);
-			char buffer[85];
+			char buffer[125];
 			vsprintf(buffer, format, args);
 			graphics_draw_text(d, x, y,buffer);
 			va_end(args);	

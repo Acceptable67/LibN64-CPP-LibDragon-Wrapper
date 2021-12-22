@@ -24,14 +24,16 @@ public:
 
     virtual void OnCreate() override 
     {
+        
         romTitle = "LibN64 Test";
     }
     
 protected:
+
     LibString file = { "/data.txt" };
+
     virtual void FrameUpdate() override
     {	
-
 		auto *buf = DFS::QuickRead(file);
 	
 		DrawText(5,10,buf);

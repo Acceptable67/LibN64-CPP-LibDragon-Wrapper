@@ -26,6 +26,7 @@
 #define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
 #define TICKS2SECONDS(ticks)		(ticks * 0.021333333 / 1000000.0)
 
+typedef char byte;
 
 namespace LibN64 
 {
