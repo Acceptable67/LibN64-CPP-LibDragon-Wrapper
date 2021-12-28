@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Dec 21 17:51:28 2021
+# Make data base, printed on Tue Dec 28 09:45:42 2021
 
 # Variables
 
@@ -14,8 +14,6 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
-# environment
-NO_AT_BRIDGE = 1
 # makefile (from '/usr/local/include/n64.mk', line 21)
 N64_CXX = $(N64_GCCPREFIX)g++
 # makefile (from '/usr/local/include/n64.mk', line 40)
@@ -23,7 +21,7 @@ N64_TOOLFLAGS = --header $(N64_HEADERPATH) --title $(N64_ROM_TITLE)
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4b595ff5-5a0f-45d7-9eed-bda9144a1cd0.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f946acd3-8e98-43f8-a233-e50cb964013a.sock
 # environment
 VSCODE_CWD = /home/spencer
 # environment
@@ -88,8 +86,6 @@ CURDIR := /home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wr
 VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -119,7 +115,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 15172
+VSCODE_PID = 1990
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -129,7 +125,7 @@ CLUTTER_BACKEND = x11
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1208,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1208
+SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1185,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1185
 # automatic
 *F = $(notdir $*)
 # environment
@@ -184,8 +180,6 @@ SNAP_REAL_HOME = /home/spencer
 N64_ED64ROMCONFIGFLAGS = $(if $(N64_ROM_SAVETYPE),--savetype $(N64_ROM_SAVETYPE)) $(if $(N64_ROM_RTC),--rtc)  $(if $(N64_ROM_REGIONFREE),--regionfree)
 # environment
 VSCODE_LOG_NATIVE = false
-# environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
 # makefile (from '/usr/local/include/n64.mk', line 37)
@@ -194,8 +188,6 @@ N64_ASFLAGS = -mtune=vr4300 -march=vr4300 -Wa,--fatal-warnings
 XDG_SEAT = seat0
 # environment
 XDG_CURRENT_DESKTOP = XFCE
-# environment
-LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -244,8 +236,6 @@ SNAP_CONTEXT = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
 N64_GCCPREFIX = $(N64_BINDIR)/mips64-elf-
 # makefile (from '/usr/local/include/n64.mk', line 38)
 N64_LDFLAGS = -L$(N64_LIBDIR) /home/spencer/libdragon/NEW/libdragon/libN64.a -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
-# environment
-_ = /snap/code/85/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from '/usr/local/include/n64.mk', line 52)
@@ -297,12 +287,12 @@ VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # makefile (from '/usr/local/include/n64.mk', line 32)
- 
 N64_AUDIOCONV = $(N64_BINDIR)/audioconv64
 # environment
 SNAP_COMMON = /var/snap/code/common
 # makefile (from '/usr/local/include/n64.mk', line 53)
 CXXFLAGS = -MMD -std=c++20     
+ 
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/spencer
 # default
@@ -320,7 +310,7 @@ GDMSESSION = xubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=154/1024=15%, Rehash=0, Collisions=29/246=12%
+# Load=149/1024=15%, Rehash=0, Collisions=33/251=13%
 
 # Pattern-specific Variable Values
 
@@ -360,10 +350,10 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Directories
 
 # build (device 2066, inode 5282081): 10 files, no impossibilities.
-# . (device 2066, inode 5282453): 14 files, no impossibilities.
+# . (device 2066, inode 5282453): 16 files, no impossibilities.
 # /usr/local/mips64-elf/lib (device 2066, inode 11034427): 32 files, no impossibilities so far.
 
-# 56 files, no impossibilities in 3 directories.
+# 58 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -454,11 +444,11 @@ CustomLangParser.z64: N64_ROM_TITLE = "CustomLangParser Test"
 CustomLangParser.z64: build/CustomLangParser.elf build/CustomLangParser.dfs
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'CustomLangParser'
-#  Last modified 2021-12-21 17:00:08.724924756
+#  Last modified 2021-12-25 06:49:24.802759556
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
+# Load=1/32=3%, Rehash=0, Collisions=1/14=7%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 69):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
@@ -488,23 +478,35 @@ Makefile:
 #  File has been updated.
 #  Successfully updated.
 
-build/LangParser.o: LangParser.cpp LangParser.cpp
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'LangParser'
-#  Last modified 2021-12-17 19:12:25.678600015
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
-	@mkdir -p $(dir $@)
-	@echo "    [CXX] $<"
-	$(CXX) -c $(CXXFLAGS) -o $@ $<
+build/LangParser.o: LangParser.cpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-build/CustomLangParser.o: CustomLangParser.cpp CustomLangParser.cpp LibN64.h LangParser.h
+build/CustomLangParser.o: CustomLangParser.cpp CustomLangParser.cpp LibN64.h LibString.h LibVector.h LangParser.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'CustomLangParser'
-#  Last modified 2021-12-21 17:00:08.700924319
+#  Last modified 2021-12-25 06:49:24.774759136
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/CustomLangParser.o
+# automatic
+# * := CustomLangParser
+# automatic
+# < := CustomLangParser.cpp
+# automatic
+# + := CustomLangParser.cpp CustomLangParser.cpp LibN64.h LibString.h LibVector.h LangParser.h
+# automatic
+# % := 
+# automatic
+# ^ := CustomLangParser.cpp LibN64.h LibString.h LibVector.h LangParser.h
+# automatic
+# ? := LangParser.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/24=12%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 133):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
@@ -518,7 +520,7 @@ build/CustomLangParser.o: CustomLangParser.cpp CustomLangParser.cpp LibN64.h Lan
 # Not a target:
 build/CustomLangParser.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-21 17:00:08.692924175
+#  Last modified 2021-12-25 06:49:24.766759016
 #  File has been updated.
 #  Successfully updated.
 
@@ -545,15 +547,16 @@ build/LangParser.d:
 #  Successfully updated.
 
 build/CustomLangParser.dfs: filesystem/data.txt
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+LibVector.h:
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'build/CustomLangParser'
-#  Last modified 2021-12-17 19:12:25.6986005
+#  Last modified 2021-12-21 20:01:44.410696
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
-	@mkdir -p $(dir $@)
-	@echo "    [DFS] $@"
-	$(N64_MKDFS) $@ $(<D) >/dev/null
 
 # Not a target:
 /usr/local/mips64-elf/lib/n64.ld:
@@ -565,7 +568,7 @@ build/CustomLangParser.dfs: filesystem/data.txt
 # Not a target:
 /usr/local/mips64-elf/lib/libdragon.a:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-11 18:32:15.811565716
+#  Last modified 2021-12-26 04:37:52.217124776
 #  File has been updated.
 #  Successfully updated.
 
@@ -578,7 +581,7 @@ build/CustomLangParser.dfs: filesystem/data.txt
 # Not a target:
 LibN64.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-17 18:57:45.709328468
+#  Last modified 2021-12-22 17:38:47.73708291
 #  File has been updated.
 #  Successfully updated.
 
@@ -588,14 +591,18 @@ all: CustomLangParser.z64
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/10=0%
 
 build/CustomLangParser.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld build/CustomLangParser.o build/LangParser.o
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'build/CustomLangParser'
-#  Last modified 2021-12-21 17:00:08.716924611
+#  Last modified 2021-12-25 06:49:24.794759436
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 138):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
@@ -603,23 +610,30 @@ build/CustomLangParser.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mip
 	$(N64_SIZE) -G $@
 
 # Not a target:
+LibString.h:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2021-12-21 20:01:22.290321
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 LangParser.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-21 16:51:31.67155628
+#  Last modified 2021-12-26 05:01:57.312000367
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 filesystem/data.txt:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-14 13:39:06.178574633
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 CustomLangParser.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-21 16:55:40.468053093
+#  Last modified 2021-12-25 06:49:05.434469829
 #  File has been updated.
 #  Successfully updated.
 
@@ -630,26 +644,24 @@ CustomLangParser.cpp:
 
 # Not a target:
 LangParser.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-13 10:59:57.656548
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=23/1024=2%, Rehash=0, Collisions=0/71=0%
+# Load=25/1024=2%, Rehash=0, Collisions=0/70=0%
 # VPATH Search Paths
 
- 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 88 / storage = 1192 B / avg = 13 B
-# current buf: size = 8162 B / used = 1192 B / count = 88 / avg = 13 B
+# strcache buffers: 1 (0) / strings = 87 / storage = 1179 B / avg = 13 B
+# current buf: size = 8162 B / used = 1179 B / count = 87 / avg = 13 B
 
-# strcache performance: lookups = 147 / hit rate = 40%
+# strcache performance: lookups = 145 / hit rate = 40%
 # hash-table stats:
-# Load=88/8192=1%, Rehash=0, Collisions=0/147=0%
-# Finished Make data base on Tue Dec 21 17:51:28 2021
+# Load=87/8192=1%, Rehash=0, Collisions=0/145=0%
+# Finished Make data base on Tue Dec 28 09:45:42 2021
 
  

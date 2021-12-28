@@ -4,15 +4,13 @@
 #include <string.h>
 #include "LibN64.h"
 
+
+
 #define VARX 0
 #define VARY 1
 #define VARZ 2
 
-struct Variable 
-{
-	char *name;
-};
-
+struct Variable {char *name;};
 struct IntVar : Variable
 {
 	int value;
@@ -20,6 +18,26 @@ struct IntVar : Variable
 		this->name = n;
 		this->value = val;
 	}
+};
+
+auto ArraySize = 40;
+class LangParser 
+{
+	public:		
+		void     AssignVar(LibN64::Frame *f, char* vName, unsigned value);
+		unsigned FindVarValue(const char* vName);
+	
+		bool ArgumentInitialized (char* arg);
+		bool 	  IsNumber       (char* s);
+		char*  FilterToken       (auto c, char token);
+		unsigned   hex2int       (char *hex);
+		void CheckLineArgs       (LibN64::Frame& f, char **args, int argc, int linen);
+		void 	  CallLine       (LibN64::Frame& f, char **args, int size);
+		int 		 Parse       (LibN64::Frame& f, auto c, auto length);
+	private:
+		unsigned    _varnum = 3;
+		unsigned	_svarc  = 1;
+		unsigned    _ivarc  = 2;
 };
 
 struct StringVar : Variable
@@ -31,7 +49,6 @@ struct StringVar : Variable
 	} 
 };
 
-
 StringVar sVars[] = 
 {
 	StringVar((char*)"rom",(char*)"CustomLangParser.z64")
@@ -40,27 +57,6 @@ StringVar sVars[] =
 IntVar iVars[] = {
 	IntVar((char*)"x",0),
 	IntVar((char*)"y",0)
-};
-
-auto ArraySize = 40;
-class LangParser 
-{
-public:
-		unsigned    _varnum = 3;
-		unsigned	_svarc = 1;
-		unsigned    _ivarc = 2;
-		
-		void     AssignVar(LibN64::Frame *f, char* vName, unsigned value);
-		unsigned FindVarValue(const char* vName);
-	
-		bool ArgumentInitialized(char* arg);
-		bool 	  IsNumber(char* s);
-		char*  FilterToken(auto c, char token);
-		unsigned   hex2int(char *hex);
-		void CheckLineArgs(LibN64::Frame *f, char **args, int argc, int linen);
-		void 	  CallLine(LibN64::Frame *f, char **args, int size);
-		int 		 Parse(LibN64::Frame *f, auto c, auto length);
-		
 };
 
 bool LangParser::ArgumentInitialized(char* arg) 
@@ -107,7 +103,8 @@ bool LangParser::IsNumber(char* s)
 		
 }
 
-unsigned LangParser::hex2int(char *hex) {
+unsigned LangParser::hex2int(char *hex) 
+{
 	int32_t val = 0;
 	while (*hex) 
 	{
@@ -168,7 +165,7 @@ unsigned ifLine = 50;
 bool ifProceeds = false;
 int curArg = 0;
 
-void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int linen) {
+void LangParser::CheckLineArgs(LibN64::Frame& f, char **args, int argc, int linen) {
 			
 			char* arg1 = args[1];
 			char* arg3 = args[3];
@@ -201,7 +198,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 					char *t = (char*)(addr);
 					*t = val;
 				
-					f->DrawTextFormat({0,y},"Set drawn %08X %0d val %02X", t, val, *(char*)(addr));
+					f.DrawTextFormat({0,y},"Set drawn %08X %0d val %02X", t, val, *(char*)(addr));
 					y+=10;
 				});
 		
@@ -222,7 +219,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 					
 					if(IsNumber(message)) 
 					{
-						f->DrawTextFormat({x,y}, "%02X", hex2int(message));
+						f.DrawTextFormat({x,y}, "%02X", hex2int(message));
 						debugf("[Draw] IsNumber=true %d\n", hex2int(message));
 					} 
 					else {
@@ -231,7 +228,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						{
 								message = FilterToken(sVars[reg].value, '\"');
 								debugf("[Draw] SVAR found %s = %s\n", sVars[reg].name, message);
-								f->DrawTextFormat({x,y}, "%s", message);
+								f.DrawTextFormat({x,y}, "%s", message);
 								varused = true;
 								return;
 						});
@@ -240,13 +237,13 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						{
 								int imessage = iVars[reg].value;
 								debugf("[Draw] IVAR found %s = %d\n", iVars[reg].name, imessage);
-								f->DrawTextFormat({x, y}, "%02X", imessage);
+								f.DrawTextFormat({x, y}, "%02X", imessage);
 								varused  = true;
 								return;
 						});
 						
 						if(varused != true) {
-							f->DrawTextFormat({x, y}, "%s", message);
+							f.DrawTextFormat({x, y}, "%s", message);
 							varused = false;
 						}
 					
@@ -382,7 +379,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 						strcat(message, "");
 						strcat(message, args[c+2]);
 					}
-					f->DrawText({0,0},FilterToken(message,'"'));
+					f.DrawText({0,0},FilterToken(message,'"'));
 					
 				});
 				
@@ -415,7 +412,7 @@ void LangParser::CheckLineArgs(LibN64::Frame *f, char **args, int argc, int line
 			curArg = 0;
 }
 		
-void LangParser::CallLine(LibN64::Frame *f, char **args, int size) 
+void LangParser::CallLine(LibN64::Frame& f, char **args, int size) 
 {
 	char* argsl[ArraySize];
 			
@@ -438,7 +435,7 @@ void LangParser::CallLine(LibN64::Frame *f, char **args, int size)
 	curArg = 0;
 }
 		
-int LangParser::Parse(LibN64::Frame *f, auto c, auto length) 
+int LangParser::Parse(LibN64::Frame& f, auto c, auto length) 
 		{	
 			auto command = strtok(c, "\n");
 			char *args[ArraySize];
@@ -453,7 +450,7 @@ int LangParser::Parse(LibN64::Frame *f, auto c, auto length)
 			while(command != NULL) 
 			{
 					args[argc] = command;
-					f->DrawText({0,y},command);
+					f.DrawText({0,y},command);
 					fprintf(stderr, "%s\n", command);
 					argc++;
 					command = strtok(NULL,"\n");

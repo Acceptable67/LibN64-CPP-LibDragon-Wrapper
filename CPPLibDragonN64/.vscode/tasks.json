@@ -16,7 +16,7 @@
         {
             "label": "Run N64 ROM",
             "type": "shell",
-            "command": "n64 --pif /home/spencer/pifdata.bin CPPLibDragonN64.z64",
+            "command": "cen64 /home/spencer/pifdata.bin CPPLibDragonN64.z64",
             "group": {
                 "kind": "test",
                 "isDefault": true

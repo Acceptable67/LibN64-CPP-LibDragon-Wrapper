@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <vector>
+
 #include "LibN64.h"
 #include "LibString.h"
 #include "LibVector.h"
@@ -14,34 +16,27 @@ using namespace LibN64;
 
 class Parser : public Frame {
 public:
-	Parser(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
+	Parser(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : Frame(res, dep, aa, ui) {}
 
 private:
 	LangParser p;
-	LibVector<byte> vec;
+//	LibVector<byte> vec;
  
-	byte arr[4] = { 0x2a, 0x2b, 0x2c, 0x2d };
-	LibString msg[20] = 
-	{ 
-		{"test"}, 
-		{"Hello there"}
-	};
+
 
 protected:
 	virtual void OnCreate() override 
 	{
-		for(auto &i : arr) 
-			vec.push_back(i); 
-		
+
    		debug_init(DEBUG_FEATURE_ALL);
 		LibString file = { "/data.lbs" };
 		
-   		auto code = DFS::QuickRead(file);
-		vec.insert(2, 0x35);
-		debugf("%02x at line %d", vec.at(0), __LINE__);
+   		auto code = DFS::QuickRead<char*>(file);
+		
+		//debugf("%02x at line %d", vec.at(0), __LINE__);
 
 		if(code)
-			p.Parse(this, code, DFS::Size(file));
+			p.Parse(*this, code, DFS::Size());
 	}
 	
 	virtual void KeyBPressed() override 
@@ -67,7 +62,7 @@ private:
 
 	
 int main(void) {
-	Parser n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
+	Parser n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_RESAMPLE, Frame::UIType::GUI);
 	n64g.Begin();
 
 

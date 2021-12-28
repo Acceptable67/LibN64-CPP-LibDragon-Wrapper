@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LibN64.h"
+#include <iostream>
+#include <string.h>
+#include <memory>
 #include "LibN64GameTest.h"
 
 #define DARK_GREY graphics_make_color(136, 138, 137, 255)
@@ -8,7 +11,7 @@
 
 /*test of pseudo-3D planes on LibDragon.*/
 
-const char *map = "################################" 
+std::string map = "################################" 
 "#...............#..............."
 "#.......#########.......########"
 "#..............##..............#"
@@ -23,10 +26,10 @@ const char *map = "################################"
 "#.....&........##..............#"
 "#...........#####...........####"
 "#..............................#"
-"###..####....########....#######"
-"####.####.......######.........."
-"#...............#..............."
-"#.......#########.......##..####"
+"###..####................#######"
+"####.####......................."
+"#..............................."
+"#.......................##..####"
 "#..............##..............#"
 "#......##......##.......#......#"
 "#......##......##......##......#"
@@ -45,7 +48,11 @@ using namespace LibN64;
 
 class Mode7Test : public Frame {
 public:
-	Mode7Test(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
+	Mode7Test(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : Frame(res, dep, aa, ui) {}
+
+	sprite_t *wall  = nullptr;
+	sprite_t *sky   = nullptr; 
+	sprite_t *grass = nullptr;
 
 	float fWorldX;
 	float fWorldY;
@@ -71,13 +78,14 @@ public:
 	void DrawMode() {
 
 		//ClearScreen();
+
 		for (uint32_t x = 0; x < ScreenWidth(); x++)
 		{
 			// For each column, calculate the projected ray angle into world space
 			float fRayAngle = (fPlayerA - fFOV / 2.0f) + ((float)x / (float)ScreenWidth()) * fFOV;
 
 			// Find distance to wall
-			float fStepSize = 0.1f;	  // Increment size for ray casting, decrease to increase	
+			float fStepSize = 0.05f;	  // Increment size for ray casting, decrease to increase	
 			float fDistanceToWall = 0.0f; //                                      resolution
 			float fDistanceToObj = 0.0f;
 
@@ -174,26 +182,21 @@ public:
 			for (int y = 0; y < (int)ScreenHeight(); y++)
 			{
 				if (y <= nCeiling) {
-					
-					DrawPixel({x,y}, CYAN);
+					float fSampleY = ((float)y - 0);
+					int col = sky->data[int(fSampleY * 5.5 + fSampleX + fPlayerA)];
 			
 				}
 				else if (y > nCeiling && y <= nFloor)
 				{
 					// Draw Wall
 					float fSampleY = ((float)y - (float)nCeiling) / ((float)nFloor - (float)nCeiling);
-					//int col = checkerwall[int(fSampleY * 2 + fSampleX)];
-					if (fDistanceToWall >= 10 && fDistanceToWall <= 14) {
-					//	DrawPixel({x,y}, col - 0x40404000);
-						DrawPixel({x,y}, 0x303030FF);
-					}
-					if (fDistanceToWall >= 6 && fDistanceToWall <= 10)
+					int col = wall->data[int(fSampleY * (wall->width*wall->height) + fSampleX)];
+				
+					if (fDistanceToWall > 0 && fDistanceToWall < 14)
 					{
-						DrawPixel({x,y}, 0x585858FF);
-					}
-					if (fDistanceToWall > 0 && fDistanceToWall < 6)
-					{
-						DrawPixel({x,y}, 0x909090FF);
+					//	if(get_pixel(this->d, x, y) != 0x909090FF)
+	
+							DrawPixel({x,y}, col * fDistanceToWall * 0.0002);
 					}
 					else if (fDistanceToWall > 14) {
 						DrawPixel({x,y}, 0X0);
@@ -201,36 +204,39 @@ public:
 				}
 				else // Floor
 				{
-					//float b = 1.0f - (((float)y - ScreenWidth() / 2.0f) / ((float)ScreenHeight()  / 2.0f));
-					DrawBox({x, y}, 1, DARK_GREEN);
+					float b = 1.0f - y / ScreenHeight() / 2;
+					float fSampleY = ((float)y) - fPlayerA / ScreenWidth();
+
+					//int col = grass->data[int(fSampleY * 1 + fSampleX)];
+					DrawPixel({x, y}, 0x909090FF);
 				}
 			
 				if (y > nObjCeiling && y <= nObjFloor) {
 					// Draw Wall
 									// Draw Wall
 					if (fDistanceToObj >= 10 && fDistanceToObj <= 14) {
-						DrawPixel({x,y}, DEEP_DARK_RED);
+					//
 					}
 					if (fDistanceToObj >= 6 && fDistanceToObj <= 10)
 					{
-						DrawPixel({x,y}, DEEP_DARK_RED);
+					//	DrawPixel({x,y}, DEEP_DARK_RED);
 					}
 					if (fDistanceToObj > 0 && fDistanceToObj < 6)
 					{
-						DrawPixel({x,y}, RED);
+						//DrawPixel({x,y}, RED);
 					}
 			
 				}
 			}
 
 		}
-	
+		//	DrawTextFormat({0,20},"pixel %08X", get_pixel(this->d, 0, 20));
 		//int* fBufWidth = (int*)(0xA4100008);
 		//char buffer[20];
 		//sprintf(buffer, "0x80000400: %08X", *fBufWidth);
 		//graphics_draw_text(this->d, 20, 120, buffer);
 	}
-
+	
 	virtual void OnCreate() override
 	{
 		nMapWidth = 32;
@@ -241,6 +247,11 @@ public:
 		fFOV = 3.14159f / 3.0f;	// Field of View
 		fDepth = 16.0f;			// Maximum rendering distance
 		fSpeed = 1.0f;			// Walking Speed
+
+		wall  = DFS::QuickRead<sprite_t*>("/wall.sprite");
+		sky   = DFS::QuickRead<sprite_t*>("/sky.sprite");
+		grass = DFS::QuickRead<sprite_t*>("/grass.sprite");
+
 	}
 
 protected:
@@ -302,7 +313,7 @@ private:
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
+	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_OFF, Frame::UIType::GUI);
 	n64g.Begin();
 
 	return 0;

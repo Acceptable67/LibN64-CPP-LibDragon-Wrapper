@@ -7,9 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#define GUI	    1
-#define CONSOLE 2
+#include <iostream>
 
 #define RED				graphics_make_color(0xFF, 0x00, 0x00, 0xFF)
 #define GREEN			graphics_make_color(0x00, 0xFF, 0x00, 0xFF)
@@ -36,9 +34,11 @@ namespace LibN64
 	namespace DFS 
 	{
 		unsigned Open(const char* file) ;
-		int      Size(const char* file);
-		void	 Read(char* buf, unsigned size, unsigned offset = 0x0) ;
-		char*    QuickRead(const char* file);
+		int      Size();
+		template <class T> 
+		void	 Read(T buf, unsigned size, unsigned offset = 0x0) ;
+		template <class T>
+		T        QuickRead(const char* file);
 		void     Close();
 	};
 
@@ -56,9 +56,18 @@ namespace LibN64
 			virtual void KeyDDPressed();
 			virtual void KeyDLPressed();
 			virtual void KeyDRPressed();
+
+			virtual void KeyCUPressed();
+			virtual void KeyCDPressed();
+			virtual void KeyCLPressed();
+			virtual void KeyCRPressed();
 			
-			virtual void KeyJoyXPressed();
-			virtual void KeyJoyYPressed();
+			virtual void KeyJoyPressed(int);
+
+			inline virtual void     __OnInit_FreeFunction1(); 
+			inline virtual void     __OnInit_FreeFunction2();
+			inline virtual void     __OnLoop_FreeFunction1();
+			inline virtual void     __OnLoop_FreeFunction2();
 
 			unsigned screenWidth;
 			unsigned screenHeight;
@@ -67,7 +76,7 @@ namespace LibN64
 		public:
 			display_context_t d;
 
-			const char* romTitle = "Default";
+			std::string romTitle = "Default";
 			bool lActive;
 
 			float fFrameTime;
@@ -76,19 +85,28 @@ namespace LibN64
 			int       uitype;
 		public:
 			struct   LibPos        { int x, y; };
-			Frame(resolution_t res, bitdepth_t dep, int ui);
+			enum     UIType        { GUI, CONSOLE };
+			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200,
+									 JoyUpRight =JoyUp  |JoyRight, JoyUpLeft =JoyUp  |JoyLeft, 
+									 JoyDownLeft=JoyDown|JoyLeft,JoyDownRight=JoyDown|JoyRight };
+			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui);
 			virtual void OnCreate  ();
 			void 	 Begin	       ();
 			void 	 Close		   ();
 			void 	 ClearScreen   ();
+			void 	 ClearScreenRDP();
 			void 	 SetScreen     (resolution_t res, bitdepth_t bd);
 			unsigned ScreenWidth   ();
 			unsigned ScreenHeight  ();
-			void 	 DrawText      (LibPos pos, const char* t,    unsigned c = WHITE);
-			void 	 DrawPixel 	   (LibPos pos, 		      	  unsigned c = WHITE);
-			void 	 DrawBox   	   (LibPos pos, int scale = 1,    unsigned c = WHITE);
-			void 	 DrawLine  	   (LibPos pos1, LibPos pos2,     unsigned c = WHITE);
-			void  	 DrawCircle    (LibPos pos, int scale = 1,    unsigned c = WHITE);
+			void 	 DrawText      (LibPos pos, const char* t,          unsigned c = WHITE);
+			void 	 DrawPixel 	   (LibPos pos, 		      	        unsigned c = WHITE);
+			void 	 DrawRect      (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
+			void     DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
+			void 	 DrawLine  	   (LibPos pos1, LibPos pos2,           unsigned c = WHITE);
+			void  	 DrawCircle    (LibPos pos, int scale = 1,    	    unsigned c = WHITE);
+			void	 DrawTriangle  (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE); 
+			void     DrawRDPTri    (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE);
+			void     DrawSprite    (LibPos, sprite_t* spr);
 			float    Ticks2Seconds (float t);
 
 			/*The following functions refuse to compile inside the C++ file.*/
@@ -110,12 +128,12 @@ namespace LibN64
 			}
 
 			void DrawTextFormat(LibPos pos, const char* format, ...) {
-			va_list args;
-			va_start(args, format);
-			char buffer[125];
-			vsprintf(buffer, format, args);
-			graphics_draw_text(d, pos.x, pos.y,buffer);
-			va_end(args);	
+				va_list args;
+				va_start(args, format);
+				char buffer[125];
+				vsprintf(buffer, format, args);
+				graphics_draw_text(d, pos.x, pos.y,buffer);
+				va_end(args);	
 			}
 		};
 }

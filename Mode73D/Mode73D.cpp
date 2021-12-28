@@ -9,7 +9,7 @@ using namespace LibN64;
 /*conversion of Javid9X's Mode7 code to LibDragon*/
 class Mode7Test : public Frame {
 public:
-	Mode7Test(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
+	Mode7Test(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : Frame(res, dep, aa, ui) {}
 
 	float fWorldX;
 	float fWorldY;
@@ -150,7 +150,7 @@ private:
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, GUI);
+	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_RESAMPLE, Frame::UIType::GUI);
 	n64g.Begin();
 
 	return 0;

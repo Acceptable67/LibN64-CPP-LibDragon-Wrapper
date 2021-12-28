@@ -4,5 +4,11 @@
 			"path": ".."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"typeinfo": "cpp",
+			"new": "cpp",
+			"type_traits": "cpp"
+		}
+	}
 }

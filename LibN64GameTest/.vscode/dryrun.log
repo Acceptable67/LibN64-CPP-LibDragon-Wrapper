@@ -7,6 +7,7 @@ mkdir -p build/
 echo "    [LD] build/LibN64GameTest.elf"
 /usr/local/bin/mips64-elf-g++ -o build/LibN64GameTest.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/LibN64GameTest.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,/home/spencer/libdragon/NEW/libdragon/libN64.a -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/LibN64GameTest.map
 /usr/local/bin/mips64-elf-size -G build/LibN64GameTest.elf
+ 
 mkdir -p build/
 echo "    [DFS] build/LibN64GameTest.dfs"
 /usr/local/bin/mkdfs build/LibN64GameTest.dfs filesystem >/dev/null
