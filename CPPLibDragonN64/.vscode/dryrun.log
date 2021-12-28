@@ -1,0 +1,21 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CPPLibDragonN64'
+mkdir -p build/
+echo "    [LD] build/CPPLibDragonN64.elf"
+/usr/local/bin/mips64-elf-g++ -o build/CPPLibDragonN64.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/LibVector.o build/CPPLibDragonN64.o build/LibString.o build/LibN64.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,/home/spencer/libdragon/NEW/libdragon/libN64.a -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/CPPLibDragonN64.map
+/usr/local/bin/mips64-elf-size -G build/CPPLibDragonN64.elf
+echo "    [Z64] CPPLibDragonN64.z64"
+/usr/local/bin/mips64-elf-objcopy -O binary build/CPPLibDragonN64.elf build/CPPLibDragonN64.elf.bin
+rm -f CPPLibDragonN64.z64
+DFS_FILE="build/CPPLibDragonN64.dfs"; \
+if [ -z "$DFS_FILE" ]; then \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "C++ Framework" --output CPPLibDragonN64.z64 build/CPPLibDragonN64.elf.bin; \
+else \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "C++ Framework" --output CPPLibDragonN64.z64 build/CPPLibDragonN64.elf.bin --offset 1M "$DFS_FILE"; \
+fi
+if [ ! -z "" ]; then \
+	/usr/local/bin/ed64romconfig     CPPLibDragonN64.z64; \
+fi
+/usr/local/bin/chksum64 CPPLibDragonN64.z64 >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CPPLibDragonN64'
+ 
