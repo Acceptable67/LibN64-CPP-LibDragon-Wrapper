@@ -60,24 +60,27 @@ int main(void) {
 
 # Descriptions and images
 ### LibN64GameTest
-Pseudo-3D Textured Raycaster experiment, still working out the quirks.
+Pseudo-3D Textured Raycaster FPS experiment, still working out the quirks.
 
-
+<img src="http://73.55.44.55/github/CPPWrapper-LibN64.png"></img>
 
 ### MazeTest
 Auto-generated maze that auto fills it self. Takes around 30 seconds to fully finish.
 
-
+<img src="http://73.55.44.55/github/CPPWrapper-Maze.png"></img>
 
 ### 3D Model Viewer
 3D Model viewer with ability to move camera around the object
 
+<img src="http://73.55.44.55/github/CPPWrapper-3DViewer.png"></img>
 
 
 ### CPPLibDragon
 A demo of the LibN64 Class structure.
 
+<img src="http://73.55.44.55/github/CPPWrapper-CPPLibDragon.png"></img>
 
 ### LangParser
 Demo of a WIP 'LibScript' parser. LibScript is an experimental custom scripting language I am playing around with.
 
+<img src="http://73.55.44.55/github/CPPWrapper-LangParser.png"></img>
