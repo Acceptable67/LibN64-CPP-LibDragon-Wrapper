@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Tue Dec 28 07:42:16 2021
+# Make data base, printed on Tue Dec 28 18:12:28 2021
 
 # Variables
 
@@ -173,6 +174,7 @@ N64_TOOL = $(N64_BINDIR)/n64tool
 # environment
 SNAP_USER_COMMON = /home/spencer/snap/code/common
 # environment
+ 
 SNAP = /snap/code/85
 # environment
 SNAP_REVISION = 85
@@ -269,6 +271,7 @@ N64_CC = $(N64_GCCPREFIX)gcc-11.2.0
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
+ 
 VSCODE_IPC_HOOK = /run/user/1000/vscode-d53cfd21-1.63.2-main.sock
 # environment
 SNAP_NAME = code
@@ -314,11 +317,11 @@ SNAP_USER_DATA = /home/spencer/snap/code/85
 XDG_MENU_PREFIX = xfce-
 # environment
 GDMSESSION = xubuntu
- 
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=153/1024=15%, Rehash=0, Collisions=25/249=10%
+ 
+# Load=153/1024=15%, Rehash=0, Collisions=29/260=11%
 
 # Pattern-specific Variable Values
 
@@ -357,11 +360,11 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # 8 pattern-specific variable values
 # Directories
 
-# build (device 2066, inode 5375736): 14 files, no impossibilities.
-# . (device 2066, inode 5392318): 22 files, no impossibilities.
+# build (device 2066, inode 6432457): 15 files, no impossibilities.
+# . (device 2066, inode 5392318): 23 files, no impossibilities.
 # /usr/local/mips64-elf/lib (device 2066, inode 11034427): 32 files, no impossibilities so far.
 
-# 68 files, no impossibilities in 3 directories.
+# 70 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -384,6 +387,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 %.v64: %.z64
 #  recipe to execute (from '/usr/local/include/n64.mk', line 84):
 	@echo "    [V64] $@"
+ 
 	$(N64_OBJCOPY) -I binary -O binary --reverse-bytes=2 $< $@
 
 %.dfs:
@@ -448,22 +452,19 @@ build/%.o: %.cpp
 # Files
 
 build/CPPLibDragonN64.dfs: filesystem/data.txt
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'build/CPPLibDragonN64'
-#  Last modified 2021-12-25 09:29:07.998820091
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
-	@mkdir -p $(dir $@)
-	@echo "    [DFS] $@"
-	$(N64_MKDFS) $@ $(<D) >/dev/null
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 build/CPPLibDragonN64.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld build/LibVector.o build/CPPLibDragonN64.o build/LibString.o build/LibN64.o
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'build/CPPLibDragonN64'
-#  Last modified 2021-12-28 07:41:44.010201185
+ 
+#  Last modified 2021-12-28 17:58:51.051843621
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 138):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
@@ -486,22 +487,21 @@ LibSprite.h:
 
 # Not a target:
 LibString.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-21 19:27:12.704465227
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/LibString.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-25 09:29:07.722815108
+#  Last modified 2021-12-28 08:12:51.988457602
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-21 18:22:21.107026075
+#  Last modified 2021-12-28 18:12:25.85011543
 #  File has been updated.
 #  Successfully updated.
 
@@ -514,8 +514,9 @@ clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
+ 
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
+#  recipe to execute (from 'Makefile', line 23):
 	rm -rf $(BUILD_DIR) CPPLibDragonN64.z64
 
 # Not a target:
@@ -542,7 +543,7 @@ LibVector.h:
 # Not a target:
 build/CPPLibDragonN64.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:41:43.950200152
+#  Last modified 2021-12-28 18:12:26.806132992
 #  File has been updated.
 #  Successfully updated.
 
@@ -569,7 +570,7 @@ LibMap.h:
 # Not a target:
 LibN64.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:34:03.394983003
+#  Last modified 2021-12-28 14:37:07.876735315
 #  File has been updated.
 #  Successfully updated.
 
@@ -577,14 +578,17 @@ all: CPPLibDragonN64.z64
 #  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
+ 
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/10=0%
 
 build/LibVector.o: LibVector.cpp LibVector.cpp LibN64.h LibVector.h LibString.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'LibVector'
-#  Last modified 2021-12-28 07:35:16.592009023
+#  Last modified 2021-12-28 14:37:09.796766425
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from '/usr/local/include/n64.mk', line 133):
@@ -592,16 +596,16 @@ build/LibVector.o: LibVector.cpp LibVector.cpp LibN64.h LibVector.h LibString.h
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
-# makefile (from 'Makefile', line 14)
+# makefile (from 'Makefile', line 16)
 CPPLibDragonN64.z64: N64_ROM_TITLE = "C++ Framework"
 CPPLibDragonN64.z64: build/CPPLibDragonN64.elf build/CPPLibDragonN64.dfs
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'CPPLibDragonN64'
-#  Last modified 2021-12-28 07:41:44.018201323
+#  Last modified 2021-12-28 17:58:51.05984376
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
+# Load=1/32=3%, Rehash=0, Collisions=1/14=7%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 69):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
@@ -617,28 +621,22 @@ CPPLibDragonN64.z64: build/CPPLibDragonN64.elf build/CPPLibDragonN64.dfs
 	fi
 	$(N64_CHKSUM) $@ >/dev/null
 
-build/LibString.o: LibString.cpp LibString.cpp LibString.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'LibString'
-#  Last modified 2021-12-25 09:29:07.722815108
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
-	@mkdir -p $(dir $@)
-	@echo "    [CXX] $<"
-	$(CXX) -c $(CXXFLAGS) -o $@ $<
+build/LibString.o: LibString.cpp LibString.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/LibN64.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:35:17.500022114
+#  Last modified 2021-12-28 14:37:10.800782688
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 build/LibVector.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:35:16.584008908
+#  Last modified 2021-12-28 14:37:09.788766294
 #  File has been updated.
 #  Successfully updated.
 
@@ -651,34 +649,26 @@ LibString.h:
 
 # Not a target:
 filesystem/data.txt:
-#  Implicit rule search has been done.
- 
-#  Last modified 2021-12-12 05:49:18.890225541
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 LibN64.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:35:04.199831221
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
 
-build/LibN64.o: LibN64.cpp LibN64.cpp LibN64.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'LibN64'
-#  Last modified 2021-12-28 07:35:17.508022229
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
-	@mkdir -p $(dir $@)
-	@echo "    [CXX] $<"
-	$(CXX) -c $(CXXFLAGS) -o $@ $<
+build/LibN64.o: LibN64.cpp LibN64.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 CPPLibDragonN64.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 07:41:41.710161624
+#  Last modified 2021-12-28 18:12:16.733954545
 #  File has been updated.
 #  Successfully updated.
 
@@ -697,28 +687,47 @@ LibVector.cpp:
 build/CPPLibDragonN64.o: CPPLibDragonN64.cpp CPPLibDragonN64.cpp LibN64.h LibString.h LibVector.h LibMap.h LibSprite.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'CPPLibDragonN64'
-#  Last modified 2021-12-28 07:41:43.958200289
+#  Last modified 2021-12-28 17:58:50.999842722
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/CPPLibDragonN64.o
+# automatic
+# * := CPPLibDragonN64
+# automatic
+# < := CPPLibDragonN64.cpp
+# automatic
+# + := CPPLibDragonN64.cpp CPPLibDragonN64.cpp LibN64.h LibString.h LibVector.h LibMap.h LibSprite.h
+# automatic
+# % := 
+# automatic
+# ^ := CPPLibDragonN64.cpp LibN64.h LibString.h LibVector.h LibMap.h LibSprite.h
+# automatic
+# ? := CPPLibDragonN64.cpp
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/24=12%
 #  recipe to execute (from '/usr/local/include/n64.mk', line 133):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 # files hash-table stats:
-# Load=32/1024=3%, Rehash=0, Collisions=2/104=2%
+# Load=32/1024=3%, Rehash=0, Collisions=1/95=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 110 / storage = 1438 B / avg = 13 B
-# current buf: size = 8162 B / used = 1438 B / count = 110 / avg = 13 B
+# strcache buffers: 1 (0) / strings = 105 / storage = 1389 B / avg = 13 B
+# current buf: size = 8162 B / used = 1389 B / count = 105 / avg = 13 B
 
-# strcache performance: lookups = 189 / hit rate = 41%
+# strcache performance: lookups = 180 / hit rate = 41%
+ 
 # hash-table stats:
-# Load=110/8192=1%, Rehash=0, Collisions=0/189=0%
-# Finished Make data base on Tue Dec 28 07:42:16 2021
+# Load=105/8192=1%, Rehash=0, Collisions=0/180=0%
+# Finished Make data base on Tue Dec 28 18:12:28 2021
 
  

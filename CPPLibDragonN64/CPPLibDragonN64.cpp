@@ -3,7 +3,8 @@
 #include <vector>
 #include <iostream>
 #include <functional>
-#include "LibN64.h"
+#include <thread>
+#include <LibN64.h>
 #include "LibString.h"
 #include "LibVector.h"
 #include "LibMap.h"
@@ -20,20 +21,30 @@
     KeyStartPressed
     OnCreate      __OnInit_FreeFunction1
                   __OnInit_FreeFunction2
-    FrameUpdate   __OnLoop_FreeFunction1
+    FrameUpdate   __OnLoop_FreeFunction1 
                   __OnLoop_FreeFunction2
 */
 
 using namespace LibN64;
 
+
 double t3 = 0;
+
+void threa()
+{
+
+}
+
 class Instance : public Frame {
+ 
 public:
     Instance(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : Frame(res, dep, aa, ui) {}
 
     virtual void OnCreate() override 
     {
+        
         romTitle = "LibN64 Test";
+  
     }
 
 protected:
@@ -58,24 +69,31 @@ protected:
     virtual void FrameUpdate() override
     {	
         if(t3 > 0.008) { ClearScreenRDP();  t3 = 0; }
-
 		const std::string buf = DFS::QuickRead<char*>(file.c_str());
+
 
         DrawRDPTri({10,160},{20,180},{40,170}, RED);
         DrawTriangle({10,120},{20,140},{40,130},RED);
 		DrawText({5,10},buf.c_str());
         DrawCircle({30, 60}, 6, RED);
         DrawTextFormat({30,90}, "Total %0.2f Elapsed %0.2f t3 %0.2f", Ticks2Seconds(fTotalTime), TICKS2SECONDS(fFrameTime), t3);
+
     }
     
     virtual void KeyJoyPressed(int dir) override {
         char* direction = nullptr;
         switch(dir) 
         {
-            case Joystick::JoyUp   : direction = "up";   break;
-            case Joystick::JoyDown : direction = "down"; break;
-            case Joystick::JoyLeft : direction = "left"; break;
-            case Joystick::JoyRight: direction = "right";break;
+            case Joystick::JoyUp       : direction = "up";   break;
+            case Joystick::JoyDown     : direction = "down"; break;
+            case Joystick::JoyLeft     : direction = "left"; break;
+            case Joystick::JoyRight    : direction = "right";break;
+
+            case Joystick::JoyUpLeft   :  direction = "up left"; break;
+            case Joystick::JoyUpRight  :  direction = "up right"; break;
+            case Joystick::JoyDownLeft :  direction = "down left"; break;
+            case Joystick::JoyDownRight:  direction = "down right"; break;
+
             default: break;
         }
         DrawTextFormat({40,80},"Data %08X Direction %s", dir, direction);
@@ -105,6 +123,7 @@ private:
 };
 
 int main(void) {
+
     Instance n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_OFF, Frame::UIType::GUI);
     n64g.Begin();
    

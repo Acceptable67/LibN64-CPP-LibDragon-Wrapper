@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LibN64.h"
+#include <LibN64.h>
 #include <iostream>
 #include <string.h>
 #include <memory>
 #include "LibN64GameTest.h"
+
+extern void *__safe_buffer[];
 
 #define DARK_GREY graphics_make_color(136, 138, 137, 255)
 #define VERY_DARK_GREY graphics_make_color(77, 79, 77, 255)
@@ -73,19 +75,19 @@ public:
 	float fDepth;		// Maximum rendering distance
 	float fSpeed;			// Walking Speed
 
-	float fDepthBuffer[400];
+	float *fDepthBuffer = new float[ScreenWidth()];
 
 	void DrawMode() {
 
 		//ClearScreen();
-
+		//DrawRDPRect({0,0},{256,100},CYAN);
 		for (uint32_t x = 0; x < ScreenWidth(); x++)
 		{
 			// For each column, calculate the projected ray angle into world space
 			float fRayAngle = (fPlayerA - fFOV / 2.0f) + ((float)x / (float)ScreenWidth()) * fFOV;
 
 			// Find distance to wall
-			float fStepSize = 0.05f;	  // Increment size for ray casting, decrease to increase	
+			float fStepSize = 0.1f;	  // Increment size for ray casting, decrease to increase	
 			float fDistanceToWall = 0.0f; //                                      resolution
 			float fDistanceToObj = 0.0f;
 
@@ -100,7 +102,7 @@ public:
 			//float fSampleY = 0.0f;
 			//bool bLit = false;
 
-			// Incrementally cast ray from player, along ray angle, testing for 
+			// Incrementally cast ray from player, along ray angle, testing for 0x00008E00
 			// intersection with a block
 			while (!bHitWall && fDistanceToWall < fDepth)
 			{
@@ -178,13 +180,14 @@ public:
 			// Update Depth Buffer
 			fDepthBuffer[x] = fDistanceToWall;
 	
-	
+			
 			for (int y = 0; y < (int)ScreenHeight(); y++)
 			{
 				if (y <= nCeiling) {
 					float fSampleY = ((float)y - 0);
 					int col = sky->data[int(fSampleY * 5.5 + fSampleX + fPlayerA)];
-			
+					Graphics::DrawPixel(this->d, x,y, col);
+					
 				}
 				else if (y > nCeiling && y <= nFloor)
 				{
@@ -230,11 +233,12 @@ public:
 			}
 
 		}
-		//	DrawTextFormat({0,20},"pixel %08X", get_pixel(this->d, 0, 20));
-		//int* fBufWidth = (int*)(0xA4100008);
-		//char buffer[20];
-		//sprintf(buffer, "0x80000400: %08X", *fBufWidth);
-		//graphics_draw_text(this->d, 20, 120, buffer);
+			Graphics::SetColor(RED, DARK_GREY);
+			DrawTextFormat({0,(int)(ScreenHeight()/2)+40},"Player\nX: %0.2f Y: %0.2f\nA: %0.2f", fPlayerX, fPlayerY, fPlayerA);
+			DrawTextFormat({0,(int)(ScreenHeight()/2)+70},"%08x %08x %08x %08x", 
+			__safe_buffer[0], __safe_buffer[1], __safe_buffer[2], __safe_buffer[3]
+			);
+		
 	}
 	
 	virtual void OnCreate() override
@@ -313,7 +317,7 @@ private:
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_OFF, Frame::UIType::GUI);
+	Mode7Test n64g(RESOLUTION_256x240, DEPTH_32_BPP, ANTIALIAS_OFF, Frame::UIType::GUI);
 	n64g.Begin();
 
 	return 0;

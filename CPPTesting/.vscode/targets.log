@@ -1,0 +1,628 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sun Dec 26 14:24:37 2021
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# makefile (from '/usr/local/include/n64.mk', line 21)
+N64_CXX = $(N64_GCCPREFIX)g++
+# makefile (from '/usr/local/include/n64.mk', line 40)
+N64_TOOLFLAGS = --header $(N64_HEADERPATH) --title $(N64_ROM_TITLE)
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-33a1fe09-251c-441f-9f04-fd5b9dd729ee.sock
+# environment
+VSCODE_CWD = /home/spencer
+# environment
+GDM_LANG = en_US
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/85/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# makefile (from '/usr/local/include/n64.mk', line 24)
+N64_OBJCOPY = $(N64_GCCPREFIX)objcopy
+# makefile (from '/usr/local/include/n64.mk', line 30)
+N64_MKDFS = $(N64_BINDIR)/mkdfs
+# makefile (from '/usr/local/include/n64.mk', line 6)
+N64_ROM_RTC = 
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CPPTesting
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from '/usr/local/include/n64.mk', line 18)
+COMMA := ,
+# makefile (from '/usr/local/include/n64.mk', line 22)
+N64_AS = $(N64_GCCPREFIX)as
+# environment
+XDG_DATA_DIRS = /usr/share/xubuntu:/usr/share/xfce4:/usr/local/share:/usr/share:/var/lib/snapd/desktop:/usr/share
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/spencer/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+# makefile (from '/usr/local/include/n64.mk', line 4)
+N64_ROM_TITLE = "Made with libdragon" 
+# environment
+LANG = C
+# environment
+XAUTHORITY = /home/spencer/.Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile (from '/usr/local/include/n64.mk', line 14)
+N64_LIBDIR = $(N64_ROOTDIR)/mips64-elf/lib
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CPPTesting
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-xubuntu:/etc/xdg:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=cb6f4b8f-424f-49ab-b0ef-542c5d410627&iid=cb6f4b8f-424f-49ab-b0ef-542c5d410627&sid=cb6f4b8f-424f-49ab-b0ef-542c5d410627","uploadToServer":true}
+# environment
+XDG_SESSION_DESKTOP = xubuntu
+# makefile (from 'Makefile', line 6)
+N64_CXXFLAGS := -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing 
+# makefile (from 'build/CPPTesting.d', line 1)
+MAKEFILE_LIST := Makefile /usr/local/include/n64.mk build/CPPTesting.d
+# makefile (from '/usr/local/include/n64.mk', line 54)
+ASFLAGS = -MMD    
+# environment
+SNAP_REEXEC = 
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 1990
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+CLUTTER_BACKEND = x11
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1185,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1185
+# automatic
+*F = $(notdir $*)
+# environment
+QT_QPA_PLATFORMTHEME = gtk2
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+BREAKPAD_DUMP_LOCATION = /home/spencer/.config/Code/exthost Crash Reports
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# makefile (from '/usr/local/include/n64.mk', line 7)
+N64_ROM_REGIONFREE = 
+# default
+MAKECMDGOALS := all
+# makefile (from '/usr/local/include/n64.mk', line 26)
+N64_SIZE = $(N64_GCCPREFIX)size
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+SNAP_COOKIE = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# default
+MAKEFILES := 
+# environment
+LANGUAGE = en_US
+# automatic
+^F = $(notdir $^)
+# makefile (from '/usr/local/include/n64.mk', line 31)
+N64_TOOL = $(N64_BINDIR)/n64tool
+# environment
+SNAP_USER_COMMON = /home/spencer/snap/code/common
+# environment
+SNAP = /snap/code/85
+# environment
+SNAP_REVISION = 85
+# environment
+SNAP_REAL_HOME = /home/spencer
+# makefile (from '/usr/local/include/n64.mk', line 43)
+N64_ED64ROMCONFIGFLAGS = $(if $(N64_ROM_SAVETYPE),--savetype $(N64_ROM_SAVETYPE)) $(if $(N64_ROM_RTC),--rtc)  $(if $(N64_ROM_REGIONFREE),--regionfree)
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# makefile (from '/usr/local/include/n64.mk', line 37)
+N64_ASFLAGS = -mtune=vr4300 -march=vr4300 -Wa,--fatal-warnings
+# environment
+XDG_SEAT = seat0
+# environment
+XDG_CURRENT_DESKTOP = XFCE
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+DESKTOP_SESSION = xubuntu
+# makefile (from '/usr/local/include/n64.mk', line 10)
+N64_INST = /usr/local
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
+# 'override' directive
+GNUMAKEFLAGS := 
+# makefile (from '/usr/local/include/n64.mk', line 23)
+N64_LD = $(N64_GCCPREFIX)ld
+# environment
+LOGNAME = spencer
+# makefile (from '/usr/local/include/n64.mk', line 12)
+N64_BINDIR = $(N64_ROOTDIR)/bin
+# makefile (from '/usr/local/include/n64.mk', line 29)
+N64_ED64ROMCONFIG = $(N64_BINDIR)/ed64romconfig
+# makefile (from 'Makefile', line 2)
+SOURCE_DIR = .
+# environment
+SNAP_ARCH = amd64
+# environment
+XDG_VTNR = 7
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from '/usr/local/include/n64.mk', line 25)
+N64_OBJDUMP = $(N64_GCCPREFIX)objdump
+# makefile (from '/usr/local/include/n64.mk', line 28)
+N64_CHKSUM = $(N64_BINDIR)/chksum64
+# environment
+DISPLAY = :0.0
+# environment
+USER = spencer
+# default
+MAKE_VERSION := 4.3
+# environment
+DISABLE_WAYLAND = 1
+# environment
+SNAP_DATA = /var/snap/code/85
+# environment
+SNAP_CONTEXT = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
+# makefile (from '/usr/local/include/n64.mk', line 15)
+N64_GCCPREFIX = $(N64_BINDIR)/mips64-elf-
+# makefile (from '/usr/local/include/n64.mk', line 38)
+N64_LDFLAGS = -L$(N64_LIBDIR) /home/spencer/libdragon/NEW/libdragon/libN64.a -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
+# environment
+_ = /snap/code/85/usr/share/code/code
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from '/usr/local/include/n64.mk', line 52)
+CFLAGS = -MMD     
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/spencer/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+GTK_OVERLAY_SCROLLING = 0
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# makefile (from 'Makefile', line 1)
+BUILD_DIR = build
+# environment
+HOME = /home/spencer
+# makefile (from '/usr/local/include/n64.mk', line 16)
+N64_HEADERPATH = $(N64_LIBDIR)/header
+# makefile (from '/usr/local/include/n64.mk', line 20)
+N64_CC = $(N64_GCCPREFIX)gcc-11.2.0
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-d53cfd21-1.63.2-main.sock
+# environment
+SNAP_NAME = code
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
+# makefile (from '/usr/local/include/n64.mk', line 5)
+N64_ROM_SAVETYPE = 
+ 
+# environment
+XDG_SESSION_ID = c1
+# environment
+PANEL_GDK_CORE_DEVICE_EVENTS = 0
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# environment
+SNAP_VERSION = 899d46d8
+# default
+SUFFIXES := 
+# makefile (from '/usr/local/include/n64.mk', line 57)
+N64_CFLAGS = -march=vr4300 -mtune=vr4300 -I$(N64_INCLUDEDIR) -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -std=gnu99
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# makefile (from '/usr/local/include/n64.mk', line 32)
+N64_AUDIOCONV = $(N64_BINDIR)/audioconv64
+# environment
+SNAP_COMMON = /var/snap/code/common
+# makefile (from '/usr/local/include/n64.mk', line 53)
+CXXFLAGS = -MMD -std=c++20     
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/spencer
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from '/usr/local/include/n64.mk', line 13)
+N64_INCLUDEDIR = $(N64_ROOTDIR)/mips64-elf/include
+# makefile (from '/usr/local/include/n64.mk', line 11)
+N64_ROOTDIR = $(N64_INST)
+# environment
+SNAP_USER_DATA = /home/spencer/snap/code/85
+# environment
+XDG_MENU_PREFIX = xfce-
+# environment
+GDMSESSION = xubuntu
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# variable set hash-table stats:
+# Load=153/1024=15%, Rehash=0, Collisions=29/242=12%
+
+# Pattern-specific Variable Values
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 60)
+# CC := $$(N64_CC)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 61)
+# CXX := $$(N64_CXX)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 62)
+# AS := $$(N64_AS)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 63)
+# LD := $$(N64_LD)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 64)
+# CFLAGS := $$(N64_CFLAGS)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 65)
+# CXXFLAGS := $$(N64_CXXFLAGS)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 66)
+# ASFLAGS := $$(N64_ASFLAGS)
+
+%.z64 :
+# makefile (from '/usr/local/include/n64.mk', line 67)
+# LDFLAGS := $$(N64_LDFLAGS)
+
+# 8 pattern-specific variable values
+# Directories
+
+# build (device 2066, inode 7486332): 8 files, no impossibilities.
+# . (device 2066, inode 5282648): 13 files, no impossibilities.
+# /usr/local/mips64-elf/lib (device 2066, inode 11034427): 32 files, no impossibilities so far.
+
+# 53 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+%.z64: build/%.elf
+#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+	@echo "    [Z64] $@"
+	$(N64_OBJCOPY) -O binary $< $<.bin
+	@rm -f $@
+	DFS_FILE="$(filter %.dfs, $^)"; \
+	if [ -z "$$DFS_FILE" ]; then \
+		$(N64_TOOL) $(N64_TOOLFLAGS) --output $@ $<.bin; \
+	else \
+		$(N64_TOOL) $(N64_TOOLFLAGS) --output $@ $<.bin --offset 1M "$$DFS_FILE"; \
+	fi
+	if [ ! -z "$(strip $(N64_ED64ROMCONFIGFLAGS))" ]; then \
+		$(N64_ED64ROMCONFIG) $(N64_ED64ROMCONFIGFLAGS) $@; \
+	fi
+	$(N64_CHKSUM) $@ >/dev/null
+
+%.v64: %.z64
+#  recipe to execute (from '/usr/local/include/n64.mk', line 84):
+	@echo "    [V64] $@"
+	$(N64_OBJCOPY) -I binary -O binary --reverse-bytes=2 $< $@
+
+%.dfs:
+#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
+	@mkdir -p $(dir $@)
+	@echo "    [DFS] $@"
+	$(N64_MKDFS) $@ $(<D) >/dev/null
+
+build/%.o: %.S
+#  recipe to execute (from '/usr/local/include/n64.mk', line 96):
+	@mkdir -p $(dir $@)
+	set -e; \
+	FILENAME="$(notdir $(basename $@))"; \
+	if case "$$FILENAME" in "rsp"*) true;; *) false;; esac; then \
+		SYMPREFIX="$(subst .,_,$(subst /,_,$(basename $@)))"; \
+		TEXTSECTION="$(basename $@).text"; \
+		DATASECTION="$(basename $@).data"; \
+		echo "    [RSP] $<"; \
+		$(N64_CC) $(ASFLAGS) -nostartfiles -Wl,-Ttext=0x1000 -Wl,-Tdata=0x0 -Wl,-e0x1000 -o $@ $<; \
+		$(N64_OBJCOPY) -O binary -j .text $@ $$TEXTSECTION.bin; \
+		$(N64_OBJCOPY) -O binary -j .data $@ $$DATASECTION.bin; \
+		$(N64_OBJCOPY) -I binary -O elf32-bigmips -B mips4300 \
+				--redefine-sym _binary_$${SYMPREFIX}_text_bin_start=$${FILENAME}_text_start \
+				--redefine-sym _binary_$${SYMPREFIX}_text_bin_end=$${FILENAME}_text_end \
+				--redefine-sym _binary_$${SYMPREFIX}_text_bin_size=$${FILENAME}_text_size \
+				--set-section-alignment .data=8 \
+				--rename-section .text=.data $$TEXTSECTION.bin $$TEXTSECTION.o; \
+		$(N64_OBJCOPY) -I binary -O elf32-bigmips -B mips4300 \
+				--redefine-sym _binary_$${SYMPREFIX}_data_bin_start=$${FILENAME}_data_start \
+				--redefine-sym _binary_$${SYMPREFIX}_data_bin_end=$${FILENAME}_data_end \
+				--redefine-sym _binary_$${SYMPREFIX}_data_bin_size=$${FILENAME}_data_size \
+				--set-section-alignment .data=8 \
+				--rename-section .text=.data $$DATASECTION.bin $$DATASECTION.o; \
+		$(N64_SIZE) -G $@; \
+		$(N64_LD) -relocatable $$TEXTSECTION.o $$DATASECTION.o -o $@; \
+		rm $$TEXTSECTION.bin $$DATASECTION.bin $$TEXTSECTION.o $$DATASECTION.o; \
+	else \
+		echo "    [AS] $<"; \
+		$(CC) -c $(ASFLAGS) -o $@ $<; \
+	fi
+
+build/%.o: %.c
+#  recipe to execute (from '/usr/local/include/n64.mk', line 128):
+	@mkdir -p $(dir $@)
+	@echo "    [CC] $<"
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+build/%.o: %.cpp
+#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+	@mkdir -p $(dir $@)
+	@echo "    [CXX] $<"
+	$(CXX) -c $(CXXFLAGS) -o $@ $<
+
+%.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld
+#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+	@mkdir -p $(dir $@)
+	@echo "    [LD] $@"
+	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
+	$(N64_SIZE) -G $@
+
+# 7 implicit rules, 0 (0.0%) terminal.
+# Files
+
+build/CPPTesting.dfs: filesystem/data.txt
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'build/CPPTesting'
+#  Last modified 2021-12-26 04:11:41.944468805
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
+	@mkdir -p $(dir $@)
+	@echo "    [DFS] $@"
+	$(N64_MKDFS) $@ $(<D) >/dev/null
+
+# Not a target:
+/usr/local/mips64-elf/lib/libdragonsys.a:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-11 17:55:52.768425801
+#  File has been updated.
+#  Successfully updated.
+
+build/CPPTesting.o: CPPTesting.cpp CPPTesting.cpp CPPTesting.h LibN64.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'CPPTesting'
+#  Last modified 2021-12-26 05:29:05.44519229
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+	@mkdir -p $(dir $@)
+	@echo "    [CXX] $<"
+	$(CXX) -c $(CXXFLAGS) -o $@ $<
+
+# Not a target:
+CPPTesting.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-26 04:27:57.764078099
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-24 16:28:16.708398116
+#  File has been updated.
+#  Successfully updated.
+
+.SILENT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 19):
+	rm -rf $(BUILD_DIR) CPPTesting.z64
+
+# Not a target:
+/usr/local/include/n64.mk:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-12 17:58:29.169277818
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/usr/local/mips64-elf/lib/n64.ld:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-11 17:55:52.768425801
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/CPPTesting.d:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-26 05:29:05.437192161
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+/usr/local/mips64-elf/lib/libdragon.a:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-26 04:37:52.217124776
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+LibN64.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-22 15:59:38.493266
+#  File has been updated.
+#  Successfully updated.
+
+all: CPPTesting.z64
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+filesystem/data.txt:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-25 07:59:34.229242567
+#  File has been updated.
+#  Successfully updated.
+
+# makefile (from 'Makefile', line 12)
+CPPTesting.z64: N64_ROM_TITLE = "CPPTesting Test"
+CPPTesting.z64: build/CPPTesting.elf build/CPPTesting.dfs
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'CPPTesting'
+#  Last modified 2021-12-26 05:29:05.5011932
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
+#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+	@echo "    [Z64] $@"
+	$(N64_OBJCOPY) -O binary $< $<.bin
+	@rm -f $@
+	DFS_FILE="$(filter %.dfs, $^)"; \
+	if [ -z "$$DFS_FILE" ]; then \
+		$(N64_TOOL) $(N64_TOOLFLAGS) --output $@ $<.bin; \
+	else \
+		$(N64_TOOL) $(N64_TOOLFLAGS) --output $@ $<.bin --offset 1M "$$DFS_FILE"; \
+	fi
+	if [ ! -z "$(strip $(N64_ED64ROMCONFIGFLAGS))" ]; then \
+		$(N64_ED64ROMCONFIG) $(N64_ED64ROMCONFIGFLAGS) $@; \
+	fi
+	$(N64_CHKSUM) $@ >/dev/null
+
+# Not a target:
+CPPTesting.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-26 05:29:04.361174682
+#  File has been updated.
+ 
+#  Successfully updated.
+
+build/CPPTesting.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld build/CPPTesting.o
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'build/CPPTesting'
+#  Last modified 2021-12-26 05:29:05.489193006
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+	@mkdir -p $(dir $@)
+	@echo "    [LD] $@"
+	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
+	$(N64_SIZE) -G $@
+
+.PHONY: all clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=20/1024=2%, Rehash=0, Collisions=1/60=2%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 80 / storage = 993 B / avg = 12 B
+# current buf: size = 8162 B / used = 993 B / count = 80 / avg = 12 B
+
+# strcache performance: lookups = 133 / hit rate = 39%
+# hash-table stats:
+# Load=80/8192=1%, Rehash=0, Collisions=0/133=0%
+# Finished Make data base on Sun Dec 26 14:24:37 2021
+
+ 

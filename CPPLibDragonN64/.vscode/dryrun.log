@@ -1,24 +1,12 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CPPLibDragonN64'
-mkdir -p build/
-echo "    [CXX] LibVector.cpp"
-/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -o build/LibVector.o LibVector.cpp
 mkdir -p build/
 echo "    [CXX] CPPLibDragonN64.cpp"
 /usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -o build/CPPLibDragonN64.o CPPLibDragonN64.cpp
 mkdir -p build/
-echo "    [CXX] LibString.cpp"
-/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -o build/LibString.o LibString.cpp
-mkdir -p build/
-echo "    [CXX] LibN64.cpp"
-/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -o build/LibN64.o LibN64.cpp
-mkdir -p build/
 echo "    [LD] build/CPPLibDragonN64.elf"
 /usr/local/bin/mips64-elf-g++ -o build/CPPLibDragonN64.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/LibVector.o build/CPPLibDragonN64.o build/LibString.o build/LibN64.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,/home/spencer/libdragon/NEW/libdragon/libN64.a -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/CPPLibDragonN64.map
 /usr/local/bin/mips64-elf-size -G build/CPPLibDragonN64.elf
-mkdir -p build/
-echo "    [DFS] build/CPPLibDragonN64.dfs"
-/usr/local/bin/mkdfs build/CPPLibDragonN64.dfs filesystem >/dev/null
 echo "    [Z64] CPPLibDragonN64.z64"
 /usr/local/bin/mips64-elf-objcopy -O binary build/CPPLibDragonN64.elf build/CPPLibDragonN64.elf.bin
 rm -f CPPLibDragonN64.z64
