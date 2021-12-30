@@ -62,7 +62,8 @@ namespace LibN64
 			virtual void KeyCLPressed();
 			virtual void KeyCRPressed();
 			
-			virtual void KeyJoyPressed(int);
+			virtual void KeyJoyXPressed(int);
+			virtual void KeyJoyYPressed(int);
 
 			inline virtual void     __OnInit_FreeFunction1(); 
 			inline virtual void     __OnInit_FreeFunction2();
@@ -88,8 +89,7 @@ namespace LibN64
 			enum     UIType        { GUI, CONSOLE };
 			enum     Joystick      { 
 									 JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200,
-									 JoyUpRight =JoyUp  |JoyRight, JoyUpLeft =JoyUp  |JoyLeft, 
-									 JoyDownLeft=JoyDown|JoyLeft,JoyDownRight=JoyDown|JoyRight 
+
 								   };
 			enum 	 KeyState 	   { KeysHeld, KeysDown, KeysPressed, KeysUp } kstate;
 			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui);
@@ -102,11 +102,12 @@ namespace LibN64
 			void		 SetKeyState   (KeyState k);
 			unsigned 	 ScreenWidth   ();
 			unsigned 	 ScreenHeight  ();
+			void 	     DrawTextFormat(LibPos pos, const char* format, ...);
 			void 	 	 DrawText      (LibPos pos, const char* t,          unsigned c = WHITE);
-	 		inline void  DrawPixel 	   (LibPos pos, 		      	        unsigned c = WHITE);
-			inline void  DrawRect      (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
+	 		void 		 DrawPixel 	   (LibPos pos, 		      	        unsigned c = WHITE);
+			void 		 DrawRect      (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
 			void     	 DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
-	 		inline void  DrawLine  	   (LibPos pos1, LibPos pos2,           unsigned c = WHITE);
+	 		void 		 DrawLine  	   (LibPos pos1, LibPos pos2,           unsigned c = WHITE);
 			void  	 	 DrawCircle    (LibPos pos, int scale = 1,    	    unsigned c = WHITE);
 			void	 	 DrawTriangle  (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE); 
 			void     	 DrawRDPTri    (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE);
@@ -129,15 +130,6 @@ namespace LibN64
 			T __lib64_rom2type(long romAddr) {
 				T *ptr = (T*)(romAddr);
 				return *ptr;
-			}
-
-			void DrawTextFormat(LibPos pos, const char* format, ...) {
-				va_list args;
-				va_start(args, format);
-				char buffer[300];
-				vsprintf(buffer, format, args);
-				graphics_draw_text(d, pos.x, pos.y,buffer);
-				va_end(args);	
 			}
 		};
 }

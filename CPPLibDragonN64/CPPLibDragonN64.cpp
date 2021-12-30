@@ -80,25 +80,32 @@ protected:
 
     }
     
-    virtual void KeyJoyPressed(int dir) override {
+    virtual void KeyJoyYPressed(int dir) override {
         char* direction = nullptr;
         switch(dir) 
         {
             case Joystick::JoyUp       : direction = "up";   break;
             case Joystick::JoyDown     : direction = "down"; break;
+
+            default: break;
+        }
+        DrawTextFormat({40,100},"Data %08X Direction %s", dir, direction);
+        
+    }
+
+        virtual void KeyJoyXPressed(int dir) override {
+        char* direction = nullptr;
+        switch(dir) 
+        {
             case Joystick::JoyLeft     : direction = "left"; break;
             case Joystick::JoyRight    : direction = "right";break;
-
-            case Joystick::JoyUpLeft   :  direction = "up left"; break;
-            case Joystick::JoyUpRight  :  direction = "up right"; break;
-            case Joystick::JoyDownLeft :  direction = "down left"; break;
-            case Joystick::JoyDownRight:  direction = "down right"; break;
 
             default: break;
         }
         DrawTextFormat({40,80},"Data %08X Direction %s", dir, direction);
         
     }
+
 
     virtual void KeyAPressed() override {
         DrawText({10,30}, "Key A pressed.");

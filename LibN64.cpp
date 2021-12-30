@@ -1,10 +1,8 @@
-#include "LibN64.h"
+#include <LibN64.h>
 
 namespace LibN64::DFS 
 {
-
 	int handle = 0;
-	
 	
 	unsigned Open(const char* file) 
 	{
@@ -125,7 +123,8 @@ namespace LibN64
 	void LibN64::Frame::KeyCLPressed() {}
 	void LibN64::Frame::KeyCRPressed() {}
 	void LibN64::Frame::KeyZPressed()  {}
-	void LibN64::Frame::KeyJoyPressed(int){}
+	void LibN64::Frame::KeyJoyXPressed(int){}
+	void LibN64::Frame::KeyJoyYPressed(int){}
 	void LibN64::Frame::OnCreate()     {}
 	inline void LibN64::Frame::__OnInit_FreeFunction1() {}
 	inline void LibN64::Frame::__OnInit_FreeFunction2() {}
@@ -185,7 +184,7 @@ namespace LibN64
 				case KeysDown:    keys = get_keys_down(); break;
 				case KeysPressed: keys = get_keys_pressed(); break;
 				case KeysUp:      keys = get_keys_up(); break;
-				defaukt: break;
+				default: break;
 			};
 			
 			if (keys.c[0].err == ERROR_NONE) {
@@ -203,8 +202,8 @@ namespace LibN64
 				if (keys.c[0].C_down)  { this->KeyCDPressed();   }
 				if (keys.c[0].C_left)  { this->KeyCLPressed();   }
 				if (keys.c[0].C_right) { this->KeyCRPressed();   }
-				if (keys.c[0].x || 
-					keys.c[0].y) 	   { this->KeyJoyPressed(data); }
+				if (keys.c[0].x)	   { this->KeyJoyXPressed(data & 0x0000FF00); } 
+				if (keys.c[0].y) 	   { this->KeyJoyYPressed(data & 0x000000FF); }
 			}
 		
 			//display_show(LibN64_Display);
@@ -249,12 +248,12 @@ namespace LibN64
 		rdp_draw_filled_triangle(pos1.x,pos1.y,pos2.x,pos2.y,pos3.x,pos3.y);
 	}
 
-	inline void LibN64::Frame::DrawLine(LibPos pos1, LibPos pos2, unsigned c) 
+	void LibN64::Frame::DrawLine(LibPos pos1, LibPos pos2, unsigned c) 
 	{
 		graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, c);
 	}
 
-	inline void LibN64::Frame::DrawPixel(LibPos pos, unsigned c) 
+	void LibN64::Frame::DrawPixel(LibPos pos, unsigned c) 
 	{
 		graphics_draw_pixel(this->d, pos.x, pos.y, c);
 	}
@@ -268,6 +267,16 @@ namespace LibN64
 		graphics_set_color(c, 0);
 		graphics_draw_text(this->d, pos.x, pos.y, buf);
 		graphics_set_color(WHITE, 0);
+	}
+
+
+	void LibN64::Frame::DrawTextFormat(LibPos pos, const char* format, ...) {
+		va_list args;
+		va_start(args, format);
+		char buffer[300];
+		vsprintf(buffer, format, args);
+		graphics_draw_text(d, pos.x, pos.y,buffer);
+		va_end(args);	
 	}
 
 	float LibN64::Frame::Ticks2Seconds(float t) 
