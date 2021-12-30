@@ -2,7 +2,7 @@
 A C++ wrapper for libdragon development that allows an easy to use interface to create libdragon C++ ROMs. After using a 2010 build of LibDragon with GCC 4.1 for so many years, now fully supports the latest build with C++20
 
 #### Install
-Place LIbN64.cpp in the src directory and LibN64.h in the include directory, reconfigure your LibDragon makefile to accept these new files. Build, make install, include <LibN64.h> in your project and should be good to go.
+Place <i>LibN64.cpp</i> in the src directory and <i>LibN64.h</i> in the include directory, reconfigure your LibDragon makefile to accept these new files. Build, make install, include <i><LibN64.h></i> in your project and should be good to go.
 
 ### Basic Class Template
 ```c++
@@ -28,13 +28,22 @@ protected:
         //every frame
     }
     
-    virtual void KeyJoyPressed(int data) {
+    virtual void KeyJoyYPressed(int data) {
         switch(data) {
             case Joystick::JoyUp: /*action*/ break;
-            //so on...
+            //...
             default: break;
         };
     }
+    
+    virtual void KeyJoyXPressed(int data) {
+        switch(data) {
+            case Joystick::JoyLeft: /*action*/ break;
+            //...
+            default: break;
+        };
+    }
+    
     
     virtual void KeyAPressed() override {
 
@@ -47,6 +56,7 @@ protected:
     virtual void KeyZPressed() override {
 
     }
+    /*and so on*/
 };
 
 int main(void) {
