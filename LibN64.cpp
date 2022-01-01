@@ -91,9 +91,7 @@ namespace LibN64
 			rdp_sync(SYNC_PIPE);
 			rdp_set_default_clipping();
 			rdp_enable_texture_copy();
-			rdp_enable_primitive_fill();
-			rdp_enable_blend_fill();
-			rdp_attach_display(this->d);
+			rdp_attach_display(this->d); 
 			
 			graphics_fill_screen(d, 0x0);
 			graphics_set_color(0xFFFFFFFF, 0x0);
@@ -156,6 +154,10 @@ namespace LibN64
 
 	unsigned LibN64::Frame::ScreenWidth() { return screenWidth; }
 	unsigned LibN64::Frame::ScreenHeight() { return screenHeight; }
+
+	display_context_t LibN64::Frame::GetDisplay() {
+		return this->d;
+	}
 
 	void LibN64::Frame::DrawRect(LibPos pos, LibPos dimensions, unsigned  c)
 	{
@@ -222,10 +224,17 @@ namespace LibN64
 	{
 		lActive = false;
 	}
-	void LibN64::Frame::DrawCircle(LibPos pos, int scale, unsigned  c) 
+	void LibN64::Frame::DrawCircle(LibPos pos, int scale, unsigned c, bool isFilled) 
 	{
-		for(int angles =0;angles<80*scale;angles++) {
-			graphics_draw_box(d, pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale, 1, 1, c);
+		if(isFilled) 
+		{
+			for(float scaler = 0;scaler<=scale;scaler+=0.3) {
+				for(float angles =0;angles<25*scaler;angles+=0.1) 
+					DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, c);
+			}
+		} else {
+			for(float angles =0;angles<25*scale;angles+=0.1) 
+					DrawPixel({pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale}, c);
 		}
 	}
 
@@ -262,19 +271,19 @@ namespace LibN64
 		graphics_draw_sprite(this->d, pos.x, pos.y, spr);
 	}
 
-	void LibN64::Frame::DrawText(LibPos pos, const char* buf, unsigned c) 
+	void LibN64::Frame::DrawText(LibPos pos, const std::string buf, unsigned c) 
 	{
 		graphics_set_color(c, 0);
-		graphics_draw_text(this->d, pos.x, pos.y, buf);
+		graphics_draw_text(this->d, pos.x, pos.y, buf.c_str());
 		graphics_set_color(WHITE, 0);
 	}
 
 
-	void LibN64::Frame::DrawTextFormat(LibPos pos, const char* format, ...) {
+	void LibN64::Frame::DrawTextFormat(LibPos pos,const std::string format, ...) {
 		va_list args;
-		va_start(args, format);
+		va_start(args, format.c_str());
 		char buffer[300];
-		vsprintf(buffer, format, args);
+		vsprintf(buffer, format.c_str(), args);
 		graphics_draw_text(d, pos.x, pos.y,buffer);
 		va_end(args);	
 	}
@@ -283,6 +292,42 @@ namespace LibN64
 	{
 		return (t * 0.021333333 / 1000000.0);
 	}
+
+	void LibN64::Frame::LoadCustomFont(const std::string FileName) 
+	{
+		libFont = DFS::QuickRead<sprite_t*>(FileName.c_str());
+		if(libFont == nullptr) {
+			const std::string err = "There was an error loading the font.";
+			if(uitype == GUI) 
+				DrawText({0,0},err);
+			else 
+				printf(err.c_str());
+		}
+	}	
+
+	void LibN64::Frame::DrawTextCF(LibPos pos, const std::string str) {
+		int incx = pos.x;
+		int incy = pos.y;
+		for(int index = 0;index<str.length();index++) 
+		{
+			if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
+			
+		 	Graphics::DrawSpriteStride(GetDisplay(), incx, incy, libFont, str[index]);
+			incx += 8;
+		}
+	}
+
+	void LibN64::Frame::DrawTextFormatCF(LibPos pos, const std::string format, ...)
+	{
+		va_list args;
+		va_start(args, format.c_str());
+		char buffer[300];
+		vsprintf(buffer, format.c_str(), args);
+		DrawTextCF({pos.x, pos.y},buffer);
+		va_end(args);	
+	}
+
+
 }
 
 

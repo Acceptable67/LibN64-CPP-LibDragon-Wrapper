@@ -77,20 +77,19 @@ namespace LibN64
 		public:
 			display_context_t d;
 
-			std::string romTitle = "Default";
+			std::string GameTitle = "Default";
 			bool lActive;
 
 			float fFrameTime;
 			float fTotalTime;
 
 			int uitype;
+
+			sprite_t* libFont = nullptr;
 		public:
 			struct   LibPos        { int x, y; };
 			enum     UIType        { GUI, CONSOLE };
-			enum     Joystick      { 
-									 JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200,
-
-								   };
+			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200 };
 			enum 	 KeyState 	   { KeysHeld, KeysDown, KeysPressed, KeysUp } kstate;
 			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui);
 			virtual void OnCreate  ();
@@ -98,21 +97,26 @@ namespace LibN64
 			void 	 	 Close		   ();
 			void 	 	 ClearScreen   ();
 			void 	 	 ClearScreenRDP();
-			void 	 	 SetScreen     (resolution_t res, bitdepth_t bd);
+			void 	 	 SetScreen     (resolution_t res, bitdepth_t bd); 
+	display_context_t    GetDisplay    ();
 			void		 SetKeyState   (KeyState k);
 			unsigned 	 ScreenWidth   ();
 			unsigned 	 ScreenHeight  ();
-			void 	     DrawTextFormat(LibPos pos, const char* format, ...);
-			void 	 	 DrawText      (LibPos pos, const char* t,          unsigned c = WHITE);
+			void 	     DrawTextFormat(LibPos pos, const std::string format, ...);
+			void 	 	 DrawText      (LibPos pos, const std::string t,          unsigned c = WHITE);
 	 		void 		 DrawPixel 	   (LibPos pos, 		      	        unsigned c = WHITE);
 			void 		 DrawRect      (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
 			void     	 DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
 	 		void 		 DrawLine  	   (LibPos pos1, LibPos pos2,           unsigned c = WHITE);
-			void  	 	 DrawCircle    (LibPos pos, int scale = 1,    	    unsigned c = WHITE);
+			void  	 	 DrawCircle    (LibPos pos, int scale = 1,    	    unsigned c = WHITE, bool isFilled = true);
 			void	 	 DrawTriangle  (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE); 
 			void     	 DrawRDPTri    (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE);
 			void     	 DrawSprite    (LibPos, sprite_t* spr);
-			float    	 Ticks2Seconds (float t);
+			float    	 Ticks2Seconds (float t); 
+
+			void	 	 LoadCustomFont  (const std::string FileName);
+			void 		 DrawTextCF      (LibPos pos, const std::string str);
+			void   		 DrawTextFormatCF(LibPos pos, const std::string format, ...);
 
 			/*The following functions refuse to compile inside the C++ file.*/
 			/*DFS does not work so here is work around. Manually find*/
