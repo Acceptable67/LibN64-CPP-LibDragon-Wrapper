@@ -1,0 +1,9 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CirclesAndSquares'
+mkdir -p build/
+echo "    [DFS] build/CirclesAndSquares.dfs"
+/usr/local/bin/mkdfs build/CirclesAndSquares.dfs filesystem >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/CirclesAndSquares'
+ 
+make: *** No rule to make target 'build/CirclesAndSquares.o', needed by 'build/CirclesAndSquares.elf'.
+ 
