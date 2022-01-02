@@ -84,6 +84,10 @@ Auto-generated maze that auto fills it self. Takes around 30 seconds to fully fi
 
 <img src="http://73.55.44.55/github/CPPWrapper-3DViewer.png"></img>
 
+### CirclesAndSquares
+Auto-random generation of squares and snowflake-like circles
+
+<img src="http://73.55.44.55/github/CPPWrapper-CANDS.png"></img>
 
 ### CPPLibDragon
 A demo of the LibN64 Class structure.
