@@ -103,14 +103,14 @@ namespace LibN64
 			unsigned 	 ScreenWidth   ();
 			unsigned 	 ScreenHeight  ();
 			void 	     DrawTextFormat(LibPos pos, const std::string format, ...);
-			void 	 	 DrawText      (LibPos pos, const std::string t,          unsigned c = WHITE);
-	 		void 		 DrawPixel 	   (LibPos pos, 		      	        unsigned c = WHITE);
-			void 		 DrawRect      (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
-			void     	 DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},unsigned c = WHITE);
-	 		void 		 DrawLine  	   (LibPos pos1, LibPos pos2,           unsigned c = WHITE);
-			void  	 	 DrawCircle    (LibPos pos, int scale = 1,    	    unsigned c = WHITE, bool isFilled = true);
-			void	 	 DrawTriangle  (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE); 
-			void     	 DrawRDPTri    (LibPos pos1,LibPos pos2,LibPos pos3,unsigned c = WHITE);
+			void 	 	 DrawText      (LibPos pos, const std::string t,    		unsigned c = WHITE);
+	 		void 		 DrawPixel 	   (LibPos pos, 		      	        		unsigned c = WHITE);
+			void 		 DrawRect      (LibPos pos, LibPos dimensions={1,1},		unsigned c = WHITE);
+			void     	 DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},		unsigned c = WHITE);
+	 		void 		 DrawLine  	   (LibPos pos1, LibPos pos2,           		unsigned c = WHITE);
+			void  	 	 DrawCircle    (LibPos pos, int scale=1,float cStepSize=0.1,unsigned c = WHITE, bool isFilled = true);
+			void	 	 DrawTriangle  (LibPos pos1,LibPos pos2,LibPos pos3,		unsigned c = WHITE); 
+			void     	 DrawRDPTri    (LibPos pos1,LibPos pos2,LibPos pos3,		unsigned c = WHITE);
 			void     	 DrawSprite    (LibPos, sprite_t* spr);
 			float    	 Ticks2Seconds (float t); 
 

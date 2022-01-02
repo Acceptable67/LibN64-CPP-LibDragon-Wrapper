@@ -90,9 +90,11 @@ namespace LibN64
 			rdp_init();
 			rdp_sync(SYNC_PIPE);
 			rdp_set_default_clipping();
-			rdp_enable_texture_copy();
+			rdp_enable_primitive_fill();
+			rdp_enable_blend_fill(); 
 			rdp_attach_display(this->d); 
-			
+			rdp_sync(SYNC_PIPE);
+
 			graphics_fill_screen(d, 0x0);
 			graphics_set_color(0xFFFFFFFF, 0x0);
 		}
@@ -224,12 +226,12 @@ namespace LibN64
 	{
 		lActive = false;
 	}
-	void LibN64::Frame::DrawCircle(LibPos pos, int scale, unsigned c, bool isFilled) 
+	void LibN64::Frame::DrawCircle(LibPos pos, int scale, float cStepSize, unsigned c, bool isFilled) 
 	{
 		if(isFilled) 
 		{
 			for(float scaler = 0;scaler<=scale;scaler+=0.3) {
-				for(float angles =0;angles<25*scaler;angles+=0.1) 
+				for(float angles =0;angles<25*scaler;angles+=cStepSize) 
 					DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, c);
 			}
 		} else {
@@ -311,8 +313,8 @@ namespace LibN64
 		for(int index = 0;index<str.length();index++) 
 		{
 			if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
-			
-		 	Graphics::DrawSpriteStride(GetDisplay(), incx, incy, libFont, str[index]);
+
+		 	Graphics::DrawSpriteTransStride(GetDisplay(), incx, incy, libFont, str[index]);
 			incx += 8;
 		}
 	}
