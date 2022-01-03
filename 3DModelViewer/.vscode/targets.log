@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'LibN64.h', needed by 'build/3DViewer.o'.  Stop.
+ 
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Dec 28 10:23:40 2021
+# Make data base, printed on Sat Jan  1 14:35:53 2022
 
 # Variables
 
@@ -14,16 +16,14 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
-# environment
-NO_AT_BRIDGE = 1
 # makefile (from '/usr/local/include/n64.mk', line 21)
 N64_CXX = $(N64_GCCPREFIX)g++
-# makefile (from '/usr/local/include/n64.mk', line 40)
+# makefile (from '/usr/local/include/n64.mk', line 43)
 N64_TOOLFLAGS = --header $(N64_HEADERPATH) --title $(N64_ROM_TITLE)
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c5ca82b6-3731-40fb-aa04-d6177ff567da.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-07127ff5-728e-4ba6-a977-91ca72f60d5c.sock
 # environment
 VSCODE_CWD = /home/spencer
 # environment
@@ -109,8 +109,8 @@ XDG_SESSION_DESKTOP = xubuntu
 # makefile (from 'Makefile', line 6)
 N64_CXXFLAGS := -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing 
 # makefile (from 'build/CPPTesting.d', line 1)
-MAKEFILE_LIST := Makefile /usr/local/include/n64.mk build/CPPTesting.d
-# makefile (from '/usr/local/include/n64.mk', line 54)
+MAKEFILE_LIST := Makefile /usr/local/include/n64.mk build/3DViewer.d build/CPPTesting.d
+# makefile (from '/usr/local/include/n64.mk', line 57)
 ASFLAGS = -MMD    
 # environment
 SNAP_REEXEC = 
@@ -119,7 +119,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1990
+VSCODE_PID = 1831
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -129,7 +129,7 @@ CLUTTER_BACKEND = x11
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1185,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1185
+SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1255,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1255
 # automatic
 *F = $(notdir $*)
 # environment
@@ -180,7 +180,7 @@ SNAP = /snap/code/85
 SNAP_REVISION = 85
 # environment
 SNAP_REAL_HOME = /home/spencer
-# makefile (from '/usr/local/include/n64.mk', line 43)
+# makefile (from '/usr/local/include/n64.mk', line 46)
 N64_ED64ROMCONFIGFLAGS = $(if $(N64_ROM_SAVETYPE),--savetype $(N64_ROM_SAVETYPE)) $(if $(N64_ROM_RTC),--rtc)  $(if $(N64_ROM_REGIONFREE),--regionfree)
 # environment
 VSCODE_LOG_NATIVE = false
@@ -188,7 +188,7 @@ VSCODE_LOG_NATIVE = false
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
-# makefile (from '/usr/local/include/n64.mk', line 37)
+# makefile (from '/usr/local/include/n64.mk', line 40)
 N64_ASFLAGS = -mtune=vr4300 -march=vr4300 -Wa,--fatal-warnings
 # environment
 XDG_SEAT = seat0
@@ -242,13 +242,13 @@ SNAP_DATA = /var/snap/code/85
 SNAP_CONTEXT = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
 # makefile (from '/usr/local/include/n64.mk', line 15)
 N64_GCCPREFIX = $(N64_BINDIR)/mips64-elf-
-# makefile (from '/usr/local/include/n64.mk', line 38)
-N64_LDFLAGS = -L$(N64_LIBDIR) /home/spencer/libdragon/NEW/libdragon/libN64.a -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
+# makefile (from '/usr/local/include/n64.mk', line 41)
+N64_LDFLAGS = -L$(N64_LIBDIR) -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
 # environment
 _ = /snap/code/85/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from '/usr/local/include/n64.mk', line 52)
+# makefile (from '/usr/local/include/n64.mk', line 55)
 CFLAGS = -MMD     
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
@@ -278,6 +278,7 @@ SNAP_NAME = code
 GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
 # makefile (from '/usr/local/include/n64.mk', line 5)
 N64_ROM_SAVETYPE = 
+ 
 # environment
 XDG_SESSION_ID = c1
 # environment
@@ -290,7 +291,7 @@ PANEL_GDK_CORE_DEVICE_EVENTS = 0
 SNAP_VERSION = 899d46d8
 # default
 SUFFIXES := 
-# makefile (from '/usr/local/include/n64.mk', line 57)
+# makefile (from '/usr/local/include/n64.mk', line 60)
 N64_CFLAGS = -march=vr4300 -mtune=vr4300 -I$(N64_INCLUDEDIR) -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -std=gnu99
 # environment
 VSCODE_CLI = 1
@@ -300,7 +301,7 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 N64_AUDIOCONV = $(N64_BINDIR)/audioconv64
 # environment
 SNAP_COMMON = /var/snap/code/common
-# makefile (from '/usr/local/include/n64.mk', line 53)
+# makefile (from '/usr/local/include/n64.mk', line 56)
 CXXFLAGS = -MMD -std=c++20     
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/spencer
@@ -319,55 +320,55 @@ GDMSESSION = xubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=154/1024=15%, Rehash=0, Collisions=33/253=13%
+# Load=153/1024=15%, Rehash=0, Collisions=39/249=16%
 
 # Pattern-specific Variable Values
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 60)
+# makefile (from '/usr/local/include/n64.mk', line 63)
 # CC := $$(N64_CC)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 61)
+# makefile (from '/usr/local/include/n64.mk', line 64)
 # CXX := $$(N64_CXX)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 62)
+# makefile (from '/usr/local/include/n64.mk', line 65)
 # AS := $$(N64_AS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 63)
+# makefile (from '/usr/local/include/n64.mk', line 66)
 # LD := $$(N64_LD)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 64)
+# makefile (from '/usr/local/include/n64.mk', line 67)
 # CFLAGS := $$(N64_CFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 65)
+# makefile (from '/usr/local/include/n64.mk', line 68)
 # CXXFLAGS := $$(N64_CXXFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 66)
+# makefile (from '/usr/local/include/n64.mk', line 69)
 # ASFLAGS := $$(N64_ASFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 67)
+# makefile (from '/usr/local/include/n64.mk', line 70)
 # LDFLAGS := $$(N64_LDFLAGS)
 
 # 8 pattern-specific variable values
 # Directories
 
-# build (device 2066, inode 6332724): 8 files, no impossibilities.
-# . (device 2066, inode 6332223): 11 files, no impossibilities.
-# /usr/local/mips64-elf/lib (device 2066, inode 11034427): 32 files, no impossibilities so far.
+# build (device 2050, inode 6332724): 14 files, no impossibilities.
+# . (device 2050, inode 6332223): 11 files, no impossibilities.
+# /usr/local/mips64-elf/lib (device 2050, inode 11034427): 32 files, no impossibilities so far.
 
-# 51 files, no impossibilities in 3 directories.
+# 57 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
 %.z64: build/%.elf
-#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 72):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
 	@rm -f $@
@@ -383,18 +384,18 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 	$(N64_CHKSUM) $@ >/dev/null
 
 %.v64: %.z64
-#  recipe to execute (from '/usr/local/include/n64.mk', line 84):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 87):
 	@echo "    [V64] $@"
 	$(N64_OBJCOPY) -I binary -O binary --reverse-bytes=2 $< $@
 
 %.dfs:
-#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 91):
 	@mkdir -p $(dir $@)
 	@echo "    [DFS] $@"
 	$(N64_MKDFS) $@ $(<D) >/dev/null
 
 build/%.o: %.S
-#  recipe to execute (from '/usr/local/include/n64.mk', line 96):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 99):
 	@mkdir -p $(dir $@)
 	set -e; \
 	FILENAME="$(notdir $(basename $@))"; \
@@ -427,19 +428,19 @@ build/%.o: %.S
 	fi
 
 build/%.o: %.c
-#  recipe to execute (from '/usr/local/include/n64.mk', line 128):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 131):
 	@mkdir -p $(dir $@)
 	@echo "    [CC] $<"
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 build/%.o: %.cpp
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 136):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 %.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld
-#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 141):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
 	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
@@ -476,7 +477,7 @@ Makefile:
 # Not a target:
 3DViewer.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-28 10:23:17.784
+#  Last modified 2021-12-30 16:45:00.725214043
 #  File has been updated.
 #  Successfully updated.
 
@@ -496,7 +497,7 @@ clean:
 # Not a target:
 /usr/local/include/n64.mk:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-12 17:58:29.169277818
+#  Last modified 2021-12-29 14:57:14.122805971
 #  File has been updated.
 #  Successfully updated.
 
@@ -506,7 +507,6 @@ clean:
 #  Last modified 2021-12-11 17:55:52.768425801
 #  File has been updated.
 #  Successfully updated.
- 
 
 # Not a target:
 build/CPPTesting.d:
@@ -518,7 +518,7 @@ build/CPPTesting.d:
 # Not a target:
 /usr/local/mips64-elf/lib/libdragon.a:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-26 04:37:52.217124776
+#  Last modified 2022-01-01 05:05:09.417816978
 #  File has been updated.
 #  Successfully updated.
 
@@ -528,39 +528,20 @@ build/CPPTesting.d:
 #  Modification time never checked.
 #  File has not been updated.
 
-build/3DViewer.o: 3DViewer.cpp
+build/3DViewer.o: 3DViewer.cpp 3DViewer.cpp 3DViewer.h LibN64.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: '3DViewer'
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := build/3DViewer.o
-# automatic
-# * := 3DViewer
-# automatic
-# < := 3DViewer.cpp
-# automatic
-# + := 3DViewer.cpp
-# automatic
-# % := 
-# automatic
-# ^ := 3DViewer.cpp
-# automatic
-# ? := 3DViewer.cpp
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/24=12%
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+#  Last modified 2021-12-28 10:32:03.641543331
+#  File has not been updated.
+#  recipe to execute (from '/usr/local/include/n64.mk', line 136):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 # Not a target:
 LibN64.h:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
+#  Implicit rule search has been done.
+#  File does not exist.
 #  File has not been updated.
 
 all: 3DViewer.z64
@@ -568,10 +549,14 @@ all: 3DViewer.z64
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+3DViewer.h:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-28 10:29:34.744691734
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/10=0%
+#  Successfully updated.
 
 # Not a target:
 filesystem/data.txt:
@@ -590,12 +575,11 @@ CPPTesting.cpp:
 3DViewer.z64: build/3DViewer.elf build/3DViewer.dfs
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: '3DViewer'
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
+#  Last modified 2021-12-28 10:32:03.701543728
+#  File has not been updated.
 # variable set hash-table stats:
-# Load=1/32=3%, Rehash=0, Collisions=1/14=7%
-#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
+#  recipe to execute (from '/usr/local/include/n64.mk', line 72):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
 	@rm -f $@
@@ -607,22 +591,27 @@ CPPTesting.cpp:
 	fi
 	if [ ! -z "$(strip $(N64_ED64ROMCONFIGFLAGS))" ]; then \
 		$(N64_ED64ROMCONFIG) $(N64_ED64ROMCONFIGFLAGS) $@; \
+ 
 	fi
 	$(N64_CHKSUM) $@ >/dev/null
 
 build/3DViewer.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld build/3DViewer.o
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'build/3DViewer'
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
-#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+#  Last modified 2021-12-28 10:32:03.689543648
+#  File has not been updated.
+#  recipe to execute (from '/usr/local/include/n64.mk', line 141):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
 	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
 	$(N64_SIZE) -G $@
+
+# Not a target:
+build/3DViewer.d:
+#  Implicit rule search has been done.
+#  Last modified 2021-12-28 10:32:03.629543251
+#  File has been updated.
+#  Successfully updated.
 
 .PHONY: all clean
 #  Implicit rule search has not been done.
@@ -635,19 +624,19 @@ build/3DViewer.dfs: filesystem/data.txt
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=22/1024=2%, Rehash=0, Collisions=0/61=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/67=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 82 / storage = 1001 B / avg = 12 B
-# current buf: size = 8162 B / used = 1001 B / count = 82 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 89 / storage = 1096 B / avg = 12 B
+# current buf: size = 8162 B / used = 1096 B / count = 89 / avg = 12 B
 
-# strcache performance: lookups = 130 / hit rate = 36%
+# strcache performance: lookups = 143 / hit rate = 37%
 # hash-table stats:
-# Load=82/8192=1%, Rehash=0, Collisions=0/130=0%
-# Finished Make data base on Tue Dec 28 10:23:40 2021
+# Load=89/8192=1%, Rehash=0, Collisions=0/143=0%
+# Finished Make data base on Sat Jan  1 14:35:53 2022
 
  

@@ -45,10 +45,12 @@ namespace LibN64::DFS
 	template void Read<int*>(int*,unsigned,unsigned);
 	template void Read<char*>(char*,unsigned,unsigned);
 	template void Read<sprite_t*>(sprite_t*,unsigned,unsigned);
+	template void Read<Sprite*>(Sprite*,unsigned,unsigned);
 	
 	template int*      QuickRead<int*>(const char*);
 	template char*     QuickRead<char*>(const char*);
 	template sprite_t* QuickRead<sprite_t*>(const char*);
+	template Sprite* QuickRead<Sprite*>(const char*);
 };
 
 namespace LibN64 
@@ -154,6 +156,14 @@ namespace LibN64
 		d = display_lock();
 	}
 
+	void LibN64::Frame::SwitchBuffer(display_context_t buffer) 
+	{
+		display_close();
+		display_init(RESOLUTION_320x240, DEPTH_32_BPP, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
+		buffer = display_lock();
+		
+	}
+
 	unsigned LibN64::Frame::ScreenWidth() { return screenWidth; }
 	unsigned LibN64::Frame::ScreenHeight() { return screenHeight; }
 
@@ -161,9 +171,16 @@ namespace LibN64
 		return this->d;
 	}
 
-	void LibN64::Frame::DrawRect(LibPos pos, LibPos dimensions, unsigned  c)
+	void LibN64::Frame::DrawRect(LibPos pos, LibPos dimensions, unsigned  c, bool isFilled)
 	{
-		graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, c);
+		if(isFilled) {
+			graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, c);
+		} else {
+			DrawLine( pos, {pos.x + dimensions.x, pos.y}, c);
+			DrawLine({pos.x + dimensions.x, pos.y}, {pos.x+dimensions.x, pos.y + dimensions.y}, c);
+			DrawLine({pos.x+dimensions.x, pos.y+dimensions.y}, {pos.x, pos.y + dimensions.y}, c);
+			DrawLine({pos.x, pos.y + dimensions.y}, pos, c);
+		}
 	}
 
 	void LibN64::Frame::Begin() 
@@ -174,53 +191,66 @@ namespace LibN64
 
 		this->__OnInit_FreeFunction1();
 		this->__OnInit_FreeFunction2();
+	
 
 		while (lActive) {
+			timer_init();
+			float fTmp = timer_ticks();
 			this->__OnLoop_FreeFunction1();
 
 			this->FrameUpdate();
 
-			controller_scan();
-			controller_data keys;
-			switch(kstate)
-			{
-				case KeysHeld:    keys = get_keys_held(); break;
-				case KeysDown:    keys = get_keys_down(); break;
-				case KeysPressed: keys = get_keys_pressed(); break;
-				case KeysUp:      keys = get_keys_up(); break;
-				default: break;
-			};
+				controller_scan();
+				controller_data keys;
+				switch(kstate)
+				{
+					case KeysHeld:    keys = get_keys_held(); break;
+					case KeysDown:    keys = get_keys_down(); break;
+					case KeysPressed: keys = get_keys_pressed(); break;
+					case KeysUp:      keys = get_keys_up(); break;
+					default: break;
+				};
+				
+				if (keys.c[0].err == ERROR_NONE) {
+					int data = keys.c[0].data;
+				
+					if (keys.c[0].A)       { this->KeyAPressed();    }
+					if (keys.c[0].B)       { this->KeyBPressed();    }
+					if (keys.c[0].up)      { this->KeyDUPressed();   }
+					if (keys.c[0].down)    { this->KeyDDPressed();   }
+					if (keys.c[0].left)    { this->KeyDLPressed();   }
+					if (keys.c[0].right)   { this->KeyDRPressed();   }
+					if (keys.c[0].Z)       { this->KeyZPressed();    }
+					if (keys.c[0].start)   { this->KeyStartPressed();}
+					if (keys.c[0].C_up)    { this->KeyCUPressed();   }
+					if (keys.c[0].C_down)  { this->KeyCDPressed();   }
+					if (keys.c[0].C_left)  { this->KeyCLPressed();   }
+					if (keys.c[0].C_right) { this->KeyCRPressed();   }
+					if (keys.c[0].x)	   { this->KeyJoyXPressed(data & 0x0000FF00); } 
+					if (keys.c[0].y) 	   { this->KeyJoyYPressed(data & 0x000000FF); }
+				}
 			
-			if (keys.c[0].err == ERROR_NONE) {
-				int data = keys.c[0].data;
-			
-				if (keys.c[0].A)       { this->KeyAPressed();    }
-				if (keys.c[0].B)       { this->KeyBPressed();    }
-				if (keys.c[0].up)      { this->KeyDUPressed();   }
-				if (keys.c[0].down)    { this->KeyDDPressed();   }
-				if (keys.c[0].left)    { this->KeyDLPressed();   }
-				if (keys.c[0].right)   { this->KeyDRPressed();   }
-				if (keys.c[0].Z)       { this->KeyZPressed();    }
-				if (keys.c[0].start)   { this->KeyStartPressed();}
-				if (keys.c[0].C_up)    { this->KeyCUPressed();   }
-				if (keys.c[0].C_down)  { this->KeyCDPressed();   }
-				if (keys.c[0].C_left)  { this->KeyCLPressed();   }
-				if (keys.c[0].C_right) { this->KeyCRPressed();   }
-				if (keys.c[0].x)	   { this->KeyJoyXPressed(data & 0x0000FF00); } 
-				if (keys.c[0].y) 	   { this->KeyJoyYPressed(data & 0x000000FF); }
-			}
-		
-			//display_show(LibN64_Display);
-			if(uitype == CONSOLE) {
-				console_render();
-			}
-			this->__OnLoop_FreeFunction2();
+				//display_show(LibN64_Display);
+				if(uitype == CONSOLE) {
+					console_render();
+				}
+				fFrameTime = timer_ticks();
+
+				fFrameTime -= fTmp;
+				fFrameCounter += fFrameTime; 
+				fTotalTime += fFrameTime;
+				timer_close();
+
+				this->__OnLoop_FreeFunction2();
 		}
 	}
 
-	void LibN64::Frame::SetKeyState(KeyState k) {
-		kstate = k;
-	}
+	float LibN64::Frame::GetTotalTime() { return Ticks2Seconds(fTotalTime);}
+	float LibN64::Frame::GetFrameTime() { return Ticks2Seconds(fFrameTime);}
+	float LibN64::Frame::GetFrameRate() { return (1 / GetFrameTime()); }
+
+	void LibN64::Frame::SetControllerScanRate(float fRate) {controllerScanRate = fRate;}
+	void LibN64::Frame::SetKeyState(KeyState k) {kstate = k;}
 
 	void LibN64::Frame::Close() 
 	{
@@ -273,22 +303,37 @@ namespace LibN64
 		graphics_draw_sprite(this->d, pos.x, pos.y, spr);
 	}
 
-	void LibN64::Frame::DrawText(LibPos pos, const std::string buf, unsigned c) 
+	void LibN64::Frame::DrawText(LibPos pos, const std::string buf, unsigned forecolor, unsigned backcolor) 
 	{
-		graphics_set_color(c, 0);
-		graphics_draw_text(this->d, pos.x, pos.y, buf.c_str());
-		graphics_set_color(WHITE, 0);
+		if(forecolor != WHITE || backcolor != 0x0) {
+			graphics_set_color(forecolor, backcolor);
+			graphics_draw_text(this->d, pos.x, pos.y, buf.c_str());
+			graphics_set_color(WHITE, 0);
+		} else
+			graphics_draw_text(this->d, pos.x, pos.y, buf.c_str());
 	}
 
 
 	void LibN64::Frame::DrawTextFormat(LibPos pos,const std::string format, ...) {
 		va_list args;
 		va_start(args, format.c_str());
-		char buffer[300];
+		char *buffer = new char[300];
 		vsprintf(buffer, format.c_str(), args);
-		graphics_draw_text(d, pos.x, pos.y,buffer);
+		DrawText(pos, buffer);
 		va_end(args);	
+		delete buffer;
 	}
+
+	void LibN64::Frame::DrawTextFormat(LibPos pos, unsigned forecolor, unsigned backcolor, const std::string format, ...) {
+		va_list args;
+		va_start(args, format.c_str());
+		char *buffer = new char[300];
+		vsprintf(buffer, format.c_str(), args);
+		DrawText(pos, buffer, forecolor, backcolor);
+		va_end(args);	
+		delete buffer;
+	}
+
 
 	float LibN64::Frame::Ticks2Seconds(float t) 
 	{
@@ -307,14 +352,14 @@ namespace LibN64
 		}
 	}	
 
-	void LibN64::Frame::DrawTextCF(LibPos pos, const std::string str) {
+	void LibN64::Frame::DrawTextCF(LibPos pos, const std::string str, int color) {
 		int incx = pos.x;
 		int incy = pos.y;
 		for(int index = 0;index<str.length();index++) 
 		{
 			if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
 
-		 	Graphics::DrawSpriteTransStride(GetDisplay(), incx, incy, libFont, str[index]);
+		 	Graphics::DrawFont(GetDisplay(), incx, incy, color, libFont, str[index]);
 			incx += 8;
 		}
 	}
@@ -325,7 +370,7 @@ namespace LibN64
 		va_start(args, format.c_str());
 		char buffer[300];
 		vsprintf(buffer, format.c_str(), args);
-		DrawTextCF({pos.x, pos.y},buffer);
+		DrawTextCF(pos, buffer);
 		va_end(args);	
 	}
 

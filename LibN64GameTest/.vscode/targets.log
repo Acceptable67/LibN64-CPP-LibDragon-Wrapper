@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Dec 26 14:24:37 2021
+# Make data base, printed on Sat Jan  1 14:35:53 2022
 
 # Variables
 
@@ -16,12 +16,12 @@ GDK_BACKEND = x11
 LC_ALL = C
 # makefile (from '/usr/local/include/n64.mk', line 21)
 N64_CXX = $(N64_GCCPREFIX)g++
-# makefile (from '/usr/local/include/n64.mk', line 40)
+# makefile (from '/usr/local/include/n64.mk', line 43)
 N64_TOOLFLAGS = --header $(N64_HEADERPATH) --title $(N64_ROM_TITLE)
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-26ddfef5-6f9f-4027-b731-e4d3f96a89db.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-476767f7-cefd-4dbf-a6b0-d8107939de51.sock
 # environment
 VSCODE_CWD = /home/spencer
 # environment
@@ -108,7 +108,7 @@ XDG_SESSION_DESKTOP = xubuntu
 N64_CXXFLAGS := -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing 
 # makefile (from 'build/LibN64GameTest.d', line 1)
 MAKEFILE_LIST := Makefile /usr/local/include/n64.mk build/LibN64GameTest.d
-# makefile (from '/usr/local/include/n64.mk', line 54)
+# makefile (from '/usr/local/include/n64.mk', line 57)
 ASFLAGS = -MMD    
 # environment
 SNAP_REEXEC = 
@@ -117,7 +117,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1990
+VSCODE_PID = 1831
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -127,7 +127,7 @@ CLUTTER_BACKEND = x11
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1185,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1185
+SESSION_MANAGER = local/spencer-B450M-DS3H:@/tmp/.ICE-unix/1255,unix/spencer-B450M-DS3H:/tmp/.ICE-unix/1255
 # automatic
 *F = $(notdir $*)
 # environment
@@ -178,7 +178,7 @@ SNAP = /snap/code/85
 SNAP_REVISION = 85
 # environment
 SNAP_REAL_HOME = /home/spencer
-# makefile (from '/usr/local/include/n64.mk', line 43)
+# makefile (from '/usr/local/include/n64.mk', line 46)
 N64_ED64ROMCONFIGFLAGS = $(if $(N64_ROM_SAVETYPE),--savetype $(N64_ROM_SAVETYPE)) $(if $(N64_ROM_RTC),--rtc)  $(if $(N64_ROM_REGIONFREE),--regionfree)
 # environment
 VSCODE_LOG_NATIVE = false
@@ -186,7 +186,7 @@ VSCODE_LOG_NATIVE = false
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
-# makefile (from '/usr/local/include/n64.mk', line 37)
+# makefile (from '/usr/local/include/n64.mk', line 40)
 N64_ASFLAGS = -mtune=vr4300 -march=vr4300 -Wa,--fatal-warnings
 # environment
 XDG_SEAT = seat0
@@ -240,13 +240,13 @@ SNAP_DATA = /var/snap/code/85
 SNAP_CONTEXT = 8iVusK_UudP7suPRQenBwEFbwKUcsEIeVW6bJy6AEF4pkr2K0EbD
 # makefile (from '/usr/local/include/n64.mk', line 15)
 N64_GCCPREFIX = $(N64_BINDIR)/mips64-elf-
-# makefile (from '/usr/local/include/n64.mk', line 38)
-N64_LDFLAGS = -L$(N64_LIBDIR) /home/spencer/libdragon/NEW/libdragon/libN64.a -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
+# makefile (from '/usr/local/include/n64.mk', line 41)
+N64_LDFLAGS = -L$(N64_LIBDIR) -ldragon -lm -ldragonsys -Tn64.ld --gc-sections --wrap __do_global_ctors
 # environment
 _ = /snap/code/85/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from '/usr/local/include/n64.mk', line 52)
+# makefile (from '/usr/local/include/n64.mk', line 55)
 CFLAGS = -MMD     
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
@@ -276,7 +276,6 @@ SNAP_NAME = code
 GSETTINGS_SCHEMA_DIR = /snap/code/85/usr/share/glib-2.0/schemas
 # makefile (from '/usr/local/include/n64.mk', line 5)
 N64_ROM_SAVETYPE = 
- 
 # environment
 XDG_SESSION_ID = c1
 # environment
@@ -289,9 +288,10 @@ PANEL_GDK_CORE_DEVICE_EVENTS = 0
 SNAP_VERSION = 899d46d8
 # default
 SUFFIXES := 
-# makefile (from '/usr/local/include/n64.mk', line 57)
+# makefile (from '/usr/local/include/n64.mk', line 60)
 N64_CFLAGS = -march=vr4300 -mtune=vr4300 -I$(N64_INCLUDEDIR) -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -std=gnu99
 # environment
+ 
 VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
@@ -299,7 +299,7 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 N64_AUDIOCONV = $(N64_BINDIR)/audioconv64
 # environment
 SNAP_COMMON = /var/snap/code/common
-# makefile (from '/usr/local/include/n64.mk', line 53)
+# makefile (from '/usr/local/include/n64.mk', line 56)
 CXXFLAGS = -MMD -std=c++20     
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/spencer
@@ -318,55 +318,55 @@ GDMSESSION = xubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=153/1024=15%, Rehash=0, Collisions=29/242=12%
+# Load=153/1024=15%, Rehash=0, Collisions=43/257=17%
 
 # Pattern-specific Variable Values
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 60)
+# makefile (from '/usr/local/include/n64.mk', line 63)
 # CC := $$(N64_CC)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 61)
+# makefile (from '/usr/local/include/n64.mk', line 64)
 # CXX := $$(N64_CXX)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 62)
+# makefile (from '/usr/local/include/n64.mk', line 65)
 # AS := $$(N64_AS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 63)
+# makefile (from '/usr/local/include/n64.mk', line 66)
 # LD := $$(N64_LD)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 64)
+# makefile (from '/usr/local/include/n64.mk', line 67)
 # CFLAGS := $$(N64_CFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 65)
+# makefile (from '/usr/local/include/n64.mk', line 68)
 # CXXFLAGS := $$(N64_CXXFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 66)
+# makefile (from '/usr/local/include/n64.mk', line 69)
 # ASFLAGS := $$(N64_ASFLAGS)
 
 %.z64 :
-# makefile (from '/usr/local/include/n64.mk', line 67)
+# makefile (from '/usr/local/include/n64.mk', line 70)
 # LDFLAGS := $$(N64_LDFLAGS)
 
 # 8 pattern-specific variable values
 # Directories
 
-# build (device 2066, inode 5392380): 8 files, no impossibilities.
-# . (device 2066, inode 5392472): 13 files, no impossibilities.
-# /usr/local/mips64-elf/lib (device 2066, inode 11034427): 32 files, no impossibilities so far.
+# build (device 2050, inode 5373969): 8 files, no impossibilities.
+# . (device 2050, inode 5392472): 12 files, no impossibilities.
+# /usr/local/mips64-elf/lib (device 2050, inode 11034427): 32 files, no impossibilities so far.
 
-# 53 files, no impossibilities in 3 directories.
+# 52 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
 %.z64: build/%.elf
-#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 72):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
 	@rm -f $@
@@ -382,18 +382,18 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 	$(N64_CHKSUM) $@ >/dev/null
 
 %.v64: %.z64
-#  recipe to execute (from '/usr/local/include/n64.mk', line 84):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 87):
 	@echo "    [V64] $@"
 	$(N64_OBJCOPY) -I binary -O binary --reverse-bytes=2 $< $@
 
 %.dfs:
-#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 91):
 	@mkdir -p $(dir $@)
 	@echo "    [DFS] $@"
 	$(N64_MKDFS) $@ $(<D) >/dev/null
 
 build/%.o: %.S
-#  recipe to execute (from '/usr/local/include/n64.mk', line 96):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 99):
 	@mkdir -p $(dir $@)
 	set -e; \
 	FILENAME="$(notdir $(basename $@))"; \
@@ -426,19 +426,19 @@ build/%.o: %.S
 	fi
 
 build/%.o: %.c
-#  recipe to execute (from '/usr/local/include/n64.mk', line 128):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 131):
 	@mkdir -p $(dir $@)
 	@echo "    [CC] $<"
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 build/%.o: %.cpp
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 136):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 %.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld
-#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+#  recipe to execute (from '/usr/local/include/n64.mk', line 141):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
 	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
@@ -468,13 +468,31 @@ Makefile:
 #  File has been updated.
 #  Successfully updated.
 
-build/LibN64GameTest.o: LibN64GameTest.cpp LibN64GameTest.cpp LibN64.h LibN64GameTest.h
+build/LibN64GameTest.o: LibN64GameTest.cpp LibN64GameTest.cpp LibN64GameTest.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'LibN64GameTest'
-#  Last modified 2021-12-26 05:20:51.78915749
+#  Last modified 2022-01-01 04:41:17.710537595
 #  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 133):
+#  Needs to be updated (-q is set).
+# automatic
+# @ := build/LibN64GameTest.o
+# automatic
+# * := LibN64GameTest
+# automatic
+# < := LibN64GameTest.cpp
+# automatic
+# + := LibN64GameTest.cpp LibN64GameTest.cpp LibN64GameTest.h
+# automatic
+# % := 
+# automatic
+# ^ := LibN64GameTest.cpp LibN64GameTest.h
+# automatic
+# ? := LibN64GameTest.cpp
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/24=12%
+#  recipe to execute (from '/usr/local/include/n64.mk', line 136):
 	@mkdir -p $(dir $@)
 	@echo "    [CXX] $<"
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
@@ -487,7 +505,7 @@ build/LibN64GameTest.o: LibN64GameTest.cpp LibN64GameTest.cpp LibN64.h LibN64Gam
 # Not a target:
 build/LibN64GameTest.d:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-26 05:20:51.785157423
+#  Last modified 2022-01-01 04:41:17.706537351
 #  File has been updated.
 #  Successfully updated.
 
@@ -502,7 +520,7 @@ clean:
 # Not a target:
 /usr/local/include/n64.mk:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-12 17:58:29.169277818
+#  Last modified 2021-12-29 14:57:14.122805971
 #  File has been updated.
 #  Successfully updated.
 
@@ -516,7 +534,7 @@ clean:
 # Not a target:
 /usr/local/mips64-elf/lib/libdragon.a:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-26 04:37:52.217124776
+#  Last modified 2022-01-01 05:05:09.417816978
 #  File has been updated.
 #  Successfully updated.
 
@@ -526,39 +544,30 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-LibN64.h:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-22 15:59:38.493266
-#  File has been updated.
-#  Successfully updated.
-
 all: LibN64GameTest.z64
 #  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/10=0%
 
 build/LibN64GameTest.dfs: filesystem/data.txt
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'build/LibN64GameTest'
-#  Last modified 2021-12-22 18:27:57.088816788
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 88):
-	@mkdir -p $(dir $@)
-	@echo "    [DFS] $@"
-	$(N64_MKDFS) $@ $(<D) >/dev/null
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 build/LibN64GameTest.elf: /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a /usr/local/mips64-elf/lib/n64.ld build/LibN64GameTest.o
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'build/LibN64GameTest'
-#  Last modified 2021-12-26 05:20:51.841158339
+#  Last modified 2022-01-01 04:41:17.762540772
 #  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from '/usr/local/include/n64.mk', line 138):
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
+#  recipe to execute (from '/usr/local/include/n64.mk', line 141):
 	@mkdir -p $(dir $@)
 	@echo "    [LD] $@"
 	$(CXX) -o $@ $(filter-out $(N64_LIBDIR)/n64.ld,$^) -lc $(patsubst %,-Wl$(COMMA)%,$(LDFLAGS)) -Wl,-Map=$(BUILD_DIR)/$(notdir $(basename $@)).map
@@ -569,12 +578,12 @@ LibN64GameTest.z64: N64_ROM_TITLE = "LibN64GameTest Test"
 LibN64GameTest.z64: build/LibN64GameTest.elf build/LibN64GameTest.dfs
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'LibN64GameTest'
-#  Last modified 2021-12-26 05:20:51.849158469
+#  Last modified 2022-01-01 04:41:17.778541749
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=1/32=3%, Rehash=0, Collisions=0/2=0%
-#  recipe to execute (from '/usr/local/include/n64.mk', line 69):
+# Load=1/32=3%, Rehash=0, Collisions=1/14=7%
+#  recipe to execute (from '/usr/local/include/n64.mk', line 72):
 	@echo "    [Z64] $@"
 	$(N64_OBJCOPY) -O binary $< $<.bin
 	@rm -f $@
@@ -589,18 +598,17 @@ LibN64GameTest.z64: build/LibN64GameTest.elf build/LibN64GameTest.dfs
 	fi
 	$(N64_CHKSUM) $@ >/dev/null
 
- 
 # Not a target:
 filesystem/data.txt:
-#  Implicit rule search has been done.
-#  Last modified 2021-12-12 06:54:15.83455744
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
+ 
 # Not a target:
 LibN64GameTest.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-26 05:20:50.981144289
+#  Last modified 2022-01-01 04:54:51.22491632
 #  File has been updated.
 #  Successfully updated.
 
@@ -610,19 +618,19 @@ LibN64GameTest.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=20/1024=2%, Rehash=0, Collisions=0/60=0%
+# Load=19/1024=2%, Rehash=0, Collisions=0/57=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 80 / storage = 1052 B / avg = 13 B
-# current buf: size = 8162 B / used = 1052 B / count = 80 / avg = 13 B
+# strcache buffers: 1 (0) / strings = 79 / storage = 1043 B / avg = 13 B
+# current buf: size = 8162 B / used = 1043 B / count = 79 / avg = 13 B
 
-# strcache performance: lookups = 133 / hit rate = 39%
+# strcache performance: lookups = 130 / hit rate = 39%
 # hash-table stats:
-# Load=80/8192=1%, Rehash=0, Collisions=0/133=0%
-# Finished Make data base on Sun Dec 26 14:24:37 2021
+# Load=79/8192=1%, Rehash=0, Collisions=0/130=0%
+# Finished Make data base on Sat Jan  1 14:35:53 2022
 
  

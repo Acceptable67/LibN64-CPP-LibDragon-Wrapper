@@ -8,50 +8,41 @@
 #include <bitset>
 #include <algorithm>
 #include <list>
-#include <chrono>
 #include <ctime>
 
-float fElapsedTime = 0.2;
 void ModelViewer::KeyAPressed() {
 	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
+		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fFrameTime);
 		vCamera = Vector_Add(vCamera, vForward);
 }
 void ModelViewer::KeyBPressed() {
 	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
+		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
     	vCamera = Vector_Sub(vCamera, vForward);
 }
 
 void ModelViewer::KeyZPressed() {
 	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
-		fYaw -= 2.0f * fElapsedTime;
+		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
+		fYaw -= 2.0f * GetFrameTime();
 	
 }
 
-/*void ModelViewer::KeyZPressed() {
-	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
-		fYaw += 2.0f * fElapsedTime;
-	
-}*/
-
 void ModelViewer::KeyDUPressed() {
-	vCamera.y += 8.0f * fElapsedTime;	// Travel Upwards
+	vCamera.y += 8.0f * GetFrameTime();	// Travel Upwards
 	
 }
 void ModelViewer::KeyDDPressed() {
-			vCamera.y -= 8.0f * fElapsedTime;	// Travel Downwards
+			vCamera.y -= 8.0f * GetFrameTime();	// Travel Downwards
 
 }
 void ModelViewer::KeyDLPressed() {
-			vCamera.x -= 8.0f * fElapsedTime;	// Travel Along X-Axis
+			vCamera.x -= 8.0f * GetFrameTime();	// Travel Along X-Axis
 		
 }
 void ModelViewer::KeyDRPressed() {
 
-			vCamera.x += 8.0f * fElapsedTime;	// Travel Along X-Axis
+			vCamera.x += 8.0f * GetFrameTime();	// Travel Along X-Axis
 }
 struct Box {
    public:
@@ -61,7 +52,7 @@ struct Box {
       Box(int _x, int _y, int w, int h) : coords({_x,_y}), width(w), height(h) {};
 
       inline void Draw(LibN64::Frame& r) {
-       		graphics_draw_box(r.d, coords.x,coords.y, width, height, WHITE);
+       		r.DrawRect(coords, {width, height},  WHITE);
       }
 };
 
@@ -70,7 +61,7 @@ void ModelViewer::FrameUpdate()
 
 		// makes this a bit redundant
 		mat4x4 matRotZ, matRotX;
-		//fTheta += 1.0f * fElapsedTime; // Uncomment to spin me right round baby right round
+		//fTheta += 1.0f * GetFrameTime(); // Uncomment to spin me right round baby right round
 		matRotZ = Matrix_MakeRotationZ(fTheta * 0.5f);
 		matRotX = Matrix_MakeRotationX(fTheta);
 
@@ -112,7 +103,7 @@ void ModelViewer::FrameUpdate()
 			line2  = Vector_Sub(triTransformed.p[2], triTransformed.p[0]);
 			normal = Vector_CrossProduct(line1, line2);
 			normal = Vector_Normalise(normal);
-	
+	   
 			vec3d vCameraRay = Vector_Sub(triTransformed.p[0], vCamera);
 
 			// If ray is aligned with normal, then triangle is visible
@@ -210,10 +201,8 @@ void ModelViewer::FrameUpdate()
 			}
 
 
-			// Draw the transformed, viewed, clipped, projected, sorted, clipped triangles
 			for (auto &t : listTriangles)
 			{
-				
 				DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y);
 			}
 		}
@@ -221,21 +210,11 @@ void ModelViewer::FrameUpdate()
 
 }
 
-double inc;
 auto ModelViewer::__OnLoop_FreeFunction1() -> void 
 {
-		if(inc > 0) {
+		if(GetFrameTime() >= 0.07) {
 			ClearScreenRDP();
-			inc = 0;
 		}
-}
-
-auto ModelViewer::__OnInit_FreeFunction1() -> void
-{
-		timer_init();
-		new_timer(TIMER_TICKS(200000), TF_CONTINUOUS, [](int ovfl) {
-			inc+=1;
-		});
 }
 
 auto ModelViewer::OnCreate() -> void

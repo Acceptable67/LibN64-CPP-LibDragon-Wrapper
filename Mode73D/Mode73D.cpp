@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LibN64.h"
+#include <LibN64.h>
 #include "Sprites.h"
 
 /*test of pseudo-3D planes on LibDragon.*/
@@ -19,16 +19,12 @@ public:
 	float fFoVHalf;
 
 	int nMapSize;
-
-	virtual void __OnLoop_FreeFunction1()
-	{
-		timer_init();
-	}
-
+	
 	void DrawMode() 
 	{
 		//ClearScreen();
-	
+		
+		DrawRDPRect({0,0},{320,100}, CYAN);
 		float fFarX1 = fWorldX + cosf(fWorldA - fFoVHalf) * fFar;
 		float fFarY1 = fWorldY + sinf(fWorldA - fFoVHalf) * fFar;
 
@@ -58,8 +54,8 @@ public:
 					float fSampleY = (fEndY - fStartY) * fSampleWidth + fStartY;
 
 					/*extend map forever*/
-					//fSampleX = fmod(fSampleX, 1.0f);
-					//fSampleY = fmod(fSampleY, 1.0f);
+					fSampleX = fmod(fSampleX, 1.0f);
+					fSampleY = fmod(fSampleY, 1.0f);
 
 					auto sx = (int)(fSampleX * (float)320.00);
 					auto sy = (int)(fSampleY * (float)240.00 - 1.0f);
@@ -67,10 +63,10 @@ public:
 
 					if ((sy * 320 + sx) < (int)sizeof(bgdata)) {
 						int col = bgdata[sy * 320 + sx];
-						DrawBox({x, y + (ScreenHeight() - 160)}, 1, col);
+						DrawPixel({x, y + (ScreenHeight() - 160)},  col);
 					}
 
-					DrawBox({x, (ScreenHeight() - 160) - y}, 1, CYAN);
+					//DrawPixel({x, (ScreenHeight() - 160) - y}, CYAN);
 			}
 		}
 
@@ -79,8 +75,7 @@ public:
 
 
 		
-		DrawTextFormat({20, 25},"[Angle] %0.2f\n[F] %0.2f\n[N] %0.2f", fWorldA, fFar, fNear);
-		DrawTextFormat({20, 55},"[X] %0.2f [Y] %0.2f\n[FoV] %0.2f", fWorldX, fWorldY, fFoVHalf);
+
 	}
 
 private:
@@ -150,7 +145,7 @@ private:
 };
 
 int main(void) {
-	Mode7Test n64g(RESOLUTION_320x240, DEPTH_32_BPP, ANTIALIAS_RESAMPLE, Frame::UIType::GUI);
+	Mode7Test n64g(RESOLUTION_256x240, DEPTH_32_BPP, ANTIALIAS_RESAMPLE, Frame::UIType::GUI);
 	n64g.Begin();
 
 	return 0;

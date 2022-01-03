@@ -10,7 +10,7 @@
 
 #include <functional>
 
-#include "LibN64.h"
+#include <LibN64.h>
 
 using namespace LibN64;
 using namespace std;
@@ -20,7 +20,7 @@ using namespace std;
 class ModelViewer : public Frame  {
 private:	
 	struct vec3d
-	{
+	{ 
 		float x = 0, y = 0, z = 0;
 		float w = 1; // Need a 4th term to perform sensible matrix vector multiplication
 	};
@@ -398,5 +398,4 @@ private:
    virtual void KeyBPressed() override;
 
    virtual void __OnLoop_FreeFunction1() override;
-   virtual void __OnInit_FreeFunction1() override;
 };

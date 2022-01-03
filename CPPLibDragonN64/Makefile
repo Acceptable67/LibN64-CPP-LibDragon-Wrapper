@@ -8,7 +8,6 @@ CXXFLAGS +=
 all: CPPLibDragonN64.z64
 
 $(BUILD_DIR)/CPPLibDragonN64.elf: \
-	$(BUILD_DIR)/LibVector.o \
 	$(BUILD_DIR)/CPPLibDragonN64.o \
 	$(BUILD_DIR)/LibString.o \
 	

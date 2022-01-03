@@ -20,6 +20,7 @@ class CPPTest : public Frame  {
  public:
    CPPTest(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : Frame(res, dep, aa, ui) {}
 
+	int shapesDrawn;
 protected:
 	sprite_t *font = nullptr;
 
@@ -28,27 +29,14 @@ protected:
 		LoadCustomFont("/font.sprite");
 	}
 	
+
 	void FrameUpdate() override 
 	{ 
-		if(timer >= 0.01) {
-			//ClearScreenRDP();
-			timer = 0;
-		}
-		DrawCircle({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0}, rand() % 16 + 1, rand() % 6 + 2, rand() % 0xFFFFFFFF);
-		DrawRect({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0}, {rand() % 40 + 20, rand() % 40 + 20}, rand() % 0xFFFFFFFF);
-
+		DrawCircle({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0},  rand() % 16 + 1,  rand() % 6  + 2,  rand() % 0xFFFFFFFF, rand() % 2);
+		DrawRect  ({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0}, {rand() % 30 + 20, rand() % 30 + 20}, rand() % 0xFFFFFFFF);
+		shapesDrawn+=2;
 	}
 
-	void __OnLoop_FreeFunction1() override {
-			timer_init();
-			new_timer(TIMER_TICKS(10000), TF_CONTINUOUS, [](int ovfl) {
-				timer+=0.001;
-			});
-	}
-
-	void __OnLoop_FreeFunction2() override {
-			timer_close();
-	}
 
 };
 

@@ -11,22 +11,8 @@
 
 using namespace std;
 
-//char *p = (char*)'c';
-std::shared_ptr<char> p = std::make_shared<char>('c');
-
-void incNum(CPPTest& r) {
-	//r.privvar = 2;
-}
-
-Frame::LibPos cirPos = {10,40};
-long start, end;
-
-volatile double t2 = 0;
-
 float fElapsedTime = 0.020000;
 
-int num = 0;
-int lx = 40, ly = 10, activeshape = 0;
 void CPPTest::KeyAPressed() {
 vecBullets.push_back({ 0, player.x, player.y, 50.0f * sinf(player.angle), -50.0f * cosf(player.angle), 100.0f });
 }
@@ -89,7 +75,6 @@ void CPPTest::FrameUpdate()
 
 		ClearScreen();	
 
-		// Any new asteroids created after collision detection are stored
 		player.x += player.dx * fElapsedTime;
 		player.y += player.dy * fElapsedTime;
 		// Keep ship in gamespace
@@ -103,7 +88,6 @@ void CPPTest::FrameUpdate()
 		// Update and draw asteroids
 		for (auto &a : vecAsteroids)
 		{
-			// VELOCITY changes POSITION (with respect to time)
 			a.x += a.dx * fElapsedTime;
 			a.y += a.dy * fElapsedTime;
 			a.angle += 0.5f * fElapsedTime; // Add swanky rotation :)
@@ -111,13 +95,9 @@ void CPPTest::FrameUpdate()
 			// Asteroid coordinates are kept in game space (toroidal mapping)
 			WrapCoordinates(a.x, a.y, a.x, a.y);
 
-			// Draw Asteroids
 			DrawWireFrameModel(vecModelAsteroid, a.x, a.y, a.angle, (float)a.nSize, YELLOW);	
 		}
 
-		// Any new asteroids created after collision detection are stored
-		// in a temporary vector, so we don't interfere with the asteroids
-		// vector iterator in the for(auto)
 		vector<sSpaceObject> newAsteroids;
 
 // Update Bullets
@@ -134,9 +114,6 @@ void CPPTest::FrameUpdate()
 				//if (IsPointInsideRectangle(a.x, a.y, a.x + a.nSize, a.y + a.nSize, b.x, b.y))
 				if(IsPointInsideCircle(a.x, a.y, a.nSize, b.x, b.y))
 				{
-					// Asteroid Hit - Remove bullet
-					// We've already updated the bullets, so force bullet to be offscreen
-					// so it is cleaned up by the removal algorithm. 
 					b.x = -100;
 
 					// Create child asteroids

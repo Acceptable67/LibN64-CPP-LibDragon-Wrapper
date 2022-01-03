@@ -1,27 +1,9 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/3DModelViewer'
-mkdir -p build/
-echo "    [CXX] 3DViewer.cpp"
-/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing  -o build/3DViewer.o 3DViewer.cpp
-mkdir -p build/
-echo "    [LD] build/3DViewer.elf"
-/usr/local/bin/mips64-elf-g++ -o build/3DViewer.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/3DViewer.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,/home/spencer/libdragon/NEW/libdragon/libN64.a -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/3DViewer.map
-/usr/local/bin/mips64-elf-size -G build/3DViewer.elf
 mkdir -p build/
 echo "    [DFS] build/3DViewer.dfs"
 /usr/local/bin/mkdfs build/3DViewer.dfs filesystem >/dev/null
-echo "    [Z64] 3DViewer.z64"
-/usr/local/bin/mips64-elf-objcopy -O binary build/3DViewer.elf build/3DViewer.elf.bin
-rm -f 3DViewer.z64
-DFS_FILE="build/3DViewer.dfs"; \
-if [ -z "$DFS_FILE" ]; then \
-	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "3DViewer Test" --output 3DViewer.z64 build/3DViewer.elf.bin; \
-else \
-	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "3DViewer Test" --output 3DViewer.z64 build/3DViewer.elf.bin --offset 1M "$DFS_FILE"; \
-fi
-if [ ! -z "" ]; then \
-	/usr/local/bin/ed64romconfig     3DViewer.z64; \
-fi
-/usr/local/bin/chksum64 3DViewer.z64 >/dev/null
 make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/3DModelViewer'
+ 
+make: *** No rule to make target 'LibN64.h', needed by 'build/3DViewer.o'.
  
