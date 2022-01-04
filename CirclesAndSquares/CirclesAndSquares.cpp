@@ -26,7 +26,8 @@ protected:
 
 	void OnCreate() override 
 	{
-		LoadCustomFont("/font.sprite");
+		//LoadCustomFont("/font.sprite");
+		
 	}
 	
 
@@ -34,7 +35,8 @@ protected:
 	{ 
 		DrawCircle({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0},  rand() % 16 + 1,  rand() % 6  + 2,  rand() % 0xFFFFFFFF, rand() % 2);
 		DrawRect  ({rand() % ScreenWidth() + 0, rand() % ScreenHeight() + 0}, {rand() % 30 + 20, rand() % 30 + 20}, rand() % 0xFFFFFFFF);
-		shapesDrawn+=2;
+		//shapesDrawn+=2;
+	
 	}
 
 

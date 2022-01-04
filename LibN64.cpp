@@ -85,10 +85,9 @@ namespace LibN64
 
 		if(ui == GUI) 
 		{
-			display_init(res, dep, 2, GAMMA_NONE, aa);
+			display_init(res, dep, 3, GAMMA_NONE, aa);
 
-			while (!(d = display_lock()));
-
+			while(!(d = display_lock()));
 			rdp_init();
 			rdp_sync(SYNC_PIPE);
 			rdp_set_default_clipping();
@@ -96,6 +95,7 @@ namespace LibN64
 			rdp_enable_blend_fill(); 
 			rdp_attach_display(this->d); 
 			rdp_sync(SYNC_PIPE);
+
 
 			graphics_fill_screen(d, 0x0);
 			graphics_set_color(0xFFFFFFFF, 0x0);
@@ -143,8 +143,9 @@ namespace LibN64
 
 	void LibN64::Frame::ClearScreenRDP() 
 	{
-			if(uitype == GUI) 
+			if(uitype == GUI) {
 				DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, 0x0);
+			}
 	}
 
 	void LibN64::Frame::SetScreen(resolution_t resol, bitdepth_t bd)
@@ -154,14 +155,6 @@ namespace LibN64
 		display_close();
 		display_init(resol, bd, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
 		d = display_lock();
-	}
-
-	void LibN64::Frame::SwitchBuffer(display_context_t buffer) 
-	{
-		display_close();
-		display_init(RESOLUTION_320x240, DEPTH_32_BPP, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
-		buffer = display_lock();
-		
 	}
 
 	unsigned LibN64::Frame::ScreenWidth() { return screenWidth; }
@@ -185,19 +178,29 @@ namespace LibN64
 
 	void LibN64::Frame::Begin() 
 	{	
-		if(this->d) 
+		if(!bDLInLoop) 
 			display_show(d);
-		this->OnCreate();
+			this->OnCreate();
+	//	if(!bDLInLoop) 
+			//d = display_lock();
+	
 
 		this->__OnInit_FreeFunction1();
 		this->__OnInit_FreeFunction2();
 	
-
+		
 		while (lActive) {
+			if(bDLInLoop) {
+				d = display_lock();
+				rdp_attach_display(d);
+				
+			}
+
 			timer_init();
 			float fTmp = timer_ticks();
 			this->__OnLoop_FreeFunction1();
-
+		
+		
 			this->FrameUpdate();
 
 				controller_scan();
@@ -230,7 +233,6 @@ namespace LibN64
 					if (keys.c[0].y) 	   { this->KeyJoyYPressed(data & 0x000000FF); }
 				}
 			
-				//display_show(LibN64_Display);
 				if(uitype == CONSOLE) {
 					console_render();
 				}
@@ -239,11 +241,13 @@ namespace LibN64
 				fFrameTime -= fTmp;
 				fFrameCounter += fFrameTime; 
 				fTotalTime += fFrameTime;
-				timer_close();
-
+				timer_close();	
+				if(bDLInLoop) display_show(d);
 				this->__OnLoop_FreeFunction2();
 		}
 	}
+
+	void  LibN64::Frame::SetDLInLoop() { bDLInLoop = true; }
 
 	float LibN64::Frame::GetTotalTime() { return Ticks2Seconds(fTotalTime);}
 	float LibN64::Frame::GetFrameTime() { return Ticks2Seconds(fFrameTime);}

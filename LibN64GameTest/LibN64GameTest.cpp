@@ -6,8 +6,6 @@
 #include <memory>
 #include "LibN64GameTest.h"
 
-extern void *__safe_buffer[];
-
 #define DARK_GREY graphics_make_color(136, 138, 137, 255)
 #define VERY_DARK_GREY graphics_make_color(77, 79, 77, 255)
 
@@ -90,7 +88,7 @@ public:
 			float fRayAngle = (fPlayerA - fFOV / 2.0f) + ((float)x / (float)ScreenWidth()) * fFOV;
 
 			// Find distance to wall
-			float fStepSize = 0.1f;	 
+			float fStepSize = 0.15f;	 
 			float fDistanceToWall = 0.0f; //                                    
 			float fDistanceToObj = 0.0f;
 
@@ -102,7 +100,7 @@ public:
 			float fEyeY = cosf(fRayAngle);
 
 			float fSampleX = 0.0f;
-		
+
 			while (!bHitWall && fDistanceToWall < fDepth)
 			{
 				fDistanceToWall += fStepSize;
@@ -165,7 +163,8 @@ public:
 				}
 			}
 
-		
+		        
+             //ClearScreenRDP();   
 			// Calculate distance to ceiling and floor
 			int nCeiling = (float)(ScreenHeight() / 2.0) - ScreenHeight() / ((float)fDistanceToWall);
 			int nObjCeiling = (float)(ScreenHeight() / 2.0) - ScreenHeight() / ((float)fDistanceToObj);
@@ -210,7 +209,7 @@ public:
 					else if(b < 0.9)    DrawPixel({x, y}, 0x303030FF);
 			
 				}
-			
+
 				if (y > nObjCeiling && y <= nObjFloor) {
 					if (fDistanceToObj > 2 && fDistanceToObj < 12)
 					{
@@ -222,6 +221,7 @@ public:
 
 		}
 
+		
 			//check obj picked up
 			if(map[(int)fPlayerX * nMapWidth + (int)fPlayerY] == '&') {
 				Graphics::SetColor(ORANGE, SKY_BLUE);
@@ -232,7 +232,6 @@ public:
 			DrawTextFormat({0,(int)(ScreenHeight()/2)+40},
 			"\nX: %0.2f (%d)\nY: %0.2f (%d)\nA: %0.2f FrameRate %0.2f", fPlayerX, (int)fPlayerX, fPlayerY, (int)fPlayerY, fPlayerA, GetFrameRate());
 
-			
 	}
 	
 	virtual void OnCreate() override
@@ -251,8 +250,7 @@ public:
 		wiz   = DFS::QuickRead<sprite_t*>("/wiz.sprite");
 
 		SetKeyState(KeysPressed);
-		DrawMode();
-
+	
 	
 	}
 

@@ -159,7 +159,7 @@ protected:
 
 	void FrameUpdate() override 
 	{ 
-
+		ClearScreenRDP();
 		DrawGrid();
 		DrawMenu();
 		DrawShapes();
@@ -168,7 +168,7 @@ protected:
 	void OnCreate() override 
 	{
 		LoadCustomFont("/font.sprite");
-		SetKeyState(KeyState::KeysDown);
+		SetDLInLoop();
 	}
 
 	virtual void KeyZPressed() override {
@@ -199,17 +199,30 @@ protected:
 		findShape();
 	}
 
+	int roundUp(int numToRound, int multiple)
+	{
+		if (multiple == 0)
+			return numToRound;
+
+		int remainder = numToRound % multiple;
+		if (remainder == 0)
+			return numToRound;
+
+		return numToRound + multiple - remainder;
+	}
+
 	virtual void KeyJoyXPressed(int direction) override 
 	{
 		switch(direction) 
 	   {
 		   case JoyLeft: {
-			   shapePos.x-=20;
-			ClearScreenRDP();
+			   shapePos.x-=1;
+			
+			
 				} break;
 		   case JoyRight: {
-			   shapePos.x+=20;
-			ClearScreenRDP();
+			   shapePos.x+=1;
+
 			} break;
 			default: break;
 		}
@@ -221,14 +234,14 @@ protected:
 	   {
 		   case Joystick::JoyUp : 
 		   {
-			   	shapePos.y-=15;
-			   	ClearScreenRDP();
+			   	shapePos.y-=1;;
+			   
 	
 		   } break;
 		   case Joystick::JoyDown: 
 		   {
-			    shapePos.y+=15;
-			   	ClearScreenRDP();
+			    shapePos.y+=1;
+			 
 		
 		   } break;
 	   }

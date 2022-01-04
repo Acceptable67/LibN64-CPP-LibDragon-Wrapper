@@ -83,7 +83,7 @@ namespace LibN64
 			void CheckAndSwitchRes(resolution_t r);
 
 		protected:
-			display_context_t d, d2;
+			display_context_t d;
 			sprite_t* 		  libFont = nullptr;
 			std::string 	  GameTitle = "Default";
 
@@ -94,6 +94,7 @@ namespace LibN64
 			float   fFrameRate;
 			float   fFrameCounter;
 			int 	uitype;
+			bool    bDLInLoop = false;
 			float   controllerScanRate = 0.02;
 		
 		public:
@@ -133,9 +134,9 @@ namespace LibN64
 			void 	 	 ClearScreenRDP();
 			void		 SetControllerScanRate(float fRate);
 			void 	 	 SetScreen     (resolution_t res, bitdepth_t bd); 
-			void         SwitchBuffer  (display_context_t buffer);
 	display_context_t    GetDisplay    ();
 			void		 SetKeyState   (KeyState k);
+			void 		 SetDLInLoop   ();
 			unsigned 	 ScreenWidth   ();
 			unsigned 	 ScreenHeight  ();
 			void 	     DrawTextFormat(LibPos pos, const std::string format, ...);

@@ -11,17 +11,17 @@
 
 using namespace std;
 
-float fElapsedTime = 0.020000;
+float fElapsedTime = 0.040000;
 
 void CPPTest::KeyAPressed() {
 vecBullets.push_back({ 0, player.x, player.y, 50.0f * sinf(player.angle), -50.0f * cosf(player.angle), 100.0f });
 }
 void CPPTest::KeyBPressed() {
-    num--;
+   
 }
 
 void CPPTest::KeyZPressed() {
-	activeshape = ~activeshape & 1;
+	
 }
 
 void CPPTest::KeyDUPressed() {
@@ -69,11 +69,12 @@ bool CPPTest::IsPointInsideCircle(float cx, float cy, float radius, float x, flo
 
 void CPPTest::FrameUpdate()
 {
+		d = display_lock();
 
 		if (bDead)
 			ResetGame();
 
-		ClearScreen();	
+		ClearScreen();
 
 		player.x += player.dx * fElapsedTime;
 		player.y += player.dy * fElapsedTime;
@@ -182,6 +183,8 @@ void CPPTest::FrameUpdate()
 
 		// Draw Score
 		DrawTextFormat({2, 2}, "SCORE: %d", nScore);
+
+		display_show(d);
 }
 
 void CPPTest::DrawWireFrameModel(const vector<pair<float, float>> &vecModelCoordinates, float x, float y, float r, float s, unsigned col) {
@@ -268,7 +271,7 @@ auto CPPTest::OnCreate() -> void
 
 
 int main(void) {
-	CPPTest n64g(RESOLUTION_256x240, DEPTH_32_BPP, GUI);
+	CPPTest n64g(RESOLUTION_256x240, DEPTH_32_BPP, ANTIALIAS_RESAMPLE, Frame::UIType::GUI);
 	n64g.Begin();
 	return 0;
 }

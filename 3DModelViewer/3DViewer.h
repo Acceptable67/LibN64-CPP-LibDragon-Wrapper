@@ -392,6 +392,8 @@ private:
    virtual void KeyDDPressed() override;
    virtual void KeyDLPressed() override;
    virtual void KeyDRPressed() override;
+   virtual void KeyJoyXPressed(int) override;
+   virtual void KeyJoyYPressed(int) override;
    virtual void KeyZPressed() override;
 
    virtual void KeyAPressed() override;

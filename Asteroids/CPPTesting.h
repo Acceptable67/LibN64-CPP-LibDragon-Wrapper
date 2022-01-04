@@ -9,7 +9,7 @@
 
 #include <functional>
 
-#include "LibN64.h"
+#include <LibN64.h>
 
 using namespace LibN64;
 
@@ -36,7 +36,7 @@ private:
 	vector<pair<float, float>> vecModelShip;
 	vector<pair<float, float>> vecModelAsteroid;
  public:
-   CPPTest(resolution_t res, bitdepth_t dep, int ui) : Frame(res, dep, ui) {}
+   CPPTest(resolution_t res, bitdepth_t dep, antialias_t aa, Frame::UIType ui) : Frame(res, dep, aa, ui) {}
 
    void DrawingArea();
    void ResetGame();

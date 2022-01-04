@@ -11,38 +11,52 @@
 #include <ctime>
 
 void ModelViewer::KeyAPressed() {
-	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * fFrameTime);
-		vCamera = Vector_Add(vCamera, vForward);
+
 }
 void ModelViewer::KeyBPressed() {
 	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
-    	vCamera = Vector_Sub(vCamera, vForward);
 }
 
 void ModelViewer::KeyZPressed() {
-	
-		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
-		fYaw -= 2.0f * GetFrameTime();
+
 	
 }
 
+void ModelViewer::KeyJoyXPressed(int data) {
+	switch(data) {
+		case JoyLeft: 	vCamera.x += 8.0f * GetFrameTime();	break; // Travel Along X-Axisbreak;
+		case JoyRight: vCamera.x -= 8.0f * GetFrameTime();	break; // Travel Along X-Axisbreak;
+		default: break;
+	};
+}
+
+void ModelViewer::KeyJoyYPressed(int data) {
+	switch(data) {
+		case JoyUp:  	vCamera.y += 8.0f * GetFrameTime();	break; // Travel Upwardsbreak;
+		case JoyDown: 	vCamera.y -= 8.0f * GetFrameTime();	break; // Travel Downwardsbreak;
+		default: break;
+	};
+}
+ 
 void ModelViewer::KeyDUPressed() {
-	vCamera.y += 8.0f * GetFrameTime();	// Travel Upwards
+	vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
+    	vCamera = Vector_Add(vCamera, vForward);
 	
 }
 void ModelViewer::KeyDDPressed() {
-			vCamera.y -= 8.0f * GetFrameTime();	// Travel Downwards
+			vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
+    	vCamera = Vector_Sub(vCamera, vForward);
 
 }
 void ModelViewer::KeyDLPressed() {
-			vCamera.x -= 8.0f * GetFrameTime();	// Travel Along X-Axis
+		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
+		fYaw -= 2.0f * GetFrameTime();
 		
 }
 void ModelViewer::KeyDRPressed() {
-
-			vCamera.x += 8.0f * GetFrameTime();	// Travel Along X-Axis
+		vec3d vForward = Vector_Mul(vLookDir, 8.0f * GetFrameTime());
+		fYaw += 2.0f * GetFrameTime();
+			
 }
 struct Box {
    public:
@@ -158,7 +172,8 @@ void ModelViewer::FrameUpdate()
 					vecTrianglesToRaster.push_back(triProjected);
 				}			
 			}
-		}
+		} ClearScreenRDP();
+		
 
 		sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle &t1, triangle &t2)
 		{
@@ -167,6 +182,7 @@ void ModelViewer::FrameUpdate()
 			return z1 > z2;
 		});
 
+			
 		for (auto &triToRaster : vecTrianglesToRaster)
 		{
 			triangle clipped[2];
@@ -200,11 +216,14 @@ void ModelViewer::FrameUpdate()
 				nNewTriangles = listTriangles.size();
 			}
 
+          //  rdp_attach_display(d);
 
 			for (auto &t : listTriangles)
 			{
 				DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y);
+				
 			}
+		
 		}
 
 
@@ -212,14 +231,12 @@ void ModelViewer::FrameUpdate()
 
 auto ModelViewer::__OnLoop_FreeFunction1() -> void 
 {
-		if(GetFrameTime() >= 0.07) {
-			ClearScreenRDP();
-		}
+
 }
 
 auto ModelViewer::OnCreate() -> void
 {
-		ClearScreenRDP();
+	
 	    debug_init(DEBUG_FEATURE_ALL);
 		meshCube.LoadFromObjectFile(*this, "/VideoShip.obj");
 
