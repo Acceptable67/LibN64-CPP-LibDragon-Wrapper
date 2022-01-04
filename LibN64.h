@@ -6,13 +6,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <vector>
+#include <map>
 #include <iostream>
 
 #define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
 
 typedef char byte;
 
-constexpr int MakeColor(int r, int g, int b, int a) {
+class LibMenuManager;
+class LibMenu;
+
+constexpr int MakeColor(int r, int g, int b, int a) 
+{
 	return (r << 24) | (((g & 0x00FFFFFF) << 16)) | (((b & 0xFF00FFFF) << 8)) | ((a & 0xFFFF00FF));
 }
 
@@ -36,6 +42,33 @@ namespace LibN64
 		 CYAN			= MakeColor(0x00, 0xFF, 0xFF, 255),
 		 GREY			= MakeColor(0x80, 0x80, 0x80, 255),
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
+	};
+	
+
+	struct LibPos 
+	{ 
+		int x, y; 
+		LibPos operator +(LibPos x) const 
+		{
+			LibPos tmp = { this->x, this->x};
+			tmp.x += x.x;
+			tmp.y += x.y;
+			return tmp;
+		}
+
+		LibPos operator -(LibPos x) const 
+		{
+			LibPos tmp = { this->x, this->x};
+			tmp.x -= x.x;
+			tmp.y -= x.y;
+			return tmp;
+		}
+				
+		bool operator ==(LibPos x) const
+		{
+			LibPos tmp = { this->x, this->y };
+			return (tmp.x == x.x && tmp.y == x.y) ? true : false;
+		}
 	};
 
 	namespace DFS 
@@ -72,7 +105,7 @@ namespace LibN64
 			virtual void KeyJoyXPressed(int);
 			virtual void KeyJoyYPressed(int);
 
-			inline virtual void     __OnInit_FreeFunction1(); 
+			inline virtual void     __OnInit_FreeFunction1();
 			inline virtual void     __OnInit_FreeFunction2();
 			inline virtual void     __OnLoop_FreeFunction1();
 			inline virtual void     __OnLoop_FreeFunction2();
@@ -98,31 +131,6 @@ namespace LibN64
 			float   controllerScanRate = 0.02;
 		
 		public:
-			struct LibPos 
-			{ 
-				int x, y; 
-				LibPos operator +(LibPos x) const 
-				{
-					LibPos tmp = { this->x, this->x};
-					tmp.x += x.x;
-					tmp.y += x.y;
-					return tmp;
-				}
-
-				LibPos operator -(LibPos x) const 
-				{
-					LibPos tmp = { this->x, this->x};
-					tmp.x -= x.x;
-					tmp.y -= x.y;
-					return tmp;
-				}
-				
-				bool operator ==(LibPos x) const
-				{
-					LibPos tmp = { this->x, this->y };
-					return (tmp.x == x.x && tmp.y == x.y) ? true : false;
-				}
-			};
 			enum     UIType        { GUI, CONSOLE };
 			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200 };
 			enum 	 KeyState 	   { KeysHeld, KeysDown, KeysPressed, KeysUp } kstate;
@@ -131,7 +139,7 @@ namespace LibN64
 			void 	 	 Begin	       ();
 			void 	 	 Close		   ();
 			void 	 	 ClearScreen   ();
-			void 	 	 ClearScreenRDP();
+			void 	 	 ClearScreenRDP(unsigned c = BLACK);
 			void		 SetControllerScanRate(float fRate);
 			void 	 	 SetScreen     (resolution_t res, bitdepth_t bd); 
 	display_context_t    GetDisplay    ();
@@ -140,8 +148,8 @@ namespace LibN64
 			unsigned 	 ScreenWidth   ();
 			unsigned 	 ScreenHeight  ();
 			void 	     DrawTextFormat(LibPos pos, const std::string format, ...);
-			void 	     DrawTextFormat(LibPos pos, unsigned forecolor, 		    unsigned backcolor, const std::string format, ...);
-			void 	 	 DrawText      (LibPos pos, const std::string t,    		unsigned forecolor = WHITE, unsigned backcolor = 0x0);
+			void 	     DrawTextFormat(LibPos pos, Color forecolor, 		   		Color backcolor, const std::string format, ...);
+			void 	 	 DrawText      (LibPos pos, const std::string t,    		Color forecolor = WHITE, Color backcolor = BLACK);
 	 		void 		 DrawPixel 	   (LibPos pos, 		      	        		unsigned c = WHITE);
 			void 		 DrawRect      (LibPos pos, LibPos dimensions={1,1},		unsigned c = WHITE, bool isFilled = true);
 			void     	 DrawRDPRect   (LibPos pos, LibPos dimensions={1,1},		unsigned c = WHITE);
@@ -177,5 +185,77 @@ namespace LibN64
 				T *ptr = (T*)(romAddr);
 				return *ptr;
 			}
-		};
+
+			typedef int ID;
+			class LibMenu 
+			{
+				public:
+					ID          id;
+					LibPos 		pos;
+					LibPos 		size;
+					std::string title;
+					std::string content;
+					Color 		forecolor, backcolor;
+					bool 		inFocus;
+
+					int         menuItemCount;
+					int			menuItemSelection;
+					std::map<int, std::string> menuItems;
+						
+				public:
+					LibMenu(ID i, std::string t, LibPos p, LibPos s, Color f = BLACK, Color b = WHITE)
+					{ 
+						id = i; pos = p; size = s; title = t; forecolor = f; backcolor = b;
+					}
+
+					void AddMenuItem(int id, std::string content) 
+					{
+						menuItems[id] = content;
+						menuItemCount++;
+					}
+
+					void MoveSelectionUp()   { menuItemSelection++; }
+					void MoveSelectionDown() { menuItemSelection--; }
+
+					void Show(LibN64::Frame& lFrame) {
+						lFrame.DrawRect({pos}, {size}, forecolor);
+						lFrame.DrawRect({pos}, {size}, backcolor, false);
+						
+						lFrame.DrawTextFormat({pos.x+5, pos.y+5}, "test");
+						
+						int incy = 20;
+						for(auto &t : menuItems) {
+							lFrame.DrawText({pos.x+5, pos.y+incy}, t.second);
+							incy+=10;
+						}
+					}
+
+					void SetFocused() {
+						inFocus = true;
+					}
+			};
+
+			class LibMenuManager
+			{
+			
+				public:
+					std::vector     <LibMenu*>  menuList;
+					std::map    <ID, LibMenu*>  menuMap;
+
+					void AddMenu(ID i, std::string t, LibPos p, LibPos s, Color f, Color b)
+					{
+						LibMenu *tmp = new LibMenu(i, t, p, s, f, b);
+						menuList.push_back(tmp);
+						menuMap[i] = tmp;
+					}
+
+					void Resume() {
+						for(auto& menus : menuList)
+							menus->inFocus = false; 
+					}
+
+					LibMenu* operator [](ID i) {return menuMap[i];}
+			};
+
+	};
 }

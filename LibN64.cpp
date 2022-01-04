@@ -1,60 +1,8 @@
 #include <LibN64.h>
 
-namespace LibN64::DFS 
-{
-	int handle = 0;
-	
-	unsigned Open(const char* file) 
-	{
-		handle = dfs_open(file);
-		return handle;
-	}
-	
-	int Size()
-	{
-	  	auto s = dfs_size(handle);
-	  	return s;
-	}
-	
-	template<class T>
-	void Read(T buf, unsigned size, unsigned offset) 
-	{
-	    dfs_seek(handle, offset, SEEK_SET);
-	    if(size > 0)
-			dfs_read(buf, 1, size, handle);
-	}
-	
-	template<class T>
- 	T QuickRead(const char* file) 
- 	{
- 		Open(file);
- 		
- 		T buffer = (T)malloc(Size());
- 		
- 		Read(buffer, Size());
- 		Close();
- 		
- 		return buffer;
- 	}
-
-	void Close()
-	{
-		dfs_close(handle);
-	}
-
-	template void Read<int*>(int*,unsigned,unsigned);
-	template void Read<char*>(char*,unsigned,unsigned);
-	template void Read<sprite_t*>(sprite_t*,unsigned,unsigned);
-	template void Read<Sprite*>(Sprite*,unsigned,unsigned);
-	
-	template int*      QuickRead<int*>(const char*);
-	template char*     QuickRead<char*>(const char*);
-	template sprite_t* QuickRead<sprite_t*>(const char*);
-	template Sprite* QuickRead<Sprite*>(const char*);
-};
-
 namespace LibN64 
 {
+
     void LibN64::Frame::CheckAndSwitchRes(resolution_t r) 
     {	
 		auto sr = [&](int x, int y)  
@@ -112,27 +60,6 @@ namespace LibN64
 		lActive = true;
 	}
 
-	void LibN64::Frame::FrameUpdate()  {}
-	void LibN64::Frame::KeyAPressed()  {}
-	void LibN64::Frame::KeyStartPressed(){}
-	void LibN64::Frame::KeyBPressed()  {}
-	void LibN64::Frame::KeyDUPressed() {}
-	void LibN64::Frame::KeyDDPressed() {}
-	void LibN64::Frame::KeyDLPressed() {}
-	void LibN64::Frame::KeyDRPressed() {}
-	void LibN64::Frame::KeyCUPressed() {}
-	void LibN64::Frame::KeyCDPressed() {}
-	void LibN64::Frame::KeyCLPressed() {}
-	void LibN64::Frame::KeyCRPressed() {}
-	void LibN64::Frame::KeyZPressed()  {}
-	void LibN64::Frame::KeyJoyXPressed(int){}
-	void LibN64::Frame::KeyJoyYPressed(int){}
-	void LibN64::Frame::OnCreate()     {}
-	inline void LibN64::Frame::__OnInit_FreeFunction1() {}
-	inline void LibN64::Frame::__OnInit_FreeFunction2() {}
-	inline void LibN64::Frame::__OnLoop_FreeFunction1() {}
-	inline void LibN64::Frame::__OnLoop_FreeFunction2() {}
-
 	void LibN64::Frame::ClearScreen() 
 	{
 		switch(uitype) {
@@ -141,10 +68,10 @@ namespace LibN64
 		}
 	}
 
-	void LibN64::Frame::ClearScreenRDP() 
+	void LibN64::Frame::ClearScreenRDP(unsigned c) 
 	{
 			if(uitype == GUI) {
-				DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, 0x0);
+				DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, c);
 			}
 	}
 
@@ -164,7 +91,7 @@ namespace LibN64
 		return this->d;
 	}
 
-	void LibN64::Frame::DrawRect(LibPos pos, LibPos dimensions, unsigned  c, bool isFilled)
+	void LibN64::Frame::DrawRect(LibPos pos, LibPos dimensions, unsigned c, bool isFilled)
 	{
 		if(isFilled) {
 			graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, c);
@@ -181,9 +108,6 @@ namespace LibN64
 		if(!bDLInLoop) 
 			display_show(d);
 			this->OnCreate();
-	//	if(!bDLInLoop) 
-			//d = display_lock();
-	
 
 		this->__OnInit_FreeFunction1();
 		this->__OnInit_FreeFunction2();
@@ -307,7 +231,7 @@ namespace LibN64
 		graphics_draw_sprite(this->d, pos.x, pos.y, spr);
 	}
 
-	void LibN64::Frame::DrawText(LibPos pos, const std::string buf, unsigned forecolor, unsigned backcolor) 
+	void LibN64::Frame::DrawText(LibPos pos, const std::string buf, Color forecolor, Color backcolor) 
 	{
 		if(forecolor != WHITE || backcolor != 0x0) {
 			graphics_set_color(forecolor, backcolor);
@@ -328,7 +252,7 @@ namespace LibN64
 		delete buffer;
 	}
 
-	void LibN64::Frame::DrawTextFormat(LibPos pos, unsigned forecolor, unsigned backcolor, const std::string format, ...) {
+	void LibN64::Frame::DrawTextFormat(LibPos pos, Color forecolor, Color backcolor, const std::string format, ...) {
 		va_list args;
 		va_start(args, format.c_str());
 		char *buffer = new char[300];
@@ -373,12 +297,86 @@ namespace LibN64
 		va_list args;
 		va_start(args, format.c_str());
 		char buffer[300];
-		vsprintf(buffer, format.c_str(), args);
+		vsprintf(buffer, format.c_str(), args);		
 		DrawTextCF(pos, buffer);
-		va_end(args);	
+		va_end(args);			
 	}
 
-
+	void LibN64::Frame::FrameUpdate()  {}
+	void LibN64::Frame::KeyAPressed()  {}
+	void LibN64::Frame::KeyStartPressed(){}
+	void LibN64::Frame::KeyBPressed()  {}
+	void LibN64::Frame::KeyDUPressed() {}
+	void LibN64::Frame::KeyDDPressed() {}
+	void LibN64::Frame::KeyDLPressed() {}
+	void LibN64::Frame::KeyDRPressed() {}
+	void LibN64::Frame::KeyCUPressed() {}
+	void LibN64::Frame::KeyCDPressed() {}
+	void LibN64::Frame::KeyCLPressed() {}
+	void LibN64::Frame::KeyCRPressed() {}
+	void LibN64::Frame::KeyZPressed()  {}
+	void LibN64::Frame::KeyJoyXPressed(int){}
+	void LibN64::Frame::KeyJoyYPressed(int){}
+	void LibN64::Frame::OnCreate()     {}
+	inline void LibN64::Frame::__OnInit_FreeFunction1() {}
+	inline void LibN64::Frame::__OnInit_FreeFunction2() {}
+	inline void LibN64::Frame::__OnLoop_FreeFunction1() {}
+	inline void LibN64::Frame::__OnLoop_FreeFunction2() {}
 }
+
+
+namespace LibN64::DFS 
+{
+	int handle = 0;
+	
+	unsigned Open(const char* file) 
+	{
+		handle = dfs_open(file);
+		return handle;
+	}
+	
+	int Size()
+	{
+	  	auto s = dfs_size(handle);
+	  	return s;
+	}
+	
+	template<class T>
+	void Read(T buf, unsigned size, unsigned offset) 
+	{
+	    dfs_seek(handle, offset, SEEK_SET);
+	    if(size > 0)
+			dfs_read(buf, 1, size, handle);
+	}
+	
+	template<class T>
+ 	T QuickRead(const char* file) 
+ 	{
+ 		Open(file);
+ 		
+ 		T buffer = (T)malloc(Size());
+ 		
+ 		Read(buffer, Size());
+ 		Close();
+ 		
+ 		return buffer;
+ 	}
+
+	void Close()
+	{
+		dfs_close(handle);
+	}
+
+	template void Read<int*>(int*,unsigned,unsigned);
+	template void Read<char*>(char*,unsigned,unsigned);
+	template void Read<sprite_t*>(sprite_t*,unsigned,unsigned);
+	template void Read<Sprite*>(Sprite*,unsigned,unsigned);
+	
+	template int*      QuickRead<int*>(const char*);
+	template char*     QuickRead<char*>(const char*);
+	template sprite_t* QuickRead<sprite_t*>(const char*);
+	template Sprite* QuickRead<Sprite*>(const char*);
+};
+
 
 
