@@ -1,0 +1,29 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/MenuTesting'
+mkdir -p build/
+echo "    [CXX] MenuTesting.cpp"
+/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing  -o build/MenuTesting.o MenuTesting.cpp
+ 
+mkdir -p build/
+echo "    [LD] build/MenuTesting.elf"
+/usr/local/bin/mips64-elf-g++ -o build/MenuTesting.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/MenuTesting.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/MenuTesting.map
+/usr/local/bin/mips64-elf-size -G build/MenuTesting.elf
+mkdir -p build/
+echo "    [DFS] build/MenuTesting.dfs"
+/usr/local/bin/mkdfs build/MenuTesting.dfs filesystem >/dev/null
+ 
+echo "    [Z64] MenuTesting.z64"
+/usr/local/bin/mips64-elf-objcopy -O binary build/MenuTesting.elf build/MenuTesting.elf.bin
+rm -f MenuTesting.z64
+DFS_FILE="build/MenuTesting.dfs"; \
+if [ -z "$DFS_FILE" ]; then \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "MenuTesting Test" --output MenuTesting.z64 build/MenuTesting.elf.bin; \
+else \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "MenuTesting Test" --output MenuTesting.z64 build/MenuTesting.elf.bin --offset 1M "$DFS_FILE"; \
+fi
+if [ ! -z "" ]; then \
+	/usr/local/bin/ed64romconfig     MenuTesting.z64; \
+fi
+/usr/local/bin/chksum64 MenuTesting.z64 >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/MenuTesting'
+ 
