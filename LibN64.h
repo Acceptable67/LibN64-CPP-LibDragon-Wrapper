@@ -28,23 +28,41 @@ namespace LibN64
 	{
 		public:
 		
+		/**
+		 * @brief Opens a DFS file
+		 * @param  char* file 
+		 * @return handle to the file  
+		 */
 		static unsigned Open(const char* file) 
 		{
 			_dfs_handle = dfs_open(file);
 			return _dfs_handle;
 		}
 		
+		/**
+		 * @brief Grabs the currently open DFS's file size
+		 * @return Current size of open file
+		 */
 		static int Size()
 		{
 			auto s = dfs_size(_dfs_handle);
 			return s;
 		}
 		
+		 /** 
+		 * @brief Closes the DFS session 
+		 */
 		static void Close()
 		{
 			dfs_close(_dfs_handle);
 		}
 		
+		/** 
+		 * @brief Opens a file for reading with a user-provided buffer
+		 * @param T buffer
+		 * @param unsigned size
+		 * @param unsigned offset (to read from)
+		 */
 		template<class T>
 		static void Read(T buf, unsigned size, unsigned offset = 0x0) 
 		{
@@ -53,6 +71,14 @@ namespace LibN64
 				dfs_read(buf, 1, size, _dfs_handle);
 		}
 		
+		/**
+		 * @brief Opens a file, reads it to a buffer, and returns the buffer contents all in one go.
+		 * Great for if you do not need to do anything specifical during the reading.
+		 * 
+		 * @tparam T specified buffer that will be returned (int, float, char, sprite_t* etc)
+		 * @param file file path 
+		 * @return T 
+		 */
 		template<class T>
 		static T QuickRead(const char* file) 
 		{
@@ -71,6 +97,14 @@ namespace LibN64
 
 namespace LibN64 
 {	
+	/**
+	* @brief Converts seperate R,G,B,A and mixes down into one color 
+	* @param  {int} r  
+	* @param  {int} g  
+	* @param  {int} b 
+	* @param  {int} a  
+	* @return {int}   
+	*/
 	constexpr int MakeColor(int r, int g, int b, int a) 
 	{
 		return (r << 24) | (((g & 0x00FFFFFF) << 16)) | (((b & 0xFF00FFFF) << 8)) | ((a & 0xFFFF00FF));
@@ -78,20 +112,20 @@ namespace LibN64
 
 	enum LibColor 
 	{
-		 RED			= MakeColor(0xFF,0x00,0x00,0xFF),
+		 RED			= MakeColor(0xFF, 0x00, 0x00, 0xFF),
 		 GREEN			= MakeColor(0x00, 0xFF, 0x00, 0xFF),
 		 WHITE			= MakeColor(0xFF, 0xFF, 0xFF, 0xFF),
 		 BLACK			= MakeColor(0x00, 0x00, 0x00, 0x00),
 		 BLUE			= MakeColor(0x00, 0x00, 0xFF, 0xFF),
-		 NAVY_BLUE		= MakeColor(17, 24, 128,  0xFF),
-		 DARK_RED		= MakeColor(75, 19, 0,  0xFF),
-		 DEEP_DARK_RED	= MakeColor(31, 1, 0,  0xFF),
-		 SKY_BLUE		= MakeColor(17, 24, 215,  0xFF),
+		 NAVY_BLUE		= MakeColor(0x11, 0x18, 0x80, 0xFF),
+		 DARK_RED		= MakeColor(0x4B, 0x13, 0x00, 0xFF),
+		 DEEP_DARK_RED	= MakeColor(0x1F, 0x01, 0x00, 0xFF),
+		 SKY_BLUE		= MakeColor(0x11, 0x18, 0xD7, 0xFF),
 		 ORANGE			= MakeColor(0xFF, 0xA5, 0x00, 0xFF),
-		 GOLD			= MakeColor(0xFF, 0xD7, 0x00,   0xFF),
-		 YELLOW			= MakeColor(0xFF, 0xFF, 0x00,   0xFF),
-		 CYAN			= MakeColor(0x00, 0xFF, 0xFF,   0xFF),
-		 GREY			= MakeColor(0x80, 0x80, 0x80,  0xFF),
+		 GOLD			= MakeColor(0xFF, 0xD7, 0x00, 0xFF),
+		 YELLOW			= MakeColor(0xFF, 0xFF, 0x00, 0xFF),
+		 CYAN			= MakeColor(0x00, 0xFF, 0xFF, 0xFF),
+		 GREY			= MakeColor(0x80, 0x80, 0x80, 0xFF),
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
 	};
 
@@ -121,10 +155,17 @@ namespace LibN64
 		}
 	};
 
+	template<class SpecifiedType>
+	struct Lib2DVec
+	{
+		std::pair<SpecifiedType, SpecifiedType> values;
+	};
+
 	class Frame 
 	{
 		public:
 			virtual void FrameUpdate();
+			virtual void OnCreate();
 			virtual void KeyAPressed();
 			virtual void KeyBPressed();
 			virtual void KeyZPressed();
@@ -149,23 +190,24 @@ namespace LibN64
 			inline virtual void     __OnLoop_FreeFunction1();
 			inline virtual void     __OnLoop_FreeFunction2();
 
-			int screenWidth;
-			int screenHeight;
-
 		private:
 			display_context_t d;
 			sprite_t* 		  libFont = nullptr;
-			std::string 	  GameTitle = "Default";
+
+			int 	screenWidth;
+			int 	screenHeight;
 
 			bool 	bActive;
+			bool    bDLInLoop = false;
 			float 	fFrameTime;
 			float 	fTotalTime;
-			int     iFrames;
 			float   fFrameRate;
 			float   fFrameCounter;
-			int 	uitype;
-			bool    bDLInLoop = false;
+			int     iFrames;
 
+			int 	uitype;
+
+			/*Local RDP function*/
 			inline void rdp_quickattach() 
 			{
 				rdp_init();
@@ -176,6 +218,7 @@ namespace LibN64
 				rdp_enable_blend_fill();
 			}
 
+			/*Local RDP Function*/
 			inline void rdp_quickdetach()
 			{
 				rdp_sync(SYNC_PIPE);
@@ -188,6 +231,13 @@ namespace LibN64
 			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200 };
 			enum 	 KeyState 	   { KeysHeld, KeysDown, KeysPressed, KeysUp } kstate;
 			
+			
+			/**
+			 * @brief Does the dirty work of setting the resolution values
+			 * 
+			 *
+			 * @param  {resolution_t} resolution
+			 */
 			void CheckAndSwitchRes(resolution_t r) 
 			{
 				auto sr = [&](int x, int y)  
@@ -200,16 +250,27 @@ namespace LibN64
 				{
 					case RESOLUTION_320x240: sr(320, 240); break;
 					case RESOLUTION_256x240: sr(256, 240); break;
+					case RESOLUTION_640x240: sr(640, 240); break;
 					case RESOLUTION_640x480: sr(640, 480); break;
+					case RESOLUTION_512x240: sr(512, 240); break;
 					case RESOLUTION_512x480: sr(512, 480); break;
 					default: sr(320, 240); break;
 				}
 			}
 			
+			/*Empty frame constructor*/
 			Frame() {}
-			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui)
+			
+			/**
+			 * @brief Sets up the entire frame with values required to render LibN64 functions
+			 *
+			 * @param	resolution_t res 
+			 * @param	bitdepth_t   dep  
+			 * @param   antialias_t   aa
+			 *  @param  UIType 		  ui  
+			 */
+			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : uitype(ui)
 			{
-				uitype = ui;
 				d = 0;
 				kstate = KeysHeld;
 				CheckAndSwitchRes(res);
@@ -217,33 +278,37 @@ namespace LibN64
 				controller_init();
 				dfs_init(DFS_DEFAULT_LOCATION);
 
-				if(ui == GUI) 
+				switch(ui)
 				{
-					display_init(res, dep, 3, GAMMA_NONE, aa);
+					case GUI:
+					{
+						display_init(res, dep, 3, GAMMA_NONE, aa);
 
-					while(!(d = display_lock()));
+						while(!(d = display_lock()));
 
-					audio_init(44100, 4);
-					mixer_init(16);  
-					mixer_ch_set_limits(2, 0, 128000, 0);
+						audio_init(44100, 4);
+						mixer_init(16);  
+						mixer_ch_set_limits(2, 0, 128000, 0);
 
-					graphics_fill_screen(d, 0x0);
-					graphics_set_color(0xFFFFFFFF, 0x0);
-					}
-				else 
-				if(ui == CONSOLE) 
-				{
-					console_set_render_mode(RENDER_AUTOMATIC);
-					console_init();
-					console_render();
-				} else 
-					__assert(__FILE__,__LINE__, "Invalid UI selection (Must be either GUI or Console)");
-
+						graphics_fill_screen(d, 0x0);
+						graphics_set_color(0xFFFFFFFF, 0x0);
+					} break;
+					case CONSOLE: 
+					{
+						console_set_render_mode(RENDER_AUTOMATIC);
+						console_init();
+						console_render();
+					} break; 
+					default: __assert(__FILE__,__LINE__, "Invalid UI selection (Must be either GUI or Console)"); break;
+				}
 				bActive = true;
 			}
 
-			virtual void OnCreate  ();
-
+	
+			/**
+			 * @brief This is called as soon as the frame has been initialized.
+			 * 		  The loop is established here.
+			 */
 			void Begin() 
 			{
 				if(!bDLInLoop) 
@@ -314,11 +379,20 @@ namespace LibN64
 				}
 			}
 
+			
+			/**
+			 * @brief Stop the loop and continue execution in the main()
+			 * 
+			 */
 			void Close() 
 			{
 				 bActive = false;
 			}
 
+			/** @brief Clears the screen with a specified color, selective to what type of GUI mode is enabled.
+			 * 			If no color is specified, it is defaulted to black.
+			 * @param  unsigned color
+			 */
 			void ClearScreen(unsigned c = BLACK)
 			{
 				switch(uitype) 
@@ -327,7 +401,10 @@ namespace LibN64
 					case CONSOLE: console_clear();
 				}
 			}
-
+			/** @brief Clears the screen with a specified color but with RDP (Hardware)
+			 * 
+			 * @param  unsigned color 
+			 */
 			void ClearScreenRDP(unsigned c = BLACK) 
 			{
 					if(uitype == GUI) 
@@ -335,7 +412,13 @@ namespace LibN64
 						DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, c);
 					}
 			}
-
+			
+			/** @brief Changes screen resolution on the fly
+			 *  @bug does not work with most emulators
+			 * 
+			 * @param  {resolution_t} resolution 
+			 * @param  {bitdepth_t} bitdepth    
+			 */
 			void SetScreen(resolution_t res, bitdepth_t bd)
 			{
 				CheckAndSwitchRes(res);
@@ -345,12 +428,41 @@ namespace LibN64
 				d = display_lock();
 			}
 
+			/** @brief Returns the frame's display context
+			 * @return display_context_t
+			 */
 			display_context_t GetDisplay     () { return this->d;};
+			
+			/**
+			 * @brief Sets the key state in the loop (whether it's keydown, pressed, up, or held).
+			 * @param  KeyState k
+			 */
 			void SetKeyState       (KeyState k) { kstate = k;}
+
+			/**
+			 * @brief Sets the display_lock inside the loop which is ideal for most applications but some 
+			 * such as my CirclesAndSquares demo flicker and refresh oddly with it
+			 */
 			void SetDLInLoop      			 () { bDLInLoop = true;}
+			
+			/**
+			 * @brief Returns screenwidth 
+			 * @return {int}  
+			 */
 			int  ScreenWidth   				 () { return screenWidth;}
+
+			/**
+			 * @brief Returns screenheight 
+			 * @return {int}  
+			 */
 			int  ScreenHeight  				 () { return screenHeight;};
 
+			/** @brief DrawText feature with ability to use as printf
+			 * 
+			 * @param  LibPos pos         
+			 * @param  std::string format 
+			 * @param  ... args      
+			 */
 			void DrawTextFormat(LibPos pos, const std::string format, ...) 
 			{
 				va_list args;
@@ -363,6 +475,12 @@ namespace LibN64
 				delete buffer;
 			}
 
+			/** @brief DrawText feature with ability to use as printf with coloring
+			 * 
+			 * @param  {LibPos} pos         
+			 * @param  {std::string} format 
+			 * @param  {...} args      
+			 */
 			void DrawTextFormat(LibPos pos, LibColor forecolor, LibColor backcolor, const std::string format, ...)
 			{
 				va_list args;
@@ -374,7 +492,14 @@ namespace LibN64
 
 				delete buffer;
 			}
-
+	
+			/**
+			 * @brief Draw's 8x8 text to the screen at the specified location
+			 * @param  LibPos position
+			 * @param  std::string text    
+			 * @param  LibColor forecolor 
+			 * @param  LibColor backcolor 
+			 */
 			void DrawText(LibN64::LibPos pos, const std::string t, LibColor forecolor = WHITE, LibColor backcolor = BLACK) 
 			{
 				if(forecolor != WHITE || backcolor != 0x0) 
@@ -386,12 +511,24 @@ namespace LibN64
 				else
 					graphics_draw_text(this->d, pos.x, pos.y, t.c_str());
 			}
-
+			/** 
+			 * @brief Draws pixel to the screen at the specified location
+			 * @param  LibPos pos 
+			 * @param  unsigned color
+			 */
 	 		void DrawPixel(LibPos pos, unsigned c = WHITE) 
 			{
 				graphics_draw_pixel(this->d, pos.x, pos.y, c);
 			}
-
+			
+			/** @brief Can draw either a filled or wireframe rectangle at the specified position with specified dimensions
+			 * and color
+			 * 
+			 * @param  {LibPos} pos           
+			 * @param  {LibPos} dimensions
+			 * @param  {unsigned} color          
+			 * @param  {bool} isFilled 
+			 */
 			void DrawRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
@@ -406,6 +543,15 @@ namespace LibN64
 				}
 			}
 
+	
+			/**
+			* @brief 
+			* Initializes RDP, draws an RDP Rectangle to the screen
+			*
+			* @param  {LibPos} pos           
+			* @param  {LibPos} dimensions         
+			* @param  {unsigned} color          
+			*/
 			void DrawRDPRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE) 
 			{
 				rdp_quickattach();
@@ -414,11 +560,27 @@ namespace LibN64
 				rdp_quickdetach();
 			}
 
+			/**
+			 * @brief Draws a line to the screen
+			 * 
+			 * @param pos1 Start X and Y
+			 * @param pos2  End X and Y
+			 * @param c Specified color of the line 
+			 */
 	 		void DrawLine(LibPos pos1, LibPos pos2, unsigned c = WHITE)
 			{
 				graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, c);
 			}
 
+			/**
+			 * @brief Draws a circle to the screen with customizable step size and optional filling and scale
+			 * 
+			 * @param pos 
+			 * @param scale 
+			 * @param cStepSize 
+			 * @param c 
+			 * @param isFilled 
+			 */
 			void DrawCircle(LibPos pos, int scale=1,float cStepSize=0.1,unsigned c = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
@@ -433,6 +595,13 @@ namespace LibN64
 				}
 			}
 
+			/**
+			 * @brief Draws a software triangle to the screen at the specified location
+			 * @param pos1 Point 1
+			 * @param pos2 Point 2
+			 * @param pos3 Point 3
+			 * @param c  Specified color
+			 */
 			void DrawTriangle(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
 			{
 				DrawLine({pos1.x,pos1.y},{pos2.x,pos2.y}, c);
@@ -440,6 +609,13 @@ namespace LibN64
       			DrawLine({pos3.x,pos3.y},{pos1.x,pos1.y}, c);
 			}
 
+			/**
+			 * @brief Draws an RDP (Hardware) triangle to the screen at the specified locations
+			 * @param pos1 Point 1
+			 * @param pos2 Point 2
+			 * @param pos3 Point 3
+			 * @param c Specified fill color
+			 */
 			void DrawRDPTri(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
 			{
 				rdp_quickattach();
@@ -448,10 +624,20 @@ namespace LibN64
 				rdp_quickdetach();
 			}
 
+			/**
+			 * @brief Draws a sprite (sprite_t*) at the specified location
+			 * @param pos 
+			 * @param spr 
+			 */
 			void DrawSprite(LibPos pos, sprite_t* spr) {
 				graphics_draw_sprite(this->d, pos.x, pos.y, spr);
 			}
 
+			/**
+			 * @brief Converts ticks to seconds for easy readability 
+			 * @param float ticks 
+			 * @return float 
+			 */
 			float  Ticks2Seconds (float t) 
 			{
 				return (t * 0.021333333 / 1000000.0);
@@ -555,12 +741,12 @@ namespace LibN64
 			}
 
 			void MoveSelectionUp(Frame &r)   { 
-				if((mMenuItemSelection - 1) >= 0 && bInFocus) 
+				if((mMenuItemSelection - 1) >= 0 && bInFocus && MenuIsShowing()) 
 					mMenuItemSelection-= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
 			void MoveSelectionDown(Frame &r) { 
-				if((mMenuItemSelection + 1) < mMenuItemCount && bInFocus) 
+				if((mMenuItemSelection + 1) < mMenuItemCount && bInFocus && MenuIsShowing()) 
 					mMenuItemSelection+= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
