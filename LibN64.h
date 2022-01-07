@@ -76,22 +76,22 @@ namespace LibN64
 		return (r << 24) | (((g & 0x00FFFFFF) << 16)) | (((b & 0xFF00FFFF) << 8)) | ((a & 0xFFFF00FF));
 	}
 
-	enum Color 
+	enum LibColor 
 	{
 		 RED			= MakeColor(0xFF,0x00,0x00,0xFF),
 		 GREEN			= MakeColor(0x00, 0xFF, 0x00, 0xFF),
 		 WHITE			= MakeColor(0xFF, 0xFF, 0xFF, 0xFF),
-		 BLACK          = MakeColor(0x00, 0x00, 0x00, 0x00),
-		 BLUE           = MakeColor(0x00, 0x00, 0xFF, 0xFF),
-		 NAVY_BLUE		= MakeColor(17, 24, 128,255),
-		 DARK_RED		= MakeColor(75, 19, 0,255),
-		 DEEP_DARK_RED	= MakeColor(31, 1, 0,255),
-		 SKY_BLUE		= MakeColor(17, 24, 215,255),
+		 BLACK			= MakeColor(0x00, 0x00, 0x00, 0x00),
+		 BLUE			= MakeColor(0x00, 0x00, 0xFF, 0xFF),
+		 NAVY_BLUE		= MakeColor(17, 24, 128,  0xFF),
+		 DARK_RED		= MakeColor(75, 19, 0,  0xFF),
+		 DEEP_DARK_RED	= MakeColor(31, 1, 0,  0xFF),
+		 SKY_BLUE		= MakeColor(17, 24, 215,  0xFF),
 		 ORANGE			= MakeColor(0xFF, 0xA5, 0x00, 0xFF),
-		 GOLD			= MakeColor(0xFF, 0xD7, 0x00, 255),
-		 YELLOW			= MakeColor(0xFF, 0xFF, 0x00, 255),
-		 CYAN			= MakeColor(0x00, 0xFF, 0xFF, 255),
-		 GREY			= MakeColor(0x80, 0x80, 0x80, 255),
+		 GOLD			= MakeColor(0xFF, 0xD7, 0x00,   0xFF),
+		 YELLOW			= MakeColor(0xFF, 0xFF, 0x00,   0xFF),
+		 CYAN			= MakeColor(0x00, 0xFF, 0xFF,   0xFF),
+		 GREY			= MakeColor(0x80, 0x80, 0x80,  0xFF),
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
 	};
 
@@ -157,7 +157,7 @@ namespace LibN64
 			sprite_t* 		  libFont = nullptr;
 			std::string 	  GameTitle = "Default";
 
-			bool 	lActive;
+			bool 	bActive;
 			float 	fFrameTime;
 			float 	fTotalTime;
 			int     iFrames;
@@ -165,7 +165,6 @@ namespace LibN64
 			float   fFrameCounter;
 			int 	uitype;
 			bool    bDLInLoop = false;
-			float   controllerScanRate = 0.02;
 
 			inline void rdp_quickattach() 
 			{
@@ -240,7 +239,7 @@ namespace LibN64
 				} else 
 					__assert(__FILE__,__LINE__, "Invalid UI selection (Must be either GUI or Console)");
 
-				lActive = true;
+				bActive = true;
 			}
 
 			virtual void OnCreate  ();
@@ -256,7 +255,7 @@ namespace LibN64
 				this->__OnInit_FreeFunction2();
 			
 				
-				while (lActive) 
+				while (bActive) 
 				{
 					if(bDLInLoop)
 					 {
@@ -317,14 +316,14 @@ namespace LibN64
 
 			void Close() 
 			{
-				 lActive = false;
+				 bActive = false;
 			}
 
-			void ClearScreen() 
+			void ClearScreen(unsigned c = BLACK)
 			{
 				switch(uitype) 
 				{
-					case GUI    : graphics_fill_screen(d, 0x0);
+					case GUI    : graphics_fill_screen(d, c);
 					case CONSOLE: console_clear();
 				}
 			}
@@ -349,8 +348,8 @@ namespace LibN64
 			display_context_t GetDisplay     () { return this->d;};
 			void SetKeyState       (KeyState k) { kstate = k;}
 			void SetDLInLoop      			 () { bDLInLoop = true;}
-			int ScreenWidth   				 () { return screenWidth;}
-			int ScreenHeight  				 () { return screenHeight;};
+			int  ScreenWidth   				 () { return screenWidth;}
+			int  ScreenHeight  				 () { return screenHeight;};
 
 			void DrawTextFormat(LibPos pos, const std::string format, ...) 
 			{
@@ -364,7 +363,7 @@ namespace LibN64
 				delete buffer;
 			}
 
-			void DrawTextFormat(LibPos pos, Color forecolor, Color backcolor, const std::string format, ...)
+			void DrawTextFormat(LibPos pos, LibColor forecolor, LibColor backcolor, const std::string format, ...)
 			{
 				va_list args;
 				va_start(args, format.c_str());
@@ -372,10 +371,11 @@ namespace LibN64
 				vsprintf(buffer, format.c_str(), args);
 				DrawText(pos, buffer, forecolor, backcolor);
 				va_end(args);	
+
 				delete buffer;
 			}
 
-			void DrawText(LibN64::LibPos pos, const std::string t, Color forecolor = WHITE, Color backcolor = BLACK) 
+			void DrawText(LibN64::LibPos pos, const std::string t, LibColor forecolor = WHITE, LibColor backcolor = BLACK) 
 			{
 				if(forecolor != WHITE || backcolor != 0x0) 
 				{
@@ -442,11 +442,10 @@ namespace LibN64
 
 			void DrawRDPTri(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
 			{
-
+				rdp_quickattach();
+				rdp_set_blend_color(c);
 				rdp_draw_filled_triangle(pos1.x,pos1.y,pos2.x,pos2.y,pos3.x,pos3.y);
-				rdp_sync(SYNC_PIPE);
-				rdp_detach_display();
-				rdp_close();
+				rdp_quickdetach();
 			}
 
 			void DrawSprite(LibPos pos, sprite_t* spr) {
@@ -471,7 +470,7 @@ namespace LibN64
 				}
 			}
 
-			void DrawTextCF(LibPos pos, const std::string str, int color = WHITE) 
+			void DrawTextCF(LibPos pos, const std::string str, int LibColor = WHITE) 
 			{
 				unsigned incx = pos.x;
 				unsigned incy = pos.y;
@@ -479,7 +478,7 @@ namespace LibN64
 				{
 					if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
 
-					Graphics::DrawFont(GetDisplay(), incx, incy, color, libFont, str[index]);
+					Graphics::DrawFont(GetDisplay(), incx, incy, LibColor, libFont, str[index]);
 					incx += 8;
 				}
 			}
@@ -522,24 +521,27 @@ namespace LibN64
 	class LibMenu 
 	{
 		private:
-			ID          mId;
-			LibPos 		mPos;
-			std::string mTitle;
-			std::string mContent;
-			Color 		mForecolor, mBackcolor;
+			LibN64::ID		mId;
+			LibN64::LibPos 	mPos;
+			std::string 	mTitle;
+			std::string 	mContent;
+			LibN64::LibColor	mForecolor, mBackcolor;
 
 			int         mMenuItemSpacing = 10;
 			int         mMenuItemCount;
-			int			mMenuItemSelection;
+			float		mMenuItemSelection;
 
 			std::map   <int,      std::string> mMenuItems;
 			std::vector<std::function<void()>> mMenuItemCallbacks;
 
-			bool bMenuIsShowing = true;
+			bool bMenuIsShowing   = true;
+			bool bEnableHighlight = true;
+			bool bKeyStateHeld    = true;
+			LibColor cHighlightColor = LibColor::RED;
 		public:
 			bool 		bInFocus;		
 		public:
-			LibMenu(ID i, std::string t, LibPos p, Color f = BLACK, Color b = WHITE)
+			LibMenu(ID i, std::string t, LibPos p, LibColor f = BLACK, LibColor b = WHITE)
 			{ 
 				mId = i; mPos = p; mTitle = t; mForecolor = f; mBackcolor = b;
 			}
@@ -550,36 +552,40 @@ namespace LibN64
 				mMenuItems[mId] = content;
 				mMenuItemCallbacks.push_back(call);
 				mMenuItemCount++;
-
 			}
 
-			void MoveSelectionUp()   { 
-				if((mMenuItemSelection - 1) >= 0) 
-					mMenuItemSelection--; 
+			void MoveSelectionUp(Frame &r)   { 
+				if((mMenuItemSelection - 1) >= 0 && bInFocus) 
+					mMenuItemSelection-= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
-			void MoveSelectionDown() { 
-				if((mMenuItemSelection + 1) < mMenuItemCount) 
-					mMenuItemSelection++; 
+			void MoveSelectionDown(Frame &r) { 
+				if((mMenuItemSelection + 1) < mMenuItemCount && bInFocus) 
+					mMenuItemSelection+= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
 			void Show(LibN64::Frame& lFrame)
-				{
+			{
+				lFrame.SetKeyState(Frame::KeyState::KeysDown);
+
 				if(bMenuIsShowing) 
 				{
-					auto findLargestMenuItem = [&]() 
+					auto findLargestMenuItem = [&]() -> int
 					{
 						std::vector<int> stringLengths;
 						for(auto& t : mMenuItems) {
 							stringLengths.push_back(t.second.length());
 						}
+						stringLengths.push_back(this->mTitle.length());
 
-						std::sort(stringLengths.begin(), stringLengths.end());
+						std::sort(stringLengths.begin(), stringLengths.end(), [](int a, int b) {
+							return a > b;
+						});
 
-						return stringLengths.back();
+						return stringLengths.front();
 					};
 					
-					auto toUpper = [&](std::string str) 
+					auto toUpper = [&](std::string str) -> std::string
 					{
 						std::string tmp;
 						for(auto& character : str) {
@@ -588,7 +594,12 @@ namespace LibN64
 						return tmp;
 					};
 
-					LibPos dimensions = { (10 * findLargestMenuItem()), 35 + (10 * mMenuItemCount)};
+					LibPos dimensions = 
+					{ 
+						10 * findLargestMenuItem(), 
+						35 + (10 * mMenuItemCount)
+					};
+					
 					
 					lFrame.DrawRect({mPos}, dimensions, mForecolor);
 					lFrame.DrawRect({mPos}, dimensions, mBackcolor, false);
@@ -598,24 +609,53 @@ namespace LibN64
 					int incy = 20, spot = 0;
 					for(auto &t : mMenuItems) 
 					{
-						lFrame.DrawText({mPos.x+5, mPos.y+incy},
-						(bInFocus == true && mMenuItemSelection == spot) ? toUpper(t.second) : t.second);
+						if(bInFocus && (int)mMenuItemSelection == spot) 
+						{
+							if(bEnableHighlight) 
+							{
+								lFrame.DrawRect({mPos.x+2, mPos.y+incy-2}, {dimensions.x-3, 10}, cHighlightColor);
+							}
+							lFrame.DrawText({mPos.x+5, mPos.y+incy}, toUpper(t.second));
+						} 
+						else 
+							lFrame.DrawText({mPos.x+5, mPos.y+incy}, t.second);
 						incy+=mMenuItemSpacing;
 						++spot;
 					}
 				}
 			}
 
+			bool MenuIsShowing() {
+				return bMenuIsShowing;
+			}
+
 			void Hide() {
+		
 				bMenuIsShowing = false;
+				SetUnfocused();
 			}
 
 			void EnableShow() {
 				bMenuIsShowing = true;
 			}
 
+			void EnableHighlight() {
+				bEnableHighlight = true;
+			}
+
+			void DisableHighlight() {
+				bEnableHighlight = false;
+			}
+
+			void SetHighlightColor(LibColor c) {
+				cHighlightColor = c;
+			}
+
 			void WaitKeyPress() {
-				mMenuItemCallbacks.at(mMenuItemSelection)();
+				if(bInFocus)
+				 {
+					mMenuItemCallbacks.at(mMenuItemSelection)();
+				}
 			}
 			void SetItemSpacing(int spacing) {
 				mMenuItemSpacing = spacing;
@@ -623,6 +663,10 @@ namespace LibN64
 
 			void SetFocused() {
 				bInFocus = true;
+			}
+
+			void SetUnfocused() {
+				bInFocus = false;
 			}
 	};
 
@@ -633,23 +677,42 @@ namespace LibN64
 			std::map    <ID, LibMenu*>  menuMap;
 
 		public:
-			void AddMenu(ID i, std::string t, LibPos p, Color f, Color b)
+			void AddMenu(ID i, std::string t, LibPos p, LibColor f, LibColor b)
 			{
 				LibMenu *tmp = new LibMenu(i, t, p, f, b);
 				menuList.push_back(tmp);
 				menuMap[i] = tmp;
 			}
 
-			void Resume() {
-				for(auto& menus : menuList)
-					menus->bInFocus = false; 
+			bool AllMenusClosed() {
+				for(auto &menus : menuList) {
+					if(menus->MenuIsShowing() || menus->bInFocus) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+
+			void CloseFocusedMenus() {
+				for(auto& menus : menuList) {
+					if(menus->bInFocus) {
+						menus->Hide();
+					}
+				}
+			}
+
+			void CloseAllMenus() {
+				for(auto& menus : menuList) {
+					menus->Hide();
+				}
 			}
 
 			LibMenu* operator [](ID i) {return menuMap[i];}
 	};
 
 
-	/*cannot compile for some reason*/
+	/*having issues*/
 	namespace Audio 
 	{
 		

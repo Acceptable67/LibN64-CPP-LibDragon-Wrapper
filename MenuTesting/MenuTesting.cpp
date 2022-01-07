@@ -9,9 +9,12 @@ class MenuTest : public Frame  {
 protected:
 
 	LibN64::LibMenuManager mm;
+	LibN64::LibMenu *menu; /*easy access pointer*/
+
 	enum MenuID 
 	{
-		MID_OPTION
+		MID_OPTION,
+		MID_NEW
 	};
 
 	enum SubMenuID 
@@ -23,59 +26,98 @@ protected:
 		SMID_CLOSEMENU
 	};
 
+	std::array<bool, 4>			menuEnable = {  false, false, false, false };
+	std::array<std::string, 4>	menuStrings = 
+	{ 
+		"LibItem Enabled",
+		"LibItem 1 Enabled", 
+		"LibItem 2 Enabled",
+		"LibItem 3 Enabled"
+	};
+
+	void InitializeMenuSystem() 
+	{
+		mm.AddMenu(MID_OPTION, "Options", {30,30}, LibN64::LibColor::BLACK, LibN64::LibColor::WHITE);
+	
+		menu = mm[MID_OPTION];
+		menu->AddMenuItem(SMID_OPEN, "LibItem", 
+		[&]()
+		{
+			menuEnable[SMID_OPEN] = true;
+		
+		});
+
+		menu->AddMenuItem(SMID_CLOSE, "LibItem 1", 
+		[&]()
+		{
+			menuEnable[SMID_CLOSE] = true;
+		});
+
+		menu->AddMenuItem(SMID_READ, "LibItem 2", 
+		[&]()
+		{
+			menuEnable[SMID_READ] = true;
+		});
+
+		menu->AddMenuItem(SMID_WRITE, "LibItem 3", 
+		[&]()
+		{
+			menuEnable[SMID_WRITE] = true;
+		});
+
+		menu->AddMenuItem(SMID_CLOSEMENU, "Close", 
+		[&]()
+		{
+			menu->Hide();
+			SetKeyState(KeysHeld);
+		});
+
+
+		menu->SetItemSpacing(12);
+		menu->SetFocused();	
+	}
+
 	void OnCreate() override 
 	{
-		SetKeyState(KeysDown);
+		SetKeyState(KeysHeld);
 		SetDLInLoop();
-
-		mm.AddMenu(MID_OPTION, "Options", {30,30}, LibN64::Color::BLACK, LibN64::Color::WHITE);
-		mm[MID_OPTION]->AddMenuItem(SMID_OPEN, "LibOpen", 
-		[&]()
-		{
-			DrawText({0,0},"LibOpen Code goes here");
-		});
-		mm[MID_OPTION]->AddMenuItem(SMID_CLOSE, "LibClose", 
-		[&]()
-		{
-			DrawText({0,10},"LibClose Code goes here");
-		});
-		mm[MID_OPTION]->AddMenuItem(SMID_READ, "LibRead", 
-		[&]()
-		{
-			DrawText({0,20},"LibReadCode goes here");
-		});
-		mm[MID_OPTION]->AddMenuItem(SMID_WRITE, "LibWrite", 
-		[&]()
-		{
-			DrawText({0,30},"LibWrite Code goes here");
-		});
-
-		mm[MID_OPTION]->AddMenuItem(SMID_CLOSEMENU, "Close", 
-		[&]()
-		{
-			mm[MID_OPTION]->Hide();
-		});
-
-
-		mm[MID_OPTION]->SetFocused();
+		
+		InitializeMenuSystem();
 	}
-	
 
 	void FrameUpdate() override 
 	{ 
-		mm[MID_OPTION]->Show(*this);
+		ClearScreenRDP(LibColor::GREY);
+
+		menu->Show(*this);
+
+		int y = 10;
+		for(int spot = 0;spot < menuStrings.size(); spot++) 
+		{
+			if(menuEnable[spot]) 
+			{
+				DrawText({120, y}, menuStrings[spot]);
+				y+=12;
+			}
+		}
 
 	}
 
 	void KeyAPressed() {
-		mm[MID_OPTION]->WaitKeyPress();
+		menu->WaitKeyPress();
+	
+	}
+
+	void KeyBPressed() {
+		mm.CloseAllMenus();
 	}
 
 	void KeyJoyYPressed(int direction) {
 		switch(direction) {
-			case JoyUp:   mm[MID_OPTION]->MoveSelectionUp();   break;
-			case JoyDown: mm[MID_OPTION]->MoveSelectionDown(); break;
+			case JoyUp:   menu->MoveSelectionUp(*this);   break;
+			case JoyDown: menu->MoveSelectionDown(*this); break;
 		}
+
 	}
 
 };
