@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <vector>
 #include <list>
+#include <array>
 #include <functional>
 #include <map>
 #include <stdio.h>
@@ -234,9 +235,7 @@ namespace LibN64
 			
 			/**
 			 * @brief Does the dirty work of setting the resolution values
-			 * 
-			 *
-			 * @param  {resolution_t} resolution
+			 * @param  resolution_t resolution
 			 */
 			void CheckAndSwitchRes(resolution_t r) 
 			{
@@ -266,8 +265,8 @@ namespace LibN64
 			 *
 			 * @param	resolution_t res 
 			 * @param	bitdepth_t   dep  
-			 * @param   antialias_t   aa
-			 *  @param  UIType 		  ui  
+			 * @param	antialias_t   aa
+			 * @param	UIType 		  ui  
 			 */
 			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : uitype(ui)
 			{
@@ -323,10 +322,7 @@ namespace LibN64
 				while (bActive) 
 				{
 					if(bDLInLoop)
-					 {
-						d = display_lock();
-						rdp_attach_display(d);
-					}
+						d = display_lock();	
 
 					timer_init();
 					float fTmp = timer_ticks();
@@ -365,9 +361,9 @@ namespace LibN64
 							if (keys.c[0].y) 	   { this->KeyJoyYPressed(data & 0x000000FF); }
 						}
 					
-						if(uitype == CONSOLE) {
+						if(uitype == CONSOLE) 
 							console_render();
-						}
+						
 						fFrameTime = timer_ticks();
 
 						fFrameTime -= fTmp;
@@ -401,6 +397,7 @@ namespace LibN64
 					case CONSOLE: console_clear();
 				}
 			}
+
 			/** @brief Clears the screen with a specified color but with RDP (Hardware)
 			 * 
 			 * @param  unsigned color 
@@ -415,9 +412,8 @@ namespace LibN64
 			
 			/** @brief Changes screen resolution on the fly
 			 *  @bug does not work with most emulators
-			 * 
-			 * @param  {resolution_t} resolution 
-			 * @param  {bitdepth_t} bitdepth    
+			 *  @param  resolution_t resolution 
+			 *  @param  bitdepth_t bitdepth    
 			 */
 			void SetScreen(resolution_t res, bitdepth_t bd)
 			{
@@ -477,9 +473,9 @@ namespace LibN64
 
 			/** @brief DrawText feature with ability to use as printf with coloring
 			 * 
-			 * @param  {LibPos} pos         
-			 * @param  {std::string} format 
-			 * @param  {...} args      
+			 * @param  LibPos pos         
+			 * @param  std::string format 
+			 * @param  ... arguments      
 			 */
 			void DrawTextFormat(LibPos pos, LibColor forecolor, LibColor backcolor, const std::string format, ...)
 			{
@@ -511,6 +507,7 @@ namespace LibN64
 				else
 					graphics_draw_text(this->d, pos.x, pos.y, t.c_str());
 			}
+
 			/** 
 			 * @brief Draws pixel to the screen at the specified location
 			 * @param  LibPos pos 
@@ -524,10 +521,10 @@ namespace LibN64
 			/** @brief Can draw either a filled or wireframe rectangle at the specified position with specified dimensions
 			 * and color
 			 * 
-			 * @param  {LibPos} pos           
-			 * @param  {LibPos} dimensions
-			 * @param  {unsigned} color          
-			 * @param  {bool} isFilled 
+			 * @param  LibPos pos           
+			 * @param  LibPos dimensions
+			 * @param  unsigned color          
+			 * @param  bool isFilled 
 			 */
 			void DrawRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE, bool isFilled = true) 
 			{
@@ -545,12 +542,10 @@ namespace LibN64
 
 	
 			/**
-			* @brief 
-			* Initializes RDP, draws an RDP Rectangle to the screen
-			*
-			* @param  {LibPos} pos           
-			* @param  {LibPos} dimensions         
-			* @param  {unsigned} color          
+			* @brief  Initializes RDP, draws an RDP Rectangle to the screen
+			* @param  LibPos pos           
+			* @param  LibPos dimensions         
+			* @param  unsigned color          
 			*/
 			void DrawRDPRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE) 
 			{
@@ -585,13 +580,18 @@ namespace LibN64
 			{
 				if(isFilled) 
 				{
-					for(float scaler = 0;scaler<=scale;scaler+=0.3) {
-						for(float angles =0;angles<25*scaler;angles+=cStepSize) 
+					for(float scaler = 0;scaler<=scale;scaler+=0.3) 
+					{
+						for(float angles =0;angles<25*scaler;angles+=cStepSize)
+						{ 
 							DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, c);
+						}
 					}
 				} else {
 					for(float angles =0;angles<25*scale;angles+=0.1) 
+					{
 						DrawPixel({pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale}, c);
+					}
 				}
 			}
 
@@ -605,8 +605,8 @@ namespace LibN64
 			void DrawTriangle(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
 			{
 				DrawLine({pos1.x,pos1.y},{pos2.x,pos2.y}, c);
-      			DrawLine({pos2.x,pos2.y},{pos3.x,pos3.y}, c);
-      			DrawLine({pos3.x,pos3.y},{pos1.x,pos1.y}, c);
+				DrawLine({pos2.x,pos2.y},{pos3.x,pos3.y}, c);
+				DrawLine({pos3.x,pos3.y},{pos1.x,pos1.y}, c);
 			}
 
 			/**
@@ -839,7 +839,7 @@ namespace LibN64
 
 			void WaitKeyPress() {
 				if(bInFocus)
-				 {
+				{
 					mMenuItemCallbacks.at(mMenuItemSelection)();
 				}
 			}
@@ -870,9 +870,12 @@ namespace LibN64
 				menuMap[i] = tmp;
 			}
 
-			bool AllMenusClosed() {
-				for(auto &menus : menuList) {
-					if(menus->MenuIsShowing() || menus->bInFocus) {
+			bool AllMenusClosed() 
+			{
+				for(auto &menus : menuList) 
+				{
+					if(menus->MenuIsShowing() || menus->bInFocus) 
+					{
 						return false;
 					}
 				}
@@ -880,23 +883,167 @@ namespace LibN64
 				return true;
 			}
 
-			void CloseFocusedMenus() {
-				for(auto& menus : menuList) {
-					if(menus->bInFocus) {
+			void CloseFocusedMenus() 
+			{
+				for(auto& menus : menuList) 
+				{
+					if(menus->bInFocus) 
+					{
 						menus->Hide();
 					}
 				}
 			}
 
-			void CloseAllMenus() {
-				for(auto& menus : menuList) {
+			void CloseAllMenus() 
+			{
+				for(auto& menus : menuList) 
+				{
 					menus->Hide();
 				}
 			}
 
-			LibMenu* operator [](ID i) {return menuMap[i];}
+			LibMenu* operator [](ID i) { return menuMap[i]; }
 	};
+	
+	class LibMemPak
+	{
+	private:
+		int pakControllerID;
+		int	pakValidEntries;
+		int pakBlocksFree;
+		uint8_t pakData[128 * MEMPAK_BLOCK_SIZE];
+	public:
+		uint8_t *pakEntryData;
 
+		enum Pads 
+		{
+			CONTROLLER_1,
+			CONTROLLER_2,
+			CONTROLLER_3,
+			CONTROLLER_4
+		};
+
+	private:
+		std::vector<entry_structure_t> 	pakEntries;
+		std::string pakFileName;
+
+		void _ReadPakEntries()
+		{
+			pakEntries.empty();
+			for(auto spot = 0; spot < 16; spot++) 
+			{
+				entry_structure_t tmpEntry;
+				get_mempak_entry(pakControllerID, spot, &tmpEntry);
+				pakEntries.push_back(tmpEntry);
+				
+				if(tmpEntry.valid) {
+					pakValidEntries++;
+				}
+			}
+			pakBlocksFree = get_mempak_free_space(pakControllerID);
+		}
+
+	public:
+		LibMemPak(std::string entryfilename, int controller) : pakControllerID(controller), pakFileName(entryfilename)
+		{
+			_ReadPakEntries();
+		}
+
+		char* ReadMemPakEntry(int entryID)
+		 {
+			entry_structure_t tmp;
+			get_mempak_entry(pakControllerID, entryID, &tmp);
+
+			if(tmp.valid) 
+			{
+				pakEntryData = (uint8_t*)malloc(tmp.blocks * MEMPAK_BLOCK_SIZE);
+				read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
+ 
+				return reinterpret_cast<char*>(pakEntryData);
+			}
+			return nullptr;
+		}
+
+		void DeleteMemPakEntry(int entryID)
+		{
+			if(pakEntries.at(entryID).valid) 
+				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
+		}
+
+		void WriteMemPakEntry(int entryID, std::string pakentryname, char* pakdata) 
+		{
+			_ReadPakEntries();
+
+			entry_structure_t entry = pakEntries.at(entryID);
+
+			strcpy(entry.name, pakentryname.c_str());
+			entry.blocks = 1;
+			entry.region = 0x45;
+			write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
+		}
+
+		void WriteAnyMemPakEntry(std::string pakentryname, char* pakdata) 
+		{
+			_ReadPakEntries();
+
+			for(auto& entry : pakEntries) 
+			{
+				if(!entry.valid) 
+				{
+					strcpy(entry.name, pakentryname.c_str());
+					entry.blocks = 1;
+					entry.region = 0x45;
+					write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
+					break;
+				}
+			}
+		}
+
+		entry_structure_t GetEntryStructure(int entryID) 
+		{
+			return pakEntries.at(entryID);
+		} 
+
+		void FormatMemPak() 
+		{
+			format_mempak(pakControllerID);
+		}
+
+		int GetValidEntries() 
+		{
+			return pakValidEntries;
+		}
+
+		int GetBlocksFree() 
+		{
+			return pakBlocksFree;
+		}
+
+		bool MemPakInserted() 
+		{
+			controller_data cTmp;
+			get_accessories_present(&cTmp);
+
+			if(identify_accessory(pakControllerID) == ACCESSORY_MEMPAK) 
+			{
+				return true;
+			}
+			return false;
+		}
+
+		bool IsValid() 
+		{
+			if(MemPakInserted()) 
+			{
+				if(validate_mempak(pakControllerID) == 0)
+				 {
+					return true;
+				}
+				return false;
+			}
+		}
+		
+	};
 
 	/*having issues*/
 	namespace Audio 
