@@ -369,8 +369,11 @@ namespace LibN64
 						fFrameTime -= fTmp;
 						fFrameCounter += fFrameTime; 
 						fTotalTime += fFrameTime;
+
 						timer_close();	
+
 						if(bDLInLoop) display_show(d);
+						    
 						this->__OnLoop_FreeFunction2();
 				}
 			}
@@ -463,9 +466,11 @@ namespace LibN64
 			{
 				va_list args;
 				va_start(args, format.c_str());
+
 				char *buffer = new char[300];
 				vsprintf(buffer, format.c_str(), args);
 				DrawText(pos, buffer);
+
 				va_end(args);	
 				
 				delete buffer;
@@ -481,9 +486,11 @@ namespace LibN64
 			{
 				va_list args;
 				va_start(args, format.c_str());
+
 				char *buffer = new char[300];
 				vsprintf(buffer, format.c_str(), args);
 				DrawText(pos, buffer, forecolor, backcolor);
+
 				va_end(args);	
 
 				delete buffer;
@@ -673,9 +680,12 @@ namespace LibN64
 			{
 				va_list args;
 				va_start(args, format.c_str());
+
 				char buffer[300];
-				vsprintf(buffer, format.c_str(), args);		
+				vsprintf(buffer, format.c_str(), args);	
+
 				DrawTextCF(pos, buffer);
+
 				va_end(args);	
 			}
 
@@ -717,8 +727,8 @@ namespace LibN64
 			int         mMenuItemCount;
 			float		mMenuItemSelection;
 
-			std::map   <int,      std::string> mMenuItems;
-			std::vector<std::function<void()>> mMenuItemCallbacks;
+			std::map   <int,std::string>		mMenuItems;
+			std::vector<std::function<void()>> 	mMenuItemCallbacks;
 
 			bool bMenuIsShowing   = true;
 			bool bEnableHighlight = true;
@@ -911,7 +921,6 @@ namespace LibN64
 		int pakControllerID;
 		int	pakValidEntries;
 		int pakBlocksFree;
-		uint8_t pakData[128 * MEMPAK_BLOCK_SIZE];
 	public:
 		uint8_t *pakEntryData;
 
@@ -951,15 +960,18 @@ namespace LibN64
 
 		char* ReadMemPakEntry(int entryID)
 		 {
-			entry_structure_t tmp;
-			get_mempak_entry(pakControllerID, entryID, &tmp);
-
-			if(tmp.valid) 
+			if(MemPakInserted() && IsValid()) 
 			{
-				pakEntryData = (uint8_t*)malloc(tmp.blocks * MEMPAK_BLOCK_SIZE);
-				read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
- 
-				return reinterpret_cast<char*>(pakEntryData);
+				entry_structure_t tmp;
+				get_mempak_entry(pakControllerID, entryID, &tmp);
+
+				if(tmp.valid) 
+				{
+					pakEntryData = (uint8_t*)malloc(tmp.blocks * MEMPAK_BLOCK_SIZE);
+					read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
+	
+					return reinterpret_cast<char*>(pakEntryData);
+				}
 			}
 			return nullptr;
 		}
@@ -970,19 +982,19 @@ namespace LibN64
 				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
 		}
 
-		void WriteMemPakEntry(int entryID, std::string pakentryname, char* pakdata) 
+		void WriteMemPakEntry(int entryID, char* pakdata) 
 		{
 			_ReadPakEntries();
 
 			entry_structure_t entry = pakEntries.at(entryID);
 
-			strcpy(entry.name, pakentryname.c_str());
+			strcpy(entry.name, pakFileName.c_str());
 			entry.blocks = 1;
 			entry.region = 0x45;
 			write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
 		}
 
-		void WriteAnyMemPakEntry(std::string pakentryname, char* pakdata) 
+		void WriteAnyMemPakEntry(char* pakdata) 
 		{
 			_ReadPakEntries();
 
@@ -990,7 +1002,7 @@ namespace LibN64
 			{
 				if(!entry.valid) 
 				{
-					strcpy(entry.name, pakentryname.c_str());
+					strcpy(entry.name, pakFileName.c_str());
 					entry.blocks = 1;
 					entry.region = 0x45;
 					write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
@@ -999,10 +1011,24 @@ namespace LibN64
 			}
 		}
 
+		int FindFirstEntryWith(std::string entryname) {
+			for(int spot = 0; spot < pakEntries.size(); spot++) 
+			{
+				if(strcmp(pakEntries.at(spot).name, entryname.c_str()) == 0) 
+				{
+					return spot;
+				}
+			} 
+		}
+
 		entry_structure_t GetEntryStructure(int entryID) 
 		{
 			return pakEntries.at(entryID);
 		} 
+
+		std::string GetMemPakEntryName(int entryID) {
+			return pakEntries.at(entryID).name;
+		}
 
 		void FormatMemPak() 
 		{
@@ -1017,6 +1043,11 @@ namespace LibN64
 		int GetBlocksFree() 
 		{
 			return pakBlocksFree;
+		}
+
+		std::string GetFileHandle()
+		{
+			return pakFileName;
 		}
 
 		bool MemPakInserted() 

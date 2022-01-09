@@ -1,0 +1,27 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/MemPakTesting'
+mkdir -p build/
+echo "    [CXX] MemPakTesting.cpp"
+/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing  -o build/MemPakTesting.o MemPakTesting.cpp
+mkdir -p build/
+echo "    [LD] build/MemPakTesting.elf"
+/usr/local/bin/mips64-elf-g++ -o build/MemPakTesting.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/MemPakTesting.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/MemPakTesting.map
+/usr/local/bin/mips64-elf-size -G build/MemPakTesting.elf
+mkdir -p build/
+echo "    [DFS] build/MemPakTesting.dfs"
+/usr/local/bin/mkdfs build/MemPakTesting.dfs filesystem >/dev/null
+echo "    [Z64] MemPakTesting.z64"
+/usr/local/bin/mips64-elf-objcopy -O binary build/MemPakTesting.elf build/MemPakTesting.elf.bin
+rm -f MemPakTesting.z64
+DFS_FILE="build/MemPakTesting.dfs"; \
+if [ -z "$DFS_FILE" ]; then \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "MemPakTesting Test" --output MemPakTesting.z64 build/MemPakTesting.elf.bin; \
+else \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "MemPakTesting Test" --output MemPakTesting.z64 build/MemPakTesting.elf.bin --offset 1M "$DFS_FILE"; \
+fi
+if [ ! -z "" ]; then \
+	/usr/local/bin/ed64romconfig     MemPakTesting.z64; \
+fi
+/usr/local/bin/chksum64 MemPakTesting.z64 >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/MemPakTesting'
+ 
