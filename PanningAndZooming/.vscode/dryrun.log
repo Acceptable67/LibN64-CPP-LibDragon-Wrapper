@@ -1,0 +1,27 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/PanningAndZooming'
+mkdir -p build/
+echo "    [CXX] PanningAndZooming.cpp"
+/usr/local/bin/mips64-elf-g++ -c -MMD -std=c++20      -march=vr4300 -mtune=vr4300 -I/usr/local/mips64-elf/include -falign-functions=32 -ffunction-sections -fdata-sections -DN64 -O2 -Wall -Wno-error=deprecated-declarations -fdiagnostics-color=always -Wno-narrowing  -o build/PanningAndZooming.o PanningAndZooming.cpp
+mkdir -p build/
+echo "    [LD] build/PanningAndZooming.elf"
+/usr/local/bin/mips64-elf-g++ -o build/PanningAndZooming.elf /usr/local/mips64-elf/lib/libdragon.a /usr/local/mips64-elf/lib/libdragonsys.a build/PanningAndZooming.o -lc -Wl,-L/usr/local/mips64-elf/lib -Wl,-ldragon -Wl,-lm -Wl,-ldragonsys -Wl,-Tn64.ld -Wl,--gc-sections -Wl,--wrap -Wl,__do_global_ctors -Wl,-Map=build/PanningAndZooming.map
+/usr/local/bin/mips64-elf-size -G build/PanningAndZooming.elf
+mkdir -p build/
+echo "    [DFS] build/PanningAndZooming.dfs"
+/usr/local/bin/mkdfs build/PanningAndZooming.dfs filesystem >/dev/null
+echo "    [Z64] PanningAndZooming.z64"
+/usr/local/bin/mips64-elf-objcopy -O binary build/PanningAndZooming.elf build/PanningAndZooming.elf.bin
+rm -f PanningAndZooming.z64
+DFS_FILE="build/PanningAndZooming.dfs"; \
+if [ -z "$DFS_FILE" ]; then \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "PanningAndZooming Test" --output PanningAndZooming.z64 build/PanningAndZooming.elf.bin; \
+else \
+	/usr/local/bin/n64tool --header /usr/local/mips64-elf/lib/header --title "PanningAndZooming Test" --output PanningAndZooming.z64 build/PanningAndZooming.elf.bin --offset 1M "$DFS_FILE"; \
+fi
+if [ ! -z "" ]; then \
+	/usr/local/bin/ed64romconfig     PanningAndZooming.z64; \
+fi
+/usr/local/bin/chksum64 PanningAndZooming.z64 >/dev/null
+make: Leaving directory '/home/spencer/libdragon/NEW/libdragon/examples/LibN64-C++ LibDragon Wrapper/PanningAndZooming'
+ 

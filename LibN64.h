@@ -729,6 +729,7 @@ namespace LibN64
 
 			std::map   <int,std::string>		mMenuItems;
 			std::vector<std::function<void()>> 	mMenuItemCallbacks;
+			std::array        <bool, 27>        mMenuItemsSelected;
 
 			bool bMenuIsShowing   = true;
 			bool bEnableHighlight = true;
@@ -751,11 +752,13 @@ namespace LibN64
 			}
 
 			void MoveSelectionUp(Frame &r)   { 
+				mMenuItemsSelected.fill(false);
 				if((mMenuItemSelection - 1) >= 0 && bInFocus && MenuIsShowing()) 
 					mMenuItemSelection-= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
 			void MoveSelectionDown(Frame &r) { 
+				mMenuItemsSelected.fill(false);
 				if((mMenuItemSelection + 1) < mMenuItemCount && bInFocus && MenuIsShowing()) 
 					mMenuItemSelection+= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
@@ -821,6 +824,11 @@ namespace LibN64
 				}
 			}
 
+			bool MenuItemIsSelected(int item) 
+			{
+				return mMenuItemsSelected[item];
+			}
+
 			bool MenuIsShowing() {
 				return bMenuIsShowing;
 			}
@@ -850,6 +858,7 @@ namespace LibN64
 			void WaitKeyPress() {
 				if(bInFocus)
 				{
+					mMenuItemsSelected.at(mMenuItemSelection) = true;
 					mMenuItemCallbacks.at(mMenuItemSelection)();
 				}
 			}
