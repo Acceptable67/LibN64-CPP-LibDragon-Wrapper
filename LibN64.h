@@ -723,13 +723,13 @@ namespace LibN64
 			std::string 	mContent;
 			LibN64::LibColor	mForecolor, mBackcolor;
 
-			int         mMenuItemSpacing = 10;
-			int         mMenuItemCount;
+			int			mMenuItemSpacing = 10;
+			int			mMenuItemCount;
 			float		mMenuItemSelection;
 
 			std::map   <int,std::string>		mMenuItems;
 			std::vector<std::function<void()>> 	mMenuItemCallbacks;
-			std::array        <bool, 27>        mMenuItemsSelected;
+			std::array			<bool, 27>		mMenuItemsSelected;
 
 			bool bMenuIsShowing   = true;
 			bool bEnableHighlight = true;
@@ -802,6 +802,7 @@ namespace LibN64
 					
 					lFrame.DrawRect({mPos}, dimensions, mForecolor);
 					lFrame.DrawRect({mPos}, dimensions, mBackcolor, false);
+		
 					lFrame.DrawRect({mPos}, {dimensions.x, 15}, mBackcolor);
 					lFrame.DrawText({mPos.x+5, mPos.y+5},  mTitle, mForecolor, mBackcolor);
 
@@ -814,6 +815,7 @@ namespace LibN64
 							{
 								lFrame.DrawRect({mPos.x+2, mPos.y+incy-2}, {dimensions.x-3, 10}, cHighlightColor);
 							}
+
 							lFrame.DrawText({mPos.x+5, mPos.y+incy}, toUpper(t.second));
 						} 
 						else 
@@ -891,10 +893,8 @@ namespace LibN64
 
 			bool AllMenusClosed() 
 			{
-				for(auto &menus : menuList) 
-				{
-					if(menus->MenuIsShowing() || menus->bInFocus) 
-					{
+				for(auto &menus : menuList) {
+					if(menus->MenuIsShowing() || menus->bInFocus) {
 						return false;
 					}
 				}
@@ -904,10 +904,8 @@ namespace LibN64
 
 			void CloseFocusedMenus() 
 			{
-				for(auto& menus : menuList) 
-				{
-					if(menus->bInFocus) 
-					{
+				for(auto& menus : menuList) {
+					if(menus->bInFocus) {
 						menus->Hide();
 					}
 				}
@@ -915,8 +913,7 @@ namespace LibN64
 
 			void CloseAllMenus() 
 			{
-				for(auto& menus : menuList) 
-				{
+				for(auto& menus : menuList) {
 					menus->Hide();
 				}
 			}
@@ -976,7 +973,7 @@ namespace LibN64
 
 				if(tmp.valid) 
 				{
-					pakEntryData = (uint8_t*)malloc(tmp.blocks * MEMPAK_BLOCK_SIZE);
+					pakEntryData = new uint8_t[tmp.blocks * MEMPAK_BLOCK_SIZE];
 					read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
 	
 					return reinterpret_cast<char*>(pakEntryData);
@@ -989,24 +986,26 @@ namespace LibN64
 		{
 			if(pakEntries.at(entryID).valid) 
 				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
+
+			_ReadPakEntries();
 		}
 
-		void WriteMemPakEntry(int entryID, char* pakdata) 
+		template<typename DataArray>
+		void WriteMemPakEntry(int entryID, DataArray pakdata) 
 		{
-			_ReadPakEntries();
-
 			entry_structure_t entry = pakEntries.at(entryID);
 
 			strcpy(entry.name, pakFileName.c_str());
 			entry.blocks = 1;
 			entry.region = 0x45;
 			write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
+
+			_ReadPakEntries();
 		}
 
-		void WriteAnyMemPakEntry(char* pakdata) 
+		template<typename DataArray>
+		void WriteAnyMemPakEntry(DataArray pakdata) 
 		{
-			_ReadPakEntries();
-
 			for(auto& entry : pakEntries) 
 			{
 				if(!entry.valid) 
@@ -1018,6 +1017,8 @@ namespace LibN64
 					break;
 				}
 			}
+
+			_ReadPakEntries();
 		}
 
 		int FindFirstEntryWith(std::string entryname) {
