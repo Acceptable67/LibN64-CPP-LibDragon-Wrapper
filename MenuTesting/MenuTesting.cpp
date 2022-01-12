@@ -1,4 +1,5 @@
 #include <LibN64.h>
+#include <array>
 
 using namespace LibN64;
 
@@ -26,7 +27,6 @@ protected:
 		SMID_CLOSEMENU
 	};
 
-	std::array<bool, 4>			menuEnable = {  false, false, false, false };
 	std::array<std::string, 4>	menuStrings = 
 	{ 
 		"LibItem Enabled",
@@ -37,43 +37,24 @@ protected:
 
 	void InitializeMenuSystem() 
 	{
-		mm.AddMenu(MID_OPTION, "Options", {30,30}, LibN64::LibColor::BLACK, LibN64::LibColor::WHITE);
+		mm.AddMenu(MID_OPTION, "Options", {30,30}, LibColor::BLACK, LibColor::WHITE);
 	
 		menu = mm[MID_OPTION];
 		menu->AddMenuItem(SMID_OPEN, "LibItem", 
 		[&]()
 		{
-			menuEnable[SMID_OPEN] = true;
-		
+			/*put optional code to call here, otherwise use the FrameUpdate loop to call
+			if the menu is selected or not*/
 		});
 
-		menu->AddMenuItem(SMID_CLOSE, "LibItem 1", 
-		[&]()
-		{
-			menuEnable[SMID_CLOSE] = true;
-		});
-
-		menu->AddMenuItem(SMID_READ, "LibItem 2", 
-		[&]()
-		{
-			menuEnable[SMID_READ] = true;
-		});
-
-		menu->AddMenuItem(SMID_WRITE, "LibItem 3", 
-		[&]()
-		{
-			menuEnable[SMID_WRITE] = true;
-		});
-
-		menu->AddMenuItem(SMID_CLOSEMENU, "Close", 
-		[&]()
-		{
+		menu->AddMenuItem(SMID_CLOSE,		"LibItem 1");
+		menu->AddMenuItem(SMID_READ,		"LibItem 2");
+		menu->AddMenuItem(SMID_WRITE,		"LibItem 3");
+		menu->AddMenuItem(SMID_CLOSEMENU,	"Close", [&](){
 			menu->Hide();
-			SetKeyState(KeysHeld);
 		});
 
-
-		menu->SetItemSpacing(12);
+		menu->SetItemSpacing(14);
 		menu->SetFocused();	
 	}
 
@@ -87,14 +68,15 @@ protected:
 
 	void FrameUpdate() override 
 	{ 
+
 		ClearScreenRDP(LibColor::GREY);
 
 		menu->Show(*this);
-
+	
 		int y = 10;
-		for(int spot = 0;spot < menuStrings.size(); spot++) 
+		for(auto spot = (size_t)0; spot < menuStrings.size(); spot++) 
 		{
-			if(menuEnable[spot]) 
+			if(menu->MenuItemIsSelected(spot)) 
 			{
 				DrawText({120, y}, menuStrings[spot]);
 				y+=12;
@@ -105,7 +87,6 @@ protected:
 
 	void KeyAPressed() {
 		menu->WaitKeyPress();
-	
 	}
 
 	void KeyBPressed() {

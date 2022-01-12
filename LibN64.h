@@ -823,6 +823,14 @@ namespace LibN64
 				mMenuItemCount++;
 			}
 
+			void AddMenuItem(int mId, std::string content) 
+			{
+				mMenuItems[mId] = content;
+				mMenuItemCallbacks.push_back([this]{});
+				mMenuItemCount++;
+			}
+
+
 			void MoveSelectionUp(Frame &r)   { 
 				mMenuItemsSelected.fill(false);
 				if((mMenuItemSelection - 1) >= 0 && bInFocus && MenuIsShowing()) 
