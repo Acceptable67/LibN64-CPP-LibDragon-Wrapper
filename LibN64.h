@@ -19,9 +19,9 @@
 
 /*	CLASSES:
 
-	LibN64::DFS (static)
-	LibN64::DMA (static)
-	LibN64::RTC
+	LibN64::DFS 	(static)
+	LibN64::DMA 	(static)
+	LibN64::EEPROM  (static)
 
 	LibN64::Frame 
 		LibN64::LibColor
@@ -29,9 +29,11 @@
 		LibN64::Lib2DVec<type>
 		LibN64::Math (static)
 
+	LibN64::LibSprite
 	LibN64::LibMenu
 	LibN64::LibMenuManager
 	LibN64::LibMemPak
+	LibN64::LibRTC
 
 	LibN64::Audio::WavAudio
 */
@@ -47,9 +49,9 @@ namespace LibN64
 		 * @param  char* file 
 		 * @return handle to the file  
 		 */
-		static unsigned Open(const char* file) 
+		static uint32_t Open(const std::string& file) 
 		{
-			_dfs_handle = dfs_open(file);
+			_dfs_handle = dfs_open(file.c_str());
 			return _dfs_handle;
 		}
 		
@@ -74,11 +76,11 @@ namespace LibN64
 		/** 
 		 * @brief Opens a file for reading with a user-provided buffer
 		 * @param T buffer
-		 * @param unsigned size
-		 * @param unsigned offset (to read from)
+		 * @param uint32_t size
+		 * @param uint32_t offset (to read from)
 		 */
 		template<class T>
-		static void Read(T buf, unsigned size, unsigned offset = 0x0) 
+		static void Read(T buf, uint32_t size, uint32_t offset = 0x0) 
 		{
 			dfs_seek(_dfs_handle, offset, SEEK_SET);
 			if(size > 0)
@@ -94,7 +96,7 @@ namespace LibN64
 		 * @return T 
 		 */
 		template<class T>
-		static T QuickRead(const char* file) 
+		static T QuickRead(const std::string& file) 
 		{
 			Open(file);
 			
@@ -124,8 +126,52 @@ namespace LibN64
 			}
 	};
 
+	class EEPROM
+	{
+		public:
+			enum Type { ENONE, E4K, E16K };
+			inline static Type GetType() 
+			{
+				return static_cast<Type>(eeprom_present());
+			} 
+
+			inline static size_t GetTotalBlocks() {
+				return eeprom_total_blocks();
+			}
+
+			template<class T>
+			inline static T Read(uint8_t block) 
+			{
+				uint8_t *tmp = new uint8_t[8];
+				eeprom_read(block, tmp);
+
+				return reinterpret_cast<T>(tmp);
+			}
+
+			template<class T>
+			inline static T ReadBytes(uint32_t offset, size_t length) 
+			{
+				uint32_t *tmp = new uint32_t[2000];
+				eeprom_read_bytes(reinterpret_cast<uint8_t*>(tmp), offset, length);
+
+				return reinterpret_cast<T>(tmp);
+			}
+
+			template<class T>
+			inline static void Write(uint8_t block, T *data) 
+			{
+				eeprom_write(block, data);
+			}
+
+			template<class T>
+			inline static void WriteBytes(T data, uint32_t offset, size_t size) 
+			{
+				eeprom_write_bytes(reinterpret_cast<uint8_t*>(data), offset, size);
+			}
+	};
+
 	/*Non-static, does take an object*/
-	class RTC 
+	class LibRTC 
 	{
 		private:
 			rtc_time_t rTimer;
@@ -172,7 +218,7 @@ namespace LibN64
 			}
 
 			uint8_t GetHours() {
-				return rTimer.hour;
+				return rTimer.hour % 12;
 			}
 
 			uint8_t GetDay() {
@@ -265,6 +311,43 @@ namespace LibN64
 
 	class Frame 
 	{
+		private:
+			display_context_t d;
+			sprite_t* 		  libFont = nullptr;
+
+			int 	screenWidth;
+			int 	screenHeight;
+			
+			bool 	bActive;
+			bool    bDLInLoop = false;
+
+			float 	fFrameTime;
+			float	fTotalTime;
+			float   fFrameRate;
+			float   fFrameCounter;
+			int     iFrames;
+
+			int 	uitype;
+
+			/*Local RDP function*/
+			inline void rdp_quickattach() 
+			{
+				rdp_init();
+				rdp_attach_display(GetDisplay());
+				rdp_sync(SYNC_PIPE);
+				rdp_set_default_clipping();
+				rdp_sync(SYNC_PIPE);
+				rdp_enable_blend_fill();
+			}
+
+			/*Local RDP Function*/
+			inline void rdp_quickdetach()
+			{
+				rdp_sync(SYNC_PIPE);
+				rdp_detach_display();
+				rdp_close();
+			}
+			
 		public:
 			virtual void FrameUpdate();
 			virtual void OnCreate();
@@ -292,43 +375,6 @@ namespace LibN64
 			inline virtual void     __OnLoop_FreeFunction1();
 			inline virtual void     __OnLoop_FreeFunction2();
 
-		private:
-			display_context_t d;
-			sprite_t* 		  libFont = nullptr;
-
-			int 	screenWidth;
-			int 	screenHeight;
-
-		public:
-			bool 	bActive;
-			bool    bDLInLoop = false;
-			float 	fFrameTime;
-			float	fTotalTime;
-			float   fFrameRate;
-			float   fFrameCounter;
-			int     iFrames;
-
-			int 	uitype;
-
-			/*Local RDP function*/
-			inline void rdp_quickattach() 
-			{
-				rdp_init();
-				rdp_attach_display(GetDisplay());
-				rdp_sync(SYNC_PIPE);
-				rdp_set_default_clipping();
-				rdp_sync(SYNC_PIPE);
-				rdp_enable_blend_fill();
-			}
-
-			/*Local RDP Function*/
-			inline void rdp_quickdetach()
-			{
-				rdp_sync(SYNC_PIPE);
-				rdp_detach_display();
-				rdp_close();
-			}
-		
 		public:
 			enum     UIType        { GUI, CONSOLE };
 			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200 };
@@ -371,8 +417,8 @@ namespace LibN64
 			 */
 			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : uitype(ui)
 			{
-				d = 0;
-				kstate = KeysHeld;
+				d 		= 0;
+				kstate 	= KeysHeld;
 				CheckAndSwitchRes(res);
 			
 				controller_init();
@@ -419,7 +465,6 @@ namespace LibN64
 				this->__OnInit_FreeFunction1();
 				this->__OnInit_FreeFunction2();
 			
-				
 				while (bActive) 
 				{
 					if(bDLInLoop)
@@ -428,8 +473,7 @@ namespace LibN64
 					timer_init();
 					float fTmp = timer_ticks();
 					this->__OnLoop_FreeFunction1();
-				
-				
+								
 					this->FrameUpdate();
 
 						controller_scan();
@@ -494,26 +538,26 @@ namespace LibN64
 
 			/** @brief Clears the screen with a specified color, selective to what type of GUI mode is enabled.
 			 * 			If no color is specified, it is defaulted to black.
-			 * @param  unsigned color
+			 * @param  uint32_t color
 			 */
-			void ClearScreen(unsigned c = BLACK)
+			void ClearScreen(uint32_t color = BLACK)
 			{
 				switch(uitype) 
 				{
-					case GUI    : graphics_fill_screen(d, c);
+					case GUI    : graphics_fill_screen(d, color);
 					case CONSOLE: console_clear();
 				}
 			}
 
 			/** @brief Clears the screen with a specified color but with RDP (Hardware)
 			 * 
-			 * @param  unsigned color 
+			 * @param  uint32_t color 
 			 */
-			void ClearScreenRDP(unsigned c = BLACK) 
+			void ClearScreenRDP(uint32_t color = BLACK) 
 			{
 					if(uitype == GUI) 
 					{
-						DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, c);
+						DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, color);
 					}
 			}
 			
@@ -531,34 +575,34 @@ namespace LibN64
 				d = display_lock();
 			}
 
-			/** @brief Returns the frame's display context
+			/** @brief Returns the frames display context
 			 * @return display_context_t
 			 */
-			display_context_t GetDisplay     () { return this->d;};
+			display_context_t GetDisplay() { return this->d;};
 			
 			/**
 			 * @brief Sets the key state in the loop (whether it's keydown, pressed, up, or held).
 			 * @param  KeyState k
 			 */
-			void SetKeyState       (KeyState k) { kstate = k;}
+			void SetKeyState(KeyState k) { kstate = k;}
 
 			/**
 			 * @brief Sets the display_lock inside the loop which is ideal for most applications but some 
 			 * such as my CirclesAndSquares demo flicker and refresh oddly with it
 			 */
-			void SetDLInLoop      			 () { bDLInLoop = true;}
+			void SetDLInLoop() { bDLInLoop = true;}
 			
 			/**
 			 * @brief Returns screenwidth 
 			 * @return {int}  
 			 */
-			int  ScreenWidth   				 () { return screenWidth;}
+			int ScreenWidth() { return screenWidth;}
 
 			/**
 			 * @brief Returns screenheight 
 			 * @return {int}  
 			 */
-			int  ScreenHeight  				 () { return screenHeight;};
+			int ScreenHeight() { return screenHeight;};
 
 			/** @brief DrawText feature with ability to use as printf
 			 * 
@@ -622,11 +666,11 @@ namespace LibN64
 			/** 
 			 * @brief Draws pixel to the screen at the specified location
 			 * @param  LibPos pos 
-			 * @param  unsigned color
+			 * @param  uint32_t color
 			 */
-	 		void DrawPixel(LibPos pos, unsigned c = WHITE) 
+	 		void DrawPixel(LibPos pos, uint32_t color = WHITE) 
 			{
-				graphics_draw_pixel(this->d, pos.x, pos.y, c);
+				graphics_draw_pixel(this->d, pos.x, pos.y, color);
 			}
 			
 			/** @brief Can draw either a filled or wireframe rectangle at the specified position with specified dimensions
@@ -634,20 +678,20 @@ namespace LibN64
 			 * 
 			 * @param  LibPos pos           
 			 * @param  LibPos dimensions
-			 * @param  unsigned color          
+			 * @param  uint32_t color          
 			 * @param  bool isFilled 
 			 */
-			void DrawRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE, bool isFilled = true) 
+			void DrawRect(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
 				{
-					graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, c);
+					graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, color);
 				} 
 				else {
-					DrawLine( pos, {pos.x + dimensions.x, pos.y}, c);
-					DrawLine({pos.x + dimensions.x, pos.y}, {pos.x+dimensions.x, pos.y + dimensions.y}, c);
-					DrawLine({pos.x+dimensions.x, pos.y+dimensions.y}, {pos.x, pos.y + dimensions.y}, c);
-					DrawLine({pos.x, pos.y + dimensions.y}, pos, c);
+					DrawLine(pos, {pos.x + dimensions.x, pos.y}, color);
+					DrawLine({pos.x + dimensions.x, pos.y}, {pos.x+dimensions.x, pos.y + dimensions.y}, color);
+					DrawLine({pos.x+dimensions.x, pos.y+dimensions.y}, {pos.x, pos.y + dimensions.y}, color);
+					DrawLine({pos.x, pos.y + dimensions.y}, pos, color);
 				}
 			}
 
@@ -656,12 +700,12 @@ namespace LibN64
 			* @brief  Initializes RDP, draws an RDP Rectangle to the screen
 			* @param  LibPos pos           
 			* @param  LibPos dimensions         
-			* @param  unsigned color          
+			* @param  uint32_t color          
 			*/
-			void DrawRDPRect(LibPos pos, LibPos dimensions={1,1}, unsigned c = WHITE) 
+			void DrawRDPRect(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
 			{
 				rdp_quickattach();
-				rdp_set_blend_color(c);
+				rdp_set_blend_color(color);
 				rdp_draw_filled_rectangle(pos.x,pos.y,dimensions.x,dimensions.y);
 				rdp_quickdetach();
 			}
@@ -671,11 +715,11 @@ namespace LibN64
 			 * 
 			 * @param pos1 Start X and Y
 			 * @param pos2  End X and Y
-			 * @param c Specified color of the line 
+			 * @param color Specified color of the line 
 			 */
-	 		void DrawLine(LibPos pos1, LibPos pos2, unsigned c = WHITE)
+	 		void DrawLine(LibPos pos1, LibPos pos2, uint32_t color = WHITE)
 			{
-				graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, c);
+				graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, color);
 			}
 
 			/**
@@ -684,10 +728,10 @@ namespace LibN64
 			 * @param pos 
 			 * @param scale 
 			 * @param cStepSize 
-			 * @param c 
+			 * @param color 
 			 * @param isFilled 
 			 */
-			void DrawCircle(LibPos pos, int scale=1,float cStepSize=0.1,unsigned c = WHITE, bool isFilled = true) 
+			void DrawCircle(LibPos pos, int scale = 1,float cStepSize = 0.1, uint32_t color = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
 				{
@@ -695,13 +739,13 @@ namespace LibN64
 					{
 						for(float angles =0;angles<25*scaler;angles+=cStepSize)
 						{ 
-							DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, c);
+							DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, color);
 						}
 					}
 				} else {
 					for(float angles =0;angles<25*scale;angles+=0.1) 
 					{
-						DrawPixel({pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale}, c);
+						DrawPixel({pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale}, color);
 					}
 				}
 			}
@@ -711,13 +755,13 @@ namespace LibN64
 			 * @param pos1 Point 1
 			 * @param pos2 Point 2
 			 * @param pos3 Point 3
-			 * @param c  Specified color
+			 * @param color  Specified color
 			 */
-			void DrawTriangle(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
+			void DrawTriangle(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
 			{
-				DrawLine({pos1.x,pos1.y},{pos2.x,pos2.y}, c);
-				DrawLine({pos2.x,pos2.y},{pos3.x,pos3.y}, c);
-				DrawLine({pos3.x,pos3.y},{pos1.x,pos1.y}, c);
+				DrawLine({pos1.x,pos1.y},{pos2.x,pos2.y}, color);
+				DrawLine({pos2.x,pos2.y},{pos3.x,pos3.y}, color);
+				DrawLine({pos3.x,pos3.y},{pos1.x,pos1.y}, color);
 			}
 
 			/**
@@ -725,12 +769,12 @@ namespace LibN64
 			 * @param pos1 Point 1
 			 * @param pos2 Point 2
 			 * @param pos3 Point 3
-			 * @param c Specified fill color
+			 * @param color Specified fill color
 			 */
-			void DrawRDPTri(LibPos pos1,LibPos pos2,LibPos pos3, unsigned c = WHITE) 
+			void DrawRDPTri(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
 			{
 				rdp_quickattach();
-				rdp_set_blend_color(c);
+				rdp_set_blend_color(color);
 				rdp_draw_filled_triangle(pos1.x,pos1.y,pos2.x,pos2.y,pos3.x,pos3.y);
 				rdp_quickdetach();
 			}
@@ -769,8 +813,8 @@ namespace LibN64
 
 			void DrawTextCF(LibPos pos, const std::string str, int LibColor = WHITE) 
 			{
-				unsigned incx = pos.x;
-				unsigned incy = pos.y;
+				uint32_t incx = pos.x;
+				uint32_t incy = pos.y;
 				for(size_t index = 0;index<str.length();index++) 
 				{
 					if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
@@ -882,6 +926,33 @@ namespace LibN64
 				return sqrt(((obj2.x - obj1.x)*(obj2.x - obj1.x)) + ((obj2.y - obj1.y)*(obj2.y-obj1.y)));
 			}
 		};
+	};
+
+	/*Optional class wrapper for sprite*/
+	class LibSprite 
+	{
+		private:
+			sprite_t *sSpr = nullptr;
+		public:
+			LibSprite(const std::string& fp) {
+				this->Load(fp);
+			}
+			LibSprite() {}
+			void Load(const std::string& filePath) {
+				sSpr = DFS::QuickRead<sprite_t*>(filePath.c_str());
+			}
+
+			void Draw(LibN64::Frame &r, LibPos pos) {
+				r.DrawSprite(pos, this->sSpr);
+			}
+
+			void Delete() {
+				delete sSpr;
+			}
+
+			sprite_t* Get() {
+				return sSpr;
+			}
 	};
 
 	/*menu system*/
