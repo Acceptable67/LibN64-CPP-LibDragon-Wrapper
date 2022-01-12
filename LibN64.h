@@ -7,6 +7,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <stdarg.h>
 #include <vector>
 #include <list>
@@ -18,7 +19,6 @@
 
 #define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
 
-typedef char byte;
 class		 LibMenuManager;
 class		 LibMenu;
 
@@ -98,6 +98,11 @@ namespace LibN64
 
 namespace LibN64 
 {	
+	using ID	= int;
+	using Byte 	= char;
+
+	const double _PI = 3.1415926f;
+
 	/**
 	* @brief Converts seperate R,G,B,A and mixes down into one color 
 	* @param  {int} r  
@@ -200,10 +205,10 @@ namespace LibN64
 
 			bool 	bActive;
 			bool    bDLInLoop = false;
-			float 	fFrameTime;
-			float 	fTotalTime;
-			float   fFrameRate;
-			float   fFrameCounter;
+			double 	fFrameTime;
+			double 	fTotalTime;
+			double   fFrameRate;
+			double   fFrameCounter;
 			int     iFrames;
 
 			int 	uitype;
@@ -231,7 +236,6 @@ namespace LibN64
 			enum     UIType        { GUI, CONSOLE };
 			enum     Joystick      { JoyUp=0x00000072, JoyDown=0x0000008E, JoyLeft=0x00008E00, JoyRight=0x00007200 };
 			enum 	 KeyState 	   { KeysHeld, KeysDown, KeysPressed, KeysUp } kstate;
-			
 			
 			/**
 			 * @brief Does the dirty work of setting the resolution values
@@ -325,7 +329,7 @@ namespace LibN64
 						d = display_lock();	
 
 					timer_init();
-					float fTmp = timer_ticks();
+					double fTmp = timer_ticks();
 					this->__OnLoop_FreeFunction1();
 				
 				
@@ -342,7 +346,8 @@ namespace LibN64
 							default: break;
 						};
 						
-						if (keys.c[0].err == ERROR_NONE) {
+						if (keys.c[0].err == ERROR_NONE) 
+						{
 							int data = keys.c[0].data;
 						
 							if (keys.c[0].A)       { this->KeyAPressed();    }
@@ -366,9 +371,11 @@ namespace LibN64
 						
 						fFrameTime = timer_ticks();
 
+					#ifndef LIBN_BUILD_CONSOLE
 						fFrameTime -= fTmp;
 						fFrameCounter += fFrameTime; 
 						fTotalTime += fFrameTime;
+					#endif
 
 						timer_close();	
 
@@ -689,47 +696,112 @@ namespace LibN64
 				va_end(args);	
 			}
 
-			float        GetTotalTime() { return Ticks2Seconds(fTotalTime);}
-			float        GetFrameTime() { return Ticks2Seconds(fFrameTime);};
-			float        GetFrameRate() { return (1 / GetFrameTime()); };
+			/**
+			 * @brief Get the Total Time elapsed since start of the application
+			 * 
+			 * @return float 
+			 */
+			float GetTotalTime() 
+			{ 
+				return Ticks2Seconds(fTotalTime);
+			}
+
+			/**
+			 * @brief Get the time it takes to draw one frame 
+			 * 
+			 * @return float 
+			 */
+			float GetFrameTime() {
+
+				return Ticks2Seconds(fFrameTime);
+			};
+
+			/**
+			 * @brief Get how many frames are drawn per second
+			 * 
+			 * @return float 
+			 */
+			float GetFrameRate() 
+			{ 
+				return (1 / GetFrameTime());
+			};
 
 			/*The following functions refuse to compile inside the C++ file.*/
 			/*DFS does not work so here is work around. Manually find*/
 		public:
+			/**
+			 * @brief Convert ROM or RAM to an array of type T (struct, char* array, etc)
+			 * 
+			 * @tparam T 
+			 * @param romAddr ROM (0xB0000000) or RAM address
+			 * @param size Size of memory you'd like to collect
+			 * @return T* 
+			 */
 			template<class T>
 			T* __lib64_rom2buf(long romAddr, int size) {
-				T* tmp = (T*)malloc(size + sizeof(T));
+				T* tmp = static_cast<T*>(std::malloc(size + sizeof(T)));
 				for (auto i = 0; i < size; i++) {
 					tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
 				}
 				return tmp;
 			}
 
+			/*Helper function for above*/
 			template<class T>
 			T __lib64_rom2type(long romAddr) {
-				T *ptr = (T*)(romAddr);
+				T *ptr = static_cast<T*>(romAddr);
 				return *ptr;
 			}
+
+		/*Simple math helper*/
+		class Utility 
+		{
+		public:
+			/**
+			 * @brief Determine if an object is inside a circle with a known radius 
+			 * 
+			 * @param obj1 Object
+			 * @param obj2 Circle-object
+			 * @param cradius Radius of Circle-object
+			 * @return true 
+			 * @return false 
+			 */
+			static bool IsPointInsideCircle(LibPos obj1, LibPos obj2, float cradius)
+			{
+				return sqrt((obj1.x-obj2.x)*(obj1.x-obj2.x) + (obj1.y-obj2.y)*(obj2.y-obj2.y)) < cradius;
+			}
+
+			/**
+			 * @brief Simple Pythagorean Theorem to determine distance 
+			 * 
+			 * @param obj1 LibPos of obj1 
+			 * @param obj2 LibPos of obj2
+			 * @return int
+			 */
+			static int CalculateDistance(LibPos obj1, LibPos obj2) 
+			{
+				return sqrt(((obj2.x - obj1.x)*(obj2.x - obj1.x)) + ((obj2.y - obj1.y)*(obj2.y-obj1.y)));
+			}
+		};
 	};
 
 	/*menu system*/
-	typedef int ID;
 	class LibMenu 
 	{
 		private:
-			LibN64::ID		mId;
-			LibN64::LibPos 	mPos;
-			std::string 	mTitle;
-			std::string 	mContent;
+			LibN64::ID			mId;
+			LibN64::LibPos 		mPos;
+			std::string 		mTitle;
+			std::string 		mContent;
 			LibN64::LibColor	mForecolor, mBackcolor;
 
 			int			mMenuItemSpacing = 10;
 			int			mMenuItemCount;
 			float		mMenuItemSelection;
 
-			std::map   <int,std::string>		mMenuItems;
+			std::map<int,std::string>			mMenuItems;
 			std::vector<std::function<void()>> 	mMenuItemCallbacks;
-			std::array			<bool, 27>		mMenuItemsSelected;
+			std::array<bool, 27>				mMenuItemsSelected;
 
 			bool bMenuIsShowing   = true;
 			bool bEnableHighlight = true;
@@ -784,7 +856,7 @@ namespace LibN64
 						return stringLengths.front();
 					};
 					
-					auto toUpper = [&](std::string str) -> std::string
+					auto toUpper = [=](std::string str) -> std::string
 					{
 						std::string tmp;
 						for(auto& character : str) {
@@ -800,10 +872,10 @@ namespace LibN64
 					};
 					
 					
-					lFrame.DrawRect({mPos}, dimensions, mForecolor);
-					lFrame.DrawRect({mPos}, dimensions, mBackcolor, false);
+					lFrame.DrawRect(mPos, dimensions, mForecolor);
+					lFrame.DrawRect(mPos, dimensions, mBackcolor, false);
 		
-					lFrame.DrawRect({mPos}, {dimensions.x, 15}, mBackcolor);
+					lFrame.DrawRect(mPos, {dimensions.x, 15}, mBackcolor);
 					lFrame.DrawText({mPos.x+5, mPos.y+5},  mTitle, mForecolor, mBackcolor);
 
 					int incy = 20, spot = 0;
@@ -886,7 +958,10 @@ namespace LibN64
 		public:
 			void AddMenu(ID i, std::string t, LibPos p, LibColor f, LibColor b)
 			{
-				LibMenu *tmp = new LibMenu(i, t, p, f, b);
+				/*menuList.push_back(new LibMenu(i, t, p, f, b));
+				menuMap[i] = menuList.back();*/
+
+				auto *tmp = new LibMenu(i, t, p, f, b);
 				menuList.push_back(tmp);
 				menuMap[i] = tmp;
 			}
@@ -898,7 +973,6 @@ namespace LibN64
 						return false;
 					}
 				}
-
 				return true;
 			}
 
@@ -927,9 +1001,9 @@ namespace LibN64
 		int pakControllerID;
 		int	pakValidEntries;
 		int pakBlocksFree;
-	public:
 		uint8_t *pakEntryData;
 
+	public:
 		enum Pads 
 		{
 			CONTROLLER_1,
@@ -964,7 +1038,8 @@ namespace LibN64
 			_ReadPakEntries();
 		}
 
-		char* ReadMemPakEntry(int entryID)
+		template<class RT>
+		RT ReadMemPakEntry(ID entryID)
 		 {
 			if(MemPakInserted() && IsValid()) 
 			{
@@ -976,13 +1051,13 @@ namespace LibN64
 					pakEntryData = new uint8_t[tmp.blocks * MEMPAK_BLOCK_SIZE];
 					read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
 	
-					return reinterpret_cast<char*>(pakEntryData);
+					return reinterpret_cast<RT>(pakEntryData);
 				}
 			}
 			return nullptr;
 		}
 
-		void DeleteMemPakEntry(int entryID)
+		void DeleteMemPakEntry(ID entryID)
 		{
 			if(pakEntries.at(entryID).valid) 
 				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
@@ -991,7 +1066,7 @@ namespace LibN64
 		}
 
 		template<typename DataArray>
-		void WriteMemPakEntry(int entryID, DataArray pakdata) 
+		void WriteMemPakEntry(ID entryID, const DataArray pakdata) 
 		{
 			entry_structure_t entry = pakEntries.at(entryID);
 
@@ -1004,7 +1079,7 @@ namespace LibN64
 		}
 
 		template<typename DataArray>
-		void WriteAnyMemPakEntry(DataArray pakdata) 
+		void WriteAnyMemPakEntry(const DataArray pakdata) 
 		{
 			for(auto& entry : pakEntries) 
 			{
@@ -1021,7 +1096,7 @@ namespace LibN64
 			_ReadPakEntries();
 		}
 
-		int FindFirstEntryWith(std::string entryname) {
+		int FindFirstEntryWith(const std::string entryname) {
 			for(int spot = 0; spot < pakEntries.size(); spot++) 
 			{
 				if(strcmp(pakEntries.at(spot).name, entryname.c_str()) == 0) 
@@ -1031,12 +1106,12 @@ namespace LibN64
 			} 
 		}
 
-		entry_structure_t GetEntryStructure(int entryID) 
+		entry_structure_t GetEntryStructure(ID entryID) 
 		{
 			return pakEntries.at(entryID);
 		} 
 
-		std::string GetMemPakEntryName(int entryID) {
+		std::string GetMemPakEntryName(ID entryID) {
 			return pakEntries.at(entryID).name;
 		}
 
@@ -1096,20 +1171,24 @@ namespace LibN64
 				wav64_t wTrack;
 				int 	iLocalChannel;
 				WavAudio(){}
-				WavAudio(std::string sTrackTitle) {
+				WavAudio(std::string sTrackTitle) 
+				{
 					Init(sTrackTitle);
 				}
 
-				void Init(std::string sTrackTitle) {
+				void Init(std::string sTrackTitle) 
+				{
 					wav64_open(&wTrack, sTrackTitle.c_str());
 					iLocalChannel = 0;
 				}
 
-				void Play() {
+				void Play()
+				{
 					wav64_play(&wTrack, 0);
 				}
 
-				void SetVolume() {
+				void SetVolume() 
+				{
 					mixer_ch_set_vol(iLocalChannel, 0.25f, 0.25f);
 				}
 		};
