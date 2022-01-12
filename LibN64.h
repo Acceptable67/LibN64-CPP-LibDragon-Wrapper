@@ -17,10 +17,24 @@
 #include <stdio.h>
 #include <iostream>
 
-#define TICKS_TOTAL(since_start)	(timer_ticks()-since_start) * 0.021333333 / 1000000.0
+/*	CLASSES:
 
-class		 LibMenuManager;
-class		 LibMenu;
+	LibN64::DFS (static)
+	LibN64::DMA (static)
+	LibN64::RTC
+
+	LibN64::Frame 
+		LibN64::LibColor
+		LibN64::LibPos
+		LibN64::Lib2DVec<type>
+		LibN64::Math (static)
+
+	LibN64::LibMenu
+	LibN64::LibMenuManager
+	LibN64::LibMemPak
+
+	LibN64::Audio::WavAudio
+*/
 
 static int _dfs_handle;
 namespace LibN64 
@@ -28,7 +42,6 @@ namespace LibN64
 	class DFS 
 	{
 		public:
-		
 		/**
 		 * @brief Opens a DFS file
 		 * @param  char* file 
@@ -94,14 +107,97 @@ namespace LibN64
 		}
 
 	};
+
+	class DMA 
+	{
+		public:
+			template<class T>
+			inline static void FromPI(const int PI, const T RAM, size_t Length) 
+			{
+				dma_read_async(reinterpret_cast<void*>(RAM), PI, Length);
+			}
+
+			template<class T>
+			inline static void ToPI(const T RAM, const int PI, size_t Length) 
+			{
+				dma_write_raw_async(reinterpret_cast<void*>(RAM), PI, Length);
+			}
+	};
+
+	/*Non-static, does take an object*/
+	class RTC 
+	{
+		private:
+			rtc_time_t rTimer;
+
+			std::map<uint8_t, const std::string> bToMonth = 
+			{
+				{0,  "January"},
+				{1,  "Feburary"},
+				{2,  "March"},
+				{3,  "April"},
+				{4,  "May"},
+				{5,  "June"},
+				{6,  "July"},
+				{7,  "August"},
+				{8,  "September"},
+				{9,  "October"},
+				{10, "November"},
+				{11, "December"},
+			};
+
+			std::map<uint8_t, const std::string> bToWDay = 
+			{
+				{0, "Sunday"},
+				{1, "Monday"},
+				{2, "Tuesday"},
+				{3, "Wednesday"},
+				{4, "Thursday"},
+				{5, "Friday"},
+				{6, "Saturday"}
+			};
+
+		public:
+			inline void UpdateTime() {
+				rtc_init();
+				rtc_get(&this->rTimer);
+			}
+			
+			uint8_t GetSeconds() {
+				return rTimer.sec;
+			}
+
+			uint8_t GetMinutes() {
+				return rTimer.min;
+			}
+
+			uint8_t GetHours() {
+				return rTimer.hour;
+			}
+
+			uint8_t GetDay() {
+				return rTimer.day;
+			}
+
+			std::string GetMonth() {
+				return bToMonth[rTimer.month];
+			}
+
+			std::string GetWeekday() {
+				return bToWDay[rTimer.week_day];
+			}
+			uint16_t GetYear() {
+				return rTimer.year;
+			}
+
+	};
 };
 
 namespace LibN64 
 {	
+	/*entirely contextual*/
 	using ID	= int;
 	using Byte 	= char;
-
-	const double _PI = 3.1415926f;
 
 	/**
 	* @brief Converts seperate R,G,B,A and mixes down into one color 
@@ -203,12 +299,13 @@ namespace LibN64
 			int 	screenWidth;
 			int 	screenHeight;
 
+		public:
 			bool 	bActive;
 			bool    bDLInLoop = false;
-			double 	fFrameTime;
-			double 	fTotalTime;
-			double   fFrameRate;
-			double   fFrameCounter;
+			float 	fFrameTime;
+			float	fTotalTime;
+			float   fFrameRate;
+			float   fFrameCounter;
 			int     iFrames;
 
 			int 	uitype;
@@ -329,7 +426,7 @@ namespace LibN64
 						d = display_lock();	
 
 					timer_init();
-					double fTmp = timer_ticks();
+					float fTmp = timer_ticks();
 					this->__OnLoop_FreeFunction1();
 				
 				
@@ -738,7 +835,7 @@ namespace LibN64
 			 * @return T* 
 			 */
 			template<class T>
-			T* __lib64_rom2buf(long romAddr, int size) {
+			T* __libn_rom2buf(long romAddr, int size) {
 				T* tmp = static_cast<T*>(std::malloc(size + sizeof(T)));
 				for (auto i = 0; i < size; i++) {
 					tmp[i] = __lib64_rom2type<T>(romAddr + (i*sizeof(T)));
@@ -748,15 +845,17 @@ namespace LibN64
 
 			/*Helper function for above*/
 			template<class T>
-			T __lib64_rom2type(long romAddr) {
+			T __libn_rom2type(long romAddr) {
 				T *ptr = static_cast<T*>(romAddr);
 				return *ptr;
 			}
 
 		/*Simple math helper*/
-		class Utility 
+		class Math
 		{
 		public:
+			constexpr static double PI = 3.1415926f;
+
 			/**
 			 * @brief Determine if an object is inside a circle with a known radius 
 			 * 
