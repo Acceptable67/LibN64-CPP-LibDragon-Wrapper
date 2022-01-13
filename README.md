@@ -4,6 +4,9 @@ A C++ wrapper for libdragon development that allows an easy to use interface to 
 #### Install
 Place <i>LibN64.h</i> in the include directory, reconfigure your LibDragon makefile to install the new header. Build with the modified <i>graphics.cpp</i>, make install, include <i><LibN64.h></i> in your project and should be good to go.
 
+#### Documentation
+Build the new documentation with Doxygen from the root Libdragon folder. All the classes and their features will be highlighted in there.
+
 ### Basic Class Template
 ```c++
 #include <stdio.h>
