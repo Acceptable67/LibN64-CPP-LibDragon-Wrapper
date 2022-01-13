@@ -19,6 +19,15 @@
 #include <stdio.h>
 #include <iostream>
 
+/**
+ * @file LibN64.h
+ * @brief C++ wrapper for Libdragon N64 ROM production. 
+ * @details Includes a multitude of classes to aid in the production 
+ * 			of your applications, a mixture of object and static classes.
+ * @note Under development
+ * @ingroup LibN64
+ */
+
 /*	CLASSES:
 
 	LibN64::LibDFS 	(QuickRead<> -> static)
@@ -132,9 +141,9 @@ namespace LibN64
 		 * @brief Opens a file, reads it to a buffer, and returns the buffer contents all in one go.
 		 * Great for if you do not need to do anything specifical during the reading.
 		 * 
-		 * @tparam T specified buffer that will be returned (int, float, char, sprite_t* etc)
+		 * @tparam T 
 		 * @param file file path 
-		 * @return T 
+		 * @return T specified buffer that will be returned (int, float, char, sprite_t* etc)
 		 */
 		template<class T>
 		static T QuickRead(const std::string& file) 
@@ -189,7 +198,7 @@ namespace LibN64
 			/**
 			 * @brief Get the current type of EEPROM available 
 			 * 
-			 * @return Type 
+			 * @return EEPROM Type
 			 */
 			inline static Type GetType() 
 			{
@@ -199,7 +208,7 @@ namespace LibN64
 			/**
 			 * @brief Get the Total Blocks available to write 
 			 * 
-			 * @return size_t 
+			 * @return size_t Blocks available
 			 */
 			inline static size_t GetTotalBlocks() {
 				return eeprom_total_blocks();
@@ -210,7 +219,7 @@ namespace LibN64
 			 * 
 			 * @tparam T 
 			 * @param block 
-			 * @return T 
+			 * @return T Block of data in data storage of users choosing 
 			 */
 			template<class T>
 			inline static T Read(uint8_t block) 
@@ -228,7 +237,7 @@ namespace LibN64
 			 * @tparam T 
 			 * @param offset 
 			 * @param length 
-			 * @return T 
+			 * @return T Specified amounts of data in storage of users choosing
 			 */
 			template<class T>
 			inline static T ReadBytes(uint32_t offset, size_t length = sizeof(T)) 
@@ -256,9 +265,9 @@ namespace LibN64
 			 * @brief Write a specified amount of bytes to the EEPROM
 			 * 
 			 * @tparam T 
-			 * @param data 
-			 * @param offset 
-			 * @param size 
+			 * @param data data to write
+			 * @param offset offset to begin writing to
+			 * @param size size that you would like to write (default parameter set)
 			 */
 			template<class T>
 			inline static void WriteBytes(T data, uint32_t offset = 0x0, size_t size = sizeof(T)) 
@@ -276,17 +285,22 @@ namespace LibN64
 
 	/**
 	* @brief Converts seperate R,G,B,A and mixes down into one color 
-	* @param  {int} r  
-	* @param  {int} g  
-	* @param  {int} b 
-	* @param  {int} a  
-	* @return {int}   
+
+	* @param  int Red  
+	* @param  int Green
+	* @param  int Blue
+	* @param  int Alpha
+	* @return int 32bit Color
 	*/
 	constexpr int MakeColor(int r, int g, int b, int a) 
 	{
 		return (r << 24) | (((g & 0x00FFFFFF) << 16)) | (((b & 0xFF00FFFF) << 8)) | ((a & 0xFFFF00FF));
 	}
 
+	/**
+	 * @brief Predefined colors to choose from when writing colors to a shape or object
+	 * 
+	 */
 	enum LibColor 
 	{
 		 RED			= MakeColor(0xFF, 0x00, 0x00, 0xFF),
@@ -306,6 +320,10 @@ namespace LibN64
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
 	};
 
+	/**
+	 * @brief Simple supply struct for objects that require X and Y coordinate spaces
+	 * 
+	 */
 	struct LibPos 
 	{ 
 		int x, y; 
@@ -332,6 +350,11 @@ namespace LibN64
 		}
 	};
 
+	/**
+	 * @brief Simple 2D open-type supply struct for any object that requires it
+	 * 
+	 * @tparam SpecifiedType 
+	 */
 	template<class SpecifiedType>
 	struct Lib2DVec
 	{
@@ -347,6 +370,11 @@ namespace LibN64
 		}
 	};
 
+	/**
+	 * @brief Main core of the library
+	 * @details Inside, the main loop is included along with many of the core
+	 * 			functions required to get a Libdragon game up and running.
+	 */
 	class Frame 
 	{
 		private:
@@ -359,10 +387,12 @@ namespace LibN64
 			int 	screenWidth;
 			int 	screenHeight;
 			
+			/*test*/
 			bool 	bActive;
 			bool    bDLInLoop = false;
 
-			float 	fFrameTime;
+			
+			float 	fFrameTime; 
 			float	fTotalTime;
 			float   fFrameRate;
 			float   fFrameCounter;
@@ -450,10 +480,10 @@ namespace LibN64
 			/**
 			 * @brief Sets up the entire frame with values required to render LibN64 functions
 			 *
-			 * @param	resolution_t res 
-			 * @param	bitdepth_t   dep  
-			 * @param	antialias_t   aa
-			 * @param	UIType 		  ui  
+			 * @param	resolution_t Resolution type
+			 * @param	bitdepth_t   Bitdepth
+			 * @param	antialias_t   Anti-aliasing
+			 * @param	UIType 		  UI Type (Console or GUI)
 			 */
 			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) 
 			: r(res), bd(dep), aa(aa), uitype(ui)
@@ -570,7 +600,6 @@ namespace LibN64
 			
 			/**
 			 * @brief Stop the loop and continue execution in the main()
-			 * 
 			 */
 			void Close() 
 			{
@@ -591,8 +620,7 @@ namespace LibN64
 			}
 
 			/** @brief Clears the screen with a specified color but with RDP (Hardware)
-			 * 
-			 * @param  uint32_t color 
+			 *  @param  uint32_t color 
 			 */
 			void ClearScreenRDP(uint32_t color = BLACK) 
 			{
@@ -600,9 +628,8 @@ namespace LibN64
 			}
 			
 			/** @brief Changes screen resolution on the fly
-			 *  
-			 *  @param  resolution_t resolution 
-			 *  @param  bitdepth_t bitdepth    
+			 *  @param  resolution_t Resolution
+			 *  @param  bitdepth_t Bitdepth
 			 */
 			void SetScreen(resolution_t res, bitdepth_t bd)
 			{
@@ -614,34 +641,34 @@ namespace LibN64
 			}
 
 			/** @brief Returns the frames display context
-			 * @return display_context_t
+			 * @return display_context_t Handle to LibN64::Frame display
 			 */
 			display_context_t GetDisplay() { return this->d;}
 
 			/**
 			 * @brief Returns the current Anti-Aliasing Mode
 			 * 
-			 * @return antialias_t 
+			 * @return antialias_t Antialiasing
 			 */
 			antialias_t GetAAMode() { return this->aa; }
 
 			/**
 			 * @brief Returns the current bitdepth
 			 * 
-			 * @return bitdepth_t 
+			 * @return bitdepth_t Bitdepth
 			 */
 			bitdepth_t GetBitdepth() { return this->bd; }
 
 			/**
 			 * @brief Returns the current resolution
 			 * 
-			 * @return resolution_t 
+			 * @return resolution_t Resolution
 			 */
 			resolution_t GetResolution() { return this->r; }
 			
 			/**
 			 * @brief Sets the key state in the loop (whether it's keydown, pressed, up, or held).
-			 * @param  KeyState k
+			 * @param  KeyState Frame::KeyState 
 			 */
 			void SetKeyState(KeyState k) { kstate = k;}
 
@@ -653,21 +680,21 @@ namespace LibN64
 			
 			/**
 			 * @brief Returns screenwidth 
-			 * @return {int}  
+			 * @return int Width
 			 */
 			int ScreenWidth() { return screenWidth;}
 
 			/**
 			 * @brief Returns screenheight 
-			 * @return {int}  
+			 * @return int Height
 			 */
 			int ScreenHeight() { return screenHeight;};
 
 			/** @brief DrawText feature with ability to use as printf
 			 * 
-			 * @param  LibPos pos         
-			 * @param  std::string format 
-			 * @param  ... args      
+			 * @param  LibPos Position on screen         
+			 * @param  std::string Format
+			 * @param  ... Variadic arguments     
 			 */
 			void DrawTextFormat(LibPos pos, const std::string format, ...) 
 			{
@@ -685,9 +712,9 @@ namespace LibN64
 
 			/** @brief DrawText feature with ability to use as printf with coloring
 			 * 
-			 * @param  LibPos pos         
-			 * @param  std::string format 
-			 * @param  ... arguments      
+			 * @param  LibPos Position on screen 
+			 * @param  std::string Format 
+			 * @param  ... Variadic arguments     
 			 */
 			void DrawTextFormat(LibPos pos, LibColor forecolor, LibColor backcolor, const std::string format, ...)
 			{
@@ -705,10 +732,10 @@ namespace LibN64
 	
 			/**
 			 * @brief Draw's 8x8 text to the screen at the specified location
-			 * @param  LibPos position
-			 * @param  std::string text    
-			 * @param  LibColor forecolor 
-			 * @param  LibColor backcolor 
+			 * @param  LibPos Position
+			 * @param  std::string Text    
+			 * @param  LibColor Forecolor 
+			 * @param  LibColor Backcolor 
 			 */
 			void DrawText(LibN64::LibPos pos, const std::string t, LibColor forecolor = WHITE, LibColor backcolor = BLACK) 
 			{
@@ -724,8 +751,8 @@ namespace LibN64
 
 			/** 
 			 * @brief Draws pixel to the screen at the specified location
-			 * @param  LibPos pos 
-			 * @param  uint32_t color
+			 * @param  LibPos Position 
+			 * @param  uint32_t Color
 			 */
 	 		void DrawPixel(LibPos pos, uint32_t color = WHITE) 
 			{
@@ -735,10 +762,10 @@ namespace LibN64
 			/** @brief Can draw either a filled or wireframe rectangle at the specified position with 
 			 *		   specified dimensions and color
 			 * 
-			 * @param  LibPos pos           
-			 * @param  LibPos dimensions
-			 * @param  uint32_t color          
-			 * @param  bool isFilled 
+			 * @param  LibPos Position           
+			 * @param  LibPos Dimensions
+			 * @param  uint32_t Color          
+			 * @param  bool True or False
 			 */
 
 			void DrawRect(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE, bool isFilled = true) 
@@ -754,6 +781,12 @@ namespace LibN64
 				}
 			}
 
+			/**
+			 * @brief Draws a filled rectangle at the specified position with alpha support
+			 * @param Pos 
+			 * @param Dimensions 
+			 * @param Color 
+			 */
 			void DrawRectTrans(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE) 
 			{
 				graphics_draw_box_trans(d, pos.x, pos.y, dimensions.x, dimensions.y, color);
@@ -761,10 +794,10 @@ namespace LibN64
 
 	
 			/**
-			* @brief  Initializes RDP, draws an RDP Rectangle to the screen
-			* @param  LibPos pos           
-			* @param  LibPos dimensions         
-			* @param  uint32_t color          
+			* @brief  Initializes RDP, draws an RDP Rectangle to the screen then closes RDP.
+			* @param  LibPos Position           
+			* @param  LibPos Dimensions         
+			* @param  uint32_t Color          
 			*/
 			void DrawRectRDP(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE) 
 			{
@@ -790,11 +823,11 @@ namespace LibN64
 			/**
 			 * @brief Draws a circle to the screen with customizable step size and optional filling and scale
 			 * 
-			 * @param pos 
-			 * @param scale 
-			 * @param cStepSize 
-			 * @param color 
-			 * @param isFilled 
+			 * @param pos Position
+			 * @param scale Scale
+			 * @param cStepSize The rate at which the angle is increased
+			 * @param color Color
+			 * @param isFilled Circle is filled or not
 			 */
 			void DrawCircle(LibPos pos, int scale = 1, const uint32_t color = WHITE, bool isFilled = true, float cStepSize = 0.1) 
 			{
@@ -848,8 +881,8 @@ namespace LibN64
 
 			/**
 			 * @brief Draws a sprite (sprite_t*) at the specified location
-			 * @param pos 
-			 * @param spr 
+			 * @param pos Position
+			 * @param spr Sprite handle
 			 */
 			void DrawSprite(LibPos pos, sprite_t* spr) {
 				graphics_draw_sprite(this->d, pos.x, pos.y, spr);
@@ -858,9 +891,9 @@ namespace LibN64
 			/**
 			 * @brief Draws a sprite from a sprite-map 
 			 * 
-			 * @param pos 
-			 * @param offset 
-			 * @param spr 
+			 * @param pos Position
+			 * @param offset Map offset
+			 * @param spr Sprite handle
 			 */
 			void DrawSpriteStride(LibPos pos, uint32_t offset, sprite_t* spr) {
 				graphics_draw_sprite_stride(this->d, pos.x, pos.y, spr, offset);
@@ -869,8 +902,8 @@ namespace LibN64
 			/**
 			 * @brief Draws a sprite with alpha
 			 * 
-			 * @param pos 
-			 * @param spr 
+			 * @param pos Position
+			 * @param spr Sprite handle
 			 */
 			void DrawSpriteTrans(LibPos pos, sprite_t* spr) {
 				graphics_draw_sprite_trans(this->d, pos.x, pos.y, spr);
@@ -879,9 +912,9 @@ namespace LibN64
 			/**
 			 * @brief Draws a sprite from a sprite-map with alpha 
 			 * 
-			 * @param pos 
-			 * @param offset 
-			 * @param spr 
+			 * @param pos Position
+			 * @param offset Map offset
+			 * @param spr Sprite handle
 			 */
 			void DrawSpriteTransStride(LibPos pos, uint32_t offset, sprite_t* spr) {
 				graphics_draw_sprite_trans_stride(this->d, pos.x, pos.y, spr, offset);
@@ -889,15 +922,20 @@ namespace LibN64
 
 			/**
 			 * @brief Converts ticks to seconds for easy readability 
-			 * @param float ticks 
-			 * @return float 
+			 * @param float Ticks 
+			 * @return float Amount of seconds in ticks 
 			 */
 			float Ticks2Seconds(float t) 
 			{
 				return (t * 0.021333333 / 1000000.0);
 			}
 
-			/*uses Baremetal-MIPS 8x8 font from PeterLemon (github)*/
+			/**
+			 * @brief Use's "baremetal" MIPS 8x8 font (Peterlemon from GitHub)
+			 * @details Load your own font and draw with the DrawTextCF and DrawText
+			 *			FormatCF functions 
+			 * @param FileName Path to the font file
+			 */
 			void LoadCustomFont(const std::string FileName) 
 			{
 				libFont = LibDFS::QuickRead<sprite_t*>(FileName.c_str());
@@ -909,9 +947,9 @@ namespace LibN64
 			/**
 			 * @brief Draw text from the custom font file that has been loaded with LoadCustomFont
 			 * 
-			 * @param pos 
-			 * @param str 
-			 * @param LibColor 
+			 * @param pos Position
+			 * @param str Text
+			 * @param LibColor Color (optional)
 			 */
 			void DrawTextCF(LibPos pos, const std::string str, int LibColor = WHITE) 
 			{
@@ -929,9 +967,9 @@ namespace LibN64
 			/**
 			 * @brief Draw text from the custom font file, but with printf-formatting 
 			 * 
-			 * @param pos 
-			 * @param format 
-			 * @param ... 
+			 * @param pos Position
+			 * @param format Format
+			 * @param ... Variadic Arguments
 			 */
 			void DrawTextFormatCF(LibPos pos, const std::string format, ...) 
 			{
@@ -949,7 +987,7 @@ namespace LibN64
 			/**
 			 * @brief Get the Total Time elapsed since start of the application
 			 * 
-			 * @return float 
+			 * @return float Total time elapsed
 			 */
 			float GetTotalTime() 
 			{ 
@@ -959,7 +997,7 @@ namespace LibN64
 			/**
 			 * @brief Get the time it takes to draw one frame 
 			 * 
-			 * @return float 
+			 * @return float Frame time
 			 */
 			float GetFrameTime() {
 
@@ -969,7 +1007,7 @@ namespace LibN64
 			/**
 			 * @brief Get how many frames are drawn per second
 			 * 
-			 * @return float 
+			 * @return float Frame rate
 			 */
 			float GetFrameRate() 
 			{ 
@@ -1003,7 +1041,11 @@ namespace LibN64
 				return *ptr;
 			}
 
-		/*Simple math helper*/
+		/**
+		 * @brief Simple math helper.
+		 * @note Very small, still under construction.
+		 * 
+		 */
 		class LibMath
 		{
 		public:
@@ -1015,7 +1057,7 @@ namespace LibN64
 			 * @param obj1 Object
 			 * @param obj2 Circle-object
 			 * @param cradius Radius of Circle-object
-			 * @return true static 
+			 * @return true or false 
 			 */
 			static bool IsPointInsideCircle(LibPos obj1, LibPos obj2, float cradius)
 			{
@@ -1027,7 +1069,7 @@ namespace LibN64
 			 * 
 			 * @param obj1 LibPos of obj1 
 			 * @param obj2 LibPos of obj2
-			 * @return int
+			 * @return int Distance
 			 */
 			static int CalculateDistance(LibPos obj1, LibPos obj2) 
 			{
@@ -1036,7 +1078,12 @@ namespace LibN64
 		};
 	};
 
-	/*menu system*/
+	/**
+	 * @brief Rudimentary menu system. Seems to work fine on emulators but has trouble
+	 * 		  on hardware
+	 * @bug Not working on hardware
+	 * 
+	 */
 	class LibMenu 
 	{
 		private:
@@ -1260,6 +1307,10 @@ namespace LibN64
 			LibMenu* operator [](ID i) { return menuMap[i]; }
 	};
 	
+	/**
+	 * @brief The main MemPak interface 
+	 * 
+	 */
 	class LibMemPak
 	{
 	private:
@@ -1426,7 +1477,9 @@ namespace LibN64
 		
 	};
 
-	/*Optional class wrapper for sprite*/
+	/** 
+	 * @brief Optional class wrapper for sprite
+	 * */
 	class LibSprite 
 	{
 		private:
@@ -1456,6 +1509,9 @@ namespace LibN64
 			}
 	};
 
+	/**
+	 * @brief Real-Time-Clock class interface
+	 */
 	class LibRTC 
 	{
 		private:
@@ -1522,10 +1578,14 @@ namespace LibN64
 			}
 	};
 
-	/*having issues*/
 	namespace Audio 
 	{
 		
+		/**
+		 * @brief Unsure of the status of this. My build cant find the symbols
+		 * 		  for Wav64_open and others.
+		 * 
+		 */
 		class WavAudio
 		{
 			public:
