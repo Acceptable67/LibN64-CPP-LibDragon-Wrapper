@@ -3,6 +3,8 @@
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 #pragma GCC diagnostic ignored "-Wnarrowing"
 
+#define DEFAULT_DISPLAY 0
+
 #include <libdragon.h>
 #include <math.h>
 #include <string.h>
@@ -333,13 +335,25 @@ namespace LibN64
 	template<class SpecifiedType>
 	struct Lib2DVec
 	{
+		public:
 		std::pair<SpecifiedType, SpecifiedType> values;
+
+		SpecifiedType& First() {
+			return values.first;
+		}
+
+		SpecifiedType& Second() {
+			return values.second;
+		}
 	};
 
 	class Frame 
 	{
 		private:
-			display_context_t d;
+			display_context_t 	d;
+			resolution_t 		r;
+			bitdepth_t 			bd;
+			antialias_t			aa;
 			sprite_t* 		  libFont = nullptr;
 
 			int 	screenWidth;
@@ -360,11 +374,10 @@ namespace LibN64
 			inline void rdp_quickattach() 
 			{
 				rdp_init();
-				rdp_attach_display(GetDisplay());
-				rdp_sync(SYNC_PIPE);
 				rdp_set_default_clipping();
-				rdp_sync(SYNC_PIPE);
 				rdp_enable_blend_fill();
+				rdp_attach_display(GetDisplay());
+				rdp_enable_primitive_fill();
 			}
 
 			/*Local RDP Function*/
@@ -442,9 +455,10 @@ namespace LibN64
 			 * @param	antialias_t   aa
 			 * @param	UIType 		  ui  
 			 */
-			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) : uitype(ui)
+			Frame(resolution_t res, bitdepth_t dep, antialias_t aa, UIType ui) 
+			: r(res), bd(dep), aa(aa), uitype(ui)
 			{
-				d 		= 0;
+				d 		= DEFAULT_DISPLAY;
 				kstate 	= KeysHeld;
 				CheckAndSwitchRes(res);
 			
@@ -582,14 +596,11 @@ namespace LibN64
 			 */
 			void ClearScreenRDP(uint32_t color = BLACK) 
 			{
-					if(uitype == GUI) 
-					{
-						DrawRectRDP({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, color);
-					}
+				DrawRectRDP({0,0},{ScreenWidth(),ScreenHeight()}, color);
 			}
 			
 			/** @brief Changes screen resolution on the fly
-			 *  @bug does not work with most emulators
+			 *  
 			 *  @param  resolution_t resolution 
 			 *  @param  bitdepth_t bitdepth    
 			 */
@@ -598,14 +609,35 @@ namespace LibN64
 				CheckAndSwitchRes(res);
 
 				display_close();
-				display_init(res, bd, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE);
+				display_init(res, bd, 3, GAMMA_NONE, this->aa);
 				d = display_lock();
 			}
 
 			/** @brief Returns the frames display context
 			 * @return display_context_t
 			 */
-			display_context_t GetDisplay() { return this->d;};
+			display_context_t GetDisplay() { return this->d;}
+
+			/**
+			 * @brief Returns the current Anti-Aliasing Mode
+			 * 
+			 * @return antialias_t 
+			 */
+			antialias_t GetAAMode() { return this->aa; }
+
+			/**
+			 * @brief Returns the current bitdepth
+			 * 
+			 * @return bitdepth_t 
+			 */
+			bitdepth_t GetBitdepth() { return this->bd; }
+
+			/**
+			 * @brief Returns the current resolution
+			 * 
+			 * @return resolution_t 
+			 */
+			resolution_t GetResolution() { return this->r; }
 			
 			/**
 			 * @brief Sets the key state in the loop (whether it's keydown, pressed, up, or held).
@@ -709,7 +741,7 @@ namespace LibN64
 			 * @param  bool isFilled 
 			 */
 
-			void DrawRect(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE, bool isFilled = true) 
+			void DrawRect(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
 				{
@@ -722,7 +754,7 @@ namespace LibN64
 				}
 			}
 
-			void DrawRectTrans(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
+			void DrawRectTrans(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE) 
 			{
 				graphics_draw_box_trans(d, pos.x, pos.y, dimensions.x, dimensions.y, color);
 			}
@@ -734,9 +766,10 @@ namespace LibN64
 			* @param  LibPos dimensions         
 			* @param  uint32_t color          
 			*/
-			void DrawRectRDP(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
+			void DrawRectRDP(LibPos pos, LibPos dimensions={1,1}, const uint32_t color = WHITE) 
 			{
 				rdp_quickattach();
+				rdp_set_primitive_color(color);
 				rdp_set_blend_color(color);
 				rdp_draw_filled_rectangle(pos.x,pos.y,dimensions.x,dimensions.y);
 				rdp_quickdetach();
@@ -749,7 +782,7 @@ namespace LibN64
 			 * @param pos2  End X and Y
 			 * @param color Specified color of the line 
 			 */
-	 		void DrawLine(LibPos pos1, LibPos pos2, uint32_t color = WHITE)
+	 		void DrawLine(LibPos pos1, LibPos pos2, const uint32_t color = WHITE)
 			{
 				graphics_draw_line(this->d, pos1.x, pos1.y, pos2.x, pos2.y, color);
 			}
@@ -763,7 +796,7 @@ namespace LibN64
 			 * @param color 
 			 * @param isFilled 
 			 */
-			void DrawCircle(LibPos pos, int scale = 1,float cStepSize = 0.1, uint32_t color = WHITE, bool isFilled = true) 
+			void DrawCircle(LibPos pos, int scale = 1, const uint32_t color = WHITE, bool isFilled = true, float cStepSize = 0.1) 
 			{
 				if(isFilled) 
 				{
@@ -774,8 +807,10 @@ namespace LibN64
 							DrawPixel({pos.x + cosf(angles) * 3.1415f * scaler, pos.y + sinf(angles) * 3.1415f * scaler}, color);
 						}
 					}
-				} else {
-					for(float angles =0;angles<25*scale;angles+=0.1) 
+				} 
+				else 
+				{
+					for(float angles =0;angles<25*scale;angles+=cStepSize) 
 					{
 						DrawPixel({pos.x + cosf(angles) * 3.1415f * scale, pos.y + sinf(angles) * 3.1415f * scale}, color);
 					}
@@ -886,7 +921,7 @@ namespace LibN64
 				{
 					if(incx >= ScreenWidth()) { incy+=8; incx = pos.x; }
 
-					Graphics::DrawFont(GetDisplay(), incx, incy, LibColor, libFont, str[index]);
+					graphics_draw_font(GetDisplay(), incx, incy, LibColor, libFont, str[index]);
 					incx += 8;
 				}
 			}
@@ -969,7 +1004,7 @@ namespace LibN64
 			}
 
 		/*Simple math helper*/
-		class Math
+		class LibMath
 		{
 		public:
 			constexpr static double PI = 3.1415926f;
@@ -1047,15 +1082,21 @@ namespace LibN64
 			}
 
 
-			void MoveSelectionUp(Frame &r)   { 
+			void MoveSelectionUp(Frame &r)   
+			{ 
 				mMenuItemsSelected.fill(false);
-				if((mMenuItemSelection - 1) >= 0 && bInFocus && MenuIsShowing()) 
+
+				if((mMenuItemSelection - 1) >= 0 
+				&& bInFocus && MenuIsShowing()) 
 					mMenuItemSelection-= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
-			void MoveSelectionDown(Frame &r) { 
+			void MoveSelectionDown(Frame &r) 
+			{ 
 				mMenuItemsSelected.fill(false);
-				if((mMenuItemSelection + 1) < mMenuItemCount && bInFocus && MenuIsShowing()) 
+
+				if((mMenuItemSelection + 1) < mMenuItemCount
+				 && bInFocus && MenuIsShowing()) 
 					mMenuItemSelection+= (r.kstate == Frame::KeyState::KeysHeld || r.kstate == Frame::KeyState::KeysPressed) ? 0.02 : 1; 
 			}
 
