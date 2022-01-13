@@ -19,7 +19,7 @@
 
 /*	CLASSES:
 
-	LibN64::DFS 	(static)
+	LibN64::LibDFS 	(QuickRead<> -> static)
 	LibN64::DMA 	(static)
 	LibN64::EEPROM  (static)
 
@@ -29,48 +29,84 @@
 		LibN64::Lib2DVec<type>
 		LibN64::Math (static)
 
-	LibN64::LibSprite
 	LibN64::LibMenu
 	LibN64::LibMenuManager
 	LibN64::LibMemPak
+	LibN64::LibSprite
 	LibN64::LibRTC
 
 	LibN64::Audio::WavAudio
 */
 
-static int _dfs_handle;
 namespace LibN64 
 {
-	class DFS 
+	class LibDFS 
 	{
+		private:
+			int dfsHandle;
+
 		public:
+		LibDFS(){}
+
+		/**
+		 * @brief Construct a new LibDFS
+		 * 		  Automatically open new file handle
+		 * @param file 
+		 */
+		LibDFS(const std::string& file) { Open(file); }
+
 		/**
 		 * @brief Opens a DFS file
 		 * @param  char* file 
 		 * @return handle to the file  
 		 */
-		static uint32_t Open(const std::string& file) 
+		uint32_t Open(const std::string& file) 
 		{
-			_dfs_handle = dfs_open(file.c_str());
-			return _dfs_handle;
+			dfsHandle = dfs_open(file.c_str());
+			return dfsHandle;
 		}
 		
 		/**
 		 * @brief Grabs the currently open DFS's file size
 		 * @return Current size of open file
 		 */
-		static int Size()
+		int Size()
 		{
-			auto s = dfs_size(_dfs_handle);
-			return s;
+			return dfs_size(dfsHandle);
 		}
 		
+		/**
+		 * @brief Returns whether at EOF or not
+		 * 
+		 * @return int 
+		 */
+		int AtEOF() 
+		{
+			return dfs_eof(dfsHandle);
+		}
+
+		/**
+		 * @brief Returns the ROM address of where the specified file is stored
+		 * 
+		 * @param file 
+		 * @return uint32_t 
+		 */
+		uint32_t GetROMAddress(const std::string& file) 
+		{
+			return dfs_rom_addr(file.c_str());
+		}
+
 		 /** 
 		 * @brief Closes the DFS session 
 		 */
-		static void Close()
+		void Close()
 		{
-			dfs_close(_dfs_handle);
+			dfs_close(dfsHandle);
+		}
+
+		uint32_t GetHandle() 
+		{
+			return this->dfsHandle;
 		}
 		
 		/** 
@@ -80,11 +116,14 @@ namespace LibN64
 		 * @param uint32_t offset (to read from)
 		 */
 		template<class T>
-		static void Read(T buf, uint32_t size, uint32_t offset = 0x0) 
+		T Read(uint32_t size, uint32_t offset = 0x0) 
 		{
-			dfs_seek(_dfs_handle, offset, SEEK_SET);
+			T buffer = static_cast<T>(std::malloc(size));
+			dfs_seek(dfsHandle, offset, SEEK_SET);
 			if(size > 0)
-				dfs_read(buf, 1, size, _dfs_handle);
+				dfs_read(buffer, 1, size, dfsHandle);
+
+			return buffer;
 		}
 		
 		/**
@@ -98,12 +137,11 @@ namespace LibN64
 		template<class T>
 		static T QuickRead(const std::string& file) 
 		{
-			Open(file);
+			int tmp = dfs_open(file.c_str());
+			T buffer = static_cast<T>(std::malloc(dfs_size(tmp)));
 			
-			T buffer = (T)malloc(Size());
-			
-			Read(buffer, Size());
-			Close();
+			dfs_read(buffer, 1, dfs_size(tmp), tmp);
+			dfs_close(tmp);
 			
 			return buffer;
 		}
@@ -114,11 +152,26 @@ namespace LibN64
 	{
 		public:
 			template<class T>
+			/**
+			 * @brief Read in a block of memory from PI to specified RAM buffer 
+			 * 
+			 * @param PI PI Address
+			 * @param RAM RAM Address
+			 * @param Length Size to read
+			 */
 			inline static void FromPI(const int PI, const T RAM, size_t Length) 
 			{
 				dma_read_async(reinterpret_cast<void*>(RAM), PI, Length);
 			}
 
+			/**
+			 * @brief Write a block of memory from RAM to PI
+			 * 
+			 * @tparam T 
+			 * @param RAM RAM Address
+			 * @param PI PI Address
+			 * @param Length Size to write
+			 */
 			template<class T>
 			inline static void ToPI(const T RAM, const int PI, size_t Length) 
 			{
@@ -130,15 +183,33 @@ namespace LibN64
 	{
 		public:
 			enum Type { ENONE, E4K, E16K };
+
+			/**
+			 * @brief Get the current type of EEPROM available 
+			 * 
+			 * @return Type 
+			 */
 			inline static Type GetType() 
 			{
 				return static_cast<Type>(eeprom_present());
 			} 
 
+			/**
+			 * @brief Get the Total Blocks available to write 
+			 * 
+			 * @return size_t 
+			 */
 			inline static size_t GetTotalBlocks() {
 				return eeprom_total_blocks();
 			}
 
+			/**
+			 * @brief Read 8 bytes of data from 1 block on the EEPROM
+			 * 
+			 * @tparam T 
+			 * @param block 
+			 * @return T 
+			 */
 			template<class T>
 			inline static T Read(uint8_t block) 
 			{
@@ -148,94 +219,50 @@ namespace LibN64
 				return reinterpret_cast<T>(tmp);
 			}
 
+			/**
+			 * @brief Read a specified amount of data throughout several blocks 
+			 * 		  on the eeprom
+			 * 
+			 * @tparam T 
+			 * @param offset 
+			 * @param length 
+			 * @return T 
+			 */
 			template<class T>
-			inline static T ReadBytes(uint32_t offset, size_t length) 
+			inline static T ReadBytes(uint32_t offset, size_t length = sizeof(T)) 
 			{
-				uint32_t *tmp = new uint32_t[2000];
-				eeprom_read_bytes(reinterpret_cast<uint8_t*>(tmp), offset, length);
+				uint8_t *tmp = new uint8_t[length];
+				eeprom_read_bytes(tmp, offset, length);
 
 				return reinterpret_cast<T>(tmp);
 			}
 
+			/**
+			 * @brief Write a block of data to the EEPROM
+			 * 
+			 * @tparam T Can be a struct, class, data structure of any kind
+			 * @param block 
+			 * @param data 
+			 */
 			template<class T>
 			inline static void Write(uint8_t block, T *data) 
 			{
 				eeprom_write(block, data);
 			}
 
+			/**
+			 * @brief Write a specified amount of bytes to the EEPROM
+			 * 
+			 * @tparam T 
+			 * @param data 
+			 * @param offset 
+			 * @param size 
+			 */
 			template<class T>
-			inline static void WriteBytes(T data, uint32_t offset, size_t size) 
+			inline static void WriteBytes(T data, uint32_t offset = 0x0, size_t size = sizeof(T)) 
 			{
 				eeprom_write_bytes(reinterpret_cast<uint8_t*>(data), offset, size);
 			}
-	};
-
-	/*Non-static, does take an object*/
-	class LibRTC 
-	{
-		private:
-			rtc_time_t rTimer;
-
-			std::map<uint8_t, const std::string> bToMonth = 
-			{
-				{0,  "January"},
-				{1,  "Feburary"},
-				{2,  "March"},
-				{3,  "April"},
-				{4,  "May"},
-				{5,  "June"},
-				{6,  "July"},
-				{7,  "August"},
-				{8,  "September"},
-				{9,  "October"},
-				{10, "November"},
-				{11, "December"},
-			};
-
-			std::map<uint8_t, const std::string> bToWDay = 
-			{
-				{0, "Sunday"},
-				{1, "Monday"},
-				{2, "Tuesday"},
-				{3, "Wednesday"},
-				{4, "Thursday"},
-				{5, "Friday"},
-				{6, "Saturday"}
-			};
-
-		public:
-			inline void UpdateTime() {
-				rtc_init();
-				rtc_get(&this->rTimer);
-			}
-			
-			uint8_t GetSeconds() {
-				return rTimer.sec;
-			}
-
-			uint8_t GetMinutes() {
-				return rTimer.min;
-			}
-
-			uint8_t GetHours() {
-				return rTimer.hour % 12;
-			}
-
-			uint8_t GetDay() {
-				return rTimer.day;
-			}
-
-			std::string GetMonth() {
-				return bToMonth[rTimer.month];
-			}
-
-			std::string GetWeekday() {
-				return bToWDay[rTimer.week_day];
-			}
-			uint16_t GetYear() {
-				return rTimer.year;
-			}
-
 	};
 };
 
@@ -557,7 +584,7 @@ namespace LibN64
 			{
 					if(uitype == GUI) 
 					{
-						DrawRDPRect({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, color);
+						DrawRectRDP({0,0},{(int)ScreenWidth(), (int)ScreenHeight()}, color);
 					}
 			}
 			
@@ -673,14 +700,15 @@ namespace LibN64
 				graphics_draw_pixel(this->d, pos.x, pos.y, color);
 			}
 			
-			/** @brief Can draw either a filled or wireframe rectangle at the specified position with specified dimensions
-			 * and color
+			/** @brief Can draw either a filled or wireframe rectangle at the specified position with 
+			 *		   specified dimensions and color
 			 * 
 			 * @param  LibPos pos           
 			 * @param  LibPos dimensions
 			 * @param  uint32_t color          
 			 * @param  bool isFilled 
 			 */
+
 			void DrawRect(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE, bool isFilled = true) 
 			{
 				if(isFilled) 
@@ -688,11 +716,15 @@ namespace LibN64
 					graphics_draw_box(d, pos.x, pos.y, dimensions.x, dimensions.y, color);
 				} 
 				else {
-					DrawLine(pos, {pos.x + dimensions.x, pos.y}, color);
-					DrawLine({pos.x + dimensions.x, pos.y}, {pos.x+dimensions.x, pos.y + dimensions.y}, color);
-					DrawLine({pos.x+dimensions.x, pos.y+dimensions.y}, {pos.x, pos.y + dimensions.y}, color);
+					DrawLine(pos, {pos.x + dimensions.x, pos.y}, color); DrawLine({pos.x + dimensions.x, pos.y}, {pos.x+dimensions.x, pos.y + dimensions.y}, color);
+					DrawLine({pos.x+dimensions.x, pos.y+dimensions.y}, {pos.x, pos.y + dimensions.y}, color); 
 					DrawLine({pos.x, pos.y + dimensions.y}, pos, color);
 				}
+			}
+
+			void DrawRectTrans(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
+			{
+				graphics_draw_box_trans(d, pos.x, pos.y, dimensions.x, dimensions.y, color);
 			}
 
 	
@@ -702,7 +734,7 @@ namespace LibN64
 			* @param  LibPos dimensions         
 			* @param  uint32_t color          
 			*/
-			void DrawRDPRect(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
+			void DrawRectRDP(LibPos pos, LibPos dimensions={1,1}, uint32_t color = WHITE) 
 			{
 				rdp_quickattach();
 				rdp_set_blend_color(color);
@@ -757,7 +789,7 @@ namespace LibN64
 			 * @param pos3 Point 3
 			 * @param color  Specified color
 			 */
-			void DrawTriangle(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
+			void DrawTri(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
 			{
 				DrawLine({pos1.x,pos1.y},{pos2.x,pos2.y}, color);
 				DrawLine({pos2.x,pos2.y},{pos3.x,pos3.y}, color);
@@ -771,7 +803,7 @@ namespace LibN64
 			 * @param pos3 Point 3
 			 * @param color Specified fill color
 			 */
-			void DrawRDPTri(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
+			void DrawTriRDP(LibPos pos1,LibPos pos2,LibPos pos3, uint32_t color = WHITE) 
 			{
 				rdp_quickattach();
 				rdp_set_blend_color(color);
@@ -789,11 +821,43 @@ namespace LibN64
 			}
 
 			/**
+			 * @brief Draws a sprite from a sprite-map 
+			 * 
+			 * @param pos 
+			 * @param offset 
+			 * @param spr 
+			 */
+			void DrawSpriteStride(LibPos pos, uint32_t offset, sprite_t* spr) {
+				graphics_draw_sprite_stride(this->d, pos.x, pos.y, spr, offset);
+			}
+
+			/**
+			 * @brief Draws a sprite with alpha
+			 * 
+			 * @param pos 
+			 * @param spr 
+			 */
+			void DrawSpriteTrans(LibPos pos, sprite_t* spr) {
+				graphics_draw_sprite_trans(this->d, pos.x, pos.y, spr);
+			}
+
+			/**
+			 * @brief Draws a sprite from a sprite-map with alpha 
+			 * 
+			 * @param pos 
+			 * @param offset 
+			 * @param spr 
+			 */
+			void DrawSpriteTransStride(LibPos pos, uint32_t offset, sprite_t* spr) {
+				graphics_draw_sprite_trans_stride(this->d, pos.x, pos.y, spr, offset);
+			}
+
+			/**
 			 * @brief Converts ticks to seconds for easy readability 
 			 * @param float ticks 
 			 * @return float 
 			 */
-			float  Ticks2Seconds (float t) 
+			float Ticks2Seconds(float t) 
 			{
 				return (t * 0.021333333 / 1000000.0);
 			}
@@ -801,16 +865,19 @@ namespace LibN64
 			/*uses Baremetal-MIPS 8x8 font from PeterLemon (github)*/
 			void LoadCustomFont(const std::string FileName) 
 			{
-				libFont = DFS::QuickRead<sprite_t*>(FileName.c_str());
+				libFont = LibDFS::QuickRead<sprite_t*>(FileName.c_str());
 				if(libFont == nullptr) {
-					const std::string err = "There was an error loading the font.";
-					if(uitype == GUI) 
-						DrawText({0,0},err);
-					else 
-						printf(err.c_str());
+					assertf(libFont != nullptr, "There was an error loading the custom font.");
 				}
 			}
 
+			/**
+			 * @brief Draw text from the custom font file that has been loaded with LoadCustomFont
+			 * 
+			 * @param pos 
+			 * @param str 
+			 * @param LibColor 
+			 */
 			void DrawTextCF(LibPos pos, const std::string str, int LibColor = WHITE) 
 			{
 				uint32_t incx = pos.x;
@@ -824,6 +891,13 @@ namespace LibN64
 				}
 			}
 
+			/**
+			 * @brief Draw text from the custom font file, but with printf-formatting 
+			 * 
+			 * @param pos 
+			 * @param format 
+			 * @param ... 
+			 */
 			void DrawTextFormatCF(LibPos pos, const std::string format, ...) 
 			{
 				va_list args;
@@ -906,8 +980,7 @@ namespace LibN64
 			 * @param obj1 Object
 			 * @param obj2 Circle-object
 			 * @param cradius Radius of Circle-object
-			 * @return true 
-			 * @return false 
+			 * @return true static 
 			 */
 			static bool IsPointInsideCircle(LibPos obj1, LibPos obj2, float cradius)
 			{
@@ -926,33 +999,6 @@ namespace LibN64
 				return sqrt(((obj2.x - obj1.x)*(obj2.x - obj1.x)) + ((obj2.y - obj1.y)*(obj2.y-obj1.y)));
 			}
 		};
-	};
-
-	/*Optional class wrapper for sprite*/
-	class LibSprite 
-	{
-		private:
-			sprite_t *sSpr = nullptr;
-		public:
-			LibSprite(const std::string& fp) {
-				this->Load(fp);
-			}
-			LibSprite() {}
-			void Load(const std::string& filePath) {
-				sSpr = DFS::QuickRead<sprite_t*>(filePath.c_str());
-			}
-
-			void Draw(LibN64::Frame &r, LibPos pos) {
-				r.DrawSprite(pos, this->sSpr);
-			}
-
-			void Delete() {
-				delete sSpr;
-			}
-
-			sprite_t* Get() {
-				return sSpr;
-			}
 	};
 
 	/*menu system*/
@@ -1337,6 +1383,102 @@ namespace LibN64
 			}
 		}
 		
+	};
+
+	/*Optional class wrapper for sprite*/
+	class LibSprite 
+	{
+		private:
+			sprite_t *sSpr = nullptr;
+		public:
+			LibSprite(const std::string& fp) { this->Load(fp); }
+			LibSprite() {}
+
+			void Load(const std::string& filePath) {
+				sSpr = LibDFS::QuickRead<sprite_t*>(filePath.c_str());
+			}
+
+			void Draw(LibN64::Frame &r, LibPos pos) {
+				r.DrawSprite(pos, this->sSpr);
+			}
+
+			void DrawFromMap(LibN64::Frame &r, LibPos pos, uint8_t offset) {
+				r.DrawSpriteStride(pos, offset, this->sSpr);
+			}
+
+			void Delete() {
+				delete sSpr;
+			}
+
+			sprite_t* Get() {
+				return sSpr;
+			}
+	};
+
+	class LibRTC 
+	{
+		private:
+			rtc_time_t rTimer;
+
+			std::map<uint8_t, const std::string> bToMonth = 
+			{
+				{0,  "January"},
+				{1,  "Feburary"},
+				{2,  "March"},
+				{3,  "April"},
+				{4,  "May"},
+				{5,  "June"},
+				{6,  "July"},
+				{7,  "August"},
+				{8,  "September"},
+				{9,  "October"},
+				{10, "November"},
+				{11, "December"},
+			};
+
+			std::map<uint8_t, const std::string> bToWDay = 
+			{
+				{0, "Sunday"},
+				{1, "Monday"},
+				{2, "Tuesday"},
+				{3, "Wednesday"},
+				{4, "Thursday"},
+				{5, "Friday"},
+				{6, "Saturday"}
+			};
+
+		public:
+			inline void UpdateTime() {
+				rtc_init();
+				rtc_get(&this->rTimer);
+			}
+			
+			uint8_t GetSeconds() {
+				return rTimer.sec;
+			}
+
+			uint8_t GetMinutes() {
+				return rTimer.min;
+			}
+
+			uint8_t GetHours() {
+				return rTimer.hour % 12;
+			}
+
+			uint8_t GetDay() {
+				return rTimer.day;
+			}
+
+			std::string GetMonth() {
+				return bToMonth[rTimer.month];
+			}
+
+			std::string GetWeekday() {
+				return bToWDay[rTimer.week_day];
+			}
+			uint16_t GetYear() {
+				return rTimer.year;
+			}
 	};
 
 	/*having issues*/
