@@ -2,7 +2,7 @@
 A C++ wrapper for libdragon development that allows an easy to use interface to create libdragon C++ ROMs. After using a 2010 build of LibDragon with GCC 4.1 for so many years, now fully supports the latest build with C++20
 
 #### Install
-Place <i>LibN64.h</i> in the include directory, reconfigure your LibDragon makefile to install the new header. Build with the modified <i>graphics.cpp</i>, make install, include <i><LibN64.h></i> in your project and should be good to go.
+Place <i>LibN64.h</i> in the include directory, reconfigure your LibDragon makefile to install the new header. Make install, include <i><LibN64.h></i> in your project and should be good to go.
 
 #### Documentation
 Build the new documentation with Doxygen from the root Libdragon folder. All the classes and their features will be highlighted in there.
