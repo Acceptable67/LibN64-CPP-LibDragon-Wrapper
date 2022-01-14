@@ -76,11 +76,31 @@ int main(void) {
 Pseudo-3D Textured Raycaster FPS experiment, still working out the quirks.
 
 <img src="http://73.55.44.55/github/CPPWrapper-LibN64.png"></img>
+    
+### Mode7 Test
+Roam across a pseudo-3D landscape with a texture of a mountain on it. A test of 'old school' pseudo-3D planes.
 
+<img src="http://73.55.44.55/github/CPPWrapper-Mode73D.png"></img>
+    
+### MemPakTesting
+Test of LibMemPak class interface 
+
+<img src="http://73.55.44.55/github/CPPWrapper-LibMemPak.png"></img>
+    
 ### MazeTest
 Auto-generated maze that auto fills it self. Takes around 30 seconds to fully finish.
 
 <img src="http://73.55.44.55/github/CPPWrapper-Maze.png"></img>
+
+### PanAndZoom
+A test of panning and zooming around a white Grid with ability to fill in the spaces inside with a circle (Screen-to-World mapping and vice versa.)
+
+<img src="http://73.55.44.55/github/CPPWrapper-PanAndZoom.png"></img>
+
+### Asteroids
+It's a game of Asteroids!
+
+<img src="http://73.55.44.55/github/CPPWrapper-Asteroids.png"></img>
 
 ### 3D Model Viewer
 3D Model viewer with ability to move camera around the object
