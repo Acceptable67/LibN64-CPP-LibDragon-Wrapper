@@ -5,6 +5,8 @@
 
 #define DEFAULT_DISPLAY 0
 
+#define MEMPAK_MAX_ENTRIES 16
+
 #include <libdragon.h>
 #include <math.h>
 #include <string.h>
@@ -32,7 +34,9 @@
 
 	LibN64::LibDFS 	(QuickRead<> -> static)
 	LibN64::DMA 	(static)
+		LibN64::IO  (static)
 	LibN64::EEPROM  (static)
+	LibN64::LibMemPak
 
 	LibN64::Frame 
 		LibN64::LibColor
@@ -42,19 +46,22 @@
 
 	LibN64::LibMenu
 	LibN64::LibMenuManager
-	LibN64::LibMemPak
 	LibN64::LibSprite
 	LibN64::LibRTC
 
 	LibN64::Audio::WavAudio
 */
 
+/*entirely contextual*/
+using ID	= int;
+using Byte 	= char;
+
 namespace LibN64 
 {
 	class LibDFS 
 	{
 		private:
-			int dfsHandle;
+			uint32_t dfsHandle;
 
 		public:
 		LibDFS(){}
@@ -81,7 +88,7 @@ namespace LibN64
 		 * @brief Grabs the currently open DFS's file size
 		 * @return Current size of open file
 		 */
-		int Size()
+		uint32_t Size()
 		{
 			return dfs_size(dfsHandle);
 		}
@@ -91,7 +98,7 @@ namespace LibN64
 		 * 
 		 * @return int 
 		 */
-		int AtEOF() 
+		uint32_t AtEOF() 
 		{
 			return dfs_eof(dfsHandle);
 		}
@@ -172,7 +179,7 @@ namespace LibN64
 			 */
 			inline static void FromPI(const int PI, const T RAM, size_t Length) 
 			{
-				dma_read_async(reinterpret_cast<void*>(RAM), PI, Length);
+				dma_read(reinterpret_cast<void*>(RAM), PI, Length);
 			}
 
 			/**
@@ -186,8 +193,30 @@ namespace LibN64
 			template<class T>
 			inline static void ToPI(const T RAM, const int PI, size_t Length) 
 			{
-				dma_write_raw_async(reinterpret_cast<void*>(RAM), PI, Length);
+				dma_write(reinterpret_cast<void*>(RAM), PI, Length);
 			}
+
+			inline static int Busy() {
+				return dma_busy();
+			}
+
+			inline static void Wait() {
+				while(dma_busy());
+			}
+
+		class IO 
+		{
+			public:
+				inline static uint32_t Read(const auto address) 
+				{
+					return io_read(address);
+				}
+
+				inline static void Write(const auto address, uint32_t data) {
+					io_write(address, data);
+				}
+		};
+
 	};
 
 	class EEPROM
@@ -224,7 +253,7 @@ namespace LibN64
 			template<class T>
 			inline static T Read(uint8_t block) 
 			{
-				uint8_t *tmp = new uint8_t[8];
+				uint8_t *tmp = new uint8_t[EEPROM_BLOCK_SIZE];
 				eeprom_read(block, tmp);
 
 				return reinterpret_cast<T>(tmp);
@@ -275,14 +304,259 @@ namespace LibN64
 				eeprom_write_bytes(reinterpret_cast<uint8_t*>(data), offset, size);
 			}
 	};
+
+	/**
+	 * @brief The main MemPak interface 
+	 * 
+	 */
+	class LibMemPak
+	{
+	private:
+		int pakControllerID;
+		int	pakValidEntries;
+		int pakBlocksFree;
+		uint8_t *pakEntryData;
+
+	public:
+		enum Pads 
+		{
+			CONTROLLER_1,
+			CONTROLLER_2,
+			CONTROLLER_3,
+			CONTROLLER_4
+		};
+
+	private:
+		std::vector<entry_structure_t> 	pakEntries;
+		std::string pakFileName;
+
+		/**
+		 * @brief This reads in the entries of the pak to the vector 
+		 */
+		void _ReadPakEntries()
+		{
+			if(!pakEntries.empty())
+				pakEntries.empty();
+			for(auto spot = 0; spot < MEMPAK_MAX_ENTRIES; spot++) 
+			{
+				entry_structure_t tmpEntry;
+				get_mempak_entry(pakControllerID, spot, &tmpEntry);
+				pakEntries.push_back(tmpEntry);
+				
+				if(tmpEntry.valid) {
+					pakValidEntries++;
+				}
+			}
+			pakBlocksFree = get_mempak_free_space(pakControllerID);
+		}
+
+	public:
+	/**
+	 * @brief Constructs a new LibMemPak object
+	 * 	
+	 * @param entryfilename Entry filename that will be used when writing (e.g. "MEMPAK.Z")
+	 * @param controller 0-4
+	 */
+		LibMemPak(std::string entryfilename, int controller) : pakControllerID(controller), pakFileName(entryfilename)
+		{
+			_ReadPakEntries();
+		}
+
+		/**
+		 * @brief Reads a Pak entry supplied by the pak entry structure into local buffer
+		 * 		  and returns that buffer to the user
+		 * @tparam RT 
+		 * @param entryID Entry ID
+		 * @return Any supplied datatype array
+		 */
+		template<class RT>
+		RT ReadMemPakEntry(ID entryID)
+		 {
+			if(MemPakInserted() && IsValid()) 
+			{
+				entry_structure_t tmp;
+				get_mempak_entry(pakControllerID, entryID, &tmp);
+
+				if(tmp.valid) 
+				{
+					pakEntryData = new uint8_t[tmp.blocks * MEMPAK_BLOCK_SIZE];
+					read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
+					
+					return reinterpret_cast<RT>(pakEntryData);
+				}
+			}
+			return nullptr;
+		}
+
+		/**
+		 * @brief Deletes a Pak entry specified by the ID
+		 * 
+		 * @param entryID 
+		 */
+		void DeleteMemPakEntry(ID entryID)
+		{
+			if(pakEntries.at(entryID).valid) 
+				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
+
+			_ReadPakEntries();
+		}
+
+		/**
+		 * @brief Writes a Pak entry by ID only if the entry is not valid
+		 * 
+		 * @tparam DataArray 
+		 * @param entryID Entry ID
+		 * @param pakdata Data to write
+		 */
+		template<typename DataArray>
+		void WriteMemPakEntry(ID entryID, const DataArray pakdata) 
+		{
+			entry_structure_t entry = pakEntries.at(entryID);
+
+			if(!entry.valid) 
+			{
+				strcpy(entry.name, pakFileName.c_str());
+				entry.blocks = 1;
+				entry.region = 0x45;
+				write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
+
+				_ReadPakEntries();
+			}
+		}
+
+		/**
+		 * @brief Writes to the first open and available space that is not valid
+		 * 
+		 * @tparam DataArray 
+		 * @param pakdata Data to write
+		 */
+		template<typename DataArray>
+		void WriteAnyMemPakEntry(const DataArray pakdata) 
+		{
+			for(auto& entry : pakEntries) 
+			{
+				if(!entry.valid) 
+				{
+					strcpy(entry.name, pakFileName.c_str());
+					entry.blocks = 1;
+					entry.region = 0x45;
+					write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
+					break;
+				}
+			}
+
+			_ReadPakEntries();
+		}
+
+		/**
+		 * @brief Looks up an entry by it's name and will return the first entry it comes across
+		 * @param entryname Prospective entry name (e.g. "MEMPAK.Z")
+		 * @return Entry ID
+		 */
+		int FindFirstEntryWith(const std::string entryname) {
+			for(int spot = 0; spot < pakEntries.size(); spot++) 
+			{
+				if(strcmp(pakEntries.at(spot).name, entryname.c_str()) == 0) 
+				{
+					return spot;
+				}
+			} 
+		}
+
+		/**
+		 * @brief Get the Entry Structure by supplying a known ID
+		 * @param entryID Entry ID
+		 * @return entry_structure_t 
+		 */
+		entry_structure_t GetEntryStructure(ID entryID) 
+		{
+			return pakEntries.at(entryID);
+		} 
+
+
+		/**
+		 * @brief Gets the Pak entry name by supplying a known ID
+		 * @param entryID Entry ID
+		 * @return std::string 
+		 */
+		std::string GetMemPakEntryName(ID entryID) {
+			return pakEntries.at(entryID).name;
+		}
+
+		/**
+		 * @brief Formats the MemPak
+		 */
+		void FormatMemPak() 
+		{
+			format_mempak(pakControllerID);
+		}
+
+		/**
+		 * @brief Enumerates all valid entries contained 
+		 * @return int 
+		 */
+		int GetValidEntries() 
+		{
+			return pakValidEntries;
+		}
+
+		/**
+		 * @brief Get all available blocks free that are left to be written
+		 * @return Number of blocks as an INT
+		 */
+		int GetBlocksFree() 
+		{
+			return pakBlocksFree;
+		}
+
+		/**
+		 * @brief Get the File Handle object
+		 * @return std::string 
+		 */
+		std::string GetFileHandle()
+		{
+			return pakFileName;
+		}
+
+		/**
+		 * @brief Returns whether the Pak is inserted or not
+		 * @return true 
+		 * @return false 
+		 */
+		bool MemPakInserted() 
+		{
+			controller_data cTmp;
+			get_accessories_present(&cTmp);
+
+			if(identify_accessory(pakControllerID) == ACCESSORY_MEMPAK) 
+			{
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * @brief Returns whether the Pak is valid 
+		 * @return true 
+		 * @return false 
+		 */
+		bool IsValid() 
+		{
+			if(MemPakInserted()) 
+			{
+				if(validate_mempak(pakControllerID) == 0)
+				 {
+					return true;
+				}
+				return false;
+			}
+		}
+		
+	};
 };
 
 namespace LibN64 
 {	
-	/*entirely contextual*/
-	using ID	= int;
-	using Byte 	= char;
-
 	/**
 	* @brief Converts seperate R,G,B,A and mixes down into one color 
 
@@ -322,7 +596,6 @@ namespace LibN64
 
 	/**
 	 * @brief Simple supply struct for objects that require X and Y coordinate spaces
-	 * 
 	 */
 	struct LibPos 
 	{ 
@@ -352,7 +625,6 @@ namespace LibN64
 
 	/**
 	 * @brief Simple 2D open-type supply struct for any object that requires it
-	 * 
 	 * @tparam SpecifiedType 
 	 */
 	template<class SpecifiedType>
@@ -387,7 +659,6 @@ namespace LibN64
 			int 	screenWidth;
 			int 	screenHeight;
 			
-			/*test*/
 			bool 	bActive;
 			bool    bDLInLoop = false;
 
@@ -1044,7 +1315,6 @@ namespace LibN64
 		/**
 		 * @brief Simple math helper.
 		 * @note Very small, still under construction.
-		 * 
 		 */
 		class LibMath
 		{
@@ -1087,7 +1357,7 @@ namespace LibN64
 	class LibMenu 
 	{
 		private:
-			LibN64::ID			mId;
+			ID					mId;
 			LibN64::LibPos 		mPos;
 			std::string 		mTitle;
 			std::string 		mContent;
@@ -1306,176 +1576,6 @@ namespace LibN64
 
 			LibMenu* operator [](ID i) { return menuMap[i]; }
 	};
-	
-	/**
-	 * @brief The main MemPak interface 
-	 * 
-	 */
-	class LibMemPak
-	{
-	private:
-		int pakControllerID;
-		int	pakValidEntries;
-		int pakBlocksFree;
-		uint8_t *pakEntryData;
-
-	public:
-		enum Pads 
-		{
-			CONTROLLER_1,
-			CONTROLLER_2,
-			CONTROLLER_3,
-			CONTROLLER_4
-		};
-
-	private:
-		std::vector<entry_structure_t> 	pakEntries;
-		std::string pakFileName;
-
-		void _ReadPakEntries()
-		{
-			pakEntries.empty();
-			for(auto spot = 0; spot < 16; spot++) 
-			{
-				entry_structure_t tmpEntry;
-				get_mempak_entry(pakControllerID, spot, &tmpEntry);
-				pakEntries.push_back(tmpEntry);
-				
-				if(tmpEntry.valid) {
-					pakValidEntries++;
-				}
-			}
-			pakBlocksFree = get_mempak_free_space(pakControllerID);
-		}
-
-	public:
-		LibMemPak(std::string entryfilename, int controller) : pakControllerID(controller), pakFileName(entryfilename)
-		{
-			_ReadPakEntries();
-		}
-
-		template<class RT>
-		RT ReadMemPakEntry(ID entryID)
-		 {
-			if(MemPakInserted() && IsValid()) 
-			{
-				entry_structure_t tmp;
-				get_mempak_entry(pakControllerID, entryID, &tmp);
-
-				if(tmp.valid) 
-				{
-					pakEntryData = new uint8_t[tmp.blocks * MEMPAK_BLOCK_SIZE];
-					read_mempak_entry_data(pakControllerID, &tmp, pakEntryData);
-	
-					return reinterpret_cast<RT>(pakEntryData);
-				}
-			}
-			return nullptr;
-		}
-
-		void DeleteMemPakEntry(ID entryID)
-		{
-			if(pakEntries.at(entryID).valid) 
-				delete_mempak_entry(pakControllerID, &pakEntries[entryID]);
-
-			_ReadPakEntries();
-		}
-
-		template<typename DataArray>
-		void WriteMemPakEntry(ID entryID, const DataArray pakdata) 
-		{
-			entry_structure_t entry = pakEntries.at(entryID);
-
-			strcpy(entry.name, pakFileName.c_str());
-			entry.blocks = 1;
-			entry.region = 0x45;
-			write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
-
-			_ReadPakEntries();
-		}
-
-		template<typename DataArray>
-		void WriteAnyMemPakEntry(const DataArray pakdata) 
-		{
-			for(auto& entry : pakEntries) 
-			{
-				if(!entry.valid) 
-				{
-					strcpy(entry.name, pakFileName.c_str());
-					entry.blocks = 1;
-					entry.region = 0x45;
-					write_mempak_entry_data(pakControllerID, &entry, reinterpret_cast<uint8_t*>(pakdata));
-					break;
-				}
-			}
-
-			_ReadPakEntries();
-		}
-
-		int FindFirstEntryWith(const std::string entryname) {
-			for(int spot = 0; spot < pakEntries.size(); spot++) 
-			{
-				if(strcmp(pakEntries.at(spot).name, entryname.c_str()) == 0) 
-				{
-					return spot;
-				}
-			} 
-		}
-
-		entry_structure_t GetEntryStructure(ID entryID) 
-		{
-			return pakEntries.at(entryID);
-		} 
-
-		std::string GetMemPakEntryName(ID entryID) {
-			return pakEntries.at(entryID).name;
-		}
-
-		void FormatMemPak() 
-		{
-			format_mempak(pakControllerID);
-		}
-
-		int GetValidEntries() 
-		{
-			return pakValidEntries;
-		}
-
-		int GetBlocksFree() 
-		{
-			return pakBlocksFree;
-		}
-
-		std::string GetFileHandle()
-		{
-			return pakFileName;
-		}
-
-		bool MemPakInserted() 
-		{
-			controller_data cTmp;
-			get_accessories_present(&cTmp);
-
-			if(identify_accessory(pakControllerID) == ACCESSORY_MEMPAK) 
-			{
-				return true;
-			}
-			return false;
-		}
-
-		bool IsValid() 
-		{
-			if(MemPakInserted()) 
-			{
-				if(validate_mempak(pakControllerID) == 0)
-				 {
-					return true;
-				}
-				return false;
-			}
-		}
-		
-	};
 
 	/** 
 	 * @brief Optional class wrapper for sprite
@@ -1488,15 +1588,18 @@ namespace LibN64
 			LibSprite(const std::string& fp) { this->Load(fp); }
 			LibSprite() {}
 
-			void Load(const std::string& filePath) {
+			void Load(const std::string& filePath) 
+			{
 				sSpr = LibDFS::QuickRead<sprite_t*>(filePath.c_str());
 			}
 
-			void Draw(LibN64::Frame &r, LibPos pos) {
+			void Draw(LibN64::Frame &r, LibPos pos) 
+			{
 				r.DrawSprite(pos, this->sSpr);
 			}
 
-			void DrawFromMap(LibN64::Frame &r, LibPos pos, uint8_t offset) {
+			void DrawFromMap(LibN64::Frame &r, LibPos pos, uint8_t offset) 
+			{
 				r.DrawSpriteStride(pos, offset, this->sSpr);
 			}
 
