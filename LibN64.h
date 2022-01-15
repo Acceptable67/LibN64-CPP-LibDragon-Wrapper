@@ -4,8 +4,8 @@
 #pragma GCC diagnostic ignored "-Wnarrowing"
 
 #define DEFAULT_DISPLAY 0
-
 #define MEMPAK_MAX_ENTRIES 16
+#define MENU_MAX_ENTRIES 27
 
 #include <libdragon.h>
 #include <math.h>
@@ -15,11 +15,14 @@
 #include <stdarg.h>
 #include <vector>
 #include <list>
+#include <memory>
 #include <array>
 #include <functional>
 #include <map>
 #include <stdio.h>
 #include <iostream>
+
+extern void *__safe_buffer[];
 
 /**
  * @file LibN64.h
@@ -40,6 +43,7 @@
 
 	LibN64::Frame 
 		LibN64::LibColor
+		LibN64::LibPos3D
 		LibN64::LibPos
 		LibN64::Lib2DVec<type>
 		LibN64::Math (static)
@@ -128,7 +132,7 @@ namespace LibN64
 		}
 		
 		/** 
-		 * @brief Opens a file for reading with a user-provided buffer
+		 * @brief Opens a file for reading and returns a buffer of the contents
 		 * @param T buffer
 		 * @param uint32_t size
 		 * @param uint32_t offset (to read from)
@@ -146,7 +150,7 @@ namespace LibN64
 		
 		/**
 		 * @brief Opens a file, reads it to a buffer, and returns the buffer contents all in one go.
-		 * Great for if you do not need to do anything specifical during the reading.
+		 * Great for if you do not need to do anything specific during the reading.
 		 * 
 		 * @tparam T 
 		 * @param file file path 
@@ -196,10 +200,17 @@ namespace LibN64
 				dma_write(reinterpret_cast<void*>(RAM), PI, Length);
 			}
 
+			/**
+			 * @brief Returns whether DMA is busy or not
+			 * @return int 
+			 */
 			inline static int Busy() {
 				return dma_busy();
 			}
 
+			/**
+			 * @brief Halts operation until DMA is free
+			 */
 			inline static void Wait() {
 				while(dma_busy());
 			}
@@ -207,11 +218,23 @@ namespace LibN64
 		class IO 
 		{
 			public:
+				/**
+				 * @brief Read an INT from specified IO device address and return it 
+				 * 
+				 * @param address Peripheral address
+				 * @return Value
+				 */
 				inline static uint32_t Read(const auto address) 
 				{
 					return io_read(address);
 				}
 
+				/**
+				 * @brief Write an INT to a specified IO device address
+				 * 
+				 * @param address Address
+				 * @param data INT of data
+				 */
 				inline static void Write(const auto address, uint32_t data) {
 					io_write(address, data);
 				}
@@ -573,7 +596,6 @@ namespace LibN64
 
 	/**
 	 * @brief Predefined colors to choose from when writing colors to a shape or object
-	 * 
 	 */
 	enum LibColor 
 	{
@@ -592,6 +614,46 @@ namespace LibN64
 		 CYAN			= MakeColor(0x00, 0xFF, 0xFF, 0xFF),
 		 GREY			= MakeColor(0x80, 0x80, 0x80, 0xFF),
 		 PURPLE			= MakeColor(0xFF, 0x00, 0x9B, 0xFF)
+	};
+
+	/**
+	 * @brief Simple supply struct for objects that require X, Y and Z coordinate space
+	 */
+	struct LibPos3D {
+		float x, y, z;
+		float w;
+
+		bool operator ==(LibPos3D x) const 
+		{
+			return (x.x == this->x && x.y == this->y && x.z == this->z);
+		}
+
+		LibPos3D operator +(LibPos3D x) const 
+		{
+			LibPos3D tmp = {this->x, this->y, this->z, this->w};
+			tmp.x += x.x;
+			tmp.y += x.y;
+			tmp.z += x.z;
+			return tmp;
+		}
+
+		LibPos3D operator -(LibPos3D x) const 
+		{
+			LibPos3D tmp = {this->x, this->y, this->z, this->w};
+			tmp.x -= x.x;
+			tmp.y -= x.y;
+			tmp.z -= x.z;
+			return tmp;
+		}
+
+		LibPos3D operator *(LibPos3D x) const 
+		{
+			LibPos3D tmp = {this->x, this->y, this->z, this->w};
+			tmp.x *= x.x;
+			tmp.y *= x.y;
+			tmp.z *= x.z;
+			return tmp;
+		}
 	};
 
 	/**
@@ -619,7 +681,7 @@ namespace LibN64
 		bool operator ==(LibPos x) const			
 		{
 			LibPos tmp = { this->x, this->y };
-			return (tmp.x == x.x && tmp.y == x.y) ? true : false;
+			return (tmp.x == x.x && tmp.y == x.y);
 		}
 	};
 
@@ -909,6 +971,7 @@ namespace LibN64
 				display_close();
 				display_init(res, bd, 3, GAMMA_NONE, this->aa);
 				d = display_lock();
+				r = res;
 			}
 
 			/** @brief Returns the frames display context
@@ -972,13 +1035,11 @@ namespace LibN64
 				va_list args;
 				va_start(args, format.c_str());
 
-				char *buffer = new char[300];
+				char buffer[300];
 				vsprintf(buffer, format.c_str(), args);
 				DrawText(pos, buffer);
 
 				va_end(args);	
-				
-				delete buffer;
 			}
 
 			/** @brief DrawText feature with ability to use as printf with coloring
@@ -992,21 +1053,19 @@ namespace LibN64
 				va_list args;
 				va_start(args, format.c_str());
 
-				char *buffer = new char[300];
+				char buffer[300];
 				vsprintf(buffer, format.c_str(), args);
 				DrawText(pos, buffer, forecolor, backcolor);
 
 				va_end(args);	
-
-				delete buffer;
 			}
 	
 			/**
 			 * @brief Draw's 8x8 text to the screen at the specified location
 			 * @param  LibPos Position
 			 * @param  std::string Text    
-			 * @param  LibColor Forecolor 
-			 * @param  LibColor Backcolor 
+			 * @param  LibColor Forecolor (Optional)
+			 * @param  LibColor Backcolor (Optional)
 			 */
 			void DrawText(LibN64::LibPos pos, const std::string t, LibColor forecolor = WHITE, LibColor backcolor = BLACK) 
 			{
@@ -1256,6 +1315,19 @@ namespace LibN64
 			}
 
 			/**
+			 * @brief Returns INT of Pixel Color at designated coordinates
+			 * @param position LibPos Coordinates
+			 * @return uint32_t 
+			 */
+			uint32_t GetPixel(LibPos position) 
+			{
+				if(GetBitdepth() == DEPTH_32_BPP) 
+				{
+					  return ((uint32_t*)__safe_buffer[(GetDisplay())-1])[(position.x) + ((position.y) * this->screenWidth)];
+				}
+			}
+
+			/**
 			 * @brief Get the Total Time elapsed since start of the application
 			 * 
 			 * @return float Total time elapsed
@@ -1369,7 +1441,7 @@ namespace LibN64
 
 			std::map<int,std::string>			mMenuItems;
 			std::vector<std::function<void()>> 	mMenuItemCallbacks;
-			std::array<bool, 27>				mMenuItemsSelected;
+			std::array<bool, MENU_MAX_ENTRIES>	mMenuItemsSelected;
 
 			bool bMenuIsShowing   = true;
 			bool bEnableHighlight = true;
@@ -1384,20 +1456,15 @@ namespace LibN64
 			}
 
 			template<class FunctionCallback>
-			void AddMenuItem(int mId, std::string content, FunctionCallback call) 
+			void AddMenuItem(int mId, std::string content, FunctionCallback call = [](){}) 
 			{
-				mMenuItems[mId] = content;
-				mMenuItemCallbacks.push_back(call);
-				mMenuItemCount++;
+				if(mMenuItems.size() <= MENU_MAX_ENTRIES) 
+				{
+					mMenuItems[mId] = content;
+					mMenuItemCallbacks.push_back(call);
+					mMenuItemCount++;
+				}
 			}
-
-			void AddMenuItem(int mId, std::string content) 
-			{
-				mMenuItems[mId] = content;
-				mMenuItemCallbacks.push_back([this]{});
-				mMenuItemCount++;
-			}
-
 
 			void MoveSelectionUp(Frame &r)   
 			{ 
@@ -1438,7 +1505,7 @@ namespace LibN64
 						return stringLengths.front();
 					};
 					
-					auto toUpper = [=](std::string str) -> std::string
+					auto toUpper = [this](std::string str) -> std::string
 					{
 						std::string tmp;
 						for(auto& character : str) {
